@@ -1,0 +1,12 @@
+
+*.xcworkspacedata
+
+*.xccheckout
+
+*.xcuserstate
+
+*.xcbkptlist
+
+*.xcscheme
+
+Ring.xcodeproj/xcuserdata/sky.xcuserdatad/xcschemes/xcschememanagement.plist
