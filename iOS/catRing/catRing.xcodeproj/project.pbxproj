@@ -15,6 +15,13 @@
 		3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
 		3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
 		3379C9C81A9329FD00D29FFD /* catRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9C71A9329FD00D29FFD /* catRingTests.m */; };
+		3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D41A932D0900D29FFD /* handGesture.cpp */; };
+		3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D81A932D0900D29FFD /* myImage.cpp */; };
+		3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DA1A932D0900D29FFD /* mymain.cpp */; };
+		3379C9E21A932D0900D29FFD /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
+		3379C9E51A932D6800D29FFD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E41A932D6800D29FFD /* opencv2.framework */; };
+		3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E61A932F1700D29FFD /* AVFoundation.framework */; };
+		3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E81A932FE600D29FFD /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +50,17 @@
 		3379C9C11A9329FD00D29FFD /* catRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9C61A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9C71A9329FD00D29FFD /* catRingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = catRingTests.m; sourceTree = "<group>"; };
+		3379C9D41A932D0900D29FFD /* handGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handGesture.cpp; sourceTree = "<group>"; };
+		3379C9D51A932D0900D29FFD /* handGesture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handGesture.hpp; sourceTree = "<group>"; };
+		3379C9D81A932D0900D29FFD /* myImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = myImage.cpp; sourceTree = "<group>"; };
+		3379C9D91A932D0900D29FFD /* myImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = myImage.hpp; sourceTree = "<group>"; };
+		3379C9DA1A932D0900D29FFD /* mymain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mymain.cpp; sourceTree = "<group>"; };
+		3379C9DB1A932D0900D29FFD /* mymain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mymain.hpp; sourceTree = "<group>"; };
+		3379C9DC1A932D0900D29FFD /* roi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roi.cpp; sourceTree = "<group>"; };
+		3379C9DD1A932D0900D29FFD /* roi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roi.hpp; sourceTree = "<group>"; };
+		3379C9E41A932D6800D29FFD /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		3379C9E61A932F1700D29FFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3379C9E81A932FE600D29FFD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
+				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
+				3379C9E51A932D6800D29FFD /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +87,8 @@
 		3379C99C1A9329FD00D29FFD = {
 			isa = PBXGroup;
 			children = (
+				3379C9E81A932FE600D29FFD /* CoreMedia.framework */,
+				3379C9E61A932F1700D29FFD /* AVFoundation.framework */,
 				3379C9A71A9329FD00D29FFD /* catRing */,
 				3379C9C41A9329FD00D29FFD /* catRingTests */,
 				3379C9A61A9329FD00D29FFD /* Products */,
@@ -84,6 +107,8 @@
 		3379C9A71A9329FD00D29FFD /* catRing */ = {
 			isa = PBXGroup;
 			children = (
+				3379C9E31A932D6800D29FFD /* 3rd */,
+				3379C9D11A932D0900D29FFD /* algorithms */,
 				3379C9AC1A9329FD00D29FFD /* AppDelegate.h */,
 				3379C9AD1A9329FD00D29FFD /* AppDelegate.m */,
 				3379C9AF1A9329FD00D29FFD /* FirstViewController.h */,
@@ -122,6 +147,45 @@
 				3379C9C61A9329FD00D29FFD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3379C9D11A932D0900D29FFD /* algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				3379C9D21A932D0900D29FFD /* v1 */,
+			);
+			path = algorithms;
+			sourceTree = "<group>";
+		};
+		3379C9D21A932D0900D29FFD /* v1 */ = {
+			isa = PBXGroup;
+			children = (
+				3379C9D31A932D0900D29FFD /* Gesture */,
+			);
+			path = v1;
+			sourceTree = "<group>";
+		};
+		3379C9D31A932D0900D29FFD /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				3379C9D41A932D0900D29FFD /* handGesture.cpp */,
+				3379C9D51A932D0900D29FFD /* handGesture.hpp */,
+				3379C9D81A932D0900D29FFD /* myImage.cpp */,
+				3379C9D91A932D0900D29FFD /* myImage.hpp */,
+				3379C9DA1A932D0900D29FFD /* mymain.cpp */,
+				3379C9DB1A932D0900D29FFD /* mymain.hpp */,
+				3379C9DC1A932D0900D29FFD /* roi.cpp */,
+				3379C9DD1A932D0900D29FFD /* roi.hpp */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		3379C9E31A932D6800D29FFD /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				3379C9E41A932D6800D29FFD /* opencv2.framework */,
+			);
+			path = 3rd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,8 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
+				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
+				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
 				3379C9B11A9329FD00D29FFD /* FirstViewController.m in Sources */,
+				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
+				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
 				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +419,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/catRing/3rd",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/catRing/3rd/opencv2.framework",
+					"$(SRCROOT)/catRing/3rd",
+				);
 				INFOPLIST_FILE = catRing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -363,6 +441,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/catRing/3rd",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/catRing/3rd/opencv2.framework",
+					"$(SRCROOT)/catRing/3rd",
+				);
 				INFOPLIST_FILE = catRing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
