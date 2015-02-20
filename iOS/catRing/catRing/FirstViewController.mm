@@ -10,6 +10,7 @@
 
 // UI
 #import "LabelSliderGroup.h"
+#import "SVProgressHUD.h"
 // UI
 
 
@@ -24,6 +25,11 @@
 #import "DWIplImageHelper.h"
 // utility
 
+// video decoding
+#import "DWVideoDecoding.h"
+// video decoding
+
+
 #import "ImageProcess.h"
 
 @interface FirstViewController ()
@@ -31,6 +37,10 @@
 @property (nonatomic, retain) UIImageView *imageView;
 
 @property (nonatomic, retain) LabelSlider *labelSlider;
+
+@property (nonatomic, strong) DWVideoDecoding *videoEncoder;
+
+@property (nonatomic, assign) NSInteger totalVideoFrame;
 
 @end
 
@@ -50,8 +60,8 @@
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
     labelSlider.label.text = nil;
-    labelSlider.slider.minimumValue = 2.0f;
-    labelSlider.slider.maximumValue = 100.0f;
+    labelSlider.slider.minimumValue = 0.0f;
+    labelSlider.slider.maximumValue = 1.0f;
     [self.view addSubview:labelSlider];
     self.labelSlider = labelSlider;
     
@@ -59,11 +69,33 @@
     nextButton.frame = CGRectMake(self.view.frame.size.width - 20, self.view.frame.size.height - 80, 20, 20);
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
+    
+    
+    
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Moviergb1.m4v"];
+    DWVideoDecoding *videoEncoder = [[DWVideoDecoding alloc] initWithMoviePath:path];
+    self.videoEncoder = videoEncoder;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self getAllImageFromVideo];
+}
+
+#pragma mark -
+#pragma mark get set
+
+- (void)setTotalVideoFrame:(NSInteger)totalVideoFrame {
+    self.labelSlider.slider.value = 0;
+    self.labelSlider.slider.minimumValue = 0;
+    self.labelSlider.slider.maximumValue = totalVideoFrame;
+    _totalVideoFrame = totalVideoFrame;
 }
 
 #pragma mark -
@@ -115,10 +147,49 @@
     
     UIImage *image = nil;
     NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+    NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
+    
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-    NSLog(@"current filename=%@", fileName);
-    image = [UIImage imageNamed:fileName];
+    NSLog(@"current filename=%@", betaCompressionDirectory);
+//    image = [UIImage imageNamed:fileName];
+    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
     self.imageView.image = [self processImage:image];
+}
+
+
+- (void)getAllImageFromVideo {
+    [SVProgressHUD showWithStatus:@"Processing..."];
+    UIImage *image = nil;
+    //    image = [self.videoEncoder fetchOneFrame];
+    NSInteger i = 0;
+    BOOL flag = YES;
+    while (flag) {
+        @autoreleasepool {
+            image = [self.videoEncoder fetchOneFrame];
+            if (!image) {
+                flag = NO;
+                break;
+            }
+            //        NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
+            NSString *betaCompressionDirectory = nil;
+            betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
+            NSLog(@"get image=%@", betaCompressionDirectory);
+            //        betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
+            //        betaCompressionDirectory = [parentDir stringByAppendingString:@".m4v"];
+//            double scale = 1.0f;
+//            CGSize newSize = CGSizeMake(image.size.width/scale, image.size.height/scale);
+//            image = [image resizeImageContext:nil size:newSize];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            [imageData writeToFile:betaCompressionDirectory atomically:YES];
+            ++i;
+        }
+    }
+    self.totalVideoFrame = i;
+    [SVProgressHUD dismiss];
+    return;
 }
 
 @end
