@@ -134,19 +134,9 @@
     [self showImageAtIndex:j];
 }
 
-- (void)showImageAtIndex:(NSInteger)j {
-    self.title = [NSString stringWithFormat:@"%zd", j];
-//    [self wmcSetNavigationBarTitleStyle];
-    
-    UIImage *image = nil;
-    
-    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-//    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-    NSLog(@"current filename=%@", fileName);
-    
-    image = [UIImage imageNamed:fileName];
+- (UIImage *)processImage:(UIImage *)image {
     if (!image)
-        return;
+        return nil;
     //    CGSize newSize = CGSizeMake(image.size.width / 4.0, image.size.height / 4.0);
     //    image = [image resizeImageContext:nil size:newSize];
     image = [ImageProcess correctImage:image];
@@ -161,10 +151,23 @@
     
     IplImage *ret1 = cvCreateImage(cvGetSize(&qImg), IPL_DEPTH_8U, 3);
     cvCvtColor(&qImg, ret1, CV_BGR2RGB);
-    self.imageView.image = [self UIImageFromIplImage:ret1];
+    UIImage *outputImage = [self UIImageFromIplImage:ret1];
     delete myImage;
     cvReleaseImage(&ipImage);
     cvReleaseImage(&ret1);
+    return outputImage;
+}
+
+- (void)showImageAtIndex:(NSInteger)j {
+    self.title = [NSString stringWithFormat:@"%zd", j];
+//    [self wmcSetNavigationBarTitleStyle];
+    
+    UIImage *image = nil;
+    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+//    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+    NSLog(@"current filename=%@", fileName);
+    image = [UIImage imageNamed:fileName];
+    self.imageView.image = [self processImage:image];
 }
 
 @end
