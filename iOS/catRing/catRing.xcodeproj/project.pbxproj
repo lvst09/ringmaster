@@ -332,6 +332,8 @@
 		3379CC5E1A9356F000D29FFD /* MYIMG_ORI97.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3379CBF91A9356F000D29FFD /* MYIMG_ORI97.JPG */; };
 		3379CC5F1A9356F000D29FFD /* MYIMG_ORI98.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3379CBFA1A9356F000D29FFD /* MYIMG_ORI98.JPG */; };
 		3379CC601A9356F000D29FFD /* MYIMG_ORI99.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3379CBFB1A9356F000D29FFD /* MYIMG_ORI99.JPG */; };
+		3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */; };
+		3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -686,6 +688,8 @@
 		3379CBF91A9356F000D29FFD /* MYIMG_ORI97.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI97.JPG; sourceTree = "<group>"; };
 		3379CBFA1A9356F000D29FFD /* MYIMG_ORI98.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI98.JPG; sourceTree = "<group>"; };
 		3379CBFB1A9356F000D29FFD /* MYIMG_ORI99.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI99.JPG; sourceTree = "<group>"; };
+		3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DWIplImageHelper.mm; sourceTree = "<group>"; };
+		3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWIplImageHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -848,6 +852,8 @@
 				3379C9FD1A93351B00D29FFD /* MathUtil.h */,
 				3379C9F71A93349100D29FFD /* ImageProcess.h */,
 				3379C9F81A93349100D29FFD /* ImageProcess.m */,
+				3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */,
+				3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1581,11 +1587,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */,
 				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
 				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
 				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
 				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
+				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
 				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
 				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
 				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,

@@ -365,8 +365,8 @@ void showWindows(MyImage m){
     
     OutputArray _dst = m.src(roirect);
     int dtype = _dst.type();
-    int j = CV_MAT_CN(dtype);
-    printf("i=%d", i);
+//    int j = CV_MAT_CN(dtype);
+//    printf("i=%d", i);
     result.copyTo(m.src(roirect));
 #endif
 #ifndef __OBJC__

@@ -20,6 +20,10 @@
 #import "myImage.hpp"
 // algorithm
 
+// utility
+#import "DWIplImageHelper.h"
+// utility
+
 #import "ImageProcess.h"
 
 @interface FirstViewController ()
@@ -45,7 +49,6 @@
     LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 25, self.view.bounds.size.width, 20)];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
-//    [labelSlider.slider modifyStyle];
     labelSlider.label.text = nil;
     labelSlider.slider.minimumValue = 2.0f;
     labelSlider.slider.maximumValue = 100.0f;
@@ -61,58 +64,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark Utility
-// NOTE you SHOULD cvReleaseImage() for the return value when end of the code.
-- (IplImage *)createIplImageFromUIImage:(UIImage *)image {
-    // Getting CGImage from UIImage
-    CGImageRef imageRef = image.CGImage;
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    // Creating temporal IplImage for drawing
-    IplImage *iplimage = cvCreateImage(cvSize(image.size.width,image.size.height), IPL_DEPTH_8U, 4);
-    
-    // Creating CGContext for temporal IplImage
-    CGContextRef contextRef = CGBitmapContextCreate(iplimage->imageData, iplimage->width, iplimage->height, iplimage->depth, iplimage->widthStep, colorSpace, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
-    
-    // Drawing CGImage to CGContext
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, image.size.width, image.size.height), imageRef);
-    CGContextRelease(contextRef);
-    CGColorSpaceRelease(colorSpace);
-    
-    // Creating result IplImage
-    IplImage *ret = cvCreateImage(cvGetSize(iplimage), IPL_DEPTH_8U, 3);
-    cvCvtColor(iplimage, ret, CV_RGBA2BGR);
-    cvReleaseImage(&iplimage);
-    
-    return ret;
-}
-
-
-// NOTE You should convert color mode as RGB before passing to this function
-- (UIImage *)UIImageFromIplImage:(IplImage *)image {
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    // Allocating the buffer for CGImage
-    NSData *data =
-    [NSData dataWithBytes:image->imageData length:image->imageSize];
-    CGDataProviderRef provider =
-    CGDataProviderCreateWithCFData((CFDataRef)data);
-    // Creating CGImage from chunk of IplImage
-    CGImageRef imageRef = CGImageCreate(
-                                        image->width, image->height,
-                                        image->depth, image->depth * image->nChannels, image->widthStep,
-                                        colorSpace, kCGImageAlphaNone|kCGBitmapByteOrderDefault,
-                                        provider, NULL, false, kCGRenderingIntentDefault
-                                        );
-    // Getting UIImage from CGImage
-    UIImage *ret = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    CGDataProviderRelease(provider);
-    CGColorSpaceRelease(colorSpace);
-    return ret;
 }
 
 #pragma mark -
@@ -140,7 +91,7 @@
     //    CGSize newSize = CGSizeMake(image.size.width / 4.0, image.size.height / 4.0);
     //    image = [image resizeImageContext:nil size:newSize];
     image = [ImageProcess correctImage:image];
-    IplImage *ipImage = [self createIplImageFromUIImage:image];
+    IplImage *ipImage = convertIplImageFromUIImage(image);
     
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     HandGesture hg;
@@ -151,7 +102,7 @@
     
     IplImage *ret1 = cvCreateImage(cvGetSize(&qImg), IPL_DEPTH_8U, 3);
     cvCvtColor(&qImg, ret1, CV_BGR2RGB);
-    UIImage *outputImage = [self UIImageFromIplImage:ret1];
+    UIImage *outputImage = convertUIImageFromIplImage(ret1);
     delete myImage;
     cvReleaseImage(&ipImage);
     cvReleaseImage(&ret1);
