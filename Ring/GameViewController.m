@@ -29,7 +29,12 @@
     cam.aperture = 0.125;
     cam.focalDistance = 10;
 //    cameraNode.position = SCNVector3Make(0.0, 0.006, 0.0);
-    cameraNode.position = SCNVector3Make(0.0, 0.011091, 0.030776*3);
+    cameraNode.position = SCNVector3Make(0.0, -20*0.011091, 0.030776*3);
+    SCNVector3 eulerAngles = scene.rootNode.eulerAngles;
+    NSLog(@"original eulerangles, x=%f, y=%f, z=%f", eulerAngles.x, eulerAngles.y, eulerAngles.z);
+    //    scene.rootNode.eulerAngles = SCNVector3Make(eulerAngles.x+0.89*M_PI_2, eulerAngles.y+0.*M_PI_4, eulerAngles.z+0.*M_PI_4);
+    
+    cameraNode.eulerAngles = SCNVector3Make(eulerAngles.x+0.9*M_PI_2, eulerAngles.y+0.*M_PI_4, eulerAngles.z+0.*M_PI_4);
     NSLog(@"camera=%@", scene.rootNode.camera);
     [scene.rootNode addChildNode:cameraNode];
 //
@@ -78,8 +83,8 @@
     
 //    scene.rootNode.position = SCNVector3Make(0, 0, -0.09);
     scene.rootNode.position = SCNVector3Make(0, 0, 0);
-    SCNVector3 eulerAngles = scene.rootNode.eulerAngles;
-    NSLog(@"original eulerangles, x=%f, y=%f, z=%f", eulerAngles.x, eulerAngles.y, eulerAngles.z);
+//    SCNVector3 eulerAngles = scene.rootNode.eulerAngles;
+//    NSLog(@"original eulerangles, x=%f, y=%f, z=%f", eulerAngles.x, eulerAngles.y, eulerAngles.z);
 //    scene.rootNode.eulerAngles = SCNVector3Make(eulerAngles.x+0.89*M_PI_2, eulerAngles.y+0.*M_PI_4, eulerAngles.z+0.*M_PI_4);
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -131,14 +136,14 @@
         }
         
     });
-    for (int i = 0; i <= 10; i ++) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * (i+1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            
-            [self rotateX:0 Y:0.f z:i / 10.f];
-            
-        });
-    }
+//    for (int i = 0; i <= 10; i ++) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * (i+1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            
+//            
+//            [self rotateX:0 Y:0.f z:i / 10.f];
+//            
+//        });
+//    }
 }
 
 - (void)rotateX:(CGFloat)x Y:(CGFloat)y z:(CGFloat)z {
