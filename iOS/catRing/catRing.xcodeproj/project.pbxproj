@@ -37,6 +37,7 @@
 		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		687E13C71AA2FB8100B39B96 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 687E13C61AA2FB8100B39B96 /* Movie12347.m4v */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		3379CC721A97202500D29FFD /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		687E13C61AA2FB8100B39B96 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 		3379CB961A9356EF00D29FFD /* ORI */ = {
 			isa = PBXGroup;
 			children = (
+				687E13C61AA2FB8100B39B96 /* Movie12347.m4v */,
 				3379CC691A971AD900D29FFD /* Moviergb1.m4v */,
 			);
 			path = ORI;
@@ -394,6 +397,7 @@
 				3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */,
 				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
 				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
+				687E13C71AA2FB8100B39B96 /* Movie12347.m4v in Resources */,
 				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
 				3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */,
@@ -648,6 +652,7 @@
 				3379C9CD1A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */ = {
 			isa = XCConfigurationList;
@@ -656,6 +661,7 @@
 				3379C9D01A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
