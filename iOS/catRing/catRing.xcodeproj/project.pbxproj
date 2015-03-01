@@ -36,6 +36,7 @@
 		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -43,7 +44,6 @@
 		33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
 		33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
 		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
-		33DA87D61AA2B6A100625E87 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D51AA2B6A100625E87 /* opencv2.framework */; };
 		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
 		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
@@ -111,6 +111,7 @@
 		3379CC721A97202500D29FFD /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		33AAE62B1AA2FE540031DF4A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
 		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		33DA87BD1AA2B4A600625E87 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
-		33DA87D51AA2B6A100625E87 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = opencvpt/opencv2.framework; sourceTree = "<group>"; };
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
 		33DA87E11AA2C53C00625E87 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = youtubeauty.framework; sourceTree = "<group>"; };
@@ -136,11 +136,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */,
+				33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */,
 				33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */,
 				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
 				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
 				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
-				33DA87D61AA2B6A100625E87 /* opencv2.framework in Frameworks */,
 				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,9 +257,9 @@
 		3379C9E31A932D6800D29FFD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				33AAE62B1AA2FE540031DF4A /* opencv2.framework */,
 				33DA87E11AA2C53C00625E87 /* youtubeauty.framework */,
 				33DA87DB1AA2B80400625E87 /* Accelerate.framework */,
-				33DA87D51AA2B6A100625E87 /* opencv2.framework */,
 				33DA87D11AA2B50300625E87 /* FilterEngine.framework */,
 				3379CC6E1A97202500D29FFD /* SVProgressHUD */,
 				3379CA001A93353600D29FFD /* CoreGraphics.framework */,
@@ -472,7 +472,6 @@
 				3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */,
 				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
 				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
-				687E13C71AA2FB8100B39B96 /* Movie12347.m4v in Resources */,
 				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
 				33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
