@@ -75,9 +75,7 @@
     
     
     
-    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Moviergb1.m4v"];
-    DWVideoDecoding *videoEncoder = [[DWVideoDecoding alloc] initWithMoviePath:path];
-    self.videoEncoder = videoEncoder;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,6 +169,20 @@
 
 
 - (void)getAllImageFromVideo {
+    
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
+    //12345 keyishen的手
+    //12346 jerry的手
+    //12347 jerry的手on sofa
+    
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:path];
+    if ([value integerValue] > 0) {
+        self.totalVideoFrame = [value integerValue];
+        return;
+    }
+    
+    DWVideoDecoding *videoEncoder = [[DWVideoDecoding alloc] initWithMoviePath:path];
+    self.videoEncoder = videoEncoder;
     [SVProgressHUD showWithStatus:@"Processing..."];
     UIImage *image = nil;
     //    image = [self.videoEncoder fetchOneFrame];
@@ -184,8 +196,7 @@
                 break;
             }
             //        NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
-            NSString *betaCompressionDirectory = nil;
-            betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
             NSLog(@"get image=%@", betaCompressionDirectory);
             //        betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
@@ -199,6 +210,8 @@
         }
     }
     self.totalVideoFrame = i;
+    [[NSUserDefaults standardUserDefaults] setObject:@(i) forKey:path];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [SVProgressHUD dismiss];
     return;
 }
