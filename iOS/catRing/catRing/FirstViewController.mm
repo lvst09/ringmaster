@@ -195,19 +195,50 @@
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(ctx, size.width/2, size.height/2);
-    CGContextRotateCTM(ctx, M_PI/2);
+//    CGContextTranslateCTM(ctx, size.width/2, size.height/2);
+//    CGContextRotateCTM(ctx, M_PI/2);
     CGContextDrawImage(ctx, CGRectMake(-size.width/2,-size.height/2,size.width, size.height), imageRef);
     
-    CGContextTranslateCTM(ctx, -size.width/2, -size.height/2);
+//    CGContextTranslateCTM(ctx, -size.width/2, -size.height/2);
 
     //    CGContextDrawImage(, , image);UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
  
     UIImage * img = [UIImage imageWithCGImage:imageRef];
-//    img = [self rotateImage:img angle:currentHand->ringAngle];
+    img = [self rotateImage:img withRadian:currentHand->ringAngle];
     
     return img;
+}
+
+- (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian
+{
+    // Calculate the size of the rotated view's containing box for our drawing space
+    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    //CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degree));
+    CGAffineTransform t = CGAffineTransformMakeRotation(radian);
+    rotatedViewBox.transform = t;
+    CGSize rotatedSize = rotatedViewBox.frame.size;
+//    [rotatedViewBox release];
+    
+    // Create the bitmap context
+    UIGraphicsBeginImageContext(rotatedSize);
+    CGContextRef bitmap = UIGraphicsGetCurrentContext();
+    
+    // Move the origin to the middle of the image so we will rotate and scale around the center.
+    CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
+    
+    // Rotate the image context
+    //CGContextRotateCTM(bitmap, DegreesToRadians(degree));
+    CGContextRotateCTM(bitmap, radian);
+    
+    // Now, draw the rotated/scaled image into the context
+    CGContextScaleCTM(bitmap, 1.0, -1.0);
+    CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 -(UIImage *)rotateImage:(UIImage *)aImage angle:(double)angle
@@ -259,7 +290,7 @@
     UIGraphicsBeginImageContext(backimage.size);
     [backimage drawAtPoint:CGPointMake(0,0)];
     Point2i ringcenter = currentHand->ringCenter;
-    [frontImage drawAtPoint:CGPointMake(ringcenter.x,ringcenter.y)];
+    [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;

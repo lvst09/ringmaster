@@ -573,7 +573,7 @@ void caculateRingPosition(HandGesture *hg)
     hg->ringCenter = middlePoint(ringStart,ringEnd);
     
     Point ringVec = vectorBetweenPoints(ringStart, ringEnd);
-    hg->ringAngle = atan( abs(ringVec.y) / abs(ringVec.x));
+    hg->ringAngle = atan( (ringVec.y) / (ringVec.x));
     
     hg->ringPosition.push_back(ringStart);
     hg->ringPosition.push_back(ringEnd);
