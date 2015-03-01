@@ -19,7 +19,6 @@
 		3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D81A932D0900D29FFD /* myImage.cpp */; };
 		3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DA1A932D0900D29FFD /* mymain.cpp */; };
 		3379C9E21A932D0900D29FFD /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
-		3379C9E51A932D6800D29FFD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E41A932D6800D29FFD /* opencv2.framework */; };
 		3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E61A932F1700D29FFD /* AVFoundation.framework */; };
 		3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E81A932FE600D29FFD /* CoreMedia.framework */; };
 		3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9ED1A93310300D29FFD /* LabelSliderGroup.m */; };
@@ -37,6 +36,18 @@
 		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
+		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
+		33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */; };
+		33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
+		33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
+		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
+		33DA87D61AA2B6A100625E87 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D51AA2B6A100625E87 /* opencv2.framework */; };
+		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
+		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
+		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
+		33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +84,6 @@
 		3379C9DB1A932D0900D29FFD /* mymain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mymain.hpp; sourceTree = "<group>"; };
 		3379C9DC1A932D0900D29FFD /* roi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roi.cpp; sourceTree = "<group>"; };
 		3379C9DD1A932D0900D29FFD /* roi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roi.hpp; sourceTree = "<group>"; };
-		3379C9E41A932D6800D29FFD /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		3379C9E61A932F1700D29FFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3379C9E81A932FE600D29FFD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3379C9EC1A93310300D29FFD /* LabelSliderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelSliderGroup.h; sourceTree = "<group>"; };
@@ -101,6 +111,23 @@
 		3379CC721A97202500D29FFD /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
+		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
+		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
+		33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPhotoDevice.h; sourceTree = "<group>"; };
+		33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPhotoDevice.m; sourceTree = "<group>"; };
+		33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVideoDevice.h; sourceTree = "<group>"; };
+		33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraVideoDevice.m; sourceTree = "<group>"; };
+		33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CameraViewController-568h.xib"; sourceTree = "<group>"; };
+		33DA87BC1AA2B4A600625E87 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		33DA87BD1AA2B4A600625E87 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
+		33DA87D51AA2B6A100625E87 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = opencvpt/opencv2.framework; sourceTree = "<group>"; };
+		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
+		33DA87E11AA2C53C00625E87 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = youtubeauty.framework; sourceTree = "<group>"; };
+		33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +135,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */,
+				33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */,
 				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
 				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
+				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
+				33DA87D61AA2B6A100625E87 /* opencv2.framework in Frameworks */,
 				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
-				3379C9E51A932D6800D29FFD /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				3379CA021A93369700D29FFD /* Resources */,
+				33DA87A51AA2B4A600625E87 /* Camera */,
 				3379C9F61A93349100D29FFD /* Utility */,
 				3379C9EA1A93310300D29FFD /* CommonUI */,
 				3379C9E31A932D6800D29FFD /* 3rd */,
@@ -226,11 +257,14 @@
 		3379C9E31A932D6800D29FFD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				33DA87E11AA2C53C00625E87 /* youtubeauty.framework */,
+				33DA87DB1AA2B80400625E87 /* Accelerate.framework */,
+				33DA87D51AA2B6A100625E87 /* opencv2.framework */,
+				33DA87D11AA2B50300625E87 /* FilterEngine.framework */,
 				3379CC6E1A97202500D29FFD /* SVProgressHUD */,
 				3379CA001A93353600D29FFD /* CoreGraphics.framework */,
 				3379C9E81A932FE600D29FFD /* CoreMedia.framework */,
 				3379C9E61A932F1700D29FFD /* AVFoundation.framework */,
-				3379C9E41A932D6800D29FFD /* opencv2.framework */,
 			);
 			path = 3rd;
 			sourceTree = "<group>";
@@ -276,6 +310,7 @@
 		3379CA021A93369700D29FFD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */,
 				3379CA031A93369700D29FFD /* VideoImage */,
 			);
 			path = Resources;
@@ -292,6 +327,7 @@
 		3379CB961A9356EF00D29FFD /* ORI */ = {
 			isa = PBXGroup;
 			children = (
+				33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */,
 				3379CC691A971AD900D29FFD /* Moviergb1.m4v */,
 			);
 			path = ORI;
@@ -308,6 +344,48 @@
 				3379CC741A97202500D29FFD /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		33DA87A51AA2B4A600625E87 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				33DA87A61AA2B4A600625E87 /* CameraTypes.h */,
+				33DA87A71AA2B4A600625E87 /* Control */,
+				33DA87AA1AA2B4A600625E87 /* Device */,
+				33DA87B61AA2B4A600625E87 /* UI */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		33DA87A71AA2B4A600625E87 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				33DA87A81AA2B4A600625E87 /* CameraController.h */,
+				33DA87A91AA2B4A600625E87 /* CameraController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		33DA87AA1AA2B4A600625E87 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */,
+				33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */,
+				33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */,
+				33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		33DA87B61AA2B4A600625E87 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */,
+				33DA87BC1AA2B4A600625E87 /* CameraViewController.h */,
+				33DA87BD1AA2B4A600625E87 /* CameraViewController.m */,
+				33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,8 +473,12 @@
 				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
 				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
 				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
+				33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
 				3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */,
+				33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */,
+				33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */,
+				33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,14 +505,18 @@
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
 				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
 				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
+				33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */,
+				33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */,
 				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
 				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
 				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,
 				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
+				33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */,
 				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
 				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
 				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
+				33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */,
 				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +644,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -580,6 +667,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -648,6 +736,7 @@
 				3379C9CD1A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */ = {
 			isa = XCConfigurationList;
@@ -656,6 +745,7 @@
 				3379C9D01A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

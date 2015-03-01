@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-
+#import "CameraViewController.h"
 @interface SecondViewController ()
 
 @end
@@ -24,4 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onVideoRecordingButtonPressed:(UIButton *)sender {
+    CameraViewController *cameraController = [[CameraViewController alloc] init];
+//    [self.navigationController pushViewController:cameraController animated:YES];
+    [self presentViewController:cameraController animated:YES completion:NULL];
+}
 @end

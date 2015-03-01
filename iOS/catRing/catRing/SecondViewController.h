@@ -10,6 +10,7 @@
 
 @interface SecondViewController : UIViewController
 
+- (IBAction)onVideoRecordingButtonPressed:(UIButton *)sender;
 
 @end
 
