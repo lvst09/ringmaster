@@ -539,12 +539,39 @@ void caculateRingPosition(HandGesture *hg)
     Point ptFar(hg->mediusFinger[1]);
     Point ptEnd(hg->mediusFinger[2]);
     
+    double distanceStart = distanceOfPoint(ptStart, ptFar);
+    double distanceEnd = distanceOfPoint(ptEnd, ptFar);
+    
+    if(distanceStart > distanceEnd)
+    {
+        double ratio = distanceStart/distanceEnd;
+        
+        Point vectorEndFar = vectorBetweenPoints(ptEnd,ptFar);
+        vectorEndFar = vectorMultiply(vectorEndFar,ratio);
+        
+        ptEnd = pointMove(ptFar, vectorEndFar);
+    }
+    else
+    {
+        double ratio = distanceEnd/distanceStart;
+        
+        Point vectorStartFar = vectorBetweenPoints(ptStart,ptFar);
+        vectorStartFar = vectorMultiply(vectorStartFar,ratio);
+        
+        ptStart = pointMove(ptFar, vectorStartFar);
+    }
+    
     Point midPoint = middlePoint(ptStart, ptEnd);
     Point vectorMidFar = vectorBetweenPoints(ptFar, midPoint);
-    vectorMidFar = vectorMultiply(vectorMidFar,0.15);
+    vectorMidFar = vectorMultiply(vectorMidFar,0.12);
     
-    Point ringStart = pointMove(ptStart, vectorMidFar);
-    Point ringEnd = pointMove(ptEnd, vectorMidFar);
+
+
+    
+    Point ringStart;
+    Point ringEnd;
+    ringStart = pointMove(ptStart, vectorMidFar);
+    ringEnd = pointMove(ptEnd, vectorMidFar);
     
     hg->ringPosition.push_back(ringStart);
     hg->ringPosition.push_back(ringEnd);
@@ -603,11 +630,24 @@ void caculateRotationAngle(HandGesture *hg)
 
 }
 
-
-//void ajustDefect
-//{
-//    
-//}
+void ajustFinger(HandGesture *hg)
+{
+    Point ptStart(hg->mediusFinger[0]);
+    Point ptFar(hg->mediusFinger[1]);
+    Point ptEnd(hg->mediusFinger[2]);
+    
+    double distanceStart = distanceOfPoint(ptStart, ptFar);
+    double distanceEnd = distanceOfPoint(ptEnd, ptFar);
+    
+    if(distanceStart > distanceEnd)
+    {
+        
+    }
+    
+    
+    
+    
+}
 
 void myDrawContours(MyImage *m,HandGesture *hg){
     drawContours(m->src,hg->hullP,hg->cIdx,cv::Scalar(200,0,0),2, 8, vector<Vec4i>(), 0, Point());
