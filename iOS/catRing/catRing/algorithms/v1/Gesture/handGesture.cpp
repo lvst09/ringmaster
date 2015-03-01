@@ -14,6 +14,9 @@ HandGesture::HandGesture(){
 	frameNumber=0;
 	nrNoFinger=0;
 	fontFace = FONT_HERSHEY_PLAIN;
+    
+    ringAngle = 0;
+    ringCenter = Point2i(0,0);
 }
 
 void HandGesture::initVectors(){
@@ -173,6 +176,7 @@ void HandGesture::getFingerNumber(Mat &src) {
 		nrNoFinger++;
 		numberColor=Scalar(200,200,200);
 	}
+
 //	addNumberToImg(src);
 }
 

@@ -26,7 +26,8 @@ class HandGesture{
         vector <Point2i> mediusFinger;
         vector <double> rotationAngle;
         vector <Point2i> ringPosition;
-    
+        Point2i ringCenter;
+        double ringAngle;
         // ouput 手指位置
 		vector <Point2i> fingerTips;
     

@@ -32,7 +32,10 @@
 
 #import "ImageProcess.h"
 
-@interface FirstViewController ()
+@interface FirstViewController () {
+    
+    HandGesture * currentHand;
+}
 
 @property (nonatomic, retain) UIImageView *imageView;
 
@@ -44,6 +47,8 @@
 
 
 @property (nonatomic, assign) int imageIndex;
+
+
 
 @end
 
@@ -119,6 +124,7 @@
     j = i;
     [self showImageAtIndex:j];
 }
+ static HandGesture hg;
 
 - (UIImage *)processImage:(UIImage *)image {
     if (!image)
@@ -129,10 +135,16 @@
     IplImage *ipImage = convertIplImageFromUIImage(image);
     
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
-    HandGesture hg;
+    
+    hg = HandGesture();
     
     hg.index = self.imageIndex;
     MyImage * myImage = detectHand(ipImage, hg);
+    currentHand = &hg;
+//    Point2i ringStart = hg.ringPosition[0];
+//    Point2i ringEnd = hg.ringPosition[1];
+    
+    
     NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
     IplImage qImg;
     qImg = IplImage(myImage->src);
@@ -163,10 +175,95 @@
     self.imageIndex = j;
     
     image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
-    self.imageView.image = [self processImage:image];
+//    self.imageView.image = [self processImage:image];
+    image = [self processImage:image];
+    UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
+
+    ringImage = [self clipImage:ringImage];
+    
+    UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
+    self.imageView.image = resultImage;
+}
+
+-(UIImage *)clipImage:(UIImage *)image
+{
+//  UIImage * timage = [self getImage:iv];
+    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+    
+    CGSize size = image.size;
+    UIGraphicsBeginImageContext(size);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(ctx, size.width/2, size.height/2);
+    CGContextRotateCTM(ctx, M_PI/2);
+    CGContextDrawImage(ctx, CGRectMake(-size.width/2,-size.height/2,size.width, size.height), imageRef);
+    
+    CGContextTranslateCTM(ctx, -size.width/2, -size.height/2);
+
+    //    CGContextDrawImage(, , image);UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+ 
+    UIImage * img = [UIImage imageWithCGImage:imageRef];
+//    img = [self rotateImage:img angle:currentHand->ringAngle];
+    
+    return img;
+}
+
+-(UIImage *)rotateImage:(UIImage *)aImage angle:(double)angle
+
+{
+    
+    CGImageRef imgRef = aImage.CGImage;
+    
+    CGFloat width = CGImageGetWidth(imgRef);
+    
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    
+    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    CGRect bounds = CGRectMake(0, 0, width, height);
+ 
+    
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    
+    transform = CGAffineTransformRotate(transform, angle);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    
+    
+    
+    
+    
+    CGContextConcatCTM(context, transform);
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    
+    
+    return imageCopy;
     
 }
 
+
+- (UIImage *)mergeFrontImage:(UIImage *) frontImage backImage:(UIImage *)backimage
+{
+    UIGraphicsBeginImageContext(backimage.size);
+    [backimage drawAtPoint:CGPointMake(0,0)];
+    Point2i ringcenter = currentHand->ringCenter;
+    [frontImage drawAtPoint:CGPointMake(ringcenter.x,ringcenter.y)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 - (void)getAllImageFromVideo {
     
