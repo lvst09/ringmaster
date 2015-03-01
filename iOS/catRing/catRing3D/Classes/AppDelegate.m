@@ -10,6 +10,8 @@
 #import "catRingLayer.h"
 #import "CC3CC2Extensions.h"
 
+#import "FirstViewController.h"
+
 #define kAnimationFrameRate		60		// Animation frame rate
 
 
@@ -27,6 +29,12 @@
 	// if you don't need shadow volumes, or GL_DEPTH24_STENCIL8 if you want to use shadow volumes.
 	// See CCAppDelegate.h for more options.
 	// If you want more flexibility, you can configure Cocos2D yourself instead of calling setupCocos2dWithOptions:.
+    
+    
+    // Create a Navigation Controller with the Director
+
+    
+#if 1
 	[self setupCocos2dWithOptions:
 	 @{
 	   CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
@@ -36,7 +44,16 @@
 //	   CCSetupMultiSampling: @(YES),							// Use multisampling on the main view
 //	   CCSetupNumberOfSamples: @(4),							// Number of samples to use per pixel (max 4)
 	   }];
-	
+#endif
+    FirstViewController *vc = [[FirstViewController alloc] init];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    
+    // set the Navigation Controller as the root view controller
+    [window_ setRootViewController:vc];
+    
+    // make main window visible
+    [window_ makeKeyAndVisible];
 	// For an Augmented Reality 3D overlay on the device camera, uncomment the following lines.
 	// This must be done after the window is made visible. The 3D scene contains a solid backdrop.
 	// To see the device camera behind the 3D scene, remove this backdrop, by commenting out the

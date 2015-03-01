@@ -15,6 +15,22 @@
 #import "CC3UtilityMeshNodes.h"
 
 
+// for snapshot
+#import "CCDirector.h"
+
+// for output center point
+#import "DWRingPositionInfo.h"
+
+@interface catRingScene()
+
+@property (nonatomic, strong) CC3ResourceNode* rezNode;
+
+@property (nonatomic, assign) CC3Vector aRotation;
+
+@property (nonatomic, strong) NSMutableDictionary *filenamePositionInfoDic;
+
+@end
+
 @implementation catRingScene
 
 /**
@@ -56,7 +72,7 @@
 	// Create a light, place it back and to the left at a specific
 	// position (not just directional lighting), and add it to the scene
 	CC3Light* lamp = [CC3Light nodeWithName: @"Lamp"];
-	lamp.location = cc3v( -2.0, 0.0, 0.0 );
+	lamp.location = cc3v( -2.0, 2.0, 0.0 );
 	lamp.isDirectionalOnly = NO;
 	[cam addChild: lamp];
 	
@@ -156,21 +172,57 @@
 	// using a couple of actions...
 	
 	// Fetch the 'hello, world' object that was loaded from the POD file and start it rotating
-	CC3MeshNode* helloTxt = (CC3MeshNode*)[self getNodeNamed: @"Hello"];
-	[helloTxt runAction: [CC3ActionRotateForever actionWithRotationRate: cc3v(0, 30, 0)]];
-	
-	// To make things a bit more appealing, set up a repeating up/down cycle to
-	// change the color of the text from the original red to blue, and back again.
-	GLfloat tintTime = 8.0f;
-	CCColorRef startColor = helloTxt.color;
-	CCColorRef endColor = CCColorRefFromCCC4F(ccc4f(0.2, 0.0, 0.8, 1.0));
-	CCActionInterval* tintDown = [CCActionTintTo actionWithDuration: tintTime color: endColor];
-	CCActionInterval* tintUp   = [CCActionTintTo actionWithDuration: tintTime color: startColor];
-	[helloTxt runAction: [[CCActionSequence actionOne: tintDown two: tintUp] repeatForever]];
-
-	// And let's make this interactive, by allowing the hello text to be touched.
-	// When the node is touched, it will be passed to the nodeSelected:byTouchEvent:at: method below.
-	helloTxt.touchEnabled = YES;
+    //	CC3MeshNode* helloTxt = (CC3MeshNode*)[self getNodeNamed: @"Yellow_gold_18K"];
+    CGFloat scale1 = 1;
+    NSLog(@"1rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
+    [rezNode runAction: [CC3ActionScaleTo actionWithDuration:0 scaleTo: cc3v(scale1, scale1 , scale1)]];// actionWithRotationRate: cc3v(0, 0, 30)]];
+    //	[rezNode runAction: [CC3ActionRotateForever actionWithRotationRate: cc3v(30, 0, 0)]];
+    NSLog(@"2rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
+    CC3Vector aRotation = cc3v(90, 0, 0);
+    self.aRotation = aRotation;
+    [rezNode runAction:[CC3ActionRotateTo actionWithDuration:0 rotateTo:aRotation]];
+    NSLog(@"3rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    NSInteger count = 0;
+    for (int i = 0; i < count; ++i) {
+        GLKVector3 rotation = GLKVector3Make(10 * i, 0, 0);// cc3v(60, 30, 0);
+        NSValue *value = [NSValue valueWithGLKVector3:rotation];
+        [arr addObject:value];
+    }
+    
+    for (int i = 0; i < count; ++i) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSValue *value = arr[i];
+            GLKVector3 storedVector;
+            [value getValue:&storedVector];
+            CC3Vector aRotation = cc3v(storedVector.x, storedVector.y, storedVector.z);
+            self.aRotation = aRotation;
+            [rezNode runAction:[CC3ActionRotateTo actionWithDuration:0 rotateTo:aRotation]];
+            NSLog(@"3rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
+        });
+    }
+    // To make things a bit more appealing, set up a repeating up/down cycle to
+    // change the color of the text from the original red to blue, and back again.
+    //	GLfloat tintTime = 8.0f;
+    //	CCColorRef startColor = helloTxt.color;
+    //	CCColorRef endColor = CCColorRefFromCCC4F(ccc4f(0.2, 0.0, 0.8, 1.0));
+    //	CCActionInterval* tintDown = [CCActionTintTo actionWithDuration: tintTime color: endColor];
+    //	CCActionInterval* tintUp   = [CCActionTintTo actionWithDuration: tintTime color: startColor];
+    //	[helloTxt runAction: [[CCActionSequence actionOne: tintDown two: tintUp] repeatForever]];
+    
+    // And let's make this interactive, by allowing the hello text to be touched.
+    // When the node is touched, it will be passed to the nodeSelected:byTouchEvent:at: method below.
+    //	helloTxt.touchEnabled = YES;
+    
+    self.color = CCColorRefFromCCC4F(ccc4f(1, 0, 1, 1.f));
+    
+    // 遮盖住cocos生成图片的过程
+#if 0
+    UIView *view = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];
+    view.backgroundColor = [UIColor redColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:view];
+#endif
 }
 
 /**
@@ -215,7 +267,10 @@
  *
  * For more info, read the notes of this method on CC3Node.
  */
--(void) updateAfterTransform: (CC3NodeUpdatingVisitor*) visitor {}
+-(void) updateAfterTransform: (CC3NodeUpdatingVisitor*) visitor {
+    NSLog(@"updateAfterTransform");
+    [self snapshot];
+}
 
 
 #pragma mark Scene opening and closing
@@ -242,7 +297,7 @@
 
 	// Move the camera to frame the scene. The resulting configuration of the camera is output as
 	// an [info] log message, so you know where the camera needs to be in order to view your scene.
-	[self.activeCamera moveWithDuration: 3.0 toShowAllOf: self withPadding: 0.5f];
+	[self.activeCamera moveWithDuration: 0.f toShowAllOf: self withPadding: 3.f];
 
 	// Uncomment this line to draw the bounding box of the scene.
 //	self.shouldDrawWireframeBox = YES;
@@ -351,6 +406,55 @@
 	CCActionInterval* shrink = [CC3ActionScaleTo actionWithDuration: 0.25 scaleUniformlyTo: 1.0];
 	CCAction* pulse = [CCActionSequence actionOne: grow two: shrink];
 	[aNode runAction: pulse withTag: pulseActionTag];
+}
+
+
+#pragma mark -
+#pragma mark misc
+
+- (NSMutableDictionary *)filenamePositionInfoDic {
+    if (!_filenamePositionInfoDic) {
+        _filenamePositionInfoDic = [[NSMutableDictionary alloc] initWithCapacity:128];
+    }
+    return _filenamePositionInfoDic;
+}
+
+- (void)snapshot {
+    CGSize s = [[CCDirector sharedDirector] viewSizeInPixels];
+    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:s.width height:s.height];
+    [texture begin];
+    [[[CCDirector sharedDirector] runningScene] visit];
+    [texture end];
+    
+    NSString *filename = [NSString stringWithFormat:@"MYIMG_ANG_x%f_y%f_z%f.png", self.aRotation.x, self.aRotation.y, self.aRotation.z];
+    UIImage *image = [texture getUIImage];
+    NSLog(@"image=%@", image);
+    CGPoint pt = self.projectedPosition;
+    NSLog(@"pt=%@", [NSValue valueWithCGPoint:pt]);
+    
+    if ([texture saveToFile:filename format:CCRenderTextureImageFormatPNG]) {
+        NSLog(@"succ, filename=%@", filename);
+    } else {
+        NSLog(@"failed, filename=%@", filename);
+    }
+    
+    [self.activeCamera projectNode:self];
+    NSLog(@"node x=%f, y=%f", self.projectedPosition.x, self.projectedPosition.y);
+    DWRingPositionInfo *posInfo = [[DWRingPositionInfo alloc] init];
+    posInfo.centerPoint = CGPointMake(self.projectedPosition.x, self.projectedPosition.y);
+    
+    CC3Vector minimum;
+    CC3Vector maximum;
+    minimum = self.boundingBox.minimum;
+    maximum = self.boundingBox.maximum;
+    CC3Vector m1 = [self.activeCamera projectLocation:minimum];
+    CC3Vector m2 = [self.activeCamera projectLocation:maximum];
+    NSLog(@"m1 node x=%f, y=%f", m1.x, m1.y);
+    NSLog(@"m2 node x=%f, y=%f", m2.x, m2.y);
+    posInfo.minPoint = CGPointMake(m1.x, m1.y);
+    posInfo.maxPoint = CGPointMake(m2.x, m2.y);
+    [self.filenamePositionInfoDic setObject:posInfo forKey:filename];
+    NSLog(@"key:%@, value:%@", filename, posInfo);
 }
 
 @end
