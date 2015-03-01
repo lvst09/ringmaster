@@ -437,6 +437,8 @@
 		33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
 		33AAF7F11AA31BF50031DF4A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */; };
 		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
+		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
+		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -1242,6 +1244,8 @@
 		33AAF7BD1AA315E50031DF4A /* ringModel.pod */ = {isa = PBXFileReference; lastKnownFileType = file; name = ringModel.pod; path = Resources/ringModel.pod; sourceTree = "<group>"; };
 		33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DWRotationManager.h; path = Manager/DWRotationManager.h; sourceTree = "<group>"; };
+		33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DWRotationManager.m; path = Manager/DWRotationManager.m; sourceTree = "<group>"; };
 		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
 		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
@@ -1364,6 +1368,8 @@
 				3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */,
 				3379C9A81A9329FD00D29FFD /* Supporting Files */,
 				3379CC681A9716E700D29FFD /* PrefixHeader.pch */,
+				33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */,
+				33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */,
 			);
 			path = catRing;
 			sourceTree = "<group>";
@@ -3226,6 +3232,7 @@
 				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
 				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
 				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
+				33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
 				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
 				3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */,
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
@@ -3267,6 +3274,7 @@
 				33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */,
 				33AAF7DE1AA319010031DF4A /* handGesture.cpp in Sources */,
 				33AAF7D11AA318AE0031DF4A /* LabelSliderGroup.m in Sources */,
+				33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
 				33AAF7DB1AA318DB0031DF4A /* SVProgressHUD.m in Sources */,
 				33AAF7E01AA319010031DF4A /* mymain.cpp in Sources */,
 				33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */,
