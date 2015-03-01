@@ -23,6 +23,7 @@ using namespace std;
 int avgColor[NSAMPLES][3] ;
 int c_lower[NSAMPLES][3];
 int c_upper[NSAMPLES][3];
+static vector <Point2i>  * firstFinger;
 //int avgBGR[3];
 //int nrOfDefects;
 //int iSinceKFInit;
@@ -452,11 +453,164 @@ int findBiggestContour(vector<vector<Point> > contours){
     return indexOfBiggestContour;
 }
 
+Point middlePoint(Point p1, Point p2)
+{
+    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+}
+double distanceOfPoint(Point p1, Point p2)
+{
+    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+}
+
+Point vectorBetweenPoints(Point p1, Point p2)
+{
+    return Point((p1.x - p2.x) ,(p1.y - p2.y));
+}
+
+void reduceDefect(HandGesture * hg)
+{
+      vector<Vec4i>::iterator d=hg->defects[hg->cIdx].begin();
+     int count = (int)hg->defects[hg->cIdx].size();
+    int i = 0;
+     while( d!=hg->defects[hg->cIdx].end() ) {
+         if (i==count - 2) {
+         
+         Vec4i& v=(*d);
+         int startidx=v[0];
+         Point ptStart(hg->contours[hg->cIdx][startidx] );
+             
+         int endidx=v[1];
+         Point ptEnd(hg->contours[hg->cIdx][endidx] );
+         int faridx=v[2];
+         Point ptFar(hg->contours[hg->cIdx][faridx] );
+             
+         double disSF = distanceOfPoint(ptStart, ptFar);
+             
+         if(disSF < 100)
+         {
+
+//
+             Point ptMid = middlePoint(ptStart, ptEnd);
+             
+             vector<Vec4i>::iterator e = d-1;
+             Vec4i& t = (*e);
+             int endidx=t[1];
+             
+             hg->contours[hg->cIdx][endidx] = ptMid;
+//
+//             e = d+1;
+//             t = (*e);
+//             int startidx=t[0];
+//             hg->contours[hg->cIdx][startidx] = ptMid;
+//
+             hg->defects[hg->cIdx].erase(d++);
+             continue;
+             
+//
+         }
+         }
+        d++;
+         i++;
+     }
+}
+
+double vectorCrossAngle(Point p1, Point p2)
+{
+    double dotProduct = p1.x * p2.x + p1.y * p2.y;
+ 
+    double m = sqrt(p1.x*p1.x + p1.y*p1.y) * sqrt(p2.x*p2.x + p2.y*p2.y);
+ 
+    return acos(dotProduct/m);
+}
+
+Point vectorMultiply(Point vector ,float multi)
+{
+    return Point(vector.x * multi , vector.y * multi);
+}
+
+Point pointMove(Point point ,Point vector)
+{
+    return Point(vector.x + point.x , vector.y + point.y);
+}
+
+void caculateRingPosition(HandGesture *hg)
+{
+    Point ptStart(hg->mediusFinger[0]);
+    Point ptFar(hg->mediusFinger[1]);
+    Point ptEnd(hg->mediusFinger[2]);
+    
+    Point midPoint = middlePoint(ptStart, ptEnd);
+    Point vectorMidFar = vectorBetweenPoints(ptFar, midPoint);
+    vectorMidFar = vectorMultiply(vectorMidFar,0.15);
+    
+    Point ringStart = pointMove(ptStart, vectorMidFar);
+    Point ringEnd = pointMove(ptEnd, vectorMidFar);
+    
+    hg->ringPosition.push_back(ringStart);
+    hg->ringPosition.push_back(ringEnd);
+}
+void caculateRotationAngle(HandGesture *hg)
+{
+    
+    if(hg->index==1)
+       return;
+    
+    Point ptFirstStart((*firstFinger)[0] );
+    Point ptFirstFar((*firstFinger)[1]  );
+    Point ptFirstEnd((*firstFinger)[2]  );
+    
+    double firstdist1 = distanceOfPoint(ptFirstStart, ptFirstFar);
+    double firstdist2 = distanceOfPoint(ptFirstEnd, ptFirstFar);
+    double firstdist3 = distanceOfPoint(ptFirstStart, ptFirstEnd);
+    
+    Point vectorFirstStart = vectorBetweenPoints(ptFirstStart, ptFirstFar);
+    Point vectorFirstEnd = vectorBetweenPoints(ptFirstEnd, ptFirstFar);
+    
+    Point ptStart(hg->mediusFinger[0]);
+    Point ptFar(hg->mediusFinger[1]);
+    Point ptEnd(hg->mediusFinger[2]);
+    
+    double dist1 = distanceOfPoint(ptStart, ptFar);
+    double dist2 = distanceOfPoint(ptEnd, ptFar);
+    double dist3 = distanceOfPoint(ptStart, ptEnd);
+    
+    Point vectorStart = vectorBetweenPoints(ptStart, ptFar);
+    Point vectorEnd = vectorBetweenPoints(ptEnd, ptFar);
+    
+    double scale1 = dist1 / firstdist1;
+    double scale2 = dist2 / firstdist2;
+    double scale3 = dist3 / firstdist3;
+    
+    double rotationAngleZ1 = vectorCrossAngle(vectorFirstStart, vectorStart);
+    double rotationAngleZ2 = vectorCrossAngle(vectorFirstEnd, vectorEnd);
+    double rotationAngleZ = MAX(rotationAngleZ1, rotationAngleZ2);
+    
+    double scale = max(scale1, scale2);
+    
+    double rotationAngleX = acos(scale);
+    if (scale>1.0) {
+        rotationAngleX = 0;
+    }
+    
+    double rotationAngleY = acos(scale3);
+    hg->rotationAngle.push_back(rotationAngleX);
+    hg->rotationAngle.push_back(rotationAngleY);
+    hg->rotationAngle.push_back(rotationAngleZ);
+    
+    printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
+    
+    
+
+}
+
+
+//void ajustDefect
+//{
+//    
+//}
+
 void myDrawContours(MyImage *m,HandGesture *hg){
     drawContours(m->src,hg->hullP,hg->cIdx,cv::Scalar(200,0,0),2, 8, vector<Vec4i>(), 0, Point());
-    
-    
-    
     
     rectangle(m->src,hg->bRect.tl(),hg->bRect.br(),Scalar(0,0,200));
     vector<Vec4i>::iterator d=hg->defects[hg->cIdx].begin();
@@ -469,10 +623,17 @@ void myDrawContours(MyImage *m,HandGesture *hg){
         channels.push_back(m->bw);
     merge(channels,result);
     //	drawContours(result,hg->contours,hg->cIdx,cv::Scalar(0,200,0),6, 8, vector<Vec4i>(), 0, Point());
-    drawContours(result,hg->hullP,hg->cIdx,cv::Scalar(0,0,250),10, 8, vector<Vec4i>(), 0, Point());
+//    drawContours(result,hg->hullP,hg->cIdx,cv::Scalar(0,0,250),10, 8, vector<Vec4i>(), 0, Point());
     
     
+    reduceDefect(hg);
+    
+    int i = 0;
+    int count = (int)hg->defects[hg->cIdx].size();
     while( d!=hg->defects[hg->cIdx].end() ) {
+//        if(i==2)
+        {
+        
    	    Vec4i& v=(*d);
         int startidx=v[0];
         Point ptStart(hg->contours[hg->cIdx][startidx] );
@@ -488,12 +649,45 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 #else
         scale = 1.0f;
 #endif
-        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
-        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
-        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
-        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
+//        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
+//        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+//        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
+//        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
         
+        if (i==count - 2) {
+            hg->mediusFinger.push_back(ptFar);
+            hg->mediusFinger.push_back(ptEnd);
+            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+            circle( m->src, ptEnd,   4, Scalar(0,255,0), 2 * scale);
+            line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+        }
+        if (i==count - 1) {
+            hg->mediusFinger.push_back(ptFar);
+            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,0), 1 * scale);
+            if(hg->index==1)
+            {
+                firstFinger = new vector<Point>(hg->mediusFinger);
+                //            firstFinger ->push_back(hg->mediusFinger[0]);
+                //            firstFinger ->push_back(hg->mediusFinger[1]);
+                //            firstFinger ->push_back(hg->mediusFinger[2]);
+                
+                //            &hg->mediusFinger;
+            }
+//            caculateRotationAngle(hg);
+            caculateRingPosition(hg);
+            
+            circle( m->src, hg->ringPosition[0],   4, Scalar(0,255,0), 2 * scale);
+            circle( m->src, hg->ringPosition[1],   4, Scalar(0,255,0), 2 * scale);
+            line( m->src, hg->ringPosition[0], hg->ringPosition[1], Scalar(0,255,0), 1 * scale);
+            
+        }
+            
+
+
+            
+
         /*
         IplImage* ringImg = cvLoadImage("/Users/sky/Desktop/gesture/testring1.png");
         Mat ringMat(ringImg);
@@ -502,14 +696,15 @@ void myDrawContours(MyImage *m,HandGesture *hg){
         ringMat.copyTo( m->src(roirect));
         
          */
-        circle( result, ptFar,   9, Scalar(0,205,0), 5 );
+//        circle( result, ptFar,   9, Scalar(0,205,0), 5 );
         
-        
+        }
         d++;
-        
+        i++;
     }
     //	imwrite("./images/contour_defects_before_eliminate.jpg",result);
-    
+    int b = 0;
+    b = 1;
 }
 
 void makeContours(MyImage *m, HandGesture* hg){

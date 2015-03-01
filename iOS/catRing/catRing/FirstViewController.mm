@@ -42,6 +42,9 @@
 
 @property (nonatomic, assign) NSInteger totalVideoFrame;
 
+
+@property (nonatomic, assign) int imageIndex;
+
 @end
 
 @implementation FirstViewController
@@ -84,6 +87,8 @@
     [super viewDidAppear:animated];
     
     [self getAllImageFromVideo];
+    
+    [self showImageAtIndex:1];
 }
 
 #pragma mark -
@@ -125,6 +130,8 @@
     
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     HandGesture hg;
+    
+    hg.index = self.imageIndex;
     MyImage * myImage = detectHand(ipImage, hg);
     NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
     IplImage qImg;
@@ -152,8 +159,12 @@
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
 //    image = [UIImage imageNamed:fileName];
+    
+    self.imageIndex = j;
+    
     image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
     self.imageView.image = [self processImage:image];
+    
 }
 
 

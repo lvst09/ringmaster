@@ -472,6 +472,7 @@
 				3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */,
 				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
 				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
+				687E13C71AA2FB8100B39B96 /* Movie12347.m4v in Resources */,
 				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
 				33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,

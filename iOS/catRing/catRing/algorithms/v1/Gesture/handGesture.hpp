@@ -20,6 +20,13 @@ class HandGesture{
 		vector<vector<Point2i> >hullP;
 		vector<vector<Vec4i> > defects;
     
+    
+        //特征点
+        int index;
+        vector <Point2i> mediusFinger;
+        vector <double> rotationAngle;
+        vector <Point2i> ringPosition;
+    
         // ouput 手指位置
 		vector <Point2i> fingerTips;
     
