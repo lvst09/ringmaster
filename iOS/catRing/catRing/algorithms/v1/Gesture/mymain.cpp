@@ -268,27 +268,92 @@ void produceBinaries(MyImage *m){
     Scalar upperBound;
     Mat foo;
     m->bwList.clear();
-    avgColor[0][0] = 17;
-    avgColor[0][1] = 95;
-    avgColor[0][2] = 125;
+//    avgColor[0][0] = 17;
+//    avgColor[0][1] = 95;
+//    avgColor[0][2] = 125;
+//    avgColor[1][0] = 17;
+//    avgColor[1][1] = 96;
+//    avgColor[1][2] = 123;
+//    avgColor[2][0] = 17;
+//    avgColor[2][1] = 94;
+//    avgColor[2][2] = 116;
+//    avgColor[3][0] = 18;
+//    avgColor[3][1] = 101;
+//    avgColor[3][2] = 117;
+//    avgColor[4][0] = 17;
+//    avgColor[4][1] = 105;
+//    avgColor[4][2] = 122;
+//    avgColor[5][0] = 18;
+//    avgColor[5][1] = 106;
+//    avgColor[5][2] = 121;
+//    avgColor[6][0] = 14;
+//    avgColor[6][1] = 78;
+//    avgColor[6][2] = 155;
+    // above is old
+    avgColor[0][1] = 213;
+    avgColor[0][2] = 225;
     avgColor[1][0] = 17;
-    avgColor[1][1] = 96;
-    avgColor[1][2] = 123;
-    avgColor[2][0] = 17;
-    avgColor[2][1] = 94;
-    avgColor[2][2] = 116;
-    avgColor[3][0] = 18;
-    avgColor[3][1] = 101;
-    avgColor[3][2] = 117;
-    avgColor[4][0] = 17;
-    avgColor[4][1] = 105;
-    avgColor[4][2] = 122;
-    avgColor[5][0] = 18;
-    avgColor[5][1] = 106;
-    avgColor[5][2] = 121;
-    avgColor[6][0] = 14;
-    avgColor[6][1] = 78;
-    avgColor[6][2] = 155;
+    avgColor[1][1] = 173;
+    avgColor[1][2] = 148;
+    avgColor[2][0] = 16;
+    avgColor[2][1] = 219;
+    avgColor[2][2] = 234;
+    avgColor[3][0] = 13;
+    avgColor[3][1] = 195;
+    avgColor[3][2] = 178;
+    avgColor[4][0] = 14;
+    avgColor[4][1] = 211;
+    avgColor[4][2] = 215;
+    avgColor[5][0] = 13;
+    avgColor[5][1] = 211;
+    avgColor[5][2] = 249;
+    avgColor[6][0] = 17;
+    avgColor[6][1] = 167;
+    avgColor[6][2] = 136;
+    c_lower[0][0] = 12;
+    c_lower[0][1] = 30;
+    c_lower[0][2] = 80;
+    c_lower[1][0] = 12;
+    c_lower[1][1] = 30;
+    c_lower[1][2] = 80;
+    c_lower[2][0] = 12;
+    c_lower[2][1] = 30;
+    c_lower[2][2] = 80;
+    c_lower[3][0] = 12;
+    c_lower[3][1] = 30;
+    c_lower[3][2] = 80;
+    c_lower[4][0] = 12;
+    c_lower[4][1] = 30;
+    c_lower[4][2] = 80;
+    c_lower[5][0] = 12;
+    c_lower[5][1] = 30;
+    c_lower[5][2] = 80;
+    c_lower[6][0] = 12;
+    c_lower[6][1] = 30;
+    c_lower[6][2] = 80;
+    c_upper[0][0] = 7;
+    c_upper[0][1] = 40;
+    c_upper[0][2] = 30;
+    c_upper[1][0] = 7;
+    c_upper[1][1] = 40;
+    c_upper[1][2] = 30;
+    c_upper[2][0] = 7;
+    c_upper[2][1] = 36;
+    c_upper[2][2] = 21;
+    c_upper[3][0] = 7;
+    c_upper[3][1] = 40;
+    c_upper[3][2] = 30;
+    c_upper[4][0] = 7;
+    c_upper[4][1] = 40;
+    c_upper[4][2] = 30;
+    c_upper[5][0] = 7;
+    c_upper[5][1] = 40;
+    c_upper[5][2] = 6;
+    c_upper[6][0] = 7;
+    c_upper[6][1] = 40;
+    c_upper[6][2] = 30;
+    
+    
 //
 //    avgColor[0][0] = 15;
 //    avgColor[0][1] = 132;
@@ -318,16 +383,16 @@ void produceBinaries(MyImage *m){
 //    avgColor[6][1] = 140;
 //    avgColor[6][2] = 99;
     
-    const int diff = 0;
-    for (int i = 0; i < NSAMPLES; i++) {
-        c_lower[i][0] = 12 - diff;
-        c_lower[i][1] = 30 - diff;
-        c_lower[i][2] = 80 - diff;
-        
-        c_upper[1][0] = 7 + diff;
-        c_upper[1][1] = 40 + diff;
-        c_upper[1][2] = 80 + diff;
-    }
+//    const int diff = 0;
+//    for (int i = 0; i < NSAMPLES; i++) {
+//        c_lower[i][0] = 12 - diff;
+//        c_lower[i][1] = 30 - diff;
+//        c_lower[i][2] = 80 - diff;
+//        
+//        c_upper[1][0] = 7 + diff;
+//        c_upper[1][1] = 40 + diff;
+//        c_upper[1][2] = 80 + diff;
+//    }
     const int diff1 = 15;
     for(int i=0;i<NSAMPLES;i++){
         normalizeColors();
