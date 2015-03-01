@@ -436,6 +436,7 @@
 		33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
 		33AAF7F11AA31BF50031DF4A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */; };
+		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -3191,6 +3192,7 @@
 				33AAF3931AA314F80031DF4A /* CC3NoTextureAlphaTest.fsh in Resources */,
 				33AAF3781AA314F80031DF4A /* CC3LibSingleSidedFragmentColor.fsh in Resources */,
 				33AAF3621AA314F70031DF4A /* fps_images.png in Resources */,
+				33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */,
 				33AAF3991AA314F80031DF4A /* CC3PointSprites.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3712,6 +3714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
@@ -3735,6 +3738,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",

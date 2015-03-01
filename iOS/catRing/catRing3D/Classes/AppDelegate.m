@@ -46,7 +46,7 @@
 	   }];
 #endif
     FirstViewController *vc = [[FirstViewController alloc] init];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
     
     
     // set the Navigation Controller as the root view controller

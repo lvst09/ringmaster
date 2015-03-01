@@ -51,6 +51,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     // Do any additional setup after loading the view, typically from a nib.
     self.imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.imageView];
@@ -151,7 +153,7 @@
 //    [self wmcSetNavigationBarTitleStyle];
     
     UIImage *image = nil;
-    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+//    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
     NSString *betaCompressionDirectory = nil;
     betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];

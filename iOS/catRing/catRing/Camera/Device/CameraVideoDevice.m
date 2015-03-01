@@ -280,7 +280,8 @@ static int frame = -1;
         @finally {
             NSLog(@"Camera start completed");
             _running = YES;
-            [self.delegate cameraDeviceEvent:CameraDeviceEvent_Started withAguments:nil];
+            NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+            [delegate cameraDeviceEvent:CameraDeviceEvent_Started withAguments:nil];
             time = CFAbsoluteTimeGetCurrent() - time;
             NSLog(@"Camera startRunning cost: %lf", time);
         }
@@ -294,7 +295,7 @@ static int frame = -1;
     _running = NO;
     
     dispatch_async(deviceOperationQueue, ^{
-        CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
+//        CFAbsoluteTime time = CFAbsoluteTimeGetCurrent();
         @try {
             [self.session stopRunning];
         }
@@ -302,7 +303,8 @@ static int frame = -1;
             [self.session stopRunning];
         }
         @finally {
-            [self.delegate cameraDeviceEvent:CameraDeviceEvent_Stopped withAguments:nil];
+            NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+            [delegate cameraDeviceEvent:CameraDeviceEvent_Stopped withAguments:nil];
 //            time = CFAbsoluteTimeGetCurrent() - time;
 //            NSLog(@"Camera stopRunning cost: %lf", time);
 //            
@@ -334,7 +336,7 @@ static int frame = -1;
         [_videoWriterInput markAsFinished];
         [_videoWriter finishWritingWithCompletionHandler:^{
             NSLog(@"finished recording");
-            NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
+//            NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
             NSString *betaCompressionDirectory = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie_llu.m4v"];
             
 //            betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
@@ -374,7 +376,8 @@ static int frame = -1;
                  [self.session startRunning];
                  [inputCamera unlockForConfiguration];
             }
-            [self.delegate cameraDeviceEvent:CameraDeviceEvent_Restarted withAguments:nil];
+            NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+            [delegate cameraDeviceEvent:CameraDeviceEvent_Restarted withAguments:nil];
             time = CFAbsoluteTimeGetCurrent() - time;
             NSLog(@"restartCapture cost: %lf", time);
         }
@@ -442,7 +445,8 @@ static int frame = -1;
         } else {
             self.lowLightBoost = YES;
         }
-        [self.delegate cameraDeviceEvent:CameraDeviceEvent_PositionChanged withAguments:nil];
+        NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+        [delegate cameraDeviceEvent:CameraDeviceEvent_PositionChanged withAguments:nil];
     }
 
     NSLog(@"changeDevicePosition: %lf", CFAbsoluteTimeGetCurrent() - start);
@@ -698,7 +702,8 @@ static int frame = -1;
         BOOL adjustingFocus = [[change objectForKey:NSKeyValueChangeNewKey] isEqualToNumber:[NSNumber numberWithInt:1]];
         CameraDeviceEvent event = adjustingFocus ? CameraDeviceEvent_FocusBegan : CameraDeviceEvent_FocusEnded;
         NSDictionary *args = @{@"x": @(inputCamera.focusPointOfInterest.x), @"y": @(inputCamera.focusPointOfInterest.y)};
-        [self.delegate cameraDeviceEvent:event withAguments:args];
+        NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+        [delegate cameraDeviceEvent:event withAguments:args];
     }
 }
 
@@ -714,14 +719,16 @@ static int frame = -1;
     
     if (!receiveVideoFrameNotify) {
         receiveVideoFrameNotify = YES;
-        [self.delegate cameraDeviceEvent:CameraDeviceEvent_FrameStarted withAguments:nil];
+        NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+        [delegate cameraDeviceEvent:CameraDeviceEvent_FrameStarted withAguments:nil];
     }
     if (inputPos == AVCaptureDevicePositionUnspecified) {
         NSLog(@"captureOutput, camera position unspecified, drop it!!!!");
         return;
     }
     NSDictionary *args = @{@"buffer": @((NSInteger)sampleBuffer), @"position": @(inputPos)};
-    [self.delegate cameraDeviceEvent:CameraDeviceEvent_FrameReceived withAguments:args];
+    NSObject<CameraVideoDeviceDelegate> *delegate = self.delegate;
+    [delegate cameraDeviceEvent:CameraDeviceEvent_FrameReceived withAguments:args];
     
     @autoreleasepool {
         

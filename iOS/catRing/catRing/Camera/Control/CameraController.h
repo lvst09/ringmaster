@@ -55,7 +55,6 @@ typedef enum {
 @property (nonatomic, assign) CGFloat exposureLevel;
 @property (nonatomic, assign) NSInteger exposureDuration;
 @property (nonatomic, assign) NSInteger filterIndex;
-@property (nonatomic, assign) BOOL faceMonitoringEnabled;
 @property (nonatomic, assign) BOOL notifyNextFrame;
 @property (nonatomic, assign) BOOL cameraOrientation;
 
