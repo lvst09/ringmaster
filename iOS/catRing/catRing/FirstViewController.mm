@@ -298,7 +298,16 @@
 }
 
 - (void)getAllImageFromVideo {
-    
+    {
+        int i = 156;
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i-1]];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
+            self.totalVideoFrame = i;
+            return;
+        }
+    }
+   
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
     //12345 keyishen的手
     //12346 jerry的手
