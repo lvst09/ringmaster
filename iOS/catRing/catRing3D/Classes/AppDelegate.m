@@ -34,7 +34,7 @@
     // Create a Navigation Controller with the Director
 
     
-#if 1
+#if 0
 	[self setupCocos2dWithOptions:
 	 @{
 	   CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
@@ -45,22 +45,24 @@
 //	   CCSetupNumberOfSamples: @(4),							// Number of samples to use per pixel (max 4)
 	   }];
 #endif
+    window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     FirstViewController *vc = [[FirstViewController alloc] init];
 //    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
-    
-    
-    // set the Navigation Controller as the root view controller
+//    [navController_ presentViewController:vc animated:NO completion:NULL];
+//
+//    // set the Navigation Controller as the root view controller
     [window_ setRootViewController:vc];
-    
-    // make main window visible
+//
+//    // make main window visible
     [window_ makeKeyAndVisible];
-	// For an Augmented Reality 3D overlay on the device camera, uncomment the following lines.
-	// This must be done after the window is made visible. The 3D scene contains a solid backdrop.
-	// To see the device camera behind the 3D scene, remove this backdrop, by commenting out the
-	// addBackdrop invocation in the initializeScene method of CC3DemoMashUpScene.
-//	CC3DeviceCameraOverlayUIViewController* viewController = [[CC3DeviceCameraOverlayUIViewController alloc] init];
-//	viewController.isOverlayingDeviceCamera = YES;
-	
+//	// For an Augmented Reality 3D overlay on the device camera, uncomment the following lines.
+//	// This must be done after the window is made visible. The 3D scene contains a solid backdrop.
+//	// To see the device camera behind the 3D scene, remove this backdrop, by commenting out the
+//	// addBackdrop invocation in the initializeScene method of CC3DemoMashUpScene.
+////	CC3DeviceCameraOverlayUIViewController* viewController = [[CC3DeviceCameraOverlayUIViewController alloc] init];
+////	viewController.isOverlayingDeviceCamera = YES;
+//	
 	return YES;
 }
 

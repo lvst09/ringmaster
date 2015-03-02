@@ -29,6 +29,7 @@
 #import "DWVideoDecoding.h"
 // video decoding
 
+#import "DWRotationManager.h"
 
 #import "ImageProcess.h"
 
@@ -49,7 +50,7 @@
 @property (nonatomic, assign) int imageIndex;
 
 
-
+@property (nonatomic, strong) DWRotationManager* rotationManager;
 @end
 
 @implementation FirstViewController
@@ -92,8 +93,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self getAllImageFromVideo];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self getAllImageFromVideo];
+    });
     
     [self showImageAtIndex:1];
 }
@@ -304,6 +306,12 @@
         betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i-1]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
+            if (!self.rotationManager) {
+                self.rotationManager = [[DWRotationManager alloc] init];
+                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+                    
+                } controller:self];
+            }
             return;
         }
     }

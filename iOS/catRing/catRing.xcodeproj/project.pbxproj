@@ -37,7 +37,7 @@
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
 		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
-		33AAE62E1AA3000D0031DF4A /* MYIMG_ANG_x90.000000_y0.000000_z0.000000.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* MYIMG_ANG_x90.000000_y0.000000_z0.000000.png */; };
+		33AAE62E1AA3000D0031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
 		33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */; };
 		33AAF3151AA314F70031DF4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3141AA314F70031DF4A /* AudioToolbox.framework */; };
 		33AAF3171AA314F70031DF4A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3161AA314F70031DF4A /* AVFoundation.framework */; };
@@ -51,7 +51,6 @@
 		33AAF3271AA314F70031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32B1AA314F70031DF4A /* catRingLayer.m */; };
 		33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32E1AA314F70031DF4A /* catRingScene.m */; };
-		33AAF3361AA314F70031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3351AA314F70031DF4A /* AppDelegate.m */; };
 		33AAF3391AA314F70031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3381AA314F70031DF4A /* main.m */; };
 		33AAF35A1AA314F70031DF4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3591AA314F70031DF4A /* Default.png */; };
 		33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */; };
@@ -394,7 +393,7 @@
 		33AAF7BE1AA315E50031DF4A /* ringModel.pod in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF7BD1AA315E50031DF4A /* ringModel.pod */; };
 		33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */; };
 		33AAF7C01AA3185F0031DF4A /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
-		33AAF7C11AA318640031DF4A /* MYIMG_ANG_x90.000000_y0.000000_z0.000000.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* MYIMG_ANG_x90.000000_y0.000000_z0.000000.png */; };
+		33AAF7C11AA318640031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
 		33AAF7C41AA3186B0031DF4A /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 		33AAF7C51AA3186B0031DF4A /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
 		33AAF7C61AA318770031DF4A /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -439,6 +438,7 @@
 		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
 		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
+		33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3351AA314F70031DF4A /* AppDelegate.m */; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -475,6 +475,27 @@
 			remoteInfo = "cocos2d-chipmunk";
 		};
 		33AAF7BB1AA315800031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF6091AA314FB0031DF4A;
+			remoteInfo = cocos3d;
+		};
+		33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF3CE1AA314F80031DF4A;
+			remoteInfo = cocos2d;
+		};
+		33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF3D11AA314F80031DF4A;
+			remoteInfo = "cocos2d-chipmunk";
+		};
+		33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
 			proxyType = 1;
@@ -535,9 +556,7 @@
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		33AAE62B1AA2FE540031DF4A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
-
 		33AAE62D1AA3000D0031DF4A /* ring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ring.png; sourceTree = "<group>"; };
-
 		33AAE6331AA30A210031DF4A /* DWRingPositionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWRingPositionInfo.h; sourceTree = "<group>"; };
 		33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWRingPositionInfo.m; sourceTree = "<group>"; };
 		33AAF3121AA314F70031DF4A /* catRing3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catRing3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1248,7 +1267,6 @@
 		33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DWRotationManager.h; path = Manager/DWRotationManager.h; sourceTree = "<group>"; };
 		33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DWRotationManager.m; path = Manager/DWRotationManager.m; sourceTree = "<group>"; };
- 
 		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
 		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
@@ -2962,6 +2980,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */,
+				33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */,
+				33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */,
 			);
 			name = catRing;
 			productName = catRing;
@@ -3139,7 +3160,7 @@
 			files = (
 				33AAF3A31AA314F80031DF4A /* CC3SingleTextureReflect.fsh in Resources */,
 				33AAF3BC1AA314F80031DF4A /* CC3LibVertexPositionNoBones.vsh in Resources */,
-				33AAF7C11AA318640031DF4A /* MYIMG_ANG_x90.000000_y0.000000_z0.000000.png in Resources */,
+				33AAF7C11AA318640031DF4A /* ring.png in Resources */,
 				33AAF3B81AA314F80031DF4A /* CC3LibSingleTexture.vsh in Resources */,
 				33AAF3B41AA314F80031DF4A /* CC3LibIlluminatedMaterial.vsh in Resources */,
 				33AAF3851AA314F80031DF4A /* CC3BumpMapObjectSpaceAlphaTest.fsh in Resources */,
@@ -3290,11 +3311,11 @@
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
 				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
+				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
 				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,
-				33AAF3361AA314F70031DF4A /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3620,6 +3641,21 @@
 			isa = PBXTargetDependency;
 			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
 			targetProxy = 33AAF7BB1AA315800031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF3CE1AA314F80031DF4A /* cocos2d */;
+			targetProxy = 33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF3D11AA314F80031DF4A /* cocos2d-chipmunk */;
+			targetProxy = 33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
+			targetProxy = 33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

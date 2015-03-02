@@ -62,7 +62,7 @@ const CGSize FIXED_SIZE = {568, 384};
     CCAppDelegate* __weak _appDelegate;
     NSString* _screenOrientation;
 }
-@property (nonatomic, weak) CCAppDelegate* appDelegate;
+//@property (nonatomic, weak) CCAppDelegate* appDelegate;
 @property (nonatomic, strong) NSString* screenOrientation;
 @end
 
@@ -277,9 +277,11 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 // call got rejected
 -(void) applicationDidBecomeActive:(UIApplication *)application
 {
+#if 0
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 	if( [navController_ visibleViewController] == [CCDirector sharedDirector] )
 		[[CCDirector sharedDirector] resume];
+#endif
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application

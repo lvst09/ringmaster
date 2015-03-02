@@ -8,9 +8,22 @@
 
 #import "DWRotationManager.h"
 
-//#import "CC3Environment.h"
+#import "CC3Environment.h"
+
+#import "catRingLayer.h"
+#import "CC3CC2Extensions.h"
+
+static DWRotationManager *sharedManager;
 
 @implementation DWRotationManager
+
+- (DWRotationManager*)sharedManager {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[DWRotationManager alloc] init];
+    });
+    return sharedManager;
+}
 
 - (NSMutableArray *)input {
     if (!_input) {
@@ -25,10 +38,18 @@
     [self.input addObject:value];
 }
 
+static CGFloat
+FindPOTScale2(CGFloat size, CGFloat fixedSize)
+{
+    int scale = 1;
+    while(fixedSize*scale < size) scale *= 2;
+    
+    return scale;
+}
 
-- (void)getOutput:(completeBlk)blk {
+- (void)getOutput:(completeBlk)blk controller:(UIViewController *)controller {
     // 先调用cocos3d的vc，然后生成图片，最后dismiss
-/*
+
     NSDictionary *config = @{
                              CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
                              CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
@@ -37,9 +58,10 @@
                              //	   CCSetupMultiSampling: @(YES),							// Use multisampling on the main view
                              //	   CCSetupNumberOfSamples: @(4),							// Number of samples to use per pixel (max 4)
                              };
+    
     {
         // Create the main window
-        UIWindow *window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
         
         // CCGLView creation
@@ -92,7 +114,7 @@
             }
             
             // Find the minimal power-of-two scale that covers both the width and height.
-            CGFloat scaleFactor = MIN(FindPOTScale(size.width, fixed.width), FindPOTScale(size.height, fixed.height));
+            CGFloat scaleFactor = MIN(FindPOTScale2(size.width, fixed.width), FindPOTScale2(size.height, fixed.height));
             
             director.contentScaleFactor = scaleFactor;
             director.UIScaleFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 1.0 : 0.5);
@@ -130,20 +152,49 @@
         [OALSimpleAudio sharedInstance];
         
         // Create a Navigation Controller with the Director
-        CCNavigationController *navController_ = [[CCNavigationController alloc] initWithRootViewController:director];
-        navController_.navigationBarHidden = YES;
-//        navController_.appDelegate = self;
+        CCNavigationController *navController_2 = [[CCNavigationController alloc] initWithRootViewController:director];
+        navController_2.navigationBarHidden = YES;
+        navController_2.appDelegate = self;
 //        navController_.screenOrientation = (config[CCSetupScreenOrientation] ?: CCScreenOrientationLandscape);
         
         // for rotation and other messages
-        [director setDelegate:navController_];
+        [director setDelegate:navController_2];
         
 //        // set the Navigation Controller as the root view controller
 //        [window_ setRootViewController:navController_];
 //        
 //        // make main window visible
 //        [window_ makeKeyAndVisible];
+//        [director showViewController:controller sender:nil];
+        [controller presentViewController:navController_2 animated:NO completion:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [navController_2 dismissViewControllerAnimated:NO completion:NULL];
+            });
+        }];
     }
-   */
+//    */
+}
+
+-(CCScene*) startScene {
+    
+    // Create the customized CC3Layer that supports 3D rendering.
+    CC3Layer* cc3Layer = [catRingLayer layer];
+    
+    // As an alternte to running "full-screen", the CC3Layer can run as a smaller "sub-window"
+    // within any standard CCNode. That allows you to have a mostly 2D window, with a smaller
+    // 3D window embedded in it. To experiment with this smaller, square, embedded 3D window,
+    // uncomment the following lines:
+    //	CGSize cs = cc3Layer.contentSize;		// The layer starts out "full-screen".
+    //	GLfloat sideLen = MIN(cs.width, cs.height) - 200.0f;
+    //	cc3Layer.contentSize = CGSizeMake(sideLen, sideLen);
+    //	cc3Layer.position = ccp(100.0, 100.0);
+    
+    // The smaller 3D layer can even be moved around on the screen dyanmically. To see this in
+    // action, uncomment the lines above as described, and also uncomment the following two lines.
+    //	cc3Layer.position = ccp(0.0, 0.0);
+    //	[cc3Layer runAction: [CCActionMoveTo actionWithDuration: 15.0 position: ccp(500.0, 250.0)]];
+    
+    // Wrap the 3D layer in a 2D scene and return it
+    return [cc3Layer asCCScene];
 }
 @end
