@@ -144,7 +144,6 @@
 //    Point2i ringStart = hg.ringPosition[0];
 //    Point2i ringEnd = hg.ringPosition[1];
     
-    
     NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
     IplImage qImg;
     qImg = IplImage(myImage->src);

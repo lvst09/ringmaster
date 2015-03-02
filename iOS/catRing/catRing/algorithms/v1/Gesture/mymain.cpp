@@ -691,23 +691,23 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 #else
         scale = 1.0f;
 #endif
-//        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
-//        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
-//        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-//        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
-//        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
+        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
+        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
+        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
         
         if (i==count - 2) {
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptEnd);
-            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-            circle( m->src, ptEnd,   4, Scalar(0,255,0), 2 * scale);
-            line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+//            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//            circle( m->src, ptEnd,   4, Scalar(0,255,0), 2 * scale);
+//            line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
         }
         if (i==count - 1) {
             hg->mediusFinger.push_back(ptFar);
-            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,0), 1 * scale);
+//            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,0), 1 * scale);
             if(hg->index==1)
             {
                 firstFinger = new vector<Point>(hg->mediusFinger);
@@ -717,7 +717,7 @@ void myDrawContours(MyImage *m,HandGesture *hg){
                 
                 //            &hg->mediusFinger;
             }
-//            caculateRotationAngle(hg);
+            caculateRotationAngle(hg);
             caculateRingPosition(hg);
             
             circle( m->src, hg->ringPosition[0],   4, Scalar(0,255,0), 2 * scale);
