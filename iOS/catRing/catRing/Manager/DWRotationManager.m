@@ -28,7 +28,7 @@
 
 - (void)getOutput:(completeBlk)blk {
     // 先调用cocos3d的vc，然后生成图片，最后dismiss
-    
+/*
     NSDictionary *config = @{
                              CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
                              CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
@@ -144,5 +144,6 @@
 //        // make main window visible
 //        [window_ makeKeyAndVisible];
     }
+    */
 }
 @end
