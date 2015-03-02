@@ -8,7 +8,7 @@
 
 #import "DWRotationManager.h"
 
-#import "CC3Environment.h"
+//#import "CC3Environment.h"
 
 @implementation DWRotationManager
 
@@ -144,6 +144,6 @@
 //        // make main window visible
 //        [window_ makeKeyAndVisible];
     }
-    */
+   */
 }
 @end
