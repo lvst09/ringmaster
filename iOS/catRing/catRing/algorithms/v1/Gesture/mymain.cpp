@@ -427,10 +427,10 @@ void showWindows(MyImage m){
         channels.push_back(m.bw);
     merge(channels,result);
     
-    int i = result.channels();
+//    int i = result.channels();
     
-    OutputArray _dst = m.src(roirect);
-    int dtype = _dst.type();
+//    OutputArray _dst = m.src(roirect);
+//    int dtype = _dst.type();
 //    int j = CV_MAT_CN(dtype);
 //    printf("i=%d", i);
     result.copyTo(m.src(roirect));

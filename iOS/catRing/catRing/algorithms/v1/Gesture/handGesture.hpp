@@ -7,7 +7,8 @@
 #include <string>
 #include "mymain.hpp"
 #include "myImage.hpp"
-#include <opencv2.framework/Headers/core/core.hpp>
+//#include <opencv2.framework/Headers/core/core.hpp>
+#include <opencv2/core/core_c.h>
 using namespace cv;
 using namespace std;
 
