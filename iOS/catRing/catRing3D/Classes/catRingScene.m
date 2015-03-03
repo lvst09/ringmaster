@@ -68,6 +68,7 @@
 	// Create the camera, place it back a bit, and add it to the scene
 	CC3Camera* cam = [CC3Camera nodeWithName: @"Camera"];
 	cam.location = cc3v( 0.0, 0.0, 18.0 );
+    cam.nearClippingDistance = 0.1;
 	[self addChild: cam];
 
 	// Create a light, place it back and to the left at a specific
@@ -200,6 +201,7 @@
             [value getValue:&storedVector];
             CC3Vector aRotation = cc3v(storedVector.x, storedVector.y, storedVector.z);
             self.aRotation = aRotation;
+            NSLog(@"aRotation x=%f, y=%f, z=%f", aRotation.x, aRotation.y, aRotation.z);
             [rezNode runAction:[CC3ActionRotateTo actionWithDuration:0 rotateTo:aRotation]];
             NSLog(@"3rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
         });
@@ -456,6 +458,7 @@
     posInfo.minPoint = CGPointMake(m1.x, m1.y);
     posInfo.maxPoint = CGPointMake(m2.x, m2.y);
     [self.filenamePositionInfoDic setObject:posInfo forKey:filename];
+    [DWRotationManager sharedManager].output = self.filenamePositionInfoDic;
     NSLog(@"key:%@, value:%@", filename, posInfo);
 }
 

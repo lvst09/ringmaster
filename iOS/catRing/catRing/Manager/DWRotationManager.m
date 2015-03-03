@@ -155,7 +155,7 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         CCNavigationController *navController_2 = [[CCNavigationController alloc] initWithRootViewController:director];
         navController_2.navigationBarHidden = YES;
         navController_2.appDelegate = self;
-        navController_.screenOrientation = CCScreenOrientationLandscape;//(config[CCSetupScreenOrientation] ?: CCScreenOrientationLandscape);
+        navController_2.screenOrientation = CCScreenOrientationPortrait;//(config[CCSetupScreenOrientation] ?: CCScreenOrientationLandscape);
         
         // for rotation and other messages
         [director setDelegate:navController_2];
@@ -169,6 +169,9 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         [controller presentViewController:navController_2 animated:NO completion:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [navController_2 dismissViewControllerAnimated:NO completion:NULL];
+                if (blk) {
+                    blk(self.output);
+                }
             });
         }];
     }

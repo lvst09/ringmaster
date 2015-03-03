@@ -21,6 +21,8 @@ typedef void(^completeBlk)(NSMutableDictionary *outputDic);
 
 @property (nonatomic, strong) NSMutableArray *input; // array of NSValue with GLKVector3
 
+@property (nonatomic, strong) NSMutableDictionary *output;
+
 
 + (instancetype)sharedManager;
 

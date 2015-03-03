@@ -51,6 +51,9 @@
 
 
 @property (nonatomic, strong) DWRotationManager* rotationManager;
+
+@property (nonatomic, strong) NSMutableDictionary *filenamePositionInfoDic;
+
 @end
 
 @implementation FirstViewController
@@ -182,6 +185,8 @@
     if(!image)
         return;
     image = [self processImage:image];
+    NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
+    
     UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
 
     ringImage = [self clipImage:ringImage];
@@ -192,9 +197,18 @@
 
 -(UIImage *)clipImage:(UIImage *)image
 {
-//  UIImage * timage = [self getImage:iv];
+
+//    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
     CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
     
+#if 0
+    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ANG_x90.000000_y0.000000_z0.000000.png"]];
+    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
+    rect = CGRectMake(123, image.size.height - 325.49683, 197.71791 - 123.66412, 325.49683 - 244.02368);
+    // 区域还没挑对
+#endif
+
     CGSize size = image.size;
     UIGraphicsBeginImageContext(size);
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
@@ -312,6 +326,8 @@
                 self.rotationManager = [DWRotationManager sharedManager];
                 [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
                 [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+                    self.filenamePositionInfoDic = outputDic;
+                    NSLog(@"outputDic=%@", outputDic);
                     
                 } controller:self];
             }

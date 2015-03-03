@@ -305,7 +305,9 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 // purge memory
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
+#if 0
 	[[CCDirector sharedDirector] purgeCachedData];
+#endif
 }
 
 // next delta time will be zero
