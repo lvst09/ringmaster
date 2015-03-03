@@ -179,6 +179,8 @@
     
     image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
 //    self.imageView.image = [self processImage:image];
+    if(!image)
+        return;
     image = [self processImage:image];
     UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
 
