@@ -51,7 +51,6 @@
 		33AAF3271AA314F70031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32B1AA314F70031DF4A /* catRingLayer.m */; };
 		33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32E1AA314F70031DF4A /* catRingScene.m */; };
-		33AAF3391AA314F70031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3381AA314F70031DF4A /* main.m */; };
 		33AAF35A1AA314F70031DF4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3591AA314F70031DF4A /* Default.png */; };
 		33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */; };
 		33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35D1AA314F70031DF4A /* Default-Portrait~ipad.png */; };
@@ -438,7 +437,10 @@
 		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
 		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
-		33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3351AA314F70031DF4A /* AppDelegate.m */; };
+		33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B51A9329FD00D29FFD /* Main.storyboard */; };
+		33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
+		33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
+		33AAF81E1AA60F690031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -3203,6 +3205,7 @@
 				33AAF3721AA314F80031DF4A /* CC3LibLightProbeIllumination.fsh in Resources */,
 				33AAF3CB1AA314F80031DF4A /* CC3TexturableRigidBones.vsh in Resources */,
 				33AAF7C41AA3186B0031DF4A /* Movie12347.m4v in Resources */,
+				33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */,
 				33AAF7BE1AA315E50031DF4A /* ringModel.pod in Resources */,
 				33AAF3A11AA314F80031DF4A /* CC3SingleTextureAlphaTest.fsh in Resources */,
 				33AAF37C1AA314F80031DF4A /* CC3LibTexturableBumpMapObjectSpace.fsh in Resources */,
@@ -3221,6 +3224,7 @@
 				33AAF3891AA314F80031DF4A /* CC3BumpMapTangentSpaceAlphaTest.fsh in Resources */,
 				33AAF3931AA314F80031DF4A /* CC3NoTextureAlphaTest.fsh in Resources */,
 				33AAF3781AA314F80031DF4A /* CC3LibSingleSidedFragmentColor.fsh in Resources */,
+				33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */,
 				33AAF3621AA314F70031DF4A /* fps_images.png in Resources */,
 				33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */,
 				33AAF3991AA314F80031DF4A /* CC3PointSprites.fsh in Resources */,
@@ -3291,6 +3295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33AAF81E1AA60F690031DF4A /* main.m in Sources */,
 				33AAF7E11AA319010031DF4A /* roi.cpp in Sources */,
 				33AAF7CF1AA318A40031DF4A /* ImageProcess.m in Sources */,
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
@@ -3307,11 +3312,10 @@
 				33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */,
 				33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */,
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
-				33AAF3391AA314F70031DF4A /* main.m in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
 				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
-				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
+				33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */,
 				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
@@ -3878,7 +3882,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3925,7 +3929,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
