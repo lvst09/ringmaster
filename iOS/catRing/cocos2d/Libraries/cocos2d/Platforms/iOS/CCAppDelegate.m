@@ -63,7 +63,7 @@ const CGSize FIXED_SIZE = {568, 384};
     NSString* _screenOrientation;
 }
 //@property (nonatomic, weak) CCAppDelegate* appDelegate;
-@property (nonatomic, strong) NSString* screenOrientation;
+//@property (nonatomic, strong) NSString* screenOrientation;
 @end
 
 @implementation CCNavigationController

@@ -22,7 +22,7 @@ typedef void(^completeBlk)(NSMutableDictionary *outputDic);
 @property (nonatomic, strong) NSMutableArray *input; // array of NSValue with GLKVector3
 
 
-- (DWRotationManager*)sharedManager;
++ (instancetype)sharedManager;
 
 // angleX的单位是角度而非弧度
 - (void)pushAngleX:(CGFloat)angleX angleY:(CGFloat)angleY angleZ:(CGFloat)angleZ;

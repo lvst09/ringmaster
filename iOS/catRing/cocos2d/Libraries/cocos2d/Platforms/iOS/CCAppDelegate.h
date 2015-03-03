@@ -67,6 +67,7 @@ extern NSString* const CCScreenModeFixed;
 @interface CCNavigationController : UINavigationController <CCDirectorDelegate> {
 }
 @property (nonatomic, weak) CCAppDelegate* appDelegate;
+@property (nonatomic, strong) NSString* screenOrientation;
 @end
 
 /**

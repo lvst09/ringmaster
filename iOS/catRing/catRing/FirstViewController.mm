@@ -307,7 +307,8 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
             if (!self.rotationManager) {
-                self.rotationManager = [[DWRotationManager alloc] init];
+                self.rotationManager = [DWRotationManager sharedManager];
+                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
                 [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
                     
                 } controller:self];

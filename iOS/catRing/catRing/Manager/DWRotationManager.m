@@ -17,7 +17,7 @@ static DWRotationManager *sharedManager;
 
 @implementation DWRotationManager
 
-- (DWRotationManager*)sharedManager {
++ (instancetype)sharedManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedManager = [[DWRotationManager alloc] init];
@@ -155,7 +155,7 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         CCNavigationController *navController_2 = [[CCNavigationController alloc] initWithRootViewController:director];
         navController_2.navigationBarHidden = YES;
         navController_2.appDelegate = self;
-//        navController_.screenOrientation = (config[CCSetupScreenOrientation] ?: CCScreenOrientationLandscape);
+        navController_.screenOrientation = CCScreenOrientationLandscape;//(config[CCSetupScreenOrientation] ?: CCScreenOrientationLandscape);
         
         // for rotation and other messages
         [director setDelegate:navController_2];
