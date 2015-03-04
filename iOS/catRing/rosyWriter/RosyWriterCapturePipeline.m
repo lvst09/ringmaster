@@ -756,20 +756,37 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	
 	self.recorder = nil;
 	
-	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-	[library writeVideoAtPathToSavedPhotosAlbum:_recordingURL completionBlock:^(NSURL *assetURL, NSError *error) {
-		
-		[[NSFileManager defaultManager] removeItemAtURL:_recordingURL error:NULL];
-		
- 		@synchronized( self ) {
-			if ( _recordingStatus != RosyWriterRecordingStatusStoppingRecording ) {
-				@throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Expected to be in StoppingRecording state" userInfo:nil];
-				return;
-			}
-			[self transitionToRecordingStatus:RosyWriterRecordingStatusIdle error:error];
-		}
-	}];
-	[library release];
+//    NSURL *destURL = [[NSURL alloc] initFileURLWithPath:[NSString pathWithComponents:@[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"], @"Movie.MOV"]]];
+    NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MyVideo%ld.MOV", (long)[[NSDate date] timeIntervalSince1970]]];
+    NSError *error = nil;
+    NSURL *destURL = [NSURL fileURLWithPath:betaCompressionDirectory];
+    [[NSFileManager defaultManager] moveItemAtURL:_recordingURL toURL:destURL error:&error];
+    if (error) {
+        NSLog(@"copy file error=%@, from %@, to %@", error, _recordingURL, destURL);
+    }
+    @synchronized( self ) {
+        if ( _recordingStatus != RosyWriterRecordingStatusStoppingRecording ) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Expected to be in StoppingRecording state" userInfo:nil];
+            return;
+        }
+        [self transitionToRecordingStatus:RosyWriterRecordingStatusIdle error:error];
+    }
+//	ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//	[library writeVideoAtPathToSavedPhotosAlbum:_recordingURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//		
+//		[[NSFileManager defaultManager] removeItemAtURL:_recordingURL error:NULL];
+//		
+// 		@synchronized( self ) {
+//			if ( _recordingStatus != RosyWriterRecordingStatusStoppingRecording ) {
+//				@throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Expected to be in StoppingRecording state" userInfo:nil];
+//				return;
+//			}
+//			[self transitionToRecordingStatus:RosyWriterRecordingStatusIdle error:error];
+//		}
+//	}];
+//	[library release];
 }
 
 #pragma mark Recording State Machine

@@ -60,7 +60,7 @@
 	BOOL _allowedToUseGPU;
 }
 
-@property(nonatomic, retain) IBOutlet UIBarButtonItem *recordButton;
+@property(nonatomic, retain) IBOutlet UIButton *recordButton;
 @property(nonatomic, retain) IBOutlet UILabel *framerateLabel;
 @property(nonatomic, retain) IBOutlet UILabel *dimensionsLabel;
 @property(nonatomic, retain) NSTimer *labelTimer;
@@ -115,6 +115,22 @@
     self.capturePipeline = [[[RosyWriterCapturePipeline alloc] init] autorelease];
     [self.capturePipeline setDelegate:self callbackQueue:dispatch_get_main_queue()];
 	
+    const int buttonWidth = 44;
+    
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    closeButton.frame = CGRectMake(self.view.frame.size.width - 10 - buttonWidth, 10, buttonWidth, buttonWidth);
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(onCloseButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeButton];
+    
+    UIButton *recordButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    recordButton.frame = CGRectMake(0, self.view.bounds.size.height - 50, self.view.frame.size.width, 44);
+    [recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    [recordButton addTarget:self action:@selector(toggleRecording:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:recordButton];
+    self.recordButton = recordButton;
+    
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(applicationDidEnterBackground)
 												 name:UIApplicationDidEnterBackgroundNotification
@@ -188,7 +204,7 @@
 		}
 		
 		self.recordButton.enabled = NO; // re-enabled once recording has finished starting
-		self.recordButton.title = @"Stop";
+        [self.recordButton setTitle:@"Stop" forState:UIControlStateNormal];
 		
 		[self.capturePipeline startRecording];
 		
@@ -200,7 +216,8 @@
 {
 	_recording = NO;
 	self.recordButton.enabled = YES;
-	self.recordButton.title = @"Record";
+    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+//	self.recordButton.title = @"Record";
 	
 	[UIApplication sharedApplication].idleTimerDisabled = NO;
 	
@@ -254,6 +271,10 @@
 	[alertView release];
 }
 
+- (void)onCloseButtonPressed:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 #pragma mark - RosyWriterCapturePipelineDelegate
 
 - (void)capturePipeline:(RosyWriterCapturePipeline *)capturePipeline didStopRunningWithError:(NSError *)error
@@ -294,7 +315,8 @@
 {
 	// Disable record button until we are ready to start another recording
 	self.recordButton.enabled = NO;
-	self.recordButton.title = @"Record";
+//	self.recordButton.title = @"Record";
+    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
 }
 
 - (void)capturePipelineRecordingDidStop:(RosyWriterCapturePipeline *)capturePipeline
