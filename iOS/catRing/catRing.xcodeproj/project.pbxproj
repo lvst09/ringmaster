@@ -441,6 +441,13 @@
 		33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
 		33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
 		33AAF81E1AA60F690031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
+		33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */; };
+		33AAF84E1AA68AF70031DF4A /* RosyWriterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33AAF84F1AA68AF70031DF4A /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8401AA68AF70031DF4A /* matrix.c */; };
+		33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */; };
+		33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8451AA68AF70031DF4A /* MovieRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
 		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
@@ -1269,6 +1276,21 @@
 		33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DWRotationManager.h; path = Manager/DWRotationManager.h; sourceTree = "<group>"; };
 		33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DWRotationManager.m; path = Manager/DWRotationManager.m; sourceTree = "<group>"; };
+		33AAF8311AA68AF70031DF4A /* RosyWriterCapturePipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCapturePipeline.h; sourceTree = "<group>"; };
+		33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCapturePipeline.m; sourceTree = "<group>"; };
+		33AAF8351AA68AF70031DF4A /* RosyWriterCPURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCPURenderer.h; sourceTree = "<group>"; };
+		33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCPURenderer.m; sourceTree = "<group>"; };
+		33AAF83B1AA68AF70031DF4A /* RosyWriterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterRenderer.h; sourceTree = "<group>"; };
+		33AAF83C1AA68AF70031DF4A /* RosyWriterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterViewController.h; sourceTree = "<group>"; };
+		33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterViewController.m; sourceTree = "<group>"; };
+		33AAF8401AA68AF70031DF4A /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
+		33AAF8411AA68AF70031DF4A /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
+		33AAF8431AA68AF70031DF4A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
+		33AAF8441AA68AF70031DF4A /* MovieRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRecorder.h; sourceTree = "<group>"; };
+		33AAF8451AA68AF70031DF4A /* MovieRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRecorder.m; sourceTree = "<group>"; };
+		33AAF8461AA68AF70031DF4A /* OpenGLPixelBufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLPixelBufferView.h; sourceTree = "<group>"; };
+		33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLPixelBufferView.m; sourceTree = "<group>"; };
 		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
 		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
@@ -1347,6 +1369,7 @@
 		3379C99C1A9329FD00D29FFD = {
 			isa = PBXGroup;
 			children = (
+				33AAF82E1AA68AF70031DF4A /* rosyWriter */,
 				3379C9A71A9329FD00D29FFD /* catRing */,
 				3379C9C41A9329FD00D29FFD /* catRingTests */,
 				33AAF3281AA314F70031DF4A /* catRing3D */,
@@ -2926,6 +2949,44 @@
 			name = deprecated;
 			sourceTree = "<group>";
 		};
+		33AAF82E1AA68AF70031DF4A /* rosyWriter */ = {
+			isa = PBXGroup;
+			children = (
+				33AAF8311AA68AF70031DF4A /* RosyWriterCapturePipeline.h */,
+				33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */,
+				33AAF8351AA68AF70031DF4A /* RosyWriterCPURenderer.h */,
+				33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */,
+				33AAF83B1AA68AF70031DF4A /* RosyWriterRenderer.h */,
+				33AAF83C1AA68AF70031DF4A /* RosyWriterViewController.h */,
+				33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */,
+				33AAF83E1AA68AF70031DF4A /* Utilities */,
+			);
+			path = rosyWriter;
+			sourceTree = "<group>";
+		};
+		33AAF83E1AA68AF70031DF4A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				33AAF83F1AA68AF70031DF4A /* GL */,
+				33AAF8441AA68AF70031DF4A /* MovieRecorder.h */,
+				33AAF8451AA68AF70031DF4A /* MovieRecorder.m */,
+				33AAF8461AA68AF70031DF4A /* OpenGLPixelBufferView.h */,
+				33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		33AAF83F1AA68AF70031DF4A /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				33AAF8401AA68AF70031DF4A /* matrix.c */,
+				33AAF8411AA68AF70031DF4A /* matrix.h */,
+				33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */,
+				33AAF8431AA68AF70031DF4A /* ShaderUtilities.h */,
+			);
+			path = GL;
+			sourceTree = "<group>";
+		};
 		33DA87A51AA2B4A600625E87 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -3298,6 +3359,7 @@
 				33AAF81E1AA60F690031DF4A /* main.m in Sources */,
 				33AAF7E11AA319010031DF4A /* roi.cpp in Sources */,
 				33AAF7CF1AA318A40031DF4A /* ImageProcess.m in Sources */,
+				33AAF84F1AA68AF70031DF4A /* matrix.c in Sources */,
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
 				33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */,
 				33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */,
@@ -3309,17 +3371,23 @@
 				33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */,
 				33AAF7D91AA318D40031DF4A /* SVIndefiniteAnimatedView.m in Sources */,
 				33AAF7DF1AA319010031DF4A /* myImage.cpp in Sources */,
+				33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */,
+				33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */,
 				33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */,
+				33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */,
 				33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */,
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
+				33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */,
 				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */,
 				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
+				33AAF84E1AA68AF70031DF4A /* RosyWriterViewController.m in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,
+				33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
