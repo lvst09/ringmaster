@@ -7,7 +7,9 @@
 //
 
 #import "SecondViewController.h"
-#import "CameraViewController.h"
+//#import "CameraViewController.h"
+#import "RosyWriterViewController.h"
+
 @interface SecondViewController ()
 
 @end
@@ -25,7 +27,7 @@
 }
 
 - (IBAction)onVideoRecordingButtonPressed:(UIButton *)sender {
-    CameraViewController *cameraController = [[CameraViewController alloc] init];
+    RosyWriterViewController *cameraController = [[RosyWriterViewController alloc] init];
 //    [self.navigationController pushViewController:cameraController animated:YES];
     [self presentViewController:cameraController animated:YES completion:NULL];
 }

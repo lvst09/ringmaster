@@ -88,7 +88,7 @@
 		uint8_t *pixel = baseAddress + row * bytesPerRow;
 		for ( int column = 0; column < bufferWidth; column++ )
 		{
-			pixel[1] = 0; // De-green (second pixel in BGRA is green)
+//			pixel[1] = 0; // De-green (second pixel in BGRA is green)
 			pixel += kBytesPerPixel;
 		}
 	}

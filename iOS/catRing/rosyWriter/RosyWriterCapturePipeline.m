@@ -152,15 +152,15 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 		dispatch_set_target_queue( _videoDataOutputQueue, dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0 ) );
 		
 // USE_XXX_RENDERER is set in the project's build settings for each target
-#if USE_OPENGL_RENDERER
-		_renderer = [[RosyWriterOpenGLRenderer alloc] init];
-#elif USE_CPU_RENDERER
+//#if USE_OPENGL_RENDERER
+//		_renderer = [[RosyWriterOpenGLRenderer alloc] init];
+//#elif USE_CPU_RENDERER
 		_renderer = [[RosyWriterCPURenderer alloc] init];
-#elif USE_CIFILTER_RENDERER
-		_renderer = [[RosyWriterCIFilterRenderer alloc] init];
-#elif USE_OPENCV_RENDERER
-		_renderer = [[RosyWriterOpenCVRenderer alloc] init];
-#endif
+//#elif USE_CIFILTER_RENDERER
+//		_renderer = [[RosyWriterCIFilterRenderer alloc] init];
+//#elif USE_OPENCV_RENDERER
+//		_renderer = [[RosyWriterOpenCVRenderer alloc] init];
+//#endif
 				
 		_pipelineRunningTask = UIBackgroundTaskInvalid;
 	}
@@ -646,7 +646,7 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	{
 		if ( _renderingEnabled ) {
 			CVPixelBufferRef sourcePixelBuffer = CMSampleBufferGetImageBuffer( sampleBuffer );
-			renderedPixelBuffer = [_renderer copyRenderedPixelBuffer:sourcePixelBuffer];
+            renderedPixelBuffer = [_renderer copyRenderedPixelBuffer:sourcePixelBuffer];
 		}
 		else {
 			return;

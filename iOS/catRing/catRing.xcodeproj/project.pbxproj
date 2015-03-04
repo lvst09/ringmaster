@@ -442,7 +442,7 @@
 		33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
 		33AAF81E1AA60F690031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
 		33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */; };
+		33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33AAF84E1AA68AF70031DF4A /* RosyWriterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33AAF84F1AA68AF70031DF4A /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8401AA68AF70031DF4A /* matrix.c */; };
 		33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */; };
