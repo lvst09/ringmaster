@@ -129,6 +129,7 @@
     [recordButton addTarget:self action:@selector(toggleRecording:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:recordButton];
     self.recordButton = recordButton;
+    [self.recordButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -205,6 +206,7 @@
 		
 		self.recordButton.enabled = NO; // re-enabled once recording has finished starting
         [self.recordButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [self.recordButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 		
 		[self.capturePipeline startRecording];
 		
@@ -217,6 +219,7 @@
 	_recording = NO;
 	self.recordButton.enabled = YES;
     [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    [self.recordButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 //	self.recordButton.title = @"Record";
 	
 	[UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -317,6 +320,7 @@
 	self.recordButton.enabled = NO;
 //	self.recordButton.title = @"Record";
     [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    [self.recordButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 }
 
 - (void)capturePipelineRecordingDidStop:(RosyWriterCapturePipeline *)capturePipeline
