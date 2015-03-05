@@ -336,6 +336,7 @@
     }
    
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
+//    path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"MyVideo1425481767.MOV"];
     //12345 keyishen的手
     //12346 jerry的手
     //12347 jerry的手on sofa
