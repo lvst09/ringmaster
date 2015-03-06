@@ -7,7 +7,8 @@
 //
 
 #import "DWRingPositionInfo.h"
-
+@import CoreGraphics;
+@import UIKit;
 @implementation DWRingPositionInfo
 
 - (NSString *)description {

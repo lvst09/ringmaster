@@ -32,7 +32,7 @@
 #import "DWRotationManager.h"
 
 #import "ImageProcess.h"
-
+#import "DWRingPositionInfo.h"
 @interface FirstViewController () {
     
     HandGesture * currentHand;
@@ -133,6 +133,14 @@
 }
  static HandGesture hg;
 
+-(DWRotationManager *)rotationManager
+{
+    if(!_rotationManager)
+    {
+        _rotationManager = [DWRotationManager sharedManager];
+    }
+    return _rotationManager;
+}
 - (UIImage *)processImage:(UIImage *)image {
     if (!image)
         return nil;
@@ -170,9 +178,9 @@
     
     UIImage *image = nil;
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-    NSString *betaCompressionDirectory = nil;
+    __block NSString *betaCompressionDirectory = nil;
     betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
+//    betaCompressionDirectory = ];
     
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
@@ -180,26 +188,52 @@
     
     self.imageIndex = j;
     
-    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
+    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
-    image = [self processImage:image];
-    NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
     
-    UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
 
-    ringImage = [self clipImage:ringImage];
+    image = [self processImage:image];
     
-    UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
-    self.imageView.image = resultImage;
+    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+    [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+        
+    
+//            NSLog(@"key: %@ value: %@", key, dict[key]);
+        NSString * pngName = [outputDic.allKeys objectAtIndex:1];
+        DWRingPositionInfo * info = [outputDic objectForKey:pngName];
+        
+        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
+        UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
+        
+        
+//        UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
+        
+        ringImage = [self clipImage:ringImage ringPosition:info];
+//
+        UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
+        self.imageView.image = resultImage;
+    
+    } controller:self];
+
+    
+//    NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
+    
+
 }
 
--(UIImage *)clipImage:(UIImage *)image
+-(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
 {
 
 //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
-    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+//    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+    
+    CGPoint center = position.centerPoint;
+    CGPoint maxPoint = position.maxPoint;
+    CGPoint minPoint = position.minPoint;
+    
+    CGRect rect = CGRectMake(minPoint.x, minPoint.y ,maxPoint.x - minPoint.x , maxPoint.y - minPoint.y);
     
 #if 0
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -261,44 +295,24 @@
 }
 
 -(UIImage *)rotateImage:(UIImage *)aImage angle:(double)angle
-
 {
-    
     CGImageRef imgRef = aImage.CGImage;
-    
     CGFloat width = CGImageGetWidth(imgRef);
-    
     CGFloat height = CGImageGetHeight(imgRef);
-    
-    
-    
+
     CGAffineTransform transform = CGAffineTransformIdentity;
-    
     CGRect bounds = CGRectMake(0, 0, width, height);
  
-    
-    
     UIGraphicsBeginImageContext(bounds.size);
-    
     transform = CGAffineTransformRotate(transform, angle);
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    
-    
-    
-    
-    
+
     CGContextConcatCTM(context, transform);
-    
     CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
-    
     UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
-    
-    
-    
+
     return imageCopy;
     
 }

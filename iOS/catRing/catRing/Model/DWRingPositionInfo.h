@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@import CoreGraphics;
-@import UIKit;
-
+//@import CoreGraphics;
+//@import UIKit;
+#import <CoreGraphics/CoreGraphics.h>
 @interface DWRingPositionInfo : NSObject
 
 @property (nonatomic, assign) CGPoint centerPoint;
