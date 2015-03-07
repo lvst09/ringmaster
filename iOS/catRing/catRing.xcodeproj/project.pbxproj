@@ -450,6 +450,8 @@
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
 		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
 		33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
+		33DB2BDD1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
+		33DB2BDE1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1283,6 +1285,8 @@
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
 		33DA87E11AA2C53C00625E87 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = youtubeauty.framework; sourceTree = "<group>"; };
 		33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
+		33DB2BDB1AAB5AA2006575D4 /* DWRingPosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWRingPosModel.h; sourceTree = "<group>"; };
+		33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWRingPosModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1550,6 +1554,8 @@
 			children = (
 				33AAE6331AA30A210031DF4A /* DWRingPositionInfo.h */,
 				33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */,
+				33DB2BDB1AAB5AA2006575D4 /* DWRingPosModel.h */,
+				33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3255,6 +3261,7 @@
 				3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */,
 				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
 				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
+				33DB2BDD1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */,
 				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
 				33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
 				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
@@ -3316,6 +3323,7 @@
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,
+				33DB2BDE1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

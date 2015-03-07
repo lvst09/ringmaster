@@ -32,7 +32,10 @@
 #import "DWRotationManager.h"
 
 #import "ImageProcess.h"
+
 #import "DWRingPositionInfo.h"
+#import "DWRingPosModel.h"
+
 @interface FirstViewController () {
     
     HandGesture * ppreviousHand;
@@ -58,7 +61,7 @@
 @property (nonatomic, strong) NSMutableDictionary *filenamePositionInfoDic;
 
 @property (nonatomic, strong) NSMutableDictionary *indexXYZDic;
-
+@property (nonatomic, strong) NSMutableDictionary *indexRingPosDic;
 @end
 
 @implementation FirstViewController
@@ -68,6 +71,21 @@
         _indexXYZDic = [NSMutableDictionary dictionary];
     }
     return _indexXYZDic;
+}
+
+- (NSMutableDictionary *)indexRingPosDic {
+    if (!_indexRingPosDic) {
+        _filenamePositionInfoDic = nil;
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString *fileName = [betaCompressionDirectory stringByAppendingPathComponent: @"indexRingPosDic"];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            _indexRingPosDic = [(NSDictionary *)obj mutableCopy];
+        } else {
+            _indexRingPosDic = [NSMutableDictionary dictionary];
+        }
+    }
+    return _indexRingPosDic;
 }
 
 - (void)viewDidLoad {
@@ -209,6 +227,15 @@ NSInteger radiusToDegree(CGFloat angle) {
         
         image = [self processImage:image];
         
+        DWRingPosModel *ringPosModel = [[DWRingPosModel alloc] init];
+        ringPosModel.rotationAngleX = currentHand->rotationAngle[0];
+        ringPosModel.rotationAngleY = currentHand->rotationAngle[1];
+        ringPosModel.rotationAngleZ = currentHand->rotationAngle[2];
+        ringPosModel.ringAngle = currentHand->ringAngle;
+        ringPosModel.ringCenterX = currentHand->ringCenter.x;
+        ringPosModel.ringCenterY = currentHand->ringCenter.y;
+        [self.indexRingPosDic setObject:ringPosModel forKey:[NSNumber numberWithInteger:j]];
+        
         NSArray * angles = [self getCurrentAngle];
         
         NSInteger x = 90 + radiusToDegree([angles[0] floatValue]);
@@ -224,6 +251,23 @@ NSInteger radiusToDegree(CGFloat angle) {
 //        return;
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
+        {
+            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"indexRingPosDic"];
+            
+            NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.indexRingPosDic];
+            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
+            if (!saveRes)
+            {
+                NSLog(@"save file failed!");
+            }
+            else
+            {
+                NSLog(@"save file ok");
+            }
+        }
+        
+        
 //        [self.rotationManager pushAngleX:0 angleY:0 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
@@ -232,17 +276,12 @@ NSInteger radiusToDegree(CGFloat angle) {
             self.filenamePositionInfoDic = outputDic;
             NSLog(@"outputDic=%@", outputDic);
             
-            __block NSString *betaCompressionDirectory = nil;
-            betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            //betaCompressionDirectory = ];
+            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
             self.labelSlider.slider.enabled = YES;
-            BOOL tag = [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
-            if (!tag) {
-                NSLog(@"save failed");
-            }
             
             NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.filenamePositionInfoDic];
-            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
+            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
             if (!saveRes)
             {
                 NSLog(@"save file failed!");
@@ -314,6 +353,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     ppreviousHand = previousHand;
     previousHand = currentHand;
     currentHand = &hg;
+    
 //    Point2i ringStart = hg.ringPosition[0];
 //    Point2i ringEnd = hg.ringPosition[1];
     
@@ -351,6 +391,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     if(!image)
         return;
     [self processImage:image];
+    
+    
     NSDictionary * outputDic = self.filenamePositionInfoDic;
 
     if(!outputDic)
