@@ -11,7 +11,7 @@
 //@import CoreGraphics;
 //@import UIKit;
 #import <CoreGraphics/CoreGraphics.h>
-@interface DWRingPositionInfo : NSObject
+@interface DWRingPositionInfo : NSObject<NSCoding>
 
 @property (nonatomic, assign) CGPoint centerPoint;
 
