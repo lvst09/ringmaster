@@ -17,6 +17,9 @@ HandGesture::HandGesture(){
     
     ringAngle = 0;
     ringCenter = Point2i(0,0);
+    rotationAngle.push_back(0);
+    rotationAngle.push_back(0);
+    rotationAngle.push_back(0);
 }
 
 void HandGesture::initVectors(){
