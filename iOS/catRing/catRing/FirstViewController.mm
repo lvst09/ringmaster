@@ -108,6 +108,20 @@
 
 -(void)processAllImages
 {
+    
+    __block NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    //    betaCompressionDirectory = ];
+    
+    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+    NSLog(@"current filename=%@", betaCompressionDirectory);
+    //    image = [UIImage imageNamed:fileName];
+    
+    
+    self.filenamePositionInfoDic = [[NSMutableDictionary alloc ] initWithContentsOfFile:  [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
+    if(_filenamePositionInfoDic)
+        return;
+    
     int j;
     for( j = 1 ; j< self.labelSlider.slider.maximumValue ; j++)
     {
@@ -144,6 +158,11 @@
             self.filenamePositionInfoDic = outputDic;
             NSLog(@"outputDic=%@", outputDic);
             
+            __block NSString *betaCompressionDirectory = nil;
+            betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            //    betaCompressionDirectory = ];
+            
+         BOOL tag =   [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
         } controller:self];
     }
 }
@@ -229,7 +248,7 @@
 //    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
     NSString *lastName = [self.videoPath lastPathComponent];
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]];
+//    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]];
     
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
@@ -237,7 +256,7 @@
     
     self.imageIndex = j;
     
-    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
+    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]]];
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
@@ -255,17 +274,24 @@
     
     NSDictionary * outputDic = self.filenamePositionInfoDic;
 
-    NSString * pngName = [outputDic.allKeys objectAtIndex:1];
+    NSString * pngName = [outputDic.allKeys objectAtIndex:j-1];
     DWRingPositionInfo * info = [outputDic objectForKey:pngName];
 
     NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
     UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
 
+//    ringImage  = [ImageProcess resizeImage:UIImagePNGRepresentation( ringImage )  size:1136 withRatio:YES];
+    {
+        ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 550)];
+    }
 
 //UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
 
     ringImage = [self clipImage:ringImage ringPosition:info];
 
+//    if ( MaxSingleImageSide < MAX(self.size.width, self.size.height) )
+
+    
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
     
@@ -280,6 +306,7 @@
 
 //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
 //    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+    
     
     CGPoint center = position.centerPoint;
     CGPoint maxPoint = position.maxPoint;
