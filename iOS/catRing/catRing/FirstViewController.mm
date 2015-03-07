@@ -153,16 +153,19 @@
     
     image = [self processImage:image];
     
-    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+
+//            [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
     }
     
     if(j == self.labelSlider.slider.maximumValue || j == 15)
     {
-        [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
+        [self.rotationManager pushAngleX:0 angleY:0 angleZ:0];
+//        [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+//        [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
+//        [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
+//        [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
+//        [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
+        
         self.labelSlider.slider.enabled = NO;
         [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
             self.filenamePositionInfoDic = outputDic;
@@ -274,7 +277,7 @@
     if(!outputDic)
         return;
     
-    NSString * pngName = [outputDic.allKeys objectAtIndex:j-1];
+    NSString * pngName = [outputDic.allKeys objectAtIndex:0];
     DWRingPositionInfo * info = [outputDic objectForKey:pngName];
 
     NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
