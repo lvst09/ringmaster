@@ -83,10 +83,6 @@
     nextButton.frame = CGRectMake(self.view.frame.size.width - 20, self.view.frame.size.height - 80, 20, 20);
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
-    
-    
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,11 +94,53 @@
     [super viewDidAppear:animated];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self getAllImageFromVideo];
+        [self processAllImages];
     });
     
-    [self showImageAtIndex:1];
+//    [self showImageAtIndex:1];
 }
 
+-(void)processAllImages
+{
+    int j;
+    for( j = 1 ; j< self.labelSlider.slider.maximumValue ; j++)
+    {
+ 
+    self.title = [NSString stringWithFormat:@"%zd", j];
+    //    [self wmcSetNavigationBarTitleStyle];
+    
+    UIImage *image = nil;
+    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+    __block NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    //    betaCompressionDirectory = ];
+    
+    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+    NSLog(@"current filename=%@", betaCompressionDirectory);
+    //    image = [UIImage imageNamed:fileName];
+    
+    self.imageIndex = j;
+    
+    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+    //    self.imageView.image = [self processImage:image];
+        
+    if(!image)
+        return;
+    
+    image = [self processImage:image];
+    
+    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+    }
+    
+    if(j == self.labelSlider.slider.maximumValue)
+    {
+        [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+            self.filenamePositionInfoDic = outputDic;
+            NSLog(@"outputDic=%@", outputDic);
+            
+        } controller:self];
+    }
+}
 #pragma mark -
 #pragma mark get set
 
@@ -120,6 +158,7 @@
     NSLog(@"slider");
     NSInteger j = (NSInteger) slider.value;
     [self showImageAtIndex:j];
+    
 }
 
 - (void)onNextButtonClicked:(UIButton *)sender {
@@ -141,6 +180,7 @@
     }
     return _rotationManager;
 }
+
 - (UIImage *)processImage:(UIImage *)image {
     if (!image)
         return nil;
@@ -192,33 +232,36 @@
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
-    
 
-    image = [self processImage:image];
+//    image = [self processImage:image];
     
-    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
-    [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-        
-    
-//            NSLog(@"key: %@ value: %@", key, dict[key]);
-        NSString * pngName = [outputDic.allKeys objectAtIndex:1];
-        DWRingPositionInfo * info = [outputDic objectForKey:pngName];
-        
-        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
-        UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
-        
-        
-//        UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
-        
-        ringImage = [self clipImage:ringImage ringPosition:info];
-//
-        UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
-        self.imageView.image = resultImage;
-    
-    } controller:self];
+//    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+//    [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+//        
+//    
+////            NSLog(@"key: %@ value: %@", key, dict[key]);
 
+//    
+//    } controller:self];
     
-//    NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
+    NSDictionary * outputDic = self.filenamePositionInfoDic;
+
+    NSString * pngName = [outputDic.allKeys objectAtIndex:1];
+    DWRingPositionInfo * info = [outputDic objectForKey:pngName];
+
+    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
+    UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
+
+
+//UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
+
+    ringImage = [self clipImage:ringImage ringPosition:info];
+
+    UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
+    self.imageView.image = resultImage;
+    
+    
+//NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
     
 
 }

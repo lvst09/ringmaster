@@ -519,7 +519,7 @@ void reduceDefect(HandGesture * hg)
 double vectorAngle(Point vec)
 {
     if (vec.x==0) {
-        vec.x+=0.001;
+        vec.x+=1;
     }
     
     double b =  atan(vec.y/vec.x);
@@ -725,6 +725,9 @@ void caculateRotationAngle(HandGesture *hg)
     }
     rotationAngleX  = 0;
 //    double rotationAngleY = acos(scale3);
+    
+
+    hg->rotationAngle.clear();
     hg->rotationAngle.push_back(rotationAngleX);
     hg->rotationAngle.push_back(rotationAngleY);
     hg->rotationAngle.push_back(rotationAngleZ);
