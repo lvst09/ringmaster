@@ -35,6 +35,8 @@
 #import "DWRingPositionInfo.h"
 @interface FirstViewController () {
     
+    HandGesture * ppreviousHand;
+    HandGesture * previousHand;
     HandGesture * currentHand;
     BOOL firstTime;
 }
@@ -124,9 +126,33 @@ NSInteger radiusToDegree(CGFloat angle) {
     return int(angle * 180 / M_PI);
 }
 
+-(NSArray *) getCurrentAngle
+{
+    double x;
+    double y;
+    double z;
+    if(ppreviousHand)
+    {
+        x = (ppreviousHand->rotationAngle[0] + previousHand->rotationAngle[0] + currentHand->rotationAngle[0]) / 3.0 ;
+        y = (ppreviousHand->rotationAngle[1] + previousHand->rotationAngle[1] + currentHand->rotationAngle[1])/ 3.0;
+        z = (ppreviousHand->rotationAngle[2] + previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 3.0;
+    }
+    else if (previousHand)
+    {
+        x = (previousHand->rotationAngle[0] + currentHand->rotationAngle[0]) / 2.0 ;
+        y = (previousHand->rotationAngle[1] + currentHand->rotationAngle[1])/ 2.0;
+        z = ( previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 2.0;
+    }
+    else
+    {
+        x = ( currentHand->rotationAngle[0]);
+        y = ( currentHand->rotationAngle[1]);
+        z = ( currentHand->rotationAngle[2]);
+    }
+    return @[@(x),@(y),@(z)];
+}
 -(void)processAllImages
 {
-    
     __block NSString *betaCompressionDirectory = nil;
     betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     //    betaCompressionDirectory = ];
@@ -140,10 +166,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     if(_filenamePositionInfoDic)
         return;
     
-    
+    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     
-    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     int j;
     for( j = 1 ; j< self.labelSlider.slider.maximumValue/* && j<15*/ ; j++)
     {
@@ -170,10 +195,12 @@ NSInteger radiusToDegree(CGFloat angle) {
         return;
     
         image = [self processImage:image];
-    
-        NSInteger x = 90 + radiusToDegree(currentHand->rotationAngle[0]);
-        NSInteger y = 0 - radiusToDegree(currentHand->rotationAngle[1]);
-        NSInteger z = radiusToDegree(currentHand->rotationAngle[2]);
+        
+        NSArray * angles = [self getCurrentAngle];
+        
+        NSInteger x = 90 + radiusToDegree([angles[0] floatValue]);
+        NSInteger y = 0 - radiusToDegree([angles[1] floatValue]);
+        NSInteger z = radiusToDegree([angles[2] floatValue]);
 //        NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
         NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
         NSLog(@"push %@", keyString);
@@ -256,6 +283,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     hg.index = self.imageIndex;
     MyImage * myImage = detectHand(ipImage, hg);
+    
+    ppreviousHand = previousHand;
+    previousHand = currentHand;
     currentHand = &hg;
 //    Point2i ringStart = hg.ringPosition[0];
 //    Point2i ringEnd = hg.ringPosition[1];
