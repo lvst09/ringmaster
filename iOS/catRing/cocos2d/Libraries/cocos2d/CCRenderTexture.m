@@ -425,9 +425,10 @@
 	NSAssert(_pixelFormat == CCTexturePixelFormat_RGBA8888,@"only RGBA8888 can be saved as image");
 	
 	CGSize s = [self.texture contentSizeInPixels];
-	int tx = s.width;
-    int ty = s.height;
-	
+ 
+	int tx = s.width; // modified by sky
+	int ty = s.height; // modified by sky
+ 
 	int bitsPerComponent = 8;
 	int bitsPerPixel = 4 * 8;
 	int bytesPerPixel = bitsPerPixel / 8;

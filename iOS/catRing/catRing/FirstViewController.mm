@@ -127,7 +127,7 @@
         return;
     
     int j;
-    for( j = 1 ; j< self.labelSlider.slider.maximumValue ; j++)
+    for( j = 1 ; j< self.labelSlider.slider.maximumValue && j<15 ; j++)
     {
  
     self.title = [NSString stringWithFormat:@"%zd", j];
@@ -156,7 +156,7 @@
     [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
     }
     
-    if(j == self.labelSlider.slider.maximumValue)
+    if(j == self.labelSlider.slider.maximumValue || j == 15)
     {
         [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
@@ -169,9 +169,9 @@
             
             __block NSString *betaCompressionDirectory = nil;
             betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            //    betaCompressionDirectory = ];
+            //betaCompressionDirectory = ];
             
-         BOOL tag =   [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
+        BOOL tag = [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
         } controller:self];
     }
 }
@@ -267,9 +267,31 @@
         return;
     image = [self processImage:image];
     NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
-    
-    UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
+ 
+    NSDictionary * outputDic = self.filenamePositionInfoDic;
 
+    if(!outputDic)
+        return;
+    
+    NSString * pngName = [outputDic.allKeys objectAtIndex:j-1];
+    DWRingPositionInfo * info = [outputDic objectForKey:pngName];
+
+    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
+    UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
+
+    double ratio = ringImage.size.height / ringImage.size.width;
+    
+//    ringImage  = [ImageProcess resizeImage:UIImagePNGRepresentation( ringImage )  size:1136 withRatio:YES];
+    {
+        ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
+    }
+
+//UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
+
+    ringImage = [self clipImage:ringImage ringPosition:info];
+
+//    if ( MaxSingleImageSide < MAX(self.size.width, self.size.height) )
+ 
     ringImage = [self clipImage:ringImage];
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];

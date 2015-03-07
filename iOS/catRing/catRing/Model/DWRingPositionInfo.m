@@ -15,4 +15,22 @@
     return [NSString stringWithFormat:@"center:%@, min:%@, max:%@", [NSValue valueWithCGPoint:self.centerPoint], [NSValue valueWithCGPoint:self.minPoint], [NSValue valueWithCGPoint:self.maxPoint]];
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:[NSValue valueWithCGPoint:self.centerPoint] forKey:@"centerPoint"];
+    [aCoder encodeObject:[NSValue valueWithCGPoint:self.minPoint] forKey:@"minPoint"];
+    [aCoder encodeObject:[NSValue valueWithCGPoint:self.maxPoint] forKey:@"maxPoint"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if( self = [super init])
+    {
+        self.centerPoint  = [[aDecoder decodeObjectForKey:@"centerPoint"] CGPointValue];
+        self.minPoint  = [[aDecoder decodeObjectForKey:@"minPoint"] CGPointValue];
+        self.maxPoint  = [[aDecoder decodeObjectForKey:@"maxPoint"] CGPointValue];
+    }
+
+    return self;
+}
+
 @end
