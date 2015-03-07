@@ -10,7 +10,7 @@
 
 @interface FirstViewController : UIViewController
 
-@property (nonatomic, strong) NSString *videoPath;
+- (void)getAllImageFromVideo;
 
 @end
 

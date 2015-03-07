@@ -10,20 +10,21 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
 	<dict>
-		<key>UINewsstandIcon</key>
+		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string></string>
+				<string>Icon-29</string>
+				<string>Icon-40</string>
+				<string>Icon-50</string>
+				<string>Icon-57</string>
+				<string>Icon-60</string>
+				<string>Icon-72</string>
+				<string>Icon-76</string>
 			</array>
-			<key>UINewsstandBindingEdge</key>
-			<string>UINewsstandBindingEdgeLeft</string>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeMagazine</string>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 		</dict>
-	</dict>
-	<key>CFBundleIcons~ipad</key>
-	<dict>
 		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
