@@ -15,6 +15,13 @@
 
 static DWRotationManager *sharedManager;
 
+
+@interface DWRotationManager()
+
+@property (nonatomic, strong) CCNavigationController *navController;
+
+@end
+
 @implementation DWRotationManager
 
 + (instancetype)sharedManager {
@@ -50,16 +57,37 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
 - (void)getOutput:(completeBlk)blk controller:(UIViewController *)controller {
     // 先调用cocos3d的vc，然后生成图片，最后dismiss
 
-    NSDictionary *config = @{
-                             CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
-                             CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
-                             CCSetupAnimationInterval: @(1.0 / 60),	// Framerate (defaults to 60 FPS).
-                             CCSetupScreenOrientation: CCScreenOrientationAll,		// Support all device orientations dyanamically
-                             //	   CCSetupMultiSampling: @(YES),							// Use multisampling on the main view
-                             //	   CCSetupNumberOfSamples: @(4),							// Number of samples to use per pixel (max 4)
-                             };
-    
-    {
+  
+        
+//        // set the Navigation Controller as the root view controller
+//        [window_ setRootViewController:navController_];
+//        
+//        // make main window visible
+//        [window_ makeKeyAndVisible];
+//        [director showViewController:controller sender:nil];
+        [controller presentViewController:self.navController animated:NO completion:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navController dismissViewControllerAnimated:NO completion:NULL];
+                if (blk) {
+                    blk(self.output);
+                }
+            });
+        }];
+//    */
+}
+
+- (CCNavigationController *)navController {
+    if (!navController_) {
+        NSDictionary *config = @{
+                                 CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
+                                 CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
+                                 CCSetupAnimationInterval: @(1.0 / 60),	// Framerate (defaults to 60 FPS).
+                                 CCSetupScreenOrientation: CCScreenOrientationAll,		// Support all device orientations dyanamically
+                                 //	   CCSetupMultiSampling: @(YES),							// Use multisampling on the main view
+                                 //	   CCSetupNumberOfSamples: @(4),							// Number of samples to use per pixel (max 4)
+                                 };
+        
+        
         // Create the main window
         window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
@@ -151,6 +179,8 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         // Initialise OpenAL
         [OALSimpleAudio sharedInstance];
         
+        
+        
         // Create a Navigation Controller with the Director
         CCNavigationController *navController_2 = [[CCNavigationController alloc] initWithRootViewController:director];
         navController_2.navigationBarHidden = YES;
@@ -159,23 +189,11 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         
         // for rotation and other messages
         [director setDelegate:navController_2];
-        
-//        // set the Navigation Controller as the root view controller
-//        [window_ setRootViewController:navController_];
-//        
-//        // make main window visible
-//        [window_ makeKeyAndVisible];
-//        [director showViewController:controller sender:nil];
-        [controller presentViewController:navController_2 animated:YES completion:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [navController_2 dismissViewControllerAnimated:NO completion:NULL];
-                if (blk) {
-                    blk(self.output);
-                }
-            });
-        }];
+ 
+        navController_ = navController_2;
+ 
     }
-//    */
+    return navController_;
 }
 
 -(CCScene*) startScene {

@@ -10,21 +10,20 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
 	<dict>
-		<key>CFBundlePrimaryIcon</key>
+		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon-29</string>
-				<string>Icon-40</string>
-				<string>Icon-50</string>
-				<string>Icon-57</string>
-				<string>Icon-60</string>
-				<string>Icon-72</string>
-				<string>Icon-76</string>
+				<string></string>
 			</array>
-			<key>UIPrerenderedIcon</key>
-			<true/>
+			<key>UINewsstandBindingEdge</key>
+			<string>UINewsstandBindingEdgeLeft</string>
+			<key>UINewsstandBindingType</key>
+			<string>UINewsstandBindingTypeMagazine</string>
 		</dict>
+	</dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
 		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
@@ -53,8 +52,6 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

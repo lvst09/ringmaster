@@ -70,7 +70,7 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 25, self.view.bounds.size.width, 20)];
+    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 44 + 20 + 25, self.view.bounds.size.width, 20)];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
     labelSlider.label.text = nil;
@@ -218,9 +218,12 @@
     
     UIImage *image = nil;
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-    __block NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    betaCompressionDirectory = ];
+//    NSString *betaCompressionDirectory = nil;
+//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
+    NSString *lastName = [self.videoPath lastPathComponent];
+    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]];
     
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
@@ -228,11 +231,11 @@
     
     self.imageIndex = j;
     
-    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
-
+ 
 //    image = [self processImage:image];
     
 //    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
@@ -261,7 +264,7 @@
     self.imageView.image = resultImage;
     
     
-//NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
+ 
     
 
 }
@@ -375,11 +378,12 @@
 - (void)getAllImageFromVideo {
     {
         int i = 156;
+        NSString *lastName = [self.videoPath lastPathComponent];
         NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i-1]];
+        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)i-1]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
-            if (!self.rotationManager) {
+            if (!_rotationManager) {
                 self.rotationManager = [DWRotationManager sharedManager];
                 [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
                 [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
@@ -392,7 +396,7 @@
         }
     }
    
-    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
+    NSString *path = self.videoPath;//[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
 //    path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"MyVideo1425481767.MOV"];
     //12345 keyishen的手
     //12346 jerry的手
@@ -419,8 +423,10 @@
                 break;
             }
             //        NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
+            NSString *lastName = [self.videoPath lastPathComponent];
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
+            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)i]];
+            
             NSLog(@"get image=%@", betaCompressionDirectory);
             //        betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
             //        betaCompressionDirectory = [parentDir stringByAppendingString:@".m4v"];

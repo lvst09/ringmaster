@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 //#import "CameraViewController.h"
 #import "RosyWriterViewController.h"
+#import "FirstViewController.h"
 
 @interface SecondViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -22,8 +23,8 @@
 
 // ref. ThumbRetriever.m +(NSMutableArray*) GetFileList
 -(void)reloadLocalData {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL only_show_video_files = [defaults boolForKey:@"only_show_video_files"];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    BOOL only_show_video_files = [defaults boolForKey:@"only_show_video_files"];
     
     NSString *documentDirectory = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -54,25 +55,24 @@
 //    [acceptedFileTypes addObject:@"dat"];
     
     for (NSString *filename in tmplist) {
-//        if (only_show_video_files) {
-            //        NSString *fullpath = [[WMCDirectoryManager getDocumentPath] stringByAppendingPathComponent:filename];
-            NSString *filenamelowercase = [filename lowercaseString];
-            NSString *pathExtension = [filenamelowercase pathExtension];
-            if ([acceptedFileTypes containsObject:pathExtension]) {
-                [tmpArrs addObject:[documentDirectory stringByAppendingPathComponent:filename]];
-            }
-            //        if ( ([pathExtension isEqualToString:@"wmv"]) || ([pathExtension isEqualToString:@"mp4"]) || ([pathExtension isEqualToString:@"avi"])  || ([pathExtension isEqualToString:@"mov"]) || ([pathExtension isEqualToString:@"rmvb"]) || ([pathExtension isEqualToString:@"mkv"])) {
-            //            [tmpArrs addObject:[[WMCDirectoryManager getDocumentPath] stringByAppendingPathComponent:filename]];
-            //        }
-//        } else {
-//            [tmpArrs addObject:[documentDirectory stringByAppendingPathComponent:filename]];
-//        }
+        NSString *filenamelowercase = [filename lowercaseString];
+        NSString *pathExtension = [filenamelowercase pathExtension];
+        if ([acceptedFileTypes containsObject:pathExtension]) {
+            [tmpArrs addObject:[documentDirectory stringByAppendingPathComponent:filename]];
+        }
     }
     self.movieForLocals = tmpArrs;
-    [[self tableView] reloadData];
+//    [[self tableView] reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 1;
+    }
     return self.movieForLocals.count;
 }
 
@@ -88,31 +88,58 @@
     int row = indexPath.row;
     int section = indexPath.section;
    
-    if (row<self.movieForLocals.count) {
+    if (0 == section) {
+        cell.textLabel.text = @"Movie12347.m4v";
+    } else if (row < self.movieForLocals.count) {
         NSString *fileFullPath = [self.movieForLocals objectAtIndex:row];
         cell.textLabel.text = [fileFullPath lastPathComponent];
-        cell.detailTextLabel.text = @"";
+//        cell.detailTextLabel.text = @"";
     }
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    int section = indexPath.section;
+    int row = indexPath.row;
+    NSString *fullPath = nil;
+    if (0 == section) {
+//        cell.textLabel.text = @"Movie12347.m4v";
+        fullPath = [[NSBundle mainBundle] pathForResource:@"Movie12347" ofType:@"m4v"];
+    } else if (row < self.movieForLocals.count) {
+        fullPath = [self.movieForLocals objectAtIndex:row];
+//        cell.textLabel.text = [fileFullPath lastPathComponent];
+        //        cell.detailTextLabel.text = @"";
+    }
+    FirstViewController *vc = [[FirstViewController alloc] init];
+    vc.videoPath = fullPath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    UIButton *addVideoButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addVideoButton addTarget:self action:@selector(onVideoRecordingButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:addVideoButton];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    self.tableView registerClass:<#(__unsafe_unretained Class)#> forCellReuseIdentifier:<#(NSString *)#>
     [self.view addSubview:self.tableView];
     [self reloadLocalData];
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (IBAction)onVideoRecordingButtonPressed:(UIButton *)sender {

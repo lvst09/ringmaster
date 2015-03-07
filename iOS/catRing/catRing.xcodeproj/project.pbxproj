@@ -7,38 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3379C9AB1A9329FD00D29FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
-		3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
-		3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
-		3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B31A9329FD00D29FFD /* SecondViewController.m */; };
-		3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B51A9329FD00D29FFD /* Main.storyboard */; };
-		3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
-		3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
-		3379C9C81A9329FD00D29FFD /* catRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9C71A9329FD00D29FFD /* catRingTests.m */; };
-		3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D41A932D0900D29FFD /* handGesture.cpp */; };
-		3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D81A932D0900D29FFD /* myImage.cpp */; };
-		3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DA1A932D0900D29FFD /* mymain.cpp */; };
-		3379C9E21A932D0900D29FFD /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
-		3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E61A932F1700D29FFD /* AVFoundation.framework */; };
-		3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E81A932FE600D29FFD /* CoreMedia.framework */; };
-		3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9ED1A93310300D29FFD /* LabelSliderGroup.m */; };
-		3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9EE1A93310300D29FFD /* LabelSliderGroup.xib */; };
-		3379C9F41A93310300D29FFD /* SliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F01A93310300D29FFD /* SliderBar.m */; };
-		3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9F11A93310300D29FFD /* SliderBar.xib */; };
-		3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F81A93349100D29FFD /* ImageProcess.m */; };
-		3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FA1A93351B00D29FFD /* RenderHelper.m */; };
-		3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FC1A93351B00D29FFD /* MathUtil.m */; };
-		3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379CA001A93353600D29FFD /* CoreGraphics.framework */; };
-		3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */; };
-		3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */; };
-		3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC661A9715A600D29FFD /* DWVideoDecoding.m */; };
-		3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
-		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
-		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
-		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
-		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
-		33AAE62E1AA3000D0031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
-		33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */; };
 		33AAF3151AA314F70031DF4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3141AA314F70031DF4A /* AudioToolbox.framework */; };
 		33AAF3171AA314F70031DF4A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3161AA314F70031DF4A /* AVFoundation.framework */; };
 		33AAF3191AA314F70031DF4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3181AA314F70031DF4A /* CoreGraphics.framework */; };
@@ -416,18 +384,9 @@
 		33AAF7E11AA319010031DF4A /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
 		33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
 		33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B31A9329FD00D29FFD /* SecondViewController.m */; };
-		33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3141AA314F70031DF4A /* AudioToolbox.framework */; };
-		33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31A1AA314F70031DF4A /* CoreText.framework */; };
-		33AAF7E81AA31A040031DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31C1AA314F70031DF4A /* Foundation.framework */; };
-		33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31E1AA314F70031DF4A /* GLKit.framework */; };
-		33AAF7EA1AA31A0A0031DF4A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3201AA314F70031DF4A /* OpenAL.framework */; };
-		33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3221AA314F70031DF4A /* OpenGLES.framework */; };
-		33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3241AA314F70031DF4A /* QuartzCore.framework */; };
-		33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
 		33AAF7F11AA31BF50031DF4A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */; };
 		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
-		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B51A9329FD00D29FFD /* Main.storyboard */; };
 		33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
@@ -440,19 +399,9 @@
 		33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */; };
 		33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8451AA68AF70031DF4A /* MovieRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
-		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
-		33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3379C9C21A9329FD00D29FFD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3379C9A41A9329FD00D29FFD;
-			remoteInfo = catRing;
-		};
 		33AAF7B71AA315800031DF4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
@@ -474,31 +423,9 @@
 			remoteGlobalIDString = 33AAF6091AA314FB0031DF4A;
 			remoteInfo = cocos3d;
 		};
-		33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 33AAF3CE1AA314F80031DF4A;
-			remoteInfo = cocos2d;
-		};
-		33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 33AAF3D11AA314F80031DF4A;
-			remoteInfo = "cocos2d-chipmunk";
-		};
-		33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 33AAF6091AA314FB0031DF4A;
-			remoteInfo = cocos3d;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3379C9A51A9329FD00D29FFD /* catRing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catRing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9A91A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9AA1A9329FD00D29FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3379C9AC1A9329FD00D29FFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -510,7 +437,6 @@
 		3379C9B61A9329FD00D29FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3379C9B81A9329FD00D29FFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3379C9BB1A9329FD00D29FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		3379C9C11A9329FD00D29FFD /* catRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9C61A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9C71A9329FD00D29FFD /* catRingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = catRingTests.m; sourceTree = "<group>"; };
 		3379C9D41A932D0900D29FFD /* handGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handGesture.cpp; sourceTree = "<group>"; };
@@ -568,8 +494,6 @@
 		33AAF32D1AA314F70031DF4A /* catRingScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = catRingScene.h; path = Classes/catRingScene.h; sourceTree = "<group>"; };
 		33AAF32E1AA314F70031DF4A /* catRingScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = catRingScene.m; path = Classes/catRingScene.m; sourceTree = "<group>"; };
 		33AAF3331AA314F70031DF4A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		33AAF3341AA314F70031DF4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
-		33AAF3351AA314F70031DF4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		33AAF3381AA314F70031DF4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		33AAF33A1AA314F70031DF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		33AAF3591AA314F70031DF4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/LaunchImages/Default.png; sourceTree = "<group>"; };
@@ -1281,33 +1205,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3379C9A21A9329FD00D29FFD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */,
-				33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */,
-				33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */,
-				33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */,
-				33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */,
-				33AAF7EA1AA31A0A0031DF4A /* OpenAL.framework in Frameworks */,
-				33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */,
-				33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */,
-				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
-				33AAF7E81AA31A040031DF4A /* Foundation.framework in Frameworks */,
-				33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */,
-				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
-				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3379C9BE1A9329FD00D29FFD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		33AAF30F1AA314F70031DF4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1350,8 +1247,6 @@
 		3379C9A61A9329FD00D29FFD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3379C9A51A9329FD00D29FFD /* catRing.app */,
-				3379C9C11A9329FD00D29FFD /* catRingTests.xctest */,
 				33AAF3121AA314F70031DF4A /* catRing3D.app */,
 				33AAF3CF1AA314F80031DF4A /* libcocos2d.a */,
 				33AAF3D21AA314F80031DF4A /* libcocos2d-chipmunk.a */,
@@ -1581,8 +1476,6 @@
 				33AAF32B1AA314F70031DF4A /* catRingLayer.m */,
 				33AAF32D1AA314F70031DF4A /* catRingScene.h */,
 				33AAF32E1AA314F70031DF4A /* catRingScene.m */,
-				33AAF3341AA314F70031DF4A /* AppDelegate.h */,
-				33AAF3351AA314F70031DF4A /* AppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2954,44 +2847,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3379C9A41A9329FD00D29FFD /* catRing */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3379C9CB1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRing" */;
-			buildPhases = (
-				3379C9A11A9329FD00D29FFD /* Sources */,
-				3379C9A21A9329FD00D29FFD /* Frameworks */,
-				3379C9A31A9329FD00D29FFD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */,
-				33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */,
-				33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */,
-			);
-			name = catRing;
-			productName = catRing;
-			productReference = 3379C9A51A9329FD00D29FFD /* catRing.app */;
-			productType = "com.apple.product-type.application";
-		};
-		3379C9C01A9329FD00D29FFD /* catRingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */;
-			buildPhases = (
-				3379C9BD1A9329FD00D29FFD /* Sources */,
-				3379C9BE1A9329FD00D29FFD /* Frameworks */,
-				3379C9BF1A9329FD00D29FFD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3379C9C31A9329FD00D29FFD /* PBXTargetDependency */,
-			);
-			name = catRingTests;
-			productName = catRingTests;
-			productReference = 3379C9C11A9329FD00D29FFD /* catRingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		33AAF3111AA314F70031DF4A /* catRing3D */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33AAF7AB1AA314FF0031DF4A /* Build configuration list for PBXNativeTarget "catRing3D" */;
@@ -3068,13 +2923,6 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = DW;
 				TargetAttributes = {
-					3379C9A41A9329FD00D29FFD = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					3379C9C01A9329FD00D29FFD = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 3379C9A41A9329FD00D29FFD;
-					};
 					33AAF3111AA314F70031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -3102,8 +2950,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3379C9A41A9329FD00D29FFD /* catRing */,
-				3379C9C01A9329FD00D29FFD /* catRingTests */,
 				33AAF3111AA314F70031DF4A /* catRing3D */,
 				33AAF3CE1AA314F80031DF4A /* cocos2d */,
 				33AAF3D11AA314F80031DF4A /* cocos2d-chipmunk */,
@@ -3113,30 +2959,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3379C9A31A9329FD00D29FFD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */,
-				3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */,
-				33AAE62E1AA3000D0031DF4A /* ring.png in Resources */,
-				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
-				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
-				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
-				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
-				3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */,
-				33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */,
-				33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3379C9BF1A9329FD00D29FFD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		33AAF3101AA314F70031DF4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3231,41 +3053,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3379C9A11A9329FD00D29FFD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */,
-				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
-				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
-				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
-				33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
-				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
-				3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */,
-				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
-				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
-				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
-				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
-				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
-				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,
-				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
-				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
-				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
-				33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */,
-				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
-				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
-				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3379C9BD1A9329FD00D29FFD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3379C9C81A9329FD00D29FFD /* catRingTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		33AAF30E1AA314F70031DF4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3604,11 +3391,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3379C9C31A9329FD00D29FFD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3379C9A41A9329FD00D29FFD /* catRing */;
-			targetProxy = 3379C9C21A9329FD00D29FFD /* PBXContainerItemProxy */;
-		};
 		33AAF7B81AA315800031DF4A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 33AAF3CE1AA314F80031DF4A /* cocos2d */;
@@ -3623,21 +3405,6 @@
 			isa = PBXTargetDependency;
 			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
 			targetProxy = 33AAF7BB1AA315800031DF4A /* PBXContainerItemProxy */;
-		};
-		33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 33AAF3CE1AA314F80031DF4A /* cocos2d */;
-			targetProxy = 33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */;
-		};
-		33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 33AAF3D11AA314F80031DF4A /* cocos2d-chipmunk */;
-			targetProxy = 33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */;
-		};
-		33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
-			targetProxy = 33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3739,92 +3506,12 @@
 			};
 			name = Release;
 		};
-		3379C9CC1A9329FD00D29FFD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/catRing/3rd",
-					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/catRing/3rd/opencv2.framework",
-					"$(SRCROOT)/catRing/3rd",
-				);
-				INFOPLIST_FILE = catRing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		3379C9CD1A9329FD00D29FFD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/catRing/3rd",
-					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/catRing/3rd/opencv2.framework",
-					"$(SRCROOT)/catRing/3rd",
-				);
-				INFOPLIST_FILE = catRing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		3379C9CF1A9329FD00D29FFD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = catRingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catRing.app/catRing";
-			};
-			name = Debug;
-		};
-		3379C9D01A9329FD00D29FFD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = catRingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catRing.app/catRing";
-			};
-			name = Release;
-		};
 		33AAF7AC1AA314FF0031DF4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3880,6 +3567,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -4073,24 +3762,6 @@
 			buildConfigurations = (
 				3379C9C91A9329FD00D29FFD /* Debug */,
 				3379C9CA1A9329FD00D29FFD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3379C9CB1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRing" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3379C9CC1A9329FD00D29FFD /* Debug */,
-				3379C9CD1A9329FD00D29FFD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3379C9CF1A9329FD00D29FFD /* Debug */,
-				3379C9D01A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
