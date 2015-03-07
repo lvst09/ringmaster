@@ -158,6 +158,11 @@
     
     if(j == self.labelSlider.slider.maximumValue)
     {
+        [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+        [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
+        [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
+        [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
+        [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
         [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
             self.filenamePositionInfoDic = outputDic;
             NSLog(@"outputDic=%@", outputDic);
