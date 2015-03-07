@@ -32,8 +32,13 @@ static DWRotationManager *sharedManager;
     return _input;
 }
 
+ CGFloat radiusToDegree(CGFloat angle) {
+    return angle * 180 / M_PI;
+}
+
 - (void)pushAngleX:(CGFloat)angleX angleY:(CGFloat)angleY angleZ:(CGFloat)angleZ {
-    GLKVector3 rotation = GLKVector3Make(angleX, angleY, angleZ);// cc3v(60, 30, 0);
+    
+    GLKVector3 rotation = GLKVector3Make(radiusToDegree(angleX) + 90, radiusToDegree(angleY), radiusToDegree(angleZ));// cc3v(60, 30, 0);
     NSValue *value = [NSValue valueWithBytes:&rotation objCType:@encode(GLKVector3)];
     [self.input addObject:value];
 }
