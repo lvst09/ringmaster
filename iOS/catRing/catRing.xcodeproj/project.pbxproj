@@ -399,6 +399,9 @@
 		33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */; };
 		33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8451AA68AF70031DF4A /* MovieRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33DF91471AAA9B0F004D0FFA /* DW_Plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */; };
+		33DF91481AAA9B0F004D0FFA /* DW_PlusPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */; };
+		33DF91491AAA9B0F004D0FFA /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1202,6 +1205,10 @@
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
 		33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
+		33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_Plus@2x.png"; sourceTree = "<group>"; };
+		33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_PlusPressed@2x.png"; sourceTree = "<group>"; };
+		33DF91451AAA9B0F004D0FFA /* SelectPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPointViewController.h; sourceTree = "<group>"; };
+		33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPointViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1258,6 +1265,7 @@
 		3379C9A71A9329FD00D29FFD /* catRing */ = {
 			isa = PBXGroup;
 			children = (
+				33DF91421AAA9B0F004D0FFA /* UI */,
 				33AAE6321AA30A210031DF4A /* Model */,
 				3379CA021A93369700D29FFD /* Resources */,
 				3379C9F61A93349100D29FFD /* Utility */,
@@ -2844,6 +2852,17 @@
 			path = GL;
 			sourceTree = "<group>";
 		};
+		33DF91421AAA9B0F004D0FFA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */,
+				33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */,
+				33DF91451AAA9B0F004D0FFA /* SelectPointViewController.h */,
+				33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2983,6 +3002,7 @@
 				33AAF3681AA314F70031DF4A /* fps_images_1.png in Resources */,
 				33AAF3AC1AA314F80031DF4A /* CC3LibConstants.vsh in Resources */,
 				33AAF3971AA314F80031DF4A /* CC3NoTextureReflectAlphaTest.fsh in Resources */,
+				33DF91471AAA9B0F004D0FFA /* DW_Plus@2x.png in Resources */,
 				33AAF3C71AA314F80031DF4A /* CC3Texturable.vsh in Resources */,
 				33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */,
 				33AAF3C31AA314F80031DF4A /* CC3ClipSpaceTexturable.vsh in Resources */,
@@ -3024,6 +3044,7 @@
 				33AAF3AA1AA314F80031DF4A /* CC3LibCameraPosition.vsh in Resources */,
 				33AAF3891AA314F80031DF4A /* CC3BumpMapTangentSpaceAlphaTest.fsh in Resources */,
 				33AAF3931AA314F80031DF4A /* CC3NoTextureAlphaTest.fsh in Resources */,
+				33DF91481AAA9B0F004D0FFA /* DW_PlusPressed@2x.png in Resources */,
 				33AAF3781AA314F80031DF4A /* CC3LibSingleSidedFragmentColor.fsh in Resources */,
 				33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */,
 				33AAF3621AA314F70031DF4A /* fps_images.png in Resources */,
@@ -3071,6 +3092,7 @@
 				33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */,
 				33AAF7D91AA318D40031DF4A /* SVIndefiniteAnimatedView.m in Sources */,
 				33AAF7DF1AA319010031DF4A /* myImage.cpp in Sources */,
+				33DF91491AAA9B0F004D0FFA /* SelectPointViewController.m in Sources */,
 				33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */,
 				33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */,
 				33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */,
