@@ -151,9 +151,9 @@
     if(!image)
         return;
     
-//    image = [self processImage:image];
+    image = [self processImage:image];
     
-//    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
     }
     
     if(j == self.labelSlider.slider.maximumValue)
