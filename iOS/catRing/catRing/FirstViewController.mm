@@ -151,9 +151,9 @@
     if(!image)
         return;
     
-//    image = [self processImage:image];
+    image = [self processImage:image];
     
-//    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
     }
     
     if(j == self.labelSlider.slider.maximumValue || j == 15)
@@ -163,6 +163,7 @@
         [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
+        self.labelSlider.slider.enabled = NO;
         [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
             self.filenamePositionInfoDic = outputDic;
             NSLog(@"outputDic=%@", outputDic);
@@ -170,7 +171,7 @@
             __block NSString *betaCompressionDirectory = nil;
             betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             //betaCompressionDirectory = ];
-            
+            self.labelSlider.slider.enabled = YES;
         BOOL tag = [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
         } controller:self];
     }
@@ -253,7 +254,7 @@
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
     NSString *betaCompressionDirectory = nil;
     betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
+//    betaCompressionDirectory = ;
     
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
@@ -261,11 +262,11 @@
     
     self.imageIndex = j;
     
-    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
+    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
-    image = [self processImage:image];
+//    image = [self processImage:image];
     NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
  
     NSDictionary * outputDic = self.filenamePositionInfoDic;
@@ -292,17 +293,22 @@
 
 //    if ( MaxSingleImageSide < MAX(self.size.width, self.size.height) )
  
-    ringImage = [self clipImage:ringImage];
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
 }
 
--(UIImage *)clipImage:(UIImage *)image
+-(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
 {
-
-//    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
-    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+    
+    //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
+    //    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
+    
+    CGPoint center = position.centerPoint;
+    CGPoint maxPoint = position.maxPoint;
+    CGPoint minPoint = position.minPoint;
+    
+    CGRect rect = CGRectMake(minPoint.x, minPoint.y ,maxPoint.x - minPoint.x , maxPoint.y - minPoint.y);
     
 #if 0
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -311,21 +317,21 @@
     rect = CGRectMake(123, image.size.height - 325.49683, 197.71791 - 123.66412, 325.49683 - 244.02368);
     // 区域还没挑对
 #endif
-
+    
     CGSize size = image.size;
     UIGraphicsBeginImageContext(size);
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    CGContextTranslateCTM(ctx, size.width/2, size.height/2);
-//    CGContextRotateCTM(ctx, M_PI/2);
+    //    CGContextTranslateCTM(ctx, size.width/2, size.height/2);
+    //    CGContextRotateCTM(ctx, M_PI/2);
     CGContextDrawImage(ctx, CGRectMake(-size.width/2,-size.height/2,size.width, size.height), imageRef);
     
-//    CGContextTranslateCTM(ctx, -size.width/2, -size.height/2);
-
+    //    CGContextTranslateCTM(ctx, -size.width/2, -size.height/2);
+    
     //    CGContextDrawImage(, , image);UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
- 
+    
     UIImage * img = [UIImage imageWithCGImage:imageRef];
     img = [self rotateImage:img withRadian:currentHand->ringAngle];
     
