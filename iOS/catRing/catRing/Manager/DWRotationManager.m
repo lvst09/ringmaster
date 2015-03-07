@@ -38,7 +38,8 @@ static DWRotationManager *sharedManager;
 
 - (void)pushAngleX:(CGFloat)angleX angleY:(CGFloat)angleY angleZ:(CGFloat)angleZ {
     
-    GLKVector3 rotation = GLKVector3Make(radiusToDegree(angleX) + 90, radiusToDegree(angleY), radiusToDegree(angleZ));// cc3v(60, 30, 0);
+    GLKVector3 rotation = GLKVector3Make(angleX, angleY, angleZ);// cc3v(60, 30, 0);
+//    GLKVector3 rotation = GLKVector3Make(radiusToDegree(angleX) + 90, radiusToDegree(angleY), radiusToDegree(angleZ));// cc3v(60, 30, 0);
     NSValue *value = [NSValue valueWithBytes:&rotation objCType:@encode(GLKVector3)];
     [self.input addObject:value];
 }
@@ -55,6 +56,8 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
 - (void)getOutput:(completeBlk)blk controller:(UIViewController *)controller {
     // 先调用cocos3d的vc，然后生成图片，最后dismiss
 
+    NSLog(@"input=%@", self.input);
+    
     NSDictionary *config = @{
                              CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
                              CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
