@@ -308,7 +308,7 @@
     CGPoint maxPoint = position.maxPoint;
     CGPoint minPoint = position.minPoint;
     
-    CGRect rect = CGRectMake(minPoint.x, minPoint.y ,maxPoint.x - minPoint.x , maxPoint.y - minPoint.y);
+    CGRect rect = CGRectMake(minPoint.x, image.size.height - minPoint.y - (maxPoint.y - minPoint.y ) ,maxPoint.x - minPoint.x -5 , maxPoint.y - minPoint.y + 10);
     
 #if 0
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
