@@ -66,7 +66,8 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
 //        [window_ makeKeyAndVisible];
 //        [director showViewController:controller sender:nil];
         [controller presentViewController:self.navController animated:NO completion:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            int64_t delayTime = ((self.input.count + 1) / 10 * 1 * NSEC_PER_SEC);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)delayTime), dispatch_get_main_queue(), ^{
                 [self.navController dismissViewControllerAnimated:NO completion:NULL];
                 if (blk) {
                     blk(self.output);

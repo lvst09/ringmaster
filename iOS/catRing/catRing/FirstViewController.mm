@@ -36,6 +36,7 @@
 @interface FirstViewController () {
     
     HandGesture * currentHand;
+    BOOL firstTime;
 }
 
 @property (nonatomic, retain) UIImageView *imageView;
@@ -60,6 +61,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    firstTime = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -92,10 +94,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self getAllImageFromVideo];
-        [self processAllImages];
-    });
+    if (firstTime) {
+        firstTime = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self getAllImageFromVideo];
+            [self processAllImages];
+        });
+    }
+
     
 //    [self showImageAtIndex:1];
 }
@@ -383,15 +389,15 @@
         betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)i-1]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
-            if (!_rotationManager) {
-                self.rotationManager = [DWRotationManager sharedManager];
-                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-                    self.filenamePositionInfoDic = outputDic;
-                    NSLog(@"outputDic=%@", outputDic);
-                    
-                } controller:self];
-            }
+//            if (!_rotationManager) {
+//                self.rotationManager = [DWRotationManager sharedManager];
+//                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+//                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+//                    self.filenamePositionInfoDic = outputDic;
+//                    NSLog(@"outputDic=%@", outputDic);
+//                    
+//                } controller:self];
+//            }
             return;
         }
     }
