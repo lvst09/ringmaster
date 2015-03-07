@@ -158,7 +158,7 @@
 //	self.shouldDrawAllDescriptors = YES;
 	
 	// Displays bounding boxes around those nodes with local content (eg- meshes).
-//	self.shouldDrawAllLocalContentWireframeBoxes = YES;
+	self.shouldDrawAllLocalContentWireframeBoxes = YES;
 	
 	// Displays bounding boxes around all nodes. The bounding box for each node
 	// will encompass its child nodes.
@@ -426,7 +426,8 @@
 - (void)snapshot {
     CGSize s = [[CCDirector sharedDirector] viewSizeInPixels];
 //    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:s.width height:s.height];
-    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:320 height:480];
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:screenSize.width height:screenSize.height];
     [texture begin];
     [[[CCDirector sharedDirector] runningScene] visit];
     [texture end];
@@ -460,6 +461,7 @@
     posInfo.maxPoint = CGPointMake(m2.x, m2.y);
     [self.filenamePositionInfoDic setObject:posInfo forKey:filename];
     [DWRotationManager sharedManager].output = self.filenamePositionInfoDic;
+    
     NSLog(@"key:%@, value:%@", filename, posInfo);
 }
 
