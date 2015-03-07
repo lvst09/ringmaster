@@ -195,7 +195,7 @@
     arr = [[DWRotationManager sharedManager] input];
     count = arr.count;
     for (int i = 0; i < count; ++i) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 + 2 * i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSValue *value = arr[i];
             GLKVector3 storedVector;
             [value getValue:&storedVector];

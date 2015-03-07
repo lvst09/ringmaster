@@ -7,6 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3379C9AB1A9329FD00D29FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
+		3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
+		3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
+		3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B31A9329FD00D29FFD /* SecondViewController.m */; };
+		3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B51A9329FD00D29FFD /* Main.storyboard */; };
+		3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
+		3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
+		3379C9C81A9329FD00D29FFD /* catRingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9C71A9329FD00D29FFD /* catRingTests.m */; };
+		3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D41A932D0900D29FFD /* handGesture.cpp */; };
+		3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9D81A932D0900D29FFD /* myImage.cpp */; };
+		3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DA1A932D0900D29FFD /* mymain.cpp */; };
+		3379C9E21A932D0900D29FFD /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
+		3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E61A932F1700D29FFD /* AVFoundation.framework */; };
+		3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379C9E81A932FE600D29FFD /* CoreMedia.framework */; };
+		3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9ED1A93310300D29FFD /* LabelSliderGroup.m */; };
+		3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9EE1A93310300D29FFD /* LabelSliderGroup.xib */; };
+		3379C9F41A93310300D29FFD /* SliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F01A93310300D29FFD /* SliderBar.m */; };
+		3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9F11A93310300D29FFD /* SliderBar.xib */; };
+		3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F81A93349100D29FFD /* ImageProcess.m */; };
+		3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FA1A93351B00D29FFD /* RenderHelper.m */; };
+		3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FC1A93351B00D29FFD /* MathUtil.m */; };
+		3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3379CA001A93353600D29FFD /* CoreGraphics.framework */; };
+		3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */; };
+		3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */; };
+		3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC661A9715A600D29FFD /* DWVideoDecoding.m */; };
+		3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
+		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
+		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
+		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
+		33AAE62E1AA3000D0031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
+		33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */; };
 		33AAF3151AA314F70031DF4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3141AA314F70031DF4A /* AudioToolbox.framework */; };
 		33AAF3171AA314F70031DF4A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3161AA314F70031DF4A /* AVFoundation.framework */; };
 		33AAF3191AA314F70031DF4A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3181AA314F70031DF4A /* CoreGraphics.framework */; };
@@ -19,6 +51,7 @@
 		33AAF3271AA314F70031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32B1AA314F70031DF4A /* catRingLayer.m */; };
 		33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32E1AA314F70031DF4A /* catRingScene.m */; };
+		33AAF3391AA314F70031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3381AA314F70031DF4A /* main.m */; };
 		33AAF35A1AA314F70031DF4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3591AA314F70031DF4A /* Default.png */; };
 		33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */; };
 		33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35D1AA314F70031DF4A /* Default-Portrait~ipad.png */; };
@@ -363,6 +396,12 @@
 		33AAF7C11AA318640031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
 		33AAF7C41AA3186B0031DF4A /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 		33AAF7C51AA3186B0031DF4A /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
+		33AAF7C61AA318770031DF4A /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
+		33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
+		33AAF7C91AA318860031DF4A /* CameraViewController-568h.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */; };
+		33AAF7CA1AA3188B0031DF4A /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
+		33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
 		33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FA1A93351B00D29FFD /* RenderHelper.m */; };
 		33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FC1A93351B00D29FFD /* MathUtil.m */; };
 		33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC661A9715A600D29FFD /* DWVideoDecoding.m */; };
@@ -373,7 +412,9 @@
 		33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F01A93310300D29FFD /* SliderBar.m */; };
 		33AAF7D41AA318BD0031DF4A /* SliderBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9F11A93310300D29FFD /* SliderBar.xib */; };
 		33AAF7D51AA318C30031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
+		33AAF7D61AA318C60031DF4A /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
 		33AAF7D71AA318C90031DF4A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
+		33AAF7D81AA318CC0031DF4A /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
 		33AAF7D91AA318D40031DF4A /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		33AAF7DA1AA318D80031DF4A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		33AAF7DB1AA318DB0031DF4A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
@@ -384,27 +425,41 @@
 		33AAF7E11AA319010031DF4A /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9DC1A932D0900D29FFD /* roi.cpp */; };
 		33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
 		33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B31A9329FD00D29FFD /* SecondViewController.m */; };
+		33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3141AA314F70031DF4A /* AudioToolbox.framework */; };
+		33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31A1AA314F70031DF4A /* CoreText.framework */; };
+		33AAF7E81AA31A040031DF4A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31C1AA314F70031DF4A /* Foundation.framework */; };
+		33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF31E1AA314F70031DF4A /* GLKit.framework */; };
+		33AAF7EA1AA31A0A0031DF4A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3201AA314F70031DF4A /* OpenAL.framework */; };
+		33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3221AA314F70031DF4A /* OpenGLES.framework */; };
+		33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3241AA314F70031DF4A /* QuartzCore.framework */; };
+		33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF3261AA314F70031DF4A /* UIKit.framework */; };
 		33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
 		33AAF7F11AA31BF50031DF4A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */; };
 		33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9BA1A9329FD00D29FFD /* LaunchScreen.xib */; };
+		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
-		33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B51A9329FD00D29FFD /* Main.storyboard */; };
-		33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9B81A9329FD00D29FFD /* Images.xcassets */; };
-		33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
-		33AAF81E1AA60F690031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
-		33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF84E1AA68AF70031DF4A /* RosyWriterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF84F1AA68AF70031DF4A /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8401AA68AF70031DF4A /* matrix.c */; };
-		33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */; };
-		33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8451AA68AF70031DF4A /* MovieRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33DF91471AAA9B0F004D0FFA /* DW_Plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */; };
-		33DF91481AAA9B0F004D0FFA /* DW_PlusPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */; };
-		33DF91491AAA9B0F004D0FFA /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */; };
+		33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3351AA314F70031DF4A /* AppDelegate.m */; };
+		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
+		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
+		33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */; };
+		33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
+		33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
+		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
+		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
+		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
+		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
+		33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3379C9C21A9329FD00D29FFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3379C9A41A9329FD00D29FFD;
+			remoteInfo = catRing;
+		};
 		33AAF7B71AA315800031DF4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
@@ -426,9 +481,31 @@
 			remoteGlobalIDString = 33AAF6091AA314FB0031DF4A;
 			remoteInfo = cocos3d;
 		};
+		33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF3CE1AA314F80031DF4A;
+			remoteInfo = cocos2d;
+		};
+		33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF3D11AA314F80031DF4A;
+			remoteInfo = "cocos2d-chipmunk";
+		};
+		33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3379C99D1A9329FD00D29FFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33AAF6091AA314FB0031DF4A;
+			remoteInfo = cocos3d;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3379C9A51A9329FD00D29FFD /* catRing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catRing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9A91A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9AA1A9329FD00D29FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3379C9AC1A9329FD00D29FFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -440,6 +517,7 @@
 		3379C9B61A9329FD00D29FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3379C9B81A9329FD00D29FFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3379C9BB1A9329FD00D29FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3379C9C11A9329FD00D29FFD /* catRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = catRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9C61A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9C71A9329FD00D29FFD /* catRingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = catRingTests.m; sourceTree = "<group>"; };
 		3379C9D41A932D0900D29FFD /* handGesture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handGesture.cpp; sourceTree = "<group>"; };
@@ -497,6 +575,8 @@
 		33AAF32D1AA314F70031DF4A /* catRingScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = catRingScene.h; path = Classes/catRingScene.h; sourceTree = "<group>"; };
 		33AAF32E1AA314F70031DF4A /* catRingScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = catRingScene.m; path = Classes/catRingScene.m; sourceTree = "<group>"; };
 		33AAF3331AA314F70031DF4A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		33AAF3341AA314F70031DF4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		33AAF3351AA314F70031DF4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		33AAF3381AA314F70031DF4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		33AAF33A1AA314F70031DF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		33AAF3591AA314F70031DF4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/LaunchImages/Default.png; sourceTree = "<group>"; };
@@ -1187,31 +1267,54 @@
 		33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DWRotationManager.h; path = Manager/DWRotationManager.h; sourceTree = "<group>"; };
 		33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DWRotationManager.m; path = Manager/DWRotationManager.m; sourceTree = "<group>"; };
-		33AAF8311AA68AF70031DF4A /* RosyWriterCapturePipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCapturePipeline.h; sourceTree = "<group>"; };
-		33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCapturePipeline.m; sourceTree = "<group>"; };
-		33AAF8351AA68AF70031DF4A /* RosyWriterCPURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCPURenderer.h; sourceTree = "<group>"; };
-		33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCPURenderer.m; sourceTree = "<group>"; };
-		33AAF83B1AA68AF70031DF4A /* RosyWriterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterRenderer.h; sourceTree = "<group>"; };
-		33AAF83C1AA68AF70031DF4A /* RosyWriterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterViewController.h; sourceTree = "<group>"; };
-		33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterViewController.m; sourceTree = "<group>"; };
-		33AAF8401AA68AF70031DF4A /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
-		33AAF8411AA68AF70031DF4A /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
-		33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
-		33AAF8431AA68AF70031DF4A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
-		33AAF8441AA68AF70031DF4A /* MovieRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRecorder.h; sourceTree = "<group>"; };
-		33AAF8451AA68AF70031DF4A /* MovieRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRecorder.m; sourceTree = "<group>"; };
-		33AAF8461AA68AF70031DF4A /* OpenGLPixelBufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLPixelBufferView.h; sourceTree = "<group>"; };
-		33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLPixelBufferView.m; sourceTree = "<group>"; };
+		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
+		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
+		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
+		33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPhotoDevice.h; sourceTree = "<group>"; };
+		33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPhotoDevice.m; sourceTree = "<group>"; };
+		33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVideoDevice.h; sourceTree = "<group>"; };
+		33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraVideoDevice.m; sourceTree = "<group>"; };
+		33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CameraViewController-568h.xib"; sourceTree = "<group>"; };
+		33DA87BC1AA2B4A600625E87 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		33DA87BD1AA2B4A600625E87 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
+		33DA87E11AA2C53C00625E87 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = youtubeauty.framework; sourceTree = "<group>"; };
 		33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
-		33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_Plus@2x.png"; sourceTree = "<group>"; };
-		33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_PlusPressed@2x.png"; sourceTree = "<group>"; };
-		33DF91451AAA9B0F004D0FFA /* SelectPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPointViewController.h; sourceTree = "<group>"; };
-		33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPointViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3379C9A21A9329FD00D29FFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */,
+				33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */,
+				33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */,
+				33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */,
+				33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */,
+				33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */,
+				33AAF7EA1AA31A0A0031DF4A /* OpenAL.framework in Frameworks */,
+				33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */,
+				33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */,
+				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
+				33AAF7E81AA31A040031DF4A /* Foundation.framework in Frameworks */,
+				33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */,
+				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
+				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
+				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3379C9BE1A9329FD00D29FFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33AAF30F1AA314F70031DF4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1220,9 +1323,11 @@
 				33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */,
 				33AAF3211AA314F70031DF4A /* OpenAL.framework in Frameworks */,
 				33AAF7D71AA318C90031DF4A /* Accelerate.framework in Frameworks */,
+				33AAF7D61AA318C60031DF4A /* youtubeauty.framework in Frameworks */,
 				33AAF31D1AA314F70031DF4A /* Foundation.framework in Frameworks */,
 				33AAF31B1AA314F70031DF4A /* CoreText.framework in Frameworks */,
 				33AAF3231AA314F70031DF4A /* OpenGLES.framework in Frameworks */,
+				33AAF7D81AA318CC0031DF4A /* FilterEngine.framework in Frameworks */,
 				33AAF3191AA314F70031DF4A /* CoreGraphics.framework in Frameworks */,
 				33AAF3171AA314F70031DF4A /* AVFoundation.framework in Frameworks */,
 				33AAF7DC1AA318E60031DF4A /* CoreMedia.framework in Frameworks */,
@@ -1240,7 +1345,6 @@
 		3379C99C1A9329FD00D29FFD = {
 			isa = PBXGroup;
 			children = (
-				33AAF82E1AA68AF70031DF4A /* rosyWriter */,
 				3379C9A71A9329FD00D29FFD /* catRing */,
 				3379C9C41A9329FD00D29FFD /* catRingTests */,
 				33AAF3281AA314F70031DF4A /* catRing3D */,
@@ -1254,6 +1358,8 @@
 		3379C9A61A9329FD00D29FFD /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				3379C9A51A9329FD00D29FFD /* catRing.app */,
+				3379C9C11A9329FD00D29FFD /* catRingTests.xctest */,
 				33AAF3121AA314F70031DF4A /* catRing3D.app */,
 				33AAF3CF1AA314F80031DF4A /* libcocos2d.a */,
 				33AAF3D21AA314F80031DF4A /* libcocos2d-chipmunk.a */,
@@ -1265,9 +1371,9 @@
 		3379C9A71A9329FD00D29FFD /* catRing */ = {
 			isa = PBXGroup;
 			children = (
-				33DF91421AAA9B0F004D0FFA /* UI */,
 				33AAE6321AA30A210031DF4A /* Model */,
 				3379CA021A93369700D29FFD /* Resources */,
+				33DA87A51AA2B4A600625E87 /* Camera */,
 				3379C9F61A93349100D29FFD /* Utility */,
 				3379C9EA1A93310300D29FFD /* CommonUI */,
 				3379C9E31A932D6800D29FFD /* 3rd */,
@@ -1350,7 +1456,9 @@
 			isa = PBXGroup;
 			children = (
 				33AAE62B1AA2FE540031DF4A /* opencv2.framework */,
+				33DA87E11AA2C53C00625E87 /* youtubeauty.framework */,
 				33DA87DB1AA2B80400625E87 /* Accelerate.framework */,
+				33DA87D11AA2B50300625E87 /* FilterEngine.framework */,
 				3379CC6E1A97202500D29FFD /* SVProgressHUD */,
 				3379CA001A93353600D29FFD /* CoreGraphics.framework */,
 				3379C9E81A932FE600D29FFD /* CoreMedia.framework */,
@@ -1484,6 +1592,8 @@
 				33AAF32B1AA314F70031DF4A /* catRingLayer.m */,
 				33AAF32D1AA314F70031DF4A /* catRingScene.h */,
 				33AAF32E1AA314F70031DF4A /* catRingScene.m */,
+				33AAF3341AA314F70031DF4A /* AppDelegate.h */,
+				33AAF3351AA314F70031DF4A /* AppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2814,51 +2924,44 @@
 			name = deprecated;
 			sourceTree = "<group>";
 		};
-		33AAF82E1AA68AF70031DF4A /* rosyWriter */ = {
+		33DA87A51AA2B4A600625E87 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				33AAF8311AA68AF70031DF4A /* RosyWriterCapturePipeline.h */,
-				33AAF8321AA68AF70031DF4A /* RosyWriterCapturePipeline.m */,
-				33AAF8351AA68AF70031DF4A /* RosyWriterCPURenderer.h */,
-				33AAF8361AA68AF70031DF4A /* RosyWriterCPURenderer.m */,
-				33AAF83B1AA68AF70031DF4A /* RosyWriterRenderer.h */,
-				33AAF83C1AA68AF70031DF4A /* RosyWriterViewController.h */,
-				33AAF83D1AA68AF70031DF4A /* RosyWriterViewController.m */,
-				33AAF83E1AA68AF70031DF4A /* Utilities */,
+				33DA87A61AA2B4A600625E87 /* CameraTypes.h */,
+				33DA87A71AA2B4A600625E87 /* Control */,
+				33DA87AA1AA2B4A600625E87 /* Device */,
+				33DA87B61AA2B4A600625E87 /* UI */,
 			);
-			path = rosyWriter;
+			path = Camera;
 			sourceTree = "<group>";
 		};
-		33AAF83E1AA68AF70031DF4A /* Utilities */ = {
+		33DA87A71AA2B4A600625E87 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				33AAF83F1AA68AF70031DF4A /* GL */,
-				33AAF8441AA68AF70031DF4A /* MovieRecorder.h */,
-				33AAF8451AA68AF70031DF4A /* MovieRecorder.m */,
-				33AAF8461AA68AF70031DF4A /* OpenGLPixelBufferView.h */,
-				33AAF8471AA68AF70031DF4A /* OpenGLPixelBufferView.m */,
+				33DA87A81AA2B4A600625E87 /* CameraController.h */,
+				33DA87A91AA2B4A600625E87 /* CameraController.m */,
 			);
-			path = Utilities;
+			path = Control;
 			sourceTree = "<group>";
 		};
-		33AAF83F1AA68AF70031DF4A /* GL */ = {
+		33DA87AA1AA2B4A600625E87 /* Device */ = {
 			isa = PBXGroup;
 			children = (
-				33AAF8401AA68AF70031DF4A /* matrix.c */,
-				33AAF8411AA68AF70031DF4A /* matrix.h */,
-				33AAF8421AA68AF70031DF4A /* ShaderUtilities.c */,
-				33AAF8431AA68AF70031DF4A /* ShaderUtilities.h */,
+				33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */,
+				33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */,
+				33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */,
+				33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */,
 			);
-			path = GL;
+			path = Device;
 			sourceTree = "<group>";
 		};
-		33DF91421AAA9B0F004D0FFA /* UI */ = {
+		33DA87B61AA2B4A600625E87 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				33DF91431AAA9B0F004D0FFA /* DW_Plus@2x.png */,
-				33DF91441AAA9B0F004D0FFA /* DW_PlusPressed@2x.png */,
-				33DF91451AAA9B0F004D0FFA /* SelectPointViewController.h */,
-				33DF91461AAA9B0F004D0FFA /* SelectPointViewController.m */,
+				33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */,
+				33DA87BC1AA2B4A600625E87 /* CameraViewController.h */,
+				33DA87BD1AA2B4A600625E87 /* CameraViewController.m */,
+				33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2866,6 +2969,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3379C9A41A9329FD00D29FFD /* catRing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3379C9CB1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRing" */;
+			buildPhases = (
+				3379C9A11A9329FD00D29FFD /* Sources */,
+				3379C9A21A9329FD00D29FFD /* Frameworks */,
+				3379C9A31A9329FD00D29FFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */,
+				33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */,
+				33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */,
+			);
+			name = catRing;
+			productName = catRing;
+			productReference = 3379C9A51A9329FD00D29FFD /* catRing.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3379C9C01A9329FD00D29FFD /* catRingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */;
+			buildPhases = (
+				3379C9BD1A9329FD00D29FFD /* Sources */,
+				3379C9BE1A9329FD00D29FFD /* Frameworks */,
+				3379C9BF1A9329FD00D29FFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3379C9C31A9329FD00D29FFD /* PBXTargetDependency */,
+			);
+			name = catRingTests;
+			productName = catRingTests;
+			productReference = 3379C9C11A9329FD00D29FFD /* catRingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		33AAF3111AA314F70031DF4A /* catRing3D */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33AAF7AB1AA314FF0031DF4A /* Build configuration list for PBXNativeTarget "catRing3D" */;
@@ -2942,6 +3083,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = DW;
 				TargetAttributes = {
+					3379C9A41A9329FD00D29FFD = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					3379C9C01A9329FD00D29FFD = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 3379C9A41A9329FD00D29FFD;
+					};
 					33AAF3111AA314F70031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -2969,6 +3117,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				3379C9A41A9329FD00D29FFD /* catRing */,
+				3379C9C01A9329FD00D29FFD /* catRingTests */,
 				33AAF3111AA314F70031DF4A /* catRing3D */,
 				33AAF3CE1AA314F80031DF4A /* cocos2d */,
 				33AAF3D11AA314F80031DF4A /* cocos2d-chipmunk */,
@@ -2978,6 +3128,32 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3379C9A31A9329FD00D29FFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */,
+				3379C9B71A9329FD00D29FFD /* Main.storyboard in Resources */,
+				33AAE62E1AA3000D0031DF4A /* ring.png in Resources */,
+				3379C9F31A93310300D29FFD /* LabelSliderGroup.xib in Resources */,
+				3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */,
+				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
+				33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */,
+				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
+				3379C9F51A93310300D29FFD /* SliderBar.xib in Resources */,
+				33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */,
+				33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */,
+				33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3379C9BF1A9329FD00D29FFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33AAF3101AA314F70031DF4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2994,6 +3170,7 @@
 				33AAF36C1AA314F70031DF4A /* CC3LibDefaultPrecision.fsh in Resources */,
 				33AAF38B1AA314F80031DF4A /* CC3ClipSpaceNoTexture.fsh in Resources */,
 				33AAF3B01AA314F80031DF4A /* CC3LibDoubleTexture.vsh in Resources */,
+				33AAF7CA1AA3188B0031DF4A /* CameraViewController.xib in Resources */,
 				33AAF3C51AA314F80031DF4A /* CC3PointSprites.vsh in Resources */,
 				33AAF3951AA314F80031DF4A /* CC3NoTextureReflect.fsh in Resources */,
 				33AAF7DA1AA318D80031DF4A /* SVProgressHUD.bundle in Resources */,
@@ -3002,12 +3179,12 @@
 				33AAF3681AA314F70031DF4A /* fps_images_1.png in Resources */,
 				33AAF3AC1AA314F80031DF4A /* CC3LibConstants.vsh in Resources */,
 				33AAF3971AA314F80031DF4A /* CC3NoTextureReflectAlphaTest.fsh in Resources */,
-				33DF91471AAA9B0F004D0FFA /* DW_Plus@2x.png in Resources */,
 				33AAF3C71AA314F80031DF4A /* CC3Texturable.vsh in Resources */,
 				33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */,
 				33AAF3C31AA314F80031DF4A /* CC3ClipSpaceTexturable.vsh in Resources */,
 				33AAF3761AA314F80031DF4A /* CC3LibSetGLFragColorAlphaTest.fsh in Resources */,
 				33AAF3A51AA314F80031DF4A /* CC3SingleTextureReflectAlphaTest.fsh in Resources */,
+				33AAF7C91AA318860031DF4A /* CameraViewController-568h.xib in Resources */,
 				33AAF3661AA314F70031DF4A /* fps_images-ipadhd.png in Resources */,
 				33AAF3601AA314F70031DF4A /* Default-Landscape~ipad.png in Resources */,
 				33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */,
@@ -3026,7 +3203,6 @@
 				33AAF3721AA314F80031DF4A /* CC3LibLightProbeIllumination.fsh in Resources */,
 				33AAF3CB1AA314F80031DF4A /* CC3TexturableRigidBones.vsh in Resources */,
 				33AAF7C41AA3186B0031DF4A /* Movie12347.m4v in Resources */,
-				33AAF81C1AA60EE90031DF4A /* Images.xcassets in Resources */,
 				33AAF7BE1AA315E50031DF4A /* ringModel.pod in Resources */,
 				33AAF3A11AA314F80031DF4A /* CC3SingleTextureAlphaTest.fsh in Resources */,
 				33AAF37C1AA314F80031DF4A /* CC3LibTexturableBumpMapObjectSpace.fsh in Resources */,
@@ -3044,9 +3220,7 @@
 				33AAF3AA1AA314F80031DF4A /* CC3LibCameraPosition.vsh in Resources */,
 				33AAF3891AA314F80031DF4A /* CC3BumpMapTangentSpaceAlphaTest.fsh in Resources */,
 				33AAF3931AA314F80031DF4A /* CC3NoTextureAlphaTest.fsh in Resources */,
-				33DF91481AAA9B0F004D0FFA /* DW_PlusPressed@2x.png in Resources */,
 				33AAF3781AA314F80031DF4A /* CC3LibSingleSidedFragmentColor.fsh in Resources */,
-				33AAF81B1AA60EE30031DF4A /* Main.storyboard in Resources */,
 				33AAF3621AA314F70031DF4A /* fps_images.png in Resources */,
 				33AAF7F21AA351520031DF4A /* LaunchScreen.xib in Resources */,
 				33AAF3991AA314F80031DF4A /* CC3PointSprites.fsh in Resources */,
@@ -3074,16 +3248,54 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3379C9A11A9329FD00D29FFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */,
+				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
+				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
+				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
+				33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
+				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
+				3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */,
+				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
+				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
+				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
+				33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */,
+				33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */,
+				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
+				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
+				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,
+				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
+				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
+				33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */,
+				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
+				33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */,
+				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
+				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
+				33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */,
+				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3379C9BD1A9329FD00D29FFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3379C9C81A9329FD00D29FFD /* catRingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33AAF30E1AA314F70031DF4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33AAF81E1AA60F690031DF4A /* main.m in Sources */,
 				33AAF7E11AA319010031DF4A /* roi.cpp in Sources */,
 				33AAF7CF1AA318A40031DF4A /* ImageProcess.m in Sources */,
-				33AAF84F1AA68AF70031DF4A /* matrix.c in Sources */,
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
 				33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */,
+				33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */,
 				33AAF7DE1AA319010031DF4A /* handGesture.cpp in Sources */,
 				33AAF7D11AA318AE0031DF4A /* LabelSliderGroup.m in Sources */,
 				33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
@@ -3092,21 +3304,18 @@
 				33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */,
 				33AAF7D91AA318D40031DF4A /* SVIndefiniteAnimatedView.m in Sources */,
 				33AAF7DF1AA319010031DF4A /* myImage.cpp in Sources */,
-				33DF91491AAA9B0F004D0FFA /* SelectPointViewController.m in Sources */,
-				33AAF8521AA68AF70031DF4A /* OpenGLPixelBufferView.m in Sources */,
-				33AAF8491AA68AF70031DF4A /* RosyWriterCapturePipeline.m in Sources */,
 				33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */,
-				33AAF84B1AA68AF70031DF4A /* RosyWriterCPURenderer.m in Sources */,
 				33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */,
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
+				33AAF3391AA314F70031DF4A /* main.m in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
-				33AAF8501AA68AF70031DF4A /* ShaderUtilities.c in Sources */,
+				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
-				33AAF81D1AA60EF00031DF4A /* AppDelegate.m in Sources */,
+				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
+				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
+				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
-				33AAF84E1AA68AF70031DF4A /* RosyWriterViewController.m in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,
-				33AAF8511AA68AF70031DF4A /* MovieRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3413,6 +3622,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3379C9C31A9329FD00D29FFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3379C9A41A9329FD00D29FFD /* catRing */;
+			targetProxy = 3379C9C21A9329FD00D29FFD /* PBXContainerItemProxy */;
+		};
 		33AAF7B81AA315800031DF4A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 33AAF3CE1AA314F80031DF4A /* cocos2d */;
@@ -3427,6 +3641,21 @@
 			isa = PBXTargetDependency;
 			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
 			targetProxy = 33AAF7BB1AA315800031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8151AA4C3DA0031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF3CE1AA314F80031DF4A /* cocos2d */;
+			targetProxy = 33AAF8141AA4C3DA0031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8171AA4C3DE0031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF3D11AA314F80031DF4A /* cocos2d-chipmunk */;
+			targetProxy = 33AAF8161AA4C3DE0031DF4A /* PBXContainerItemProxy */;
+		};
+		33AAF8191AA4C3E10031DF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33AAF6091AA314FB0031DF4A /* cocos3d */;
+			targetProxy = 33AAF8181AA4C3E10031DF4A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3528,12 +3757,92 @@
 			};
 			name = Release;
 		};
+		3379C9CC1A9329FD00D29FFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/catRing/3rd/opencv2.framework",
+					"$(SRCROOT)/catRing/3rd",
+				);
+				INFOPLIST_FILE = catRing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		3379C9CD1A9329FD00D29FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/catRing/3rd/opencv2.framework",
+					"$(SRCROOT)/catRing/3rd",
+				);
+				INFOPLIST_FILE = catRing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3379C9CF1A9329FD00D29FFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = catRingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catRing.app/catRing";
+			};
+			name = Debug;
+		};
+		3379C9D01A9329FD00D29FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = catRingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/catRing.app/catRing";
+			};
+			name = Release;
+		};
 		33AAF7AC1AA314FF0031DF4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3569,7 +3878,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3589,8 +3898,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3618,7 +3925,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3784,6 +4091,24 @@
 			buildConfigurations = (
 				3379C9C91A9329FD00D29FFD /* Debug */,
 				3379C9CA1A9329FD00D29FFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3379C9CB1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3379C9CC1A9329FD00D29FFD /* Debug */,
+				3379C9CD1A9329FD00D29FFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3379C9CE1A9329FD00D29FFD /* Build configuration list for PBXNativeTarget "catRingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3379C9CF1A9329FD00D29FFD /* Debug */,
+				3379C9D01A9329FD00D29FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -72,7 +72,7 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 44 + 20 + 25, self.view.bounds.size.width, 20)];
+    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 25, self.view.bounds.size.width, 20)];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
     labelSlider.label.text = nil;
@@ -85,6 +85,10 @@
     nextButton.frame = CGRectMake(self.view.frame.size.width - 20, self.view.frame.size.height - 80, 20, 20);
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
+    
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,9 +151,9 @@
     if(!image)
         return;
     
-    image = [self processImage:image];
+//    image = [self processImage:image];
     
-    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
+//    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
     }
     
     if(j == self.labelSlider.slider.maximumValue)
@@ -183,7 +187,6 @@
     NSLog(@"slider");
     NSInteger j = (NSInteger) slider.value;
     [self showImageAtIndex:j];
-    
 }
 
 - (void)onNextButtonClicked:(UIButton *)sender {
@@ -243,12 +246,9 @@
     
     UIImage *image = nil;
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-//    NSString *betaCompressionDirectory = nil;
-//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
-    NSString *lastName = [self.videoPath lastPathComponent];
-    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]];
+    NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]];
     
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
     NSLog(@"current filename=%@", betaCompressionDirectory);
@@ -256,63 +256,26 @@
     
     self.imageIndex = j;
     
-    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)j]]];
+    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
 //    self.imageView.image = [self processImage:image];
     if(!image)
         return;
- 
-//    image = [self processImage:image];
+    image = [self processImage:image];
+    NSString *key = [self.filenamePositionInfoDic allKeys].firstObject;
     
-//    [self.rotationManager pushAngleX:currentHand->rotationAngle[0] angleY:currentHand->rotationAngle[1] angleZ:currentHand->rotationAngle[2]];
-//    [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-//        
-//    
-////            NSLog(@"key: %@ value: %@", key, dict[key]);
+    UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
 
-//    
-//    } controller:self];
-    
-    NSDictionary * outputDic = self.filenamePositionInfoDic;
-
-    NSString * pngName = [outputDic.allKeys objectAtIndex:j-1];
-    DWRingPositionInfo * info = [outputDic objectForKey:pngName];
-
-    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
-    UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
-
-//    ringImage  = [ImageProcess resizeImage:UIImagePNGRepresentation( ringImage )  size:1136 withRatio:YES];
-    {
-        ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 550)];
-    }
-
-//UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
-
-    ringImage = [self clipImage:ringImage ringPosition:info];
-
-//    if ( MaxSingleImageSide < MAX(self.size.width, self.size.height) )
-
+    ringImage = [self clipImage:ringImage];
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
-    
-    
- 
-    
-
 }
 
--(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
+-(UIImage *)clipImage:(UIImage *)image
 {
 
 //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
-//    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
-    
-    
-    CGPoint center = position.centerPoint;
-    CGPoint maxPoint = position.maxPoint;
-    CGPoint minPoint = position.minPoint;
-    
-    CGRect rect = CGRectMake(minPoint.x, minPoint.y ,maxPoint.x - minPoint.x , maxPoint.y - minPoint.y);
+    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
     
 #if 0
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -374,24 +337,44 @@
 }
 
 -(UIImage *)rotateImage:(UIImage *)aImage angle:(double)angle
-{
-    CGImageRef imgRef = aImage.CGImage;
-    CGFloat width = CGImageGetWidth(imgRef);
-    CGFloat height = CGImageGetHeight(imgRef);
 
+{
+    
+    CGImageRef imgRef = aImage.CGImage;
+    
+    CGFloat width = CGImageGetWidth(imgRef);
+    
+    CGFloat height = CGImageGetHeight(imgRef);
+    
+    
+    
     CGAffineTransform transform = CGAffineTransformIdentity;
+    
     CGRect bounds = CGRectMake(0, 0, width, height);
  
+    
+    
     UIGraphicsBeginImageContext(bounds.size);
+    
     transform = CGAffineTransformRotate(transform, angle);
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-
+    
+    
+    
+    
+    
     CGContextConcatCTM(context, transform);
+    
     CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    
     UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
-
+    
+    
+    
     return imageCopy;
     
 }
@@ -411,26 +394,28 @@
 - (void)getAllImageFromVideo {
     {
         int i = 156;
-        NSString *lastName = [self.videoPath lastPathComponent];
         NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)i-1]];
+        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i-1]];
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
-//            if (!_rotationManager) {
-//                self.rotationManager = [DWRotationManager sharedManager];
-//                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-//                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-//                    self.filenamePositionInfoDic = outputDic;
-//                    NSLog(@"outputDic=%@", outputDic);
-//                    
-//                } controller:self];
-//            }
+            if (!self.rotationManager) {
+                self.rotationManager = [DWRotationManager sharedManager];
+                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+                [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
+                [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
+                [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
+                [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
+                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+                    self.filenamePositionInfoDic = outputDic;
+                    NSLog(@"outputDic=%@", outputDic);
+                    
+                } controller:self];
+            }
             return;
         }
     }
    
-    NSString *path = self.videoPath;//[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
-//    path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"MyVideo1425481767.MOV"];
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
     //12345 keyishen的手
     //12346 jerry的手
     //12347 jerry的手on sofa
@@ -456,10 +441,8 @@
                 break;
             }
             //        NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
-            NSString *lastName = [self.videoPath lastPathComponent];
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_MYIMG_ORI%ld.JPG", lastName, (long)i]];
-            
+            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
             NSLog(@"get image=%@", betaCompressionDirectory);
             //        betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
             //        betaCompressionDirectory = [parentDir stringByAppendingString:@".m4v"];
