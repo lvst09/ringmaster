@@ -431,7 +431,7 @@
     [[[CCDirector sharedDirector] runningScene] visit];
     [texture end];
     
-    NSString *filename = [NSString stringWithFormat:@"MYIMG_ANG_x%f_y%f_z%f.png", self.aRotation.x, self.aRotation.y, self.aRotation.z];
+    NSString *filename = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", (int)self.aRotation.x, (int)self.aRotation.y, (int)self.aRotation.z];
     UIImage *image = [texture getUIImage];
     NSLog(@"image=%@", image);
     CGPoint pt = self.projectedPosition;
