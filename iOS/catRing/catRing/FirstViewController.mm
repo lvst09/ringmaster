@@ -151,6 +151,20 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
     return @[@(x),@(y),@(z)];
 }
+
+- (NSMutableDictionary *)filenamePositionInfoDic {
+    if (!_filenamePositionInfoDic) {
+        _filenamePositionInfoDic = nil;
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString *fileName = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            _filenamePositionInfoDic = [(NSDictionary *)obj mutableCopy];
+        }
+    }
+    return _filenamePositionInfoDic;
+}
+
 -(void)processAllImages
 {
     __block NSString *betaCompressionDirectory = nil;
@@ -162,38 +176,37 @@ NSInteger radiusToDegree(CGFloat angle) {
     //    image = [UIImage imageNamed:fileName];
     
     
-    self.filenamePositionInfoDic = [[NSMutableDictionary alloc ] initWithContentsOfFile:  [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
-    if(_filenamePositionInfoDic)
-        return;
+//    self.filenamePositionInfoDic = [[NSMutableDictionary alloc ] initWithContentsOfFile:  [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
+
     
     [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     
     int j;
-    for( j = 1 ; j< self.labelSlider.slider.maximumValue/* && j<15*/ ; j++)
+    for( j = 1 ; j < self.labelSlider.slider.maximumValue; j++)// && j < 15; j++)
     {
- 
-    self.title = [NSString stringWithFormat:@"%zd", j];
-    //    [self wmcSetNavigationBarTitleStyle];
-    
-    UIImage *image = nil;
-    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-    __block NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    //    betaCompressionDirectory = ];
-    
-    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-    NSLog(@"current filename=%@", betaCompressionDirectory);
-    //    image = [UIImage imageNamed:fileName];
-    
-    self.imageIndex = j;
-    
-    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
-    //    self.imageView.image = [self processImage:image];
         
-    if(!image)
-        return;
-    
+        self.title = [NSString stringWithFormat:@"%zd", j];
+        //    [self wmcSetNavigationBarTitleStyle];
+        
+        UIImage *image = nil;
+        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+        __block NSString *betaCompressionDirectory = nil;
+        betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        //    betaCompressionDirectory = ];
+        
+        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+        NSLog(@"current filename=%@", betaCompressionDirectory);
+        //    image = [UIImage imageNamed:fileName];
+        
+        self.imageIndex = j;
+        
+        image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+        //    self.imageView.image = [self processImage:image];
+        
+        if(!image)
+            return;
+        
         image = [self processImage:image];
         
         NSArray * angles = [self getCurrentAngle];
@@ -201,14 +214,15 @@ NSInteger radiusToDegree(CGFloat angle) {
         NSInteger x = 90 + radiusToDegree([angles[0] floatValue]);
         NSInteger y = 0 - radiusToDegree([angles[1] floatValue]);
         NSInteger z = radiusToDegree([angles[2] floatValue]);
-//        NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
+        //        NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
         NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
         NSLog(@"push %@", keyString);
         [self.indexXYZDic setObject:keyString forKey:[NSNumber numberWithInteger:j]];
         [self.rotationManager pushAngleX:x angleY:y angleZ:z];
     }
-    
-    if(j == self.labelSlider.slider.maximumValue) // || j == 15)
+//    if(self.filenamePositionInfoDic)
+//        return;
+    if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
 //        [self.rotationManager pushAngleX:0 angleY:0 angleZ:0];
         [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
@@ -223,6 +237,20 @@ NSInteger radiusToDegree(CGFloat angle) {
             //betaCompressionDirectory = ];
             self.labelSlider.slider.enabled = YES;
             BOOL tag = [self.filenamePositionInfoDic writeToFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"] atomically:YES];
+            if (!tag) {
+                NSLog(@"save failed");
+            }
+            
+            NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.filenamePositionInfoDic];
+            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:[betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
+            if (!saveRes)
+            {
+                NSLog(@"save file failed!");
+            }
+            else
+            {
+                NSLog(@"save file ok");
+            }
         } controller:self];
     }
 }
@@ -249,7 +277,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
-    i = (j + 1) % 100;
+    i = (j + 1) % self.totalVideoFrame;
 //    if (i > 14) {
 //        i = 1;
 //    }
@@ -364,6 +392,9 @@ NSInteger radiusToDegree(CGFloat angle) {
         return nil;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:index]];
+    if (!fileKeyName) {
+        return [self getImage:index - 1];;
+    }
     [self.filenamePositionInfoDic objectForKey:fileKeyName];
     NSString *key = fileKeyName;//[self.filenamePositionInfoDic allKeys].firstObject;
     
