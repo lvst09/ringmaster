@@ -187,11 +187,11 @@
     
     NSMutableArray *arr = [NSMutableArray array];
     NSInteger count = 0;
-    for (int i = 0; i < count; ++i) {
-        GLKVector3 rotation = GLKVector3Make(10 * i, 0, 0);// cc3v(60, 30, 0);
-        NSValue *value = [NSValue valueWithGLKVector3:rotation];
-        [arr addObject:value];
-    }
+//    for (int i = 0; i < count; ++i) {
+//        GLKVector3 rotation = GLKVector3Make(10 * i, 0, 0);// cc3v(60, 30, 0);
+//        NSValue *value = [NSValue valueWithGLKVector3:rotation];
+//        [arr addObject:value];
+//    }
     arr = [[DWRotationManager sharedManager] input];
     count = arr.count;
     for (int i = 0; i < count; ++i) {
@@ -425,7 +425,8 @@
 
 - (void)snapshot {
     CGSize s = [[CCDirector sharedDirector] viewSizeInPixels];
-    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:s.width height:s.height];
+//    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:s.width height:s.height];
+    CCRenderTexture *texture = [CCRenderTexture renderTextureWithWidth:320 height:480];
     [texture begin];
     [[[CCDirector sharedDirector] runningScene] visit];
     [texture end];
