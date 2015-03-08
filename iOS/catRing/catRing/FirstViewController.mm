@@ -200,6 +200,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     
+//    if (self.indexRingPosDic.allKeys.count > 10)
+//        return;
+    
     int j;
     for( j = 1 ; j < self.labelSlider.slider.maximumValue; j++)// && j < 15; j++)
     {
@@ -378,20 +381,15 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
     NSString *betaCompressionDirectory = nil;
     betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//    betaCompressionDirectory = ;
-    
-//    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+
     NSLog(@"current filename=%@", betaCompressionDirectory);
-//    image = [UIImage imageNamed:fileName];
     
     self.imageIndex = j;
     
     image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
-//    self.imageView.image = [self processImage:image];
     if(!image)
         return;
     [self processImage:image];
-    
     
     NSDictionary * outputDic = self.filenamePositionInfoDic;
 
@@ -399,30 +397,17 @@ NSInteger radiusToDegree(CGFloat angle) {
         return;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
-    [self.filenamePositionInfoDic objectForKey:fileKeyName];
-    NSString *key = fileKeyName;//[self.filenamePositionInfoDic allKeys].firstObject;
-    
-    NSString * pngName = key;//[outputDic.allKeys objectAtIndex:0];
-    DWRingPositionInfo * info = [outputDic objectForKey:pngName];
-//
-//    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)j]];
-//    UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
+    DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
     UIImage * ringImage = [self getImage:j];
  
     double ratio = ringImage.size.height / ringImage.size.width;
     
-//    ringImage  = [ImageProcess resizeImage:UIImagePNGRepresentation( ringImage )  size:1136 withRatio:YES];
     {
         ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
     }
 
-//UIImage * ringImage = [UIImage imageNamed:@"ring.png"];
-
     ringImage = [self clipImage:ringImage ringPosition:info];
-
-//    if ( MaxSingleImageSide < MAX(self.size.width, self.size.height) )
- 
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
@@ -438,25 +423,22 @@ NSInteger radiusToDegree(CGFloat angle) {
         return [self getImage:index - 1];;
     }
     [self.filenamePositionInfoDic objectForKey:fileKeyName];
-    NSString *key = fileKeyName;//[self.filenamePositionInfoDic allKeys].firstObject;
-    
-    NSString * pngName = key;//[outputDic.allKeys objectAtIndex:0];
 
-    NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    //    betaCompressionDirectory = ;
+    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     
-    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:pngName, (long)index]];
+    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:fileKeyName, (long)index]];
     UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
     
     if(!ringImage)
     {
         return [self getImage:index - 1];
-    }else {
+    }
+    else
+    {
         return ringImage;
     }
-
 }
+
 -(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
 {
     
@@ -608,9 +590,6 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
    
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
-    //12345 keyishen的手
-    //12346 jerry的手
-    //12347 jerry的手on sofa
     
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:path];
     if ([value integerValue] > 0) {
@@ -632,15 +611,9 @@ NSInteger radiusToDegree(CGFloat angle) {
                 flag = NO;
                 break;
             }
-            //        NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie"];
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
             NSLog(@"get image=%@", betaCompressionDirectory);
-            //        betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
-            //        betaCompressionDirectory = [parentDir stringByAppendingString:@".m4v"];
-//            double scale = 1.0f;
-//            CGSize newSize = CGSizeMake(image.size.width/scale, image.size.height/scale);
-//            image = [image resizeImageContext:nil size:newSize];
             NSData *imageData = UIImagePNGRepresentation(image);
             [imageData writeToFile:betaCompressionDirectory atomically:YES];
             ++i;
