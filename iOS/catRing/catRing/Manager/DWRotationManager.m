@@ -17,6 +17,8 @@ static DWRotationManager *sharedManager;
 
 @implementation DWRotationManager
 
+@synthesize output;
+
 + (instancetype)sharedManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -53,10 +55,46 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
     return scale;
 }
 
+- (void)setOutput:(NSMutableDictionary *)output1 {
+    if (self.output) {
+        if (output1) {
+            for (NSString *key in output1.allKeys) {
+                id obj = output1[key];
+                if (obj && key) {
+                    [self.output setObject:obj forKey:key];
+                }
+            }
+        }
+    } else {
+        self.output = output;
+    }
+}
+
+- (NSMutableDictionary *)output {
+    if (!output) {
+        output = nil;
+        NSString *fileName = [[NSBundle mainBundle] pathForResource:@"filenamePositionInfoDic" ofType:@""];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            output = [(NSDictionary *)obj mutableCopy];
+        } else {
+            output = [NSMutableDictionary dictionary];
+        }
+    }
+    return output;
+}
+
 - (void)getOutput:(completeBlk)blk controller:(UIViewController *)controller {
     // 先调用cocos3d的vc，然后生成图片，最后dismiss
+    NSLog(@"input=%ld, %@", (unsigned long)self.input.count, self.input);
+    
+    if (self.input.count == 0) {
+        if (blk) {
+            blk(self.output);
+        }
+        return;
+    }
 
-    NSLog(@"input=%@", self.input);
     
     NSDictionary *config = @{
                              CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
@@ -175,7 +213,7 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
 //        [window_ makeKeyAndVisible];
 //        [director showViewController:controller sender:nil];
         [controller presentViewController:navController_2 animated:NO completion:^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.input.count + 1) * 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 + (self.input.count + 1) * 2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [navController_2 dismissViewControllerAnimated:NO completion:NULL];
                 if (blk) {
                     blk(self.output);

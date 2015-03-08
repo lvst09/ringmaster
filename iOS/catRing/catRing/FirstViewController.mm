@@ -75,7 +75,7 @@
 
 - (NSMutableDictionary *)indexRingPosDic {
     if (!_indexRingPosDic) {
-        _filenamePositionInfoDic = nil;
+        _indexRingPosDic = nil;
         NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
         NSString *fileName = [betaCompressionDirectory stringByAppendingPathComponent: @"indexRingPosDic"];
         id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
@@ -86,6 +86,27 @@
         }
     }
     return _indexRingPosDic;
+}
+
+- (NSMutableDictionary *)filenamePositionInfoDic {
+    if (!_filenamePositionInfoDic) {
+        _filenamePositionInfoDic = nil;
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString *fileName = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
+        id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            _filenamePositionInfoDic = [(NSDictionary *)obj mutableCopy];
+        } else {
+            NSString *fileName = [[NSBundle mainBundle] pathForResource:@"filenamePositionInfoDic" ofType:@""];
+            id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+            if ([obj isKindOfClass:[NSDictionary class]]) {
+                _filenamePositionInfoDic = [(NSDictionary *)obj mutableCopy];
+            } else {
+                _filenamePositionInfoDic = [NSMutableDictionary dictionary];
+            }
+        }
+    }
+    return _filenamePositionInfoDic;
 }
 
 - (void)viewDidLoad {
@@ -170,19 +191,6 @@ NSInteger radiusToDegree(CGFloat angle) {
     return @[@(x),@(y),@(z)];
 }
 
-- (NSMutableDictionary *)filenamePositionInfoDic {
-    if (!_filenamePositionInfoDic) {
-        _filenamePositionInfoDic = nil;
-        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        NSString *fileName = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
-        id obj = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
-        if ([obj isKindOfClass:[NSDictionary class]]) {
-            _filenamePositionInfoDic = [(NSDictionary *)obj mutableCopy];
-        }
-    }
-    return _filenamePositionInfoDic;
-}
-
 -(void)processAllImages
 {
     __block NSString *betaCompressionDirectory = nil;
@@ -197,8 +205,8 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    self.filenamePositionInfoDic = [[NSMutableDictionary alloc ] initWithContentsOfFile:  [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"]];
 
     
-    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+//    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
+//    [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
     
 //    if (self.indexRingPosDic.allKeys.count > 10)
 //        return;
@@ -246,9 +254,16 @@ NSInteger radiusToDegree(CGFloat angle) {
         NSInteger z = radiusToDegree([angles[2] floatValue]);
         //        NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
         NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
-        NSLog(@"push %@", keyString);
+        
         [self.indexXYZDic setObject:keyString forKey:[NSNumber numberWithInteger:j]];
-        [self.rotationManager pushAngleX:x angleY:y angleZ:z];
+        
+        id obj = [self.filenamePositionInfoDic objectForKey:keyString];
+        if (!obj) {
+            NSLog(@"push %@", keyString);
+            [self.rotationManager pushAngleX:x angleY:y angleZ:z];
+        } else {
+            NSLog(@"skip key=%@", keyString);
+        }
     }
 //    if(self.filenamePositionInfoDic)
 //        return;
@@ -272,11 +287,18 @@ NSInteger radiusToDegree(CGFloat angle) {
         
         
 //        [self.rotationManager pushAngleX:0 angleY:0 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-        [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
         self.labelSlider.slider.enabled = NO;
         [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-            self.filenamePositionInfoDic = outputDic;
+//            self.filenamePositionInfoDic = outputDic;
+            // 将output的内容追加到filenamePositionInfoDic中去
+            if (outputDic) {
+                for (NSString *key in outputDic.allKeys) {
+                    id obj = outputDic[key];
+                    if (obj && key) {
+                        [self.filenamePositionInfoDic setObject:obj forKey:key];
+                    }
+                }
+            }
             NSLog(@"outputDic=%@", outputDic);
             
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -422,19 +444,18 @@ NSInteger radiusToDegree(CGFloat angle) {
     if (!fileKeyName) {
         return [self getImage:index - 1];;
     }
-    [self.filenamePositionInfoDic objectForKey:fileKeyName];
 
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     
-    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:fileKeyName, (long)index]];
-    UIImage * ringImage = [UIImage imageWithContentsOfFile:pngPath];
-    
-    if(!ringImage)
-    {
-        return [self getImage:index - 1];
+    NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName];
+    UIImage *ringImage = [UIImage imageNamed:fileKeyName];
+    if (!ringImage) {
+        ringImage = [UIImage imageWithContentsOfFile:pngPath];
     }
-    else
-    {
+    
+    if(!ringImage) {
+        return [self getImage:index - 1];
+    } else {
         return ringImage;
     }
 }
