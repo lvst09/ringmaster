@@ -259,7 +259,7 @@ NSInteger radiusToDegree(CGFloat angle) {
         [result addObject:currentAngles];
     }
 }
--(NSArray *)smoothRotationAngle:(NSArray *)array
+-(NSMutableArray *)smoothRotationAngle:(NSArray *)array
 {
     [self reduceDefectForRotationAngle:array];
     
@@ -375,7 +375,8 @@ NSInteger radiusToDegree(CGFloat angle) {
         [self.angleArray addObject:rotationAngles];
            }
     }
-    NSArray * smoothedAngles = [self smoothRotationAngle:self.angleArray];
+    NSMutableArray * smoothedAngles = [self smoothRotationAngle:self.angleArray];
+    self.angleArray = smoothedAngles;
     if(smoothedAngles)
     {
         for(int i = 0 ; i < smoothedAngles.count ; i++)
@@ -388,6 +389,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             //      NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
             NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
             
+ 
             [self.indexXYZDic setObject:keyString forKey:[NSNumber numberWithInteger:i]];
             
             id obj = [self.filenamePositionInfoDic objectForKey:keyString];
@@ -560,16 +562,17 @@ NSInteger radiusToDegree(CGFloat angle) {
         return;
     image = [self processImage:image];
     
+ 
     NSDictionary * outputDic = self.filenamePositionInfoDic;
 
     if(!outputDic)
         return;
-    
+ 
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
     UIImage * ringImage = [self getImage:j];
- 
+    
     double ratio = ringImage.size.height / ringImage.size.width;
  
     ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
@@ -607,7 +610,9 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 -(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
 {
+ 
     
+ 
     //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
     //    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
     
@@ -616,6 +621,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     CGPoint minPoint = position.minPoint;
     
     CGRect rect = CGRectMake(minPoint.x, image.size.height - minPoint.y - (maxPoint.y - minPoint.y ) ,maxPoint.x - minPoint.x -5 , maxPoint.y - minPoint.y + 10);
+    
     
 #if 0
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -647,14 +653,18 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 - (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian
 {
+    double shirinkRatio = currentHand->ringWidth / 80;
+    
     // Calculate the size of the rotated view's containing box for our drawing space
-    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height * shirinkRatio)];
     //CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degree));
     CGAffineTransform t = CGAffineTransformMakeRotation(radian);
     rotatedViewBox.transform = t;
     CGSize rotatedSize = rotatedViewBox.frame.size;
 //    [rotatedViewBox release];
     
+    rotatedSize.width *= shirinkRatio;
+    rotatedSize.height *= shirinkRatio;
     // Create the bitmap context
     UIGraphicsBeginImageContext(rotatedSize);
     CGContextRef bitmap = UIGraphicsGetCurrentContext();
@@ -666,9 +676,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     //CGContextRotateCTM(bitmap, DegreesToRadians(degree));
     CGContextRotateCTM(bitmap, radian);
     
+    CGSize drawSize = image.size;
+    drawSize.width *= shirinkRatio;
+    drawSize.height *= shirinkRatio;
+    
     // Now, draw the rotated/scaled image into the context
     CGContextScaleCTM(bitmap, 1.0, -1.0);
-    CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
+    CGContextDrawImage(bitmap, CGRectMake(-drawSize.width / 2, -drawSize.height / 2, drawSize.width, drawSize.height), [image CGImage]);
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
