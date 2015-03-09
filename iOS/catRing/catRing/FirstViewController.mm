@@ -55,6 +55,7 @@
 
 @property (nonatomic, assign) int imageIndex;
 
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @property (nonatomic, strong) DWRotationManager* rotationManager;
 
@@ -136,9 +137,9 @@
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
     
-    
-    
-
+    [self.view addSubview:self.indicator];
+    self.indicator.center = self.view.center;
+    [self.indicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,13 +147,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIActivityIndicatorView *)indicator {
+    if (!_indicator) {
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _indicator.hidesWhenStopped = YES;
+    }
+    return _indicator;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (firstTime) {
         firstTime = NO;
+        [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
             [self processAllImages];
+            [self.indicator stopAnimating];
+            [self showImageAtIndex:1];
         });
     }
 
@@ -180,7 +192,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     {
         x = (previousHand->rotationAngle[0] + currentHand->rotationAngle[0]) / 2.0 ;
         y = (previousHand->rotationAngle[1] + currentHand->rotationAngle[1])/ 2.0;
-        z = ( previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 2.0;
+        z = (previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 2.0;
     }
     else
     {
@@ -214,6 +226,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     int j;
     for( j = 1 ; j < self.labelSlider.slider.maximumValue; j++)// && j < 15; j++)
     {
+        @autoreleasepool {
+            
+   
         
         self.title = [NSString stringWithFormat:@"%zd", j];
         //    [self wmcSetNavigationBarTitleStyle];
@@ -236,16 +251,33 @@ NSInteger radiusToDegree(CGFloat angle) {
         if(!image)
             return;
         
-        image = [self processImage:image];
+        [self processImage:image];
+//        DWRingPosModel *savedModel = self.indexRingPosDic[[NSNumber numberWithInteger:j]];
+//        if (savedModel) {
+//            HandGesture *hg = new HandGesture;
+//            hg->rotationAngle[0] = savedModel.rotationAngleX;
+//            hg->rotationAngle[1] = savedModel.rotationAngleX;
+//            hg->rotationAngle[2] = savedModel.rotationAngleX;
+//            hg->ringAngle = savedModel.ringAngle;
+//            hg->ringCenter.x = savedModel.ringCenterX;
+//            hg->ringCenter.y = savedModel.ringCenterY;
+//            currentHand = hg;
+//        } else {
+//            [self processImage:image];
+//            DWRingPosModel *ringPosModel = [[DWRingPosModel alloc] init];
+//            ringPosModel.rotationAngleX = currentHand->rotationAngle[0];
+//            ringPosModel.rotationAngleY = currentHand->rotationAngle[1];
+//            ringPosModel.rotationAngleZ = currentHand->rotationAngle[2];
+//            ringPosModel.ringAngle = currentHand->ringAngle;
+//            ringPosModel.ringCenterX = currentHand->ringCenter.x;
+//            ringPosModel.ringCenterY = currentHand->ringCenter.y;
+//            [self.indexRingPosDic setObject:ringPosModel forKey:[NSNumber numberWithInteger:j]];
+//        }
+//        ppreviousHand = previousHand;
+//        previousHand = currentHand;
+//        currentHand = &hg;
         
-        DWRingPosModel *ringPosModel = [[DWRingPosModel alloc] init];
-        ringPosModel.rotationAngleX = currentHand->rotationAngle[0];
-        ringPosModel.rotationAngleY = currentHand->rotationAngle[1];
-        ringPosModel.rotationAngleZ = currentHand->rotationAngle[2];
-        ringPosModel.ringAngle = currentHand->ringAngle;
-        ringPosModel.ringCenterX = currentHand->ringCenter.x;
-        ringPosModel.ringCenterY = currentHand->ringCenter.y;
-        [self.indexRingPosDic setObject:ringPosModel forKey:[NSNumber numberWithInteger:j]];
+        
         
         NSArray * angles = [self getCurrentAngle];
         
@@ -263,6 +295,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             [self.rotationManager pushAngleX:x angleY:y angleZ:z];
         } else {
             NSLog(@"skip key=%@", keyString);
+        }
         }
     }
 //    if(self.filenamePositionInfoDic)

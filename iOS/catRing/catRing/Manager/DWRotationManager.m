@@ -95,7 +95,11 @@ FindPOTScale2(CGFloat size, CGFloat fixedSize)
         return;
     }
 
-    
+    [self pushAngleX:90 angleY:0 angleZ:0];
+    [self pushAngleX:90 angleY:0 angleZ:0];
+//    [self pushAngleX:90 angleY:0 angleZ:0];
+//    [self pushAngleX:90 angleY:-13 angleZ:1];
+//    [self pushAngleX:90 angleY:-19 angleZ:0];
     NSDictionary *config = @{
                              CCSetupDepthFormat: @GL_DEPTH_COMPONENT16,				// Change to @GL_DEPTH24_STENCIL8 if using shadow volumes, which require a stencil buffer
                              CCSetupShowDebugStats: @(YES),							// Show the FPS and draw call label.
