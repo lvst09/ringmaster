@@ -426,8 +426,13 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    }
 //    [self.rotationManager pushAngleX:90 angleY:-19 angleZ:0];
 //    [self.rotationManager pushAngleX:90 angleY:16 angleZ:1];
-//    [self.rotationManager pushAngleX:90 angleY:-23 angleZ:0];
-//    MYIMG_ANG_x90_y34_z2.png
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-13 angleZ:1];
+//    MYIMG_ANG_x90_y-13_z1.png
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
         {
