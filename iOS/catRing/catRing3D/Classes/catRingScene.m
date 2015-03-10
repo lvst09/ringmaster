@@ -185,7 +185,7 @@
     [rezNode runAction:[CC3ActionRotateTo actionWithDuration:0 rotateTo:aRotation]];
     NSLog(@"3rezNode x=%f, y=%f, z=%f", rezNode.location.x, rezNode.location.y, rezNode.location.z);
     
-    NSMutableArray *arr = [NSMutableArray array];
+    NSMutableArray *arr = nil;
     NSInteger count = 0;
 //    for (int i = 0; i < count; ++i) {
 //        GLKVector3 rotation = GLKVector3Make(10 * i, 0, 0);// cc3v(60, 30, 0);
@@ -433,10 +433,10 @@
     [texture end];
     
     NSString *filename = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", (int)self.aRotation.x, (int)self.aRotation.y, (int)self.aRotation.z];
-    UIImage *image = [texture getUIImage];
-    NSLog(@"image=%@", image);
-    CGPoint pt = self.projectedPosition;
-    NSLog(@"pt=%@", [NSValue valueWithCGPoint:pt]);
+//    UIImage *image = [texture getUIImage];
+//    NSLog(@"image=%@", image);
+//    CGPoint pt = self.projectedPosition;
+//    NSLog(@"pt=%@", [NSValue valueWithCGPoint:pt]);
     
     if ([texture saveToFile:filename format:CCRenderTextureImageFormatPNG]) {
         NSLog(@"succ, filename=%@", filename);
@@ -445,7 +445,7 @@
     }
     
     [self.activeCamera projectNode:self];
-    NSLog(@"node x=%f, y=%f", self.projectedPosition.x, self.projectedPosition.y);
+//    NSLog(@"node x=%f, y=%f", self.projectedPosition.x, self.projectedPosition.y);
     DWRingPositionInfo *posInfo = [[DWRingPositionInfo alloc] init];
     posInfo.centerPoint = CGPointMake(self.projectedPosition.x, self.projectedPosition.y);
     
@@ -455,14 +455,14 @@
     maximum = self.boundingBox.maximum;
     CC3Vector m1 = [self.activeCamera projectLocation:minimum];
     CC3Vector m2 = [self.activeCamera projectLocation:maximum];
-    NSLog(@"m1 node x=%f, y=%f", m1.x, m1.y);
-    NSLog(@"m2 node x=%f, y=%f", m2.x, m2.y);
+//    NSLog(@"m1 node x=%f, y=%f", m1.x, m1.y);
+//    NSLog(@"m2 node x=%f, y=%f", m2.x, m2.y);
     posInfo.minPoint = CGPointMake(m1.x, m1.y);
     posInfo.maxPoint = CGPointMake(m2.x, m2.y);
     [self.filenamePositionInfoDic setObject:posInfo forKey:filename];
     [DWRotationManager sharedManager].output = self.filenamePositionInfoDic;
     
-    NSLog(@"key:%@, value:%@", filename, posInfo);
+//    NSLog(@"key:%@, value:%@", filename, posInfo);
 }
 
 @end

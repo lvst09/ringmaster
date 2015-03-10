@@ -37,12 +37,11 @@
 #import "DWRingPosModel.h"
 
 @interface RotationAngle : NSObject {
-    
-@public
-    double x;
-    double y;
-    double z;
 }
+@property (nonatomic, assign)    double x;
+@property (nonatomic, assign)   double y;
+@property (nonatomic, assign)   double z;
+
 @end
 @implementation RotationAngle
 {
@@ -67,7 +66,7 @@
 @property (nonatomic, assign) NSInteger totalVideoFrame;
 
 @property (nonatomic, retain) NSMutableArray * angleArray;
-@property (nonatomic, assign) int imageIndex;
+@property (nonatomic, assign) NSInteger imageIndex;
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
@@ -249,9 +248,9 @@ NSInteger radiusToDegree(CGFloat angle) {
         RotationAngle * currentAngles = [array objectAtIndex:i];
         RotationAngle * nextAngles = [array objectAtIndex:i+1];
         
-        currentAngles->x = [self reduceDefect:previousAngle->x middle:currentAngles->x next:nextAngles->x];
-        currentAngles->y = [self reduceDefect:previousAngle->y middle:currentAngles->y next:nextAngles->y];
-        currentAngles->z = [self reduceDefect:previousAngle->z middle:currentAngles->z next:nextAngles->z];
+        currentAngles.x = [self reduceDefect:previousAngle.x middle:currentAngles.x next:nextAngles.x];
+        currentAngles.y = [self reduceDefect:previousAngle.y middle:currentAngles.y next:nextAngles.y];
+        currentAngles.z = [self reduceDefect:previousAngle.z middle:currentAngles.z next:nextAngles.z];
 //        RotationAngle * newAngles = [RotationAngle alloc];
 //        newAngles->x = (previousAngle->x + currentAngles->x + nextAngles->x) /3;
 //        newAngles->y = (previousAngle->y + currentAngles->y + nextAngles->y) /3;
@@ -272,9 +271,9 @@ NSInteger radiusToDegree(CGFloat angle) {
             RotationAngle * nextAngles = [array objectAtIndex:i+1];
             
             RotationAngle * newAngles = [RotationAngle alloc];
-            newAngles->x = (previousAngle->x + currentAngles->x + nextAngles->x) /3;
-            newAngles->y = (previousAngle->y + currentAngles->y + nextAngles->y) /3;
-            newAngles->z = (previousAngle->z + currentAngles->z + nextAngles->z) /3;
+            newAngles.x = (previousAngle.x + currentAngles.x + nextAngles.x) /3;
+            newAngles.y = (previousAngle.y + currentAngles.y + nextAngles.y) /3;
+            newAngles.z = (previousAngle.z + currentAngles.z + nextAngles.z) /3;
             
             [result addObject:newAngles];
     }
@@ -282,13 +281,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     for(int i = 0 ; i<array.count  ; i++)
     {
         RotationAngle * currentAngles = [array objectAtIndex:i];
-        NSLog(@"oringinal angles: %f, %f ,%f", currentAngles->x,currentAngles->y,currentAngles->z);
+        NSLog(@"oringinal angles: %f, %f ,%f", currentAngles.x,currentAngles.y,currentAngles.z);
     }
     
     for(int i = 0 ; i<result.count  ; i++)
     {
         RotationAngle * resultAngles = [result objectAtIndex:i];
-        NSLog(@"smoothed angles: %f, %f ,%f", resultAngles->x,resultAngles->y,resultAngles->z);
+        NSLog(@"smoothed angles: %f, %f ,%f", resultAngles.x,resultAngles.y,resultAngles.z);
     }
     return result;
 }
@@ -317,74 +316,75 @@ NSInteger radiusToDegree(CGFloat angle) {
     {
         @autoreleasepool {
             
-        self.title = [NSString stringWithFormat:@"%zd", j];
-        //    [self wmcSetNavigationBarTitleStyle];
-        
-        UIImage *image = nil;
-        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-        __block NSString *betaCompressionDirectory = nil;
-        betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        //    betaCompressionDirectory = ];
-        
-        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-        NSLog(@"current filename=%@", betaCompressionDirectory);
-        //    image = [UIImage imageNamed:fileName];
-        
-        self.imageIndex = j;
-        
-        image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
-        //    self.imageView.image = [self processImage:image];
-        
-        if(!image)
-            return;
-        
-        [self processImage:image];
-//        DWRingPosModel *savedModel = self.indexRingPosDic[[NSNumber numberWithInteger:j]];
-//        if (savedModel) {
-//            HandGesture *hg = new HandGesture;
-//            hg->rotationAngle[0] = savedModel.rotationAngleX;
-//            hg->rotationAngle[1] = savedModel.rotationAngleX;
-//            hg->rotationAngle[2] = savedModel.rotationAngleX;
-//            hg->ringAngle = savedModel.ringAngle;
-//            hg->ringCenter.x = savedModel.ringCenterX;
-//            hg->ringCenter.y = savedModel.ringCenterY;
-//            currentHand = hg;
-//        } else {
-//            [self processImage:image];
-//            DWRingPosModel *ringPosModel = [[DWRingPosModel alloc] init];
-//            ringPosModel.rotationAngleX = currentHand->rotationAngle[0];
-//            ringPosModel.rotationAngleY = currentHand->rotationAngle[1];
-//            ringPosModel.rotationAngleZ = currentHand->rotationAngle[2];
-//            ringPosModel.ringAngle = currentHand->ringAngle;
-//            ringPosModel.ringCenterX = currentHand->ringCenter.x;
-//            ringPosModel.ringCenterY = currentHand->ringCenter.y;
-//            [self.indexRingPosDic setObject:ringPosModel forKey:[NSNumber numberWithInteger:j]];
-//        }
-//        ppreviousHand = previousHand;
-//        previousHand = currentHand;
-//        currentHand = &hg;
-        
-//        NSArray * angles = [self getCurrentAngle];
-        
-        if(!_angleArray)
-            self.angleArray = [[NSMutableArray alloc]initWithCapacity:10];
-        RotationAngle * rotationAngles = [RotationAngle alloc];
-        rotationAngles->x = currentHand->rotationAngle[0];
-        rotationAngles->y = currentHand->rotationAngle[1];
-        rotationAngles->z = currentHand->rotationAngle[2];
-        [self.angleArray addObject:rotationAngles];
-           }
+            self.title = [NSString stringWithFormat:@"%zd", j];
+            //    [self wmcSetNavigationBarTitleStyle];
+            
+            UIImage *image = nil;
+            //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+            __block NSString *betaCompressionDirectory = nil;
+            betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            //    betaCompressionDirectory = ];
+            
+            //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+            NSLog(@"current filename=%@", betaCompressionDirectory);
+            //    image = [UIImage imageNamed:fileName];
+            
+            self.imageIndex = j;
+            
+            image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+            //    self.imageView.image = [self processImage:image];
+            
+            if(!image)
+                return;
+            
+            [self processImage:image];
+            //        DWRingPosModel *savedModel = self.indexRingPosDic[[NSNumber numberWithInteger:j]];
+            //        if (savedModel) {
+            //            HandGesture *hg = new HandGesture;
+            //            hg->rotationAngle[0] = savedModel.rotationAngleX;
+            //            hg->rotationAngle[1] = savedModel.rotationAngleX;
+            //            hg->rotationAngle[2] = savedModel.rotationAngleX;
+            //            hg->ringAngle = savedModel.ringAngle;
+            //            hg->ringCenter.x = savedModel.ringCenterX;
+            //            hg->ringCenter.y = savedModel.ringCenterY;
+            //            currentHand = hg;
+            //        } else {
+            //            [self processImage:image];
+            //            DWRingPosModel *ringPosModel = [[DWRingPosModel alloc] init];
+            //            ringPosModel.rotationAngleX = currentHand->rotationAngle[0];
+            //            ringPosModel.rotationAngleY = currentHand->rotationAngle[1];
+            //            ringPosModel.rotationAngleZ = currentHand->rotationAngle[2];
+            //            ringPosModel.ringAngle = currentHand->ringAngle;
+            //            ringPosModel.ringCenterX = currentHand->ringCenter.x;
+            //            ringPosModel.ringCenterY = currentHand->ringCenter.y;
+            //            [self.indexRingPosDic setObject:ringPosModel forKey:[NSNumber numberWithInteger:j]];
+            //        }
+            //        ppreviousHand = previousHand;
+            //        previousHand = currentHand;
+            //        currentHand = &hg;
+            
+            //        NSArray * angles = [self getCurrentAngle];
+            
+            if(!_angleArray)
+                self.angleArray = [[NSMutableArray alloc]initWithCapacity:10];
+            RotationAngle * rotationAngles = [[RotationAngle alloc] init];
+            rotationAngles.x = currentHand->rotationAngle[0];
+            rotationAngles.y = currentHand->rotationAngle[1];
+            rotationAngles.z = currentHand->rotationAngle[2];
+            NSLog(@"index=%d, x=%f, y=%f, z=%f", j, rotationAngles.x, rotationAngles.y, rotationAngles.z);
+            [self.angleArray addObject:rotationAngles];
+        }
     }
-    NSArray * smoothedAngles = [self smoothRotationAngle:self.angleArray];
+    NSArray * smoothedAngles = self.angleArray;// [self smoothRotationAngle:self.angleArray];
     if(smoothedAngles)
     {
         for(int i = 0 ; i < smoothedAngles.count ; i++)
         {
             RotationAngle * angles = [smoothedAngles objectAtIndex:i];
             
-            NSInteger x = 90 + radiusToDegree(angles->x);
-            NSInteger y = 0 - radiusToDegree(angles->y);
-            NSInteger z = radiusToDegree(angles->z);
+            NSInteger x = 90 + radiusToDegree(angles.x);
+            NSInteger y = 0 - radiusToDegree(angles.y);
+            NSInteger z = radiusToDegree(angles.z);
             //      NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
             NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
             
@@ -400,7 +400,30 @@ NSInteger radiusToDegree(CGFloat angle) {
             }
         }
     }
- 
+    NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
+    
+    
+//    for (int yy = -30; yy <= 30; ++yy) {
+//        for (int zz = 0; zz <= 6; ++zz) {
+//            NSInteger x = 90;
+//            NSInteger y = yy;
+//            NSInteger z = zz;
+//            //      NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
+//            NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
+//            id obj = [self.filenamePositionInfoDic objectForKey:keyString];
+//            if (!obj) {
+//                NSLog(@"pushpush %@", keyString);
+//                [self.rotationManager pushAngleX:x angleY:y angleZ:z];
+//                
+//            } else {
+//                NSLog(@"skip key=%@", keyString);
+//            }
+//        }
+//    }
+//    [self.rotationManager pushAngleX:90 angleY:-19 angleZ:0];
+//    [self.rotationManager pushAngleX:90 angleY:16 angleZ:1];
+//    [self.rotationManager pushAngleX:90 angleY:-23 angleZ:0];
+//    MYIMG_ANG_x90_y34_z2.png
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
         {
@@ -518,7 +541,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     hg = new HandGesture();
     
-    hg->index = self.imageIndex;
+    hg->index = (int)self.imageIndex;
     MyImage * myImage = detectHand(ipImage, *hg);
     
     delete ppreviousHand;
@@ -739,17 +762,6 @@ NSInteger radiusToDegree(CGFloat angle) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
             if (!self.rotationManager) {
-                self.rotationManager = [DWRotationManager sharedManager];
-                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
-                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-                    self.filenamePositionInfoDic = outputDic;
-                    NSLog(@"outputDic=%@", outputDic);
-                    
-                } controller:self];
             }
             return;
         }
@@ -774,7 +786,6 @@ NSInteger radiusToDegree(CGFloat angle) {
         @autoreleasepool {
             image = [self.videoEncoder fetchOneFrame];
             if (!image) {
-                flag = NO;
                 break;
             }
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
