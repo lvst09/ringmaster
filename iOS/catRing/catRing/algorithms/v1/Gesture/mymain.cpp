@@ -560,7 +560,7 @@ void caculateRingPosition(HandGesture *hg)
     
     double distanceStart = distanceOfPoint(ptStart, ptFar);
     double distanceEnd = distanceOfPoint(ptEnd, ptFar);
-    
+
     if(distanceStart > distanceEnd)
     {
         double ratio = distanceStart/distanceEnd;
@@ -589,6 +589,7 @@ void caculateRingPosition(HandGesture *hg)
     ringStart = pointMove(ptStart, vectorMidFar);
     ringEnd = pointMove(ptEnd, vectorMidFar);
     
+    hg->ringWidth = distanceOfPoint(ringStart, ringEnd);
     hg->ringCenter = middlePoint(ringStart,ringEnd);
     
     Point ringVec = vectorBetweenPoints(ringStart, ringEnd);
@@ -706,6 +707,8 @@ void caculateRotationAngle(HandGesture *hg)
     double dist2 = distanceOfPoint(ptEnd, ptFar);
     double dist3 = distanceOfPoint(ptStart, ptEnd);
     
+    
+    
     Point vectorStart = vectorBetweenPoints(ptStart, ptFar);
     Point vectorEnd = vectorBetweenPoints(ptEnd, ptFar);
     
@@ -802,9 +805,9 @@ void myDrawContours(MyImage *m,HandGesture *hg){
         if (i==count - 2) {
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptEnd);
-            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-            circle( m->src, ptEnd,   4, Scalar(0,255,0), 2 * scale);
-            line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+//            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//            circle( m->src, ptEnd,   4, Scalar(0,255,0), 2 * scale);
+//            line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
             
             hg->fingerTipFeatures.push_back(ptStart);
             hg->fingerTipFeatures.push_back(ptEnd);
@@ -814,11 +817,11 @@ void myDrawContours(MyImage *m,HandGesture *hg){
         }
         if (i==count - 1) {
             hg->mediusFinger.push_back(ptFar);
-            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//            circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
 //            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,0), 1 * scale);
             
             hg->fingerTipFeatures.push_back(ptEnd);
-            circle( m->src, ptEnd,   4, Scalar(0,0,0), 2 * scale);
+//            circle( m->src, ptEnd,   4, Scalar(0,0,0), 2 * scale);
             if(hg->index==1)
             {
                 firstFinger = new vector<Point>(hg->mediusFinger);
