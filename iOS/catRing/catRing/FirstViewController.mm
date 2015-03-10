@@ -155,15 +155,26 @@
     [self.view addSubview:labelSlider];
     self.labelSlider = labelSlider;
     
-    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 20, 20);
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 60, 40);
     [previousButton addTarget:self action:@selector(onPreviousButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [previousButton setTitle:@"上一张" forState:UIControlStateNormal];
+    [previousButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:previousButton];
     
-    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    nextButton.frame = CGRectMake(self.view.frame.size.width - 20, self.view.frame.size.height - 80, 20, 20);
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 80, 60, 40);
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setTitle:@"下一张" forState:UIControlStateNormal];
+    [nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:nextButton];
+    
+    UIButton *pickColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80, 60, 40);
+    [pickColorButton addTarget:self action:@selector(onPickColorButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [pickColorButton setTitle:@"选肤色" forState:UIControlStateNormal];
+    [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:pickColorButton];
     
     [self.view addSubview:self.indicator];
     self.indicator.center = self.view.center;
@@ -512,6 +523,10 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.labelSlider.slider.value = i;
     j = i;
     [self showImageAtIndex:j];
+}
+
+- (void)onPickColorButtonClicked:(UIButton *)sender {
+
 }
 
 - (void)onNextButtonClicked:(UIButton *)sender {
