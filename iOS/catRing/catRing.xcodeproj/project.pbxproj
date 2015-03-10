@@ -697,6 +697,12 @@
 		33774AAC1AAE789200B2E754 /* MYIMG_ANG_x90_y55_z1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3377495D1AAE789200B2E754 /* MYIMG_ANG_x90_y55_z1.png */; };
 		33774AAD1AAE789200B2E754 /* MYIMG_ANG_x90_y56_z2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3377495E1AAE789200B2E754 /* MYIMG_ANG_x90_y56_z2.png */; };
 		33774AAE1AAE789200B2E754 /* MYIMG_ANG_x90_y56_z2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3377495E1AAE789200B2E754 /* MYIMG_ANG_x90_y56_z2.png */; };
+		33774BEF1AAF359E00B2E754 /* DW_Plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33774BEB1AAF359E00B2E754 /* DW_Plus@2x.png */; };
+		33774BF01AAF359E00B2E754 /* DW_Plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33774BEB1AAF359E00B2E754 /* DW_Plus@2x.png */; };
+		33774BF11AAF359E00B2E754 /* DW_PlusPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */; };
+		33774BF21AAF359E00B2E754 /* DW_PlusPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */; };
+		33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */; };
+		33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */; };
 		3379C9AB1A9329FD00D29FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
 		3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
 		3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
@@ -1542,6 +1548,10 @@
 		3377495C1AAE789200B2E754 /* MYIMG_ANG_x90_y55_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y55_z0.png; sourceTree = "<group>"; };
 		3377495D1AAE789200B2E754 /* MYIMG_ANG_x90_y55_z1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y55_z1.png; sourceTree = "<group>"; };
 		3377495E1AAE789200B2E754 /* MYIMG_ANG_x90_y56_z2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y56_z2.png; sourceTree = "<group>"; };
+		33774BEB1AAF359E00B2E754 /* DW_Plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_Plus@2x.png"; sourceTree = "<group>"; };
+		33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_PlusPressed@2x.png"; sourceTree = "<group>"; };
+		33774BED1AAF359E00B2E754 /* SelectPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPointViewController.h; sourceTree = "<group>"; };
+		33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPointViewController.m; sourceTree = "<group>"; };
 		3379C9A51A9329FD00D29FFD /* catRing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catRing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9A91A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9AA1A9329FD00D29FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2733,6 +2743,17 @@
 			path = ringRotation;
 			sourceTree = "<group>";
 		};
+		33774BEA1AAF359E00B2E754 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				33774BEB1AAF359E00B2E754 /* DW_Plus@2x.png */,
+				33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */,
+				33774BED1AAF359E00B2E754 /* SelectPointViewController.h */,
+				33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		3379C99C1A9329FD00D29FFD = {
 			isa = PBXGroup;
 			children = (
@@ -2762,6 +2783,7 @@
 		3379C9A71A9329FD00D29FFD /* catRing */ = {
 			isa = PBXGroup;
 			children = (
+				33774BEA1AAF359E00B2E754 /* UI */,
 				33AAE6321AA30A210031DF4A /* Model */,
 				3379CA021A93369700D29FFD /* Resources */,
 				33DA87A51AA2B4A600625E87 /* Camera */,
@@ -4600,6 +4622,7 @@
 				337748491AADD58600B2E754 /* MYIMG_ANG_x90_y-3_z4.png in Resources */,
 				337748291AAC138200B2E754 /* MYIMG_ANG_x90_y25_z3.png in Resources */,
 				337749831AAE789200B2E754 /* MYIMG_ANG_x90_y-18_z6.png in Resources */,
+				33774BF11AAF359E00B2E754 /* DW_PlusPressed@2x.png in Resources */,
 				3377499B1AAE789200B2E754 /* MYIMG_ANG_x90_y-22_z3.png in Resources */,
 				33774A3F1AAE789200B2E754 /* MYIMG_ANG_x90_y1_z0.png in Resources */,
 				3377496F1AAE789200B2E754 /* MYIMG_ANG_x90_y-14_z6.png in Resources */,
@@ -4825,6 +4848,7 @@
 				33774A391AAE789200B2E754 /* MYIMG_ANG_x90_y-56_z6.png in Resources */,
 				337749951AAE789200B2E754 /* MYIMG_ANG_x90_y-21_z4.png in Resources */,
 				337749CD1AAE789200B2E754 /* MYIMG_ANG_x90_y-27_z3.png in Resources */,
+				33774BEF1AAF359E00B2E754 /* DW_Plus@2x.png in Resources */,
 				33774A051AAE789200B2E754 /* MYIMG_ANG_x90_y-36_z0.png in Resources */,
 				337748B31AADF04500B2E754 /* MYIMG_ANG_x90_y32_z1.png in Resources */,
 				337747361AAC10E300B2E754 /* MYIMG_ANG_x90_y-4_z0.png in Resources */,
@@ -4922,6 +4946,7 @@
 				33774AA81AAE789200B2E754 /* MYIMG_ANG_x90_y53_z2.png in Resources */,
 				33774A721AAE789200B2E754 /* MYIMG_ANG_x90_y14_z4.png in Resources */,
 				33774A9E1AAE789200B2E754 /* MYIMG_ANG_x90_y43_z1.png in Resources */,
+				33774BF01AAF359E00B2E754 /* DW_Plus@2x.png in Resources */,
 				337747351AAC10E300B2E754 /* MYIMG_ANG_x90_y-3_z2.png in Resources */,
 				337747E21AAC138200B2E754 /* MYIMG_ANG_x90_y-3_z6.png in Resources */,
 				33AAF37E1AA314F80031DF4A /* CC3LibTexturableBumpMapTangentSpace.fsh in Resources */,
@@ -5049,6 +5074,7 @@
 				3377476B1AAC10E300B2E754 /* MYIMG_ANG_x90_y0_z6.png in Resources */,
 				33774A4E1AAE789200B2E754 /* MYIMG_ANG_x90_y3_z4.png in Resources */,
 				337747951AAC10E300B2E754 /* MYIMG_ANG_x90_y28_z2.png in Resources */,
+				33774BF21AAF359E00B2E754 /* DW_PlusPressed@2x.png in Resources */,
 				337747431AAC10E300B2E754 /* MYIMG_ANG_x90_y-5_z6.png in Resources */,
 				33AAF3661AA314F70031DF4A /* fps_images-ipadhd.png in Resources */,
 				337747AB1AAC10E400B2E754 /* MYIMG_ANG_x90_y7_z0.png in Resources */,
@@ -5353,6 +5379,7 @@
 				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
 				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,
 				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
+				33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
 				33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */,
 				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
@@ -5397,6 +5424,7 @@
 				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
+				33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,

@@ -10,4 +10,6 @@
 
 @interface SelectPointViewController : UIViewController
 
+@property (nonatomic, strong) UIImage *inputImage;
+
 @end

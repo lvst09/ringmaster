@@ -36,6 +36,8 @@
 #import "DWRingPositionInfo.h"
 #import "DWRingPosModel.h"
 
+#import "SelectPointViewController.h"
+
 @interface RotationAngle : NSObject {
 }
 @property (nonatomic, assign) double x;
@@ -196,6 +198,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+#if 1
     if (firstTime) {
         firstTime = NO;
         [self.indicator startAnimating];
@@ -206,7 +209,7 @@
             [self showImageAtIndex:1];
         });
     }
-
+#endif
     
 //    [self showImageAtIndex:1];
 }
@@ -526,7 +529,16 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 - (void)onPickColorButtonClicked:(UIButton *)sender {
-
+    SelectPointViewController *picker = [[SelectPointViewController alloc] init];
+    NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    
+    NSLog(@"current filename=%@", betaCompressionDirectory);
+    
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)0]]];
+    picker.inputImage = image;
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void)onNextButtonClicked:(UIButton *)sender {

@@ -13,17 +13,19 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImageView * tempView;
 @property (nonatomic, strong) UIButton *confirmButton;
-@property (nonatomic, strong) UIImage *inputImage;
+//@property (nonatomic, strong) UIImage *inputImage;
 @end
 
 @implementation SelectPointViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *image = [UIImage imageNamed:@"Default.png"];
+    self.view.backgroundColor = [UIColor whiteColor];
+//    UIImage *image = [UIImage imageNamed:@"Default.png"];
     CGRect frame = self.view.bounds;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44+10, frame.size.width, frame.size.height - 55)];
-    imageView.image = image;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, frame.size.width, 640.f/3.f)];
+    imageView.image = self.inputImage;
+//    imageView.contentMode = UIView
     [self.view addSubview:imageView];
     self.imageView = imageView;
     
@@ -58,6 +60,7 @@
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
 }
+
 
 - (void)handlePanMoveLocation:(UIPanGestureRecognizer *)pan
 {
