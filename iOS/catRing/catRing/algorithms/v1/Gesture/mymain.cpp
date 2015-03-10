@@ -560,7 +560,7 @@ void caculateRingPosition(HandGesture *hg)
     
     double distanceStart = distanceOfPoint(ptStart, ptFar);
     double distanceEnd = distanceOfPoint(ptEnd, ptFar);
-    
+
     if(distanceStart > distanceEnd)
     {
         double ratio = distanceStart/distanceEnd;
@@ -589,6 +589,7 @@ void caculateRingPosition(HandGesture *hg)
     ringStart = pointMove(ptStart, vectorMidFar);
     ringEnd = pointMove(ptEnd, vectorMidFar);
     
+    hg->ringWidth = distanceOfPoint(ringStart, ringEnd);
     hg->ringCenter = middlePoint(ringStart,ringEnd);
     
     Point ringVec = vectorBetweenPoints(ringStart, ringEnd);
@@ -705,6 +706,8 @@ void caculateRotationAngle(HandGesture *hg)
     double dist1 = distanceOfPoint(ptStart, ptFar);
     double dist2 = distanceOfPoint(ptEnd, ptFar);
     double dist3 = distanceOfPoint(ptStart, ptEnd);
+    
+    
     
     Point vectorStart = vectorBetweenPoints(ptStart, ptFar);
     Point vectorEnd = vectorBetweenPoints(ptEnd, ptFar);
