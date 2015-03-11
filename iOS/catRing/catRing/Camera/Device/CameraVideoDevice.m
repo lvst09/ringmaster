@@ -497,9 +497,7 @@ static int frame = -1;
     CGSize size = CGSizeMake(960, 640);
 
     NSString *parentDir = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie1233"];
-    NSString *betaCompressionDirectory = [NSHomeDirectory()stringByAppendingPathComponent:@"Documents/Movie_llu.m4v"];
-    
-    betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
+    NSString *betaCompressionDirectory = [parentDir stringByAppendingString:[NSString stringWithFormat:@"_%f.m4v", [[NSDate date] timeIntervalSince1970]]];
     betaCompressionDirectory = [parentDir stringByAppendingString:@".m4v"];
 //    [[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%llu.m4v",mach_absolute_time()]] retain]
     NSError *error = nil;

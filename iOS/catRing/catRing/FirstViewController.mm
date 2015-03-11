@@ -36,9 +36,9 @@
 #import "DWRingPositionInfo.h"
 #import "DWRingPosModel.h"
 
+#import "SelectPointViewController.h"
+
 @interface RotationAngle : NSObject {
-    
- 
 }
 @property (nonatomic, assign) double x;
 @property (nonatomic, assign) double y;
@@ -78,8 +78,11 @@
 @property (nonatomic, assign) NSInteger totalVideoFrame;
 
 @property (nonatomic, retain) NSMutableArray * angleArray;
+
 @property (nonatomic, retain) NSMutableArray * ringCenterArray;
-@property (nonatomic, assign) int imageIndex;
+
+@property (nonatomic, assign) NSInteger imageIndex;
+
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
@@ -158,15 +161,26 @@
     [self.view addSubview:labelSlider];
     self.labelSlider = labelSlider;
     
-    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 20, 20);
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 60, 40);
     [previousButton addTarget:self action:@selector(onPreviousButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [previousButton setTitle:@"上一张" forState:UIControlStateNormal];
+    [previousButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:previousButton];
     
-    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    nextButton.frame = CGRectMake(self.view.frame.size.width - 20, self.view.frame.size.height - 80, 20, 20);
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 80, 60, 40);
     [nextButton addTarget:self action:@selector(onNextButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [nextButton setTitle:@"下一张" forState:UIControlStateNormal];
+    [nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:nextButton];
+    
+    UIButton *pickColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80, 60, 40);
+    [pickColorButton addTarget:self action:@selector(onPickColorButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [pickColorButton setTitle:@"选肤色" forState:UIControlStateNormal];
+    [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:pickColorButton];
     
     [self.view addSubview:self.indicator];
     self.indicator.center = self.view.center;
@@ -188,6 +202,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+#if 1
     if (firstTime) {
         firstTime = NO;
         [self.indicator startAnimating];
@@ -198,7 +213,7 @@
             [self showImageAtIndex:1];
         });
     }
-
+#endif
     
 //    [self showImageAtIndex:1];
 }
@@ -258,10 +273,10 @@ NSInteger radiusToDegree(CGFloat angle) {
         currentAngles.x = [self reduceDefect:previousAngle.x middle:currentAngles.x next:nextAngles.x];
         currentAngles.y = [self reduceDefect:previousAngle.y middle:currentAngles.y next:nextAngles.y];
         currentAngles.z = [self reduceDefect:previousAngle.z middle:currentAngles.z next:nextAngles.z];
- 
         [result addObject:currentAngles];
     }
 }
+
 -(void)smoothRingCenter
 {
     [self reduceDefectForRingCenter];
@@ -290,21 +305,23 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 -(NSMutableArray *)smoothRotationAngle:(NSArray *)array
+
 {
     [self reduceDefectForRotationAngle:array];
     
     NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:array.count];
-    for (int i = 1 ; i<array.count -1 ; i++)
+    for (int i = 1 ; i < array.count - 1; i++)
     {
         RotationAngle * previousAngle = [array objectAtIndex:i-1];
         RotationAngle * currentAngles = [array objectAtIndex:i];
         RotationAngle * nextAngles = [array objectAtIndex:i+1];
         
         RotationAngle * newAngles = [RotationAngle alloc];
+ 
         newAngles.x = (previousAngle.x + currentAngles.x + nextAngles.x) /3;
         newAngles.y = (previousAngle.y + currentAngles.y + nextAngles.y) /3;
         newAngles.z = (previousAngle.z + currentAngles.z + nextAngles.z) /3;
-        
+ 
         [result addObject:newAngles];
     }
     
@@ -345,7 +362,10 @@ NSInteger radiusToDegree(CGFloat angle) {
     for( j = 1 ; j < self.labelSlider.slider.maximumValue; j++)// && j < 15; j++)
     {
         @autoreleasepool {
+            self.title = [NSString stringWithFormat:@"%zd", j];
+            //    [self wmcSetNavigationBarTitleStyle];
             
+ 
         self.title = [NSString stringWithFormat:@"%zd", j];
         //    [self wmcSetNavigationBarTitleStyle];
         
@@ -408,9 +428,9 @@ NSInteger radiusToDegree(CGFloat angle) {
         rotationAngles.z = currentHand->rotationAngle[2];
         [self.angleArray addObject:rotationAngles];
            }
+ 
     }
-    NSMutableArray * smoothedAngles = [self smoothRotationAngle:self.angleArray];
-    self.angleArray = smoothedAngles;
+    NSArray * smoothedAngles = self.angleArray;// [self smoothRotationAngle:self.angleArray];
     if(smoothedAngles)
     {
         for(int i = 0 ; i < smoothedAngles.count ; i++)
@@ -435,6 +455,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             }
         }
     }
+
     
 //    NSLog(@"originalRingCenter : %@" ,self.ringCenterArray);
     [self printRingCenter];
@@ -442,7 +463,9 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    [self smoothRingCenter];
     [self printRingCenter];
 //    NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
-    
+
+    NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
+
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
         {
@@ -536,6 +559,19 @@ NSInteger radiusToDegree(CGFloat angle) {
     [self showImageAtIndex:j];
 }
 
+- (void)onPickColorButtonClicked:(UIButton *)sender {
+    SelectPointViewController *picker = [[SelectPointViewController alloc] init];
+    NSString *betaCompressionDirectory = nil;
+    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    
+    NSLog(@"current filename=%@", betaCompressionDirectory);
+    
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)0]]];
+    picker.inputImage = image;
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
 - (void)onNextButtonClicked:(UIButton *)sender {
     static NSInteger i = 0;
     
@@ -570,7 +606,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     hg = new HandGesture();
     
-    hg->index = self.imageIndex;
+    hg->index = (int)self.imageIndex;
     MyImage * myImage = detectHand(ipImage, *hg);
     
     currentHand = hg;
@@ -605,7 +641,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     if(!image)
         return;
-    
+ 
     image = [self processImage:image];
 
     NSDictionary * outputDic = self.filenamePositionInfoDic;
@@ -613,11 +649,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     if(!outputDic)
         return;
     
-    NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
+    int index = j/3 * 3 ;
+    
+    NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:index]];
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
-    UIImage * ringImage = [self getImage:j];
-    
+    UIImage * ringImage = [self getImage:index];
+ 
     double ratio = ringImage.size.height / ringImage.size.width;
  
     ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
@@ -626,6 +664,18 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
+    
+    // 将每一帧的图片保存到documents目录下
+#if 0
+    {
+        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
+        
+        NSData *data = UIImagePNGRepresentation(resultImage);
+        [data writeToFile:pngPath atomically:YES];
+    }
+#endif
 }
 
 -(UIImage *)getImage:(NSInteger)index
@@ -639,7 +689,6 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
 
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    
     NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName];
     UIImage *ringImage = [UIImage imageNamed:fileKeyName];
     if (!ringImage) {
@@ -655,26 +704,11 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 -(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
 {
- 
-    
- 
-    //    key:MYIMG_ANG_x90.000000_y0.000000_z0.000000.png, value:center:NSPoint: {160, 243.27763}, min:NSPoint: {123.66412, 244.02368}, max:NSPoint: {197.71791, 325.49683}
-    //    CGRect rect = CGRectMake(123, image.size.height - 210, 78, 28);
-    
-    CGPoint center = position.centerPoint;
+//    CGPoint center = position.centerPoint;
     CGPoint maxPoint = position.maxPoint;
     CGPoint minPoint = position.minPoint;
     
     CGRect rect = CGRectMake(minPoint.x, image.size.height - minPoint.y - (maxPoint.y - minPoint.y ) ,maxPoint.x - minPoint.x -5 , maxPoint.y - minPoint.y + 10);
-    
-    
-#if 0
-    NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ANG_x90.000000_y0.000000_z0.000000.png"]];
-    image = [UIImage imageWithContentsOfFile:betaCompressionDirectory];
-    rect = CGRectMake(123, image.size.height - 325.49683, 197.71791 - 123.66412, 325.49683 - 244.02368);
-    // 区域还没挑对
-#endif
     
     CGSize size = image.size;
     UIGraphicsBeginImageContext(size);
@@ -698,18 +732,14 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 - (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian
 {
-    double shirinkRatio = currentHand->ringWidth / 80;
-    
     // Calculate the size of the rotated view's containing box for our drawing space
-    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height * shirinkRatio)];
+    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     //CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degree));
     CGAffineTransform t = CGAffineTransformMakeRotation(radian);
     rotatedViewBox.transform = t;
     CGSize rotatedSize = rotatedViewBox.frame.size;
 //    [rotatedViewBox release];
     
-    rotatedSize.width *= shirinkRatio;
-    rotatedSize.height *= shirinkRatio;
     // Create the bitmap context
     UIGraphicsBeginImageContext(rotatedSize);
     CGContextRef bitmap = UIGraphicsGetCurrentContext();
@@ -721,13 +751,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     //CGContextRotateCTM(bitmap, DegreesToRadians(degree));
     CGContextRotateCTM(bitmap, radian);
     
-    CGSize drawSize = image.size;
-    drawSize.width *= shirinkRatio;
-    drawSize.height *= shirinkRatio;
-    
     // Now, draw the rotated/scaled image into the context
     CGContextScaleCTM(bitmap, 1.0, -1.0);
-    CGContextDrawImage(bitmap, CGRectMake(-drawSize.width / 2, -drawSize.height / 2, drawSize.width, drawSize.height), [image CGImage]);
+    CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -736,46 +762,20 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 -(UIImage *)rotateImage:(UIImage *)aImage angle:(double)angle
-
 {
-    
     CGImageRef imgRef = aImage.CGImage;
-    
     CGFloat width = CGImageGetWidth(imgRef);
-    
     CGFloat height = CGImageGetHeight(imgRef);
-    
-    
-    
     CGAffineTransform transform = CGAffineTransformIdentity;
-    
     CGRect bounds = CGRectMake(0, 0, width, height);
- 
-    
-    
     UIGraphicsBeginImageContext(bounds.size);
-    
     transform = CGAffineTransformRotate(transform, angle);
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    
-    
-    
-    
-    
     CGContextConcatCTM(context, transform);
-    
     CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
-    
     UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
-    
-    
-    
     return imageCopy;
-    
 }
 
 
@@ -785,7 +785,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     [backimage drawAtPoint:CGPointMake(0,0)];
 //    Point2i ringcenter = currentHand->ringCenter;
     Point2i ringcenter;
-     [[self.ringCenterArray objectAtIndex:self.imageIndex] getValue:&ringcenter];
+    int index = self.imageIndex / 3 * 3;
+     [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -801,17 +802,6 @@ NSInteger radiusToDegree(CGFloat angle) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
             self.totalVideoFrame = i;
             if (!self.rotationManager) {
-                self.rotationManager = [DWRotationManager sharedManager];
-                [self.rotationManager pushAngleX:90 angleY:0 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:10 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:20 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:30 angleZ:0];
-                [self.rotationManager pushAngleX:90 angleY:-30 angleZ:0];
-                [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-                    self.filenamePositionInfoDic = outputDic;
-                    NSLog(@"outputDic=%@", outputDic);
-                    
-                } controller:self];
             }
             return;
         }
@@ -836,7 +826,6 @@ NSInteger radiusToDegree(CGFloat angle) {
         @autoreleasepool {
             image = [self.videoEncoder fetchOneFrame];
             if (!image) {
-                flag = NO;
                 break;
             }
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
