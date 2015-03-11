@@ -703,6 +703,20 @@
 		33774BF21AAF359E00B2E754 /* DW_PlusPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */; };
 		33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */; };
 		33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */; };
+		33774C071AB0917C00B2E754 /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BF71AB0917C00B2E754 /* RosyWriterCapturePipeline.m */; };
+		33774C081AB0917C00B2E754 /* RosyWriterCapturePipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BF71AB0917C00B2E754 /* RosyWriterCapturePipeline.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33774C091AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BF91AB0917C00B2E754 /* RosyWriterCPURenderer.m */; };
+		33774C0A1AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BF91AB0917C00B2E754 /* RosyWriterCPURenderer.m */; };
+		33774C0B1AB0917C00B2E754 /* RosyWriterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BFC1AB0917C00B2E754 /* RosyWriterViewController.m */; };
+		33774C0C1AB0917C00B2E754 /* RosyWriterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774BFC1AB0917C00B2E754 /* RosyWriterViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33774C0D1AB0917C00B2E754 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 33774BFF1AB0917C00B2E754 /* matrix.c */; };
+		33774C0E1AB0917C00B2E754 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 33774BFF1AB0917C00B2E754 /* matrix.c */; };
+		33774C0F1AB0917C00B2E754 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33774C011AB0917C00B2E754 /* ShaderUtilities.c */; };
+		33774C101AB0917C00B2E754 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 33774C011AB0917C00B2E754 /* ShaderUtilities.c */; };
+		33774C111AB0917C00B2E754 /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774C041AB0917C00B2E754 /* MovieRecorder.m */; };
+		33774C121AB0917C00B2E754 /* MovieRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774C041AB0917C00B2E754 /* MovieRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		33774C131AB0917C00B2E754 /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774C061AB0917C00B2E754 /* OpenGLPixelBufferView.m */; };
+		33774C141AB0917C00B2E754 /* OpenGLPixelBufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33774C061AB0917C00B2E754 /* OpenGLPixelBufferView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3379C9AB1A9329FD00D29FFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AA1A9329FD00D29FFD /* main.m */; };
 		3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9AD1A9329FD00D29FFD /* AppDelegate.m */; };
 		3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9B01A9329FD00D29FFD /* FirstViewController.mm */; };
@@ -1555,6 +1569,21 @@
 		33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DW_PlusPressed@2x.png"; sourceTree = "<group>"; };
 		33774BED1AAF359E00B2E754 /* SelectPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPointViewController.h; sourceTree = "<group>"; };
 		33774BEE1AAF359E00B2E754 /* SelectPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPointViewController.m; sourceTree = "<group>"; };
+		33774BF61AB0917C00B2E754 /* RosyWriterCapturePipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCapturePipeline.h; sourceTree = "<group>"; };
+		33774BF71AB0917C00B2E754 /* RosyWriterCapturePipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCapturePipeline.m; sourceTree = "<group>"; };
+		33774BF81AB0917C00B2E754 /* RosyWriterCPURenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterCPURenderer.h; sourceTree = "<group>"; };
+		33774BF91AB0917C00B2E754 /* RosyWriterCPURenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterCPURenderer.m; sourceTree = "<group>"; };
+		33774BFA1AB0917C00B2E754 /* RosyWriterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterRenderer.h; sourceTree = "<group>"; };
+		33774BFB1AB0917C00B2E754 /* RosyWriterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosyWriterViewController.h; sourceTree = "<group>"; };
+		33774BFC1AB0917C00B2E754 /* RosyWriterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosyWriterViewController.m; sourceTree = "<group>"; };
+		33774BFF1AB0917C00B2E754 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
+		33774C001AB0917C00B2E754 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		33774C011AB0917C00B2E754 /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
+		33774C021AB0917C00B2E754 /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
+		33774C031AB0917C00B2E754 /* MovieRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRecorder.h; sourceTree = "<group>"; };
+		33774C041AB0917C00B2E754 /* MovieRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRecorder.m; sourceTree = "<group>"; };
+		33774C051AB0917C00B2E754 /* OpenGLPixelBufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLPixelBufferView.h; sourceTree = "<group>"; };
+		33774C061AB0917C00B2E754 /* OpenGLPixelBufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLPixelBufferView.m; sourceTree = "<group>"; };
 		3379C9A51A9329FD00D29FFD /* catRing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catRing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3379C9A91A9329FD00D29FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3379C9AA1A9329FD00D29FFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2759,9 +2788,48 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		33774BF51AB0917B00B2E754 /* rosyWriter */ = {
+			isa = PBXGroup;
+			children = (
+				33774BF61AB0917C00B2E754 /* RosyWriterCapturePipeline.h */,
+				33774BF71AB0917C00B2E754 /* RosyWriterCapturePipeline.m */,
+				33774BF81AB0917C00B2E754 /* RosyWriterCPURenderer.h */,
+				33774BF91AB0917C00B2E754 /* RosyWriterCPURenderer.m */,
+				33774BFA1AB0917C00B2E754 /* RosyWriterRenderer.h */,
+				33774BFB1AB0917C00B2E754 /* RosyWriterViewController.h */,
+				33774BFC1AB0917C00B2E754 /* RosyWriterViewController.m */,
+				33774BFD1AB0917C00B2E754 /* Utilities */,
+			);
+			path = rosyWriter;
+			sourceTree = "<group>";
+		};
+		33774BFD1AB0917C00B2E754 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				33774BFE1AB0917C00B2E754 /* GL */,
+				33774C031AB0917C00B2E754 /* MovieRecorder.h */,
+				33774C041AB0917C00B2E754 /* MovieRecorder.m */,
+				33774C051AB0917C00B2E754 /* OpenGLPixelBufferView.h */,
+				33774C061AB0917C00B2E754 /* OpenGLPixelBufferView.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		33774BFE1AB0917C00B2E754 /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				33774BFF1AB0917C00B2E754 /* matrix.c */,
+				33774C001AB0917C00B2E754 /* matrix.h */,
+				33774C011AB0917C00B2E754 /* ShaderUtilities.c */,
+				33774C021AB0917C00B2E754 /* ShaderUtilities.h */,
+			);
+			path = GL;
+			sourceTree = "<group>";
+		};
 		3379C99C1A9329FD00D29FFD = {
 			isa = PBXGroup;
 			children = (
+				33774BF51AB0917B00B2E754 /* rosyWriter */,
 				3379C9A71A9329FD00D29FFD /* catRing */,
 				3379C9C41A9329FD00D29FFD /* catRingTests */,
 				33AAF3281AA314F70031DF4A /* catRing3D */,
@@ -5371,6 +5439,7 @@
 			files = (
 				3379CC621A9709B500D29FFD /* DWIplImageHelper.mm in Sources */,
 				3379C9B41A9329FD00D29FFD /* SecondViewController.m in Sources */,
+				33774C071AB0917C00B2E754 /* RosyWriterCapturePipeline.m in Sources */,
 				3379C9F21A93310300D29FFD /* LabelSliderGroup.m in Sources */,
 				33DB2BDD1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */,
 				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
@@ -5380,12 +5449,18 @@
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
 				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
 				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
+				33774C131AB0917C00B2E754 /* OpenGLPixelBufferView.m in Sources */,
 				33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */,
 				33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */,
+				33774C0D1AB0917C00B2E754 /* matrix.c in Sources */,
 				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
 				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
+				33774C111AB0917C00B2E754 /* MovieRecorder.m in Sources */,
 				3379C9FF1A93351B00D29FFD /* MathUtil.m in Sources */,
+				33774C091AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */,
+				33774C0B1AB0917C00B2E754 /* RosyWriterViewController.m in Sources */,
 				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
+				33774C0F1AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
 				33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
 				33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */,
@@ -5416,6 +5491,7 @@
 				33AAF7E11AA319010031DF4A /* roi.cpp in Sources */,
 				33AAF7CF1AA318A40031DF4A /* ImageProcess.m in Sources */,
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
+				33774C0E1AB0917C00B2E754 /* matrix.c in Sources */,
 				33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */,
 				33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */,
 				33AAF7DE1AA319010031DF4A /* handGesture.cpp in Sources */,
@@ -5428,6 +5504,7 @@
 				33AAF7DF1AA319010031DF4A /* myImage.cpp in Sources */,
 				33AAF7E31AA3190B0031DF4A /* SecondViewController.m in Sources */,
 				33AAF7E21AA3190B0031DF4A /* FirstViewController.mm in Sources */,
+				33774C141AB0917C00B2E754 /* OpenGLPixelBufferView.m in Sources */,
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
 				33AAF3391AA314F70031DF4A /* main.m in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
@@ -5435,11 +5512,16 @@
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
 				33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
+				33774C101AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
 				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
+				33774C0A1AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */,
 				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
+				33774C081AB0917C00B2E754 /* RosyWriterCapturePipeline.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,
+				33774C0C1AB0917C00B2E754 /* RosyWriterViewController.m in Sources */,
 				33DB2BDE1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */,
+				33774C121AB0917C00B2E754 /* MovieRecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
