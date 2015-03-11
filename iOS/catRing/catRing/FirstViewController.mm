@@ -78,6 +78,7 @@
 @property (nonatomic, assign) NSInteger totalVideoFrame;
 
 @property (nonatomic, retain) NSMutableArray * angleArray;
+@property (nonatomic, retain) NSMutableArray * ringCenterArray;
 @property (nonatomic, assign) int imageIndex;
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
@@ -207,36 +208,6 @@ NSInteger radiusToDegree(CGFloat angle) {
     return int(angle * 180 / M_PI);
 }
 
-//-(NSArray *) getCurrentAngle
-//{
-//    double x;
-//    double y;
-//    double z;
-//    if(ppreviousHand)
-//    {
-//        x = (ppreviousHand->rotationAngle[0] + previousHand->rotationAngle[0] + currentHand->rotationAngle[0]) / 3.0 ;
-//        y = (ppreviousHand->rotationAngle[1] + previousHand->rotationAngle[1] + currentHand->rotationAngle[1])/ 3.0;
-//        z = (ppreviousHand->rotationAngle[2] + previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 3.0;
-//    }
-//    else if (previousHand)
-//    {
-//        x = (previousHand->rotationAngle[0] + currentHand->rotationAngle[0]) / 2.0 ;
-//        y = (previousHand->rotationAngle[1] + currentHand->rotationAngle[1])/ 2.0;
-//        z = (previousHand->rotationAngle[2] + currentHand->rotationAngle[2])/ 2.0;
-//    }
-//    else
-//    {
-//        x = ( currentHand->rotationAngle[0]);
-//        y = ( currentHand->rotationAngle[1]);
-//        z = ( currentHand->rotationAngle[2]);
-//    }
-//    NSLog(@"rotationAngle average: %f,%f,%f",x,y,z);
-//    NSLog(@"rotationAngle currentHand: %f,%f,%f",currentHand->rotationAngle[0],currentHand->rotationAngle[1],currentHand->rotationAngle[2]);
-//    currentHand->rotationAngle[0] = x;
-//    currentHand->rotationAngle[1] = y;
-//    currentHand->rotationAngle[2] = z;
-//    return @[@(x),@(y),@(z)];
-//}
 
 -(double) reduceDefect:(double)previous middle:(double)middle next:(double)next
 {
@@ -250,6 +221,30 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
     return middle;
 }
+-(void) reduceDefectForRingCenter
+{
+    NSMutableArray * array = self.ringCenterArray;
+    for (int i = 1 ; i<array.count -1 ; i++)
+    {
+        
+        Point2i previousCenter;
+        [[array objectAtIndex:i-1] getValue:&previousCenter];
+        
+        Point2i currentCenter;
+        [[array objectAtIndex:i] getValue:&currentCenter];
+        
+        Point2i nextCenter;
+        [[array objectAtIndex:i+1] getValue:&nextCenter];
+ 
+        
+        currentCenter.x = [self reduceDefect:previousCenter.x middle:currentCenter.x next:nextCenter.x];
+        currentCenter.y = [self reduceDefect:previousCenter.y middle:currentCenter.y next:nextCenter.y];
+        
+        [array setObject:[NSValue valueWithBytes:&currentCenter objCType:@encode(Point2i)] atIndexedSubscript:i];
+//        [result addObject:currentAngles];
+    }
+}
+
 -(void) reduceDefectForRotationAngle:(NSArray *)array
 {
     NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:array.count];
@@ -267,6 +262,33 @@ NSInteger radiusToDegree(CGFloat angle) {
         [result addObject:currentAngles];
     }
 }
+-(void)smoothRingCenter
+{
+    [self reduceDefectForRingCenter];
+    NSMutableArray * array = self.ringCenterArray;
+    
+    NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:array.count];
+    
+    for (int i = 1 ; i<array.count -1 ; i++)
+    {
+        Point2i previousCenter;
+        [[array objectAtIndex:i-1] getValue:&previousCenter];
+        
+        Point2i currentCenter;
+        [[array objectAtIndex:i] getValue:&currentCenter];
+        
+        Point2i nextCenter;
+        [[array objectAtIndex:i+1] getValue:&nextCenter];
+        
+        Point2i newCenter;
+        
+        newCenter.x = (previousCenter.x + currentCenter.x + nextCenter.x) /3;
+        newCenter.y = (previousCenter.y + currentCenter.y + nextCenter.y) /3;
+        [result addObject:[NSValue valueWithBytes:&newCenter objCType:@encode(Point2i)]];
+    }
+    self.ringCenterArray = result;
+}
+
 -(NSMutableArray *)smoothRotationAngle:(NSArray *)array
 {
     [self reduceDefectForRotationAngle:array];
@@ -274,17 +296,16 @@ NSInteger radiusToDegree(CGFloat angle) {
     NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:array.count];
     for (int i = 1 ; i<array.count -1 ; i++)
     {
- 
-            RotationAngle * previousAngle = [array objectAtIndex:i-1];
-            RotationAngle * currentAngles = [array objectAtIndex:i];
-            RotationAngle * nextAngles = [array objectAtIndex:i+1];
-            
-            RotationAngle * newAngles = [RotationAngle alloc];
-            newAngles.x = (previousAngle.x + currentAngles.x + nextAngles.x) /3;
-            newAngles.y = (previousAngle.y + currentAngles.y + nextAngles.y) /3;
-            newAngles.z = (previousAngle.z + currentAngles.z + nextAngles.z) /3;
-            
-            [result addObject:newAngles];
+        RotationAngle * previousAngle = [array objectAtIndex:i-1];
+        RotationAngle * currentAngles = [array objectAtIndex:i];
+        RotationAngle * nextAngles = [array objectAtIndex:i+1];
+        
+        RotationAngle * newAngles = [RotationAngle alloc];
+        newAngles.x = (previousAngle.x + currentAngles.x + nextAngles.x) /3;
+        newAngles.y = (previousAngle.y + currentAngles.y + nextAngles.y) /3;
+        newAngles.z = (previousAngle.z + currentAngles.z + nextAngles.z) /3;
+        
+        [result addObject:newAngles];
     }
     
     for(int i = 0 ; i<array.count  ; i++)
@@ -347,6 +368,11 @@ NSInteger radiusToDegree(CGFloat angle) {
             return;
         
         [self processImage:image];
+            
+        if(!_ringCenterArray)
+            self.ringCenterArray = [[NSMutableArray alloc] initWithCapacity:10];
+        [self.ringCenterArray addObject:[NSValue valueWithBytes:&currentHand->ringCenter objCType:@encode(Point2i)]];
+            
 //        DWRingPosModel *savedModel = self.indexRingPosDic[[NSNumber numberWithInteger:j]];
 //        if (savedModel) {
 //            HandGesture *hg = new HandGesture;
@@ -409,7 +435,14 @@ NSInteger radiusToDegree(CGFloat angle) {
             }
         }
     }
- 
+    
+//    NSLog(@"originalRingCenter : %@" ,self.ringCenterArray);
+    [self printRingCenter];
+//    [self smoothRingCenter];
+//    [self smoothRingCenter];
+    [self printRingCenter];
+//    NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
+    
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
     {
         {
@@ -441,7 +474,7 @@ NSInteger radiusToDegree(CGFloat angle) {
                     }
                 }
             }
-            NSLog(@"outputDic=%@", outputDic);
+            NSLog(@"filenamePositionInfoDic=%@", self.filenamePositionInfoDic);
             
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
@@ -458,6 +491,17 @@ NSInteger radiusToDegree(CGFloat angle) {
                 NSLog(@"save file ok");
             }
         } controller:self];
+        
+
+    }
+}
+-(void)printRingCenter
+{
+    for(int i = 0 ; i< self.ringCenterArray.count ; i++)
+    {
+        Point2i ringcenter;
+        [[self.ringCenterArray objectAtIndex:i] getValue:&ringcenter];
+        NSLog(@"ringCenter %d : x: %d, y :%d",i,ringcenter.x,ringcenter.y);
     }
 }
 #pragma mark -
@@ -518,8 +562,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 - (UIImage *)processImage:(UIImage *)image {
     if (!image)
         return nil;
-    //    CGSize newSize = CGSizeMake(image.size.width / 4.0, image.size.height / 4.0);
-    //    image = [image resizeImageContext:nil size:newSize];
+
     image = [ImageProcess correctImage:image];
     IplImage *ipImage = convertIplImageFromUIImage(image);
     
@@ -530,9 +573,6 @@ NSInteger radiusToDegree(CGFloat angle) {
     hg->index = self.imageIndex;
     MyImage * myImage = detectHand(ipImage, *hg);
     
-//    delete ppreviousHand;
-//    ppreviousHand = previousHand;
-//    previousHand = currentHand;
     currentHand = hg;
     
     NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
@@ -562,16 +602,17 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.imageIndex = j;
     
     image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+    
     if(!image)
         return;
-    [self processImage:image];
     
- 
-    NSDictionary * outputDic = self.filenamePositionInfoDic;
+    image = [self processImage:image];
 
+    NSDictionary * outputDic = self.filenamePositionInfoDic;
+    
     if(!outputDic)
         return;
- 
+    
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
@@ -742,7 +783,10 @@ NSInteger radiusToDegree(CGFloat angle) {
 {
     UIGraphicsBeginImageContext(backimage.size);
     [backimage drawAtPoint:CGPointMake(0,0)];
-    Point2i ringcenter = currentHand->ringCenter;
+//    Point2i ringcenter = currentHand->ringCenter;
+    Point2i ringcenter;
+     [[self.ringCenterArray objectAtIndex:self.imageIndex] getValue:&ringcenter];
+    
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

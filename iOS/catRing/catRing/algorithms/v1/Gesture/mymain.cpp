@@ -828,7 +828,6 @@ void myDrawContours(MyImage *m,HandGesture *hg){
                 //            firstFinger ->push_back(hg->mediusFinger[0]);
                 //            firstFinger ->push_back(hg->mediusFinger[1]);
                 //            firstFinger ->push_back(hg->mediusFinger[2]);
-                
                 //            &hg->mediusFinger;
             }
             caculateRingPosition(hg);
