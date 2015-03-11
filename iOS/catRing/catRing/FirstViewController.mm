@@ -306,11 +306,18 @@ NSInteger radiusToDegree(CGFloat angle) {
         Point2i nextCenter;
         [[array objectAtIndex:i+1] getValue:&nextCenter];
         
+        if(nextCenter.x == 0 || nextCenter.y ==0)
+        {
+            [result addObject:[NSValue valueWithBytes:&currentCenter objCType:@encode(Point2i)]];
+            continue;
+        }
+        
         Point2i newCenter;
         
         newCenter.x = (previousCenter.x + currentCenter.x + nextCenter.x) /3;
         newCenter.y = (previousCenter.y + currentCenter.y + nextCenter.y) /3;
         [result addObject:[NSValue valueWithBytes:&newCenter objCType:@encode(Point2i)]];
+        
     }
     [result addObject:[array objectAtIndex:array.count - 2]];
     [result addObject:[array objectAtIndex:array.count - 1]];
