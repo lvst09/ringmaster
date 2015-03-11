@@ -293,8 +293,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     NSMutableArray * array = self.ringCenterArray;
     
     NSMutableArray * result = [[NSMutableArray alloc] initWithCapacity:array.count];
-    
-    for (int i = 1 ; i<array.count -1 ; i++)
+    [result addObject:[array objectAtIndex:0]];
+
+    for (int i = 1 ; i<array.count -2 ; i++)
     {
         Point2i previousCenter;
         [[array objectAtIndex:i-1] getValue:&previousCenter];
@@ -311,6 +312,8 @@ NSInteger radiusToDegree(CGFloat angle) {
         newCenter.y = (previousCenter.y + currentCenter.y + nextCenter.y) /3;
         [result addObject:[NSValue valueWithBytes:&newCenter objCType:@encode(Point2i)]];
     }
+    [result addObject:[array objectAtIndex:array.count - 2]];
+    [result addObject:[array objectAtIndex:array.count - 1]];
     self.ringCenterArray = result;
 }
 
@@ -467,12 +470,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
 
     
-//    NSLog(@"originalRingCenter : %@" ,self.ringCenterArray);
+//  NSLog(@"originalRingCenter : %@" ,self.ringCenterArray);
     [self printRingCenter];
-//    [self smoothRingCenter];
-//    [self smoothRingCenter];
+    for(int i = 0 ; i<20 ; i++)
+        [self smoothRingCenter];
+ 
     [self printRingCenter];
-//    NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
+//  NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
     
     
     NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
@@ -721,7 +725,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     if(!outputDic)
         return;
     
-    int index = j/2 * 2 ;
+//    int index = j/2 * 2 ;
+    int index = j;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:index]];
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
@@ -803,8 +808,11 @@ NSInteger radiusToDegree(CGFloat angle) {
     return img;
 }
 
+
+
 - (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian
 {
+    double shirinkRatio = currentHand->ringWidth / 80;
     // Calculate the size of the rotated view's containing box for our drawing space
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     //CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degree));
@@ -812,6 +820,9 @@ NSInteger radiusToDegree(CGFloat angle) {
     rotatedViewBox.transform = t;
     CGSize rotatedSize = rotatedViewBox.frame.size;
 //    [rotatedViewBox release];
+    
+    rotatedSize.width *= shirinkRatio;
+    rotatedSize.height *= shirinkRatio;
     
     // Create the bitmap context
     UIGraphicsBeginImageContext(rotatedSize);
@@ -824,9 +835,15 @@ NSInteger radiusToDegree(CGFloat angle) {
     //CGContextRotateCTM(bitmap, DegreesToRadians(degree));
     CGContextRotateCTM(bitmap, radian);
     
+    CGSize drawSize = image.size;
+    drawSize.width *= shirinkRatio;
+    drawSize.height *= shirinkRatio;
+
     // Now, draw the rotated/scaled image into the context
     CGContextScaleCTM(bitmap, 1.0, -1.0);
-    CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
+//    CGContextDrawImage(bitmap, CGRectMake(-image.size.width / 2, -image.size.height / 2, image.size.width, image.size.height), [image CGImage]);
+    
+    CGContextDrawImage(bitmap, CGRectMake(-drawSize.width / 2, -drawSize.height / 2, drawSize.width, drawSize.height), [image CGImage]);
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -858,7 +875,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     [backimage drawAtPoint:CGPointMake(0,0)];
 //    Point2i ringcenter = currentHand->ringCenter;
     Point2i ringcenter;
-    int index = self.imageIndex / 2 * 2;
+//    int index = self.imageIndex / 2 * 2;
+    int index = self.imageIndex - 1;
      [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
