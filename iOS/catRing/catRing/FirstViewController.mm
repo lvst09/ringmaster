@@ -37,7 +37,9 @@
 #import "DWRingPosModel.h"
 
 #import "SelectPointViewController.h"
-
+#import "CEMovieMaker.h"
+#import <MediaPlayer/MPMoviePlayerViewController.h>
+#import <MediaPlayer/MPMoviePlayerController.h>
 @interface RotationAngle : NSObject {
 }
 @property (nonatomic, assign) double x;
@@ -83,7 +85,7 @@
 
 @property (nonatomic, assign) NSInteger imageIndex;
 
-
+@property (nonatomic, strong) CEMovieMaker *movieMaker;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @property (nonatomic, strong) DWRotationManager* rotationManager;
@@ -92,6 +94,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *indexXYZDic;
 @property (nonatomic, strong) NSMutableDictionary *indexRingPosDic;
+@property (nonatomic, retain) NSMutableArray * frames;
 @end
 
 @implementation FirstViewController
@@ -167,6 +170,13 @@
     [previousButton setTitle:@"上一张" forState:UIControlStateNormal];
     [previousButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:previousButton];
+    
+    UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    middleButton.frame = CGRectMake(130, self.view.frame.size.height - 60, 60, 40);
+    [middleButton addTarget:self action:@selector(onMiddleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [middleButton setTitle:@"视频" forState:UIControlStateNormal];
+    [middleButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:middleButton];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     nextButton.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 80, 60, 40);
@@ -463,7 +473,8 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    [self smoothRingCenter];
     [self printRingCenter];
 //    NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
-
+    
+    
     NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
 
     if(j == self.labelSlider.slider.maximumValue)// || j == 15)
@@ -501,7 +512,9 @@ NSInteger radiusToDegree(CGFloat angle) {
             
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
-            self.labelSlider.slider.enabled = YES;
+            
+            
+            
             
             NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.filenamePositionInfoDic];
             BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
@@ -513,6 +526,13 @@ NSInteger radiusToDegree(CGFloat angle) {
             {
                 NSLog(@"save file ok");
             }
+            
+            for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
+            {
+                [self showImageAtIndex:i];
+            }
+            
+            self.labelSlider.slider.enabled = YES;
         } controller:self];
         
 
@@ -572,6 +592,58 @@ NSInteger radiusToDegree(CGFloat angle) {
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
+- (void)viewMovieAtUrl:(NSURL *)fileURL
+{
+    MPMoviePlayerViewController *playerController = [[MPMoviePlayerViewController alloc] initWithContentURL:fileURL];
+    [playerController.view setFrame:self.view.bounds];
+    [self presentMoviePlayerViewControllerAnimated:playerController];
+    [playerController.moviePlayer prepareToPlay];
+    [playerController.moviePlayer play];
+    [self.view addSubview:playerController.view];
+}
+
+-(void)onMiddleButtonClicked:(UIButton *)sender
+{
+    ((UIButton *)sender).enabled = NO;
+    if(!_frames)
+    {
+        self.frames = [[NSMutableArray alloc] init];
+
+        for (NSInteger i = 1; i < self.labelSlider.slider.maximumValue; i++) {
+            
+            NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)i];
+            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
+            
+            //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
+            //        NSData *data = UIImagePNGRepresentation(resultImage);
+            //        BOOL succ = [data writeToFile:pngPath atomically:YES];
+            UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
+            
+            [self.frames addObject:image];
+        }
+    }
+//    if(!_movieMaker)
+    {
+        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)1];
+        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
+        
+        //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
+        //        NSData *data = UIImagePNGRepresentation(resultImage);
+        //        BOOL succ = [data writeToFile:pngPath atomically:YES];
+        UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
+        
+        
+        NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:image.size.width andHeight:image.size.height];
+        self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
+
+    }
+    [self.movieMaker createMovieFromImages:[self.frames copy] withCompletion:^(NSURL *fileURL){
+        [self viewMovieAtUrl:fileURL];
+        ((UIButton *)sender).enabled = YES;
+    }];
+}
 - (void)onNextButtonClicked:(UIButton *)sender {
     static NSInteger i = 0;
     
@@ -649,7 +721,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     if(!outputDic)
         return;
     
-    int index = j/3 * 3 ;
+    int index = j/2 * 2 ;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:index]];
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
@@ -666,14 +738,15 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.imageView.image = resultImage;
     
     // 将每一帧的图片保存到documents目录下
-#if 0
+#if 1
     {
         NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
         NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
         NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
         
+//         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         NSData *data = UIImagePNGRepresentation(resultImage);
-        [data writeToFile:pngPath atomically:YES];
+        BOOL succ = [data writeToFile:pngPath atomically:YES];
     }
 #endif
 }
@@ -785,7 +858,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     [backimage drawAtPoint:CGPointMake(0,0)];
 //    Point2i ringcenter = currentHand->ringCenter;
     Point2i ringcenter;
-    int index = self.imageIndex / 3 * 3;
+    int index = self.imageIndex / 2 * 2;
      [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];

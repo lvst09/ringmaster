@@ -1148,6 +1148,9 @@
 		33DA87E61AA2F5CC00625E87 /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 		33DB2BDD1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
 		33DB2BDE1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
+		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
+		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
+		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2332,6 +2335,8 @@
 		33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = Movie12347.m4v; sourceTree = "<group>"; };
 		33DB2BDB1AAB5AA2006575D4 /* DWRingPosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWRingPosModel.h; sourceTree = "<group>"; };
 		33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWRingPosModel.m; sourceTree = "<group>"; };
+		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
+		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2783,6 +2788,8 @@
 		3379C9A71A9329FD00D29FFD /* catRing */ = {
 			isa = PBXGroup;
 			children = (
+				680616D61AB0288F00D01002 /* CEMovieMaker.h */,
+				680616D71AB0288F00D01002 /* CEMovieMaker.m */,
 				33774BEA1AAF359E00B2E754 /* UI */,
 				33AAE6321AA30A210031DF4A /* Model */,
 				3379CA021A93369700D29FFD /* Resources */,
@@ -5388,6 +5395,7 @@
 				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
 				33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */,
 				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
+				680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5403,6 +5411,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */,
+				680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */,
 				33AAF7E11AA319010031DF4A /* roi.cpp in Sources */,
 				33AAF7CF1AA318A40031DF4A /* ImageProcess.m in Sources */,
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
