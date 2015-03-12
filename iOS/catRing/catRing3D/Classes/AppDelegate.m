@@ -11,6 +11,7 @@
 #import "CC3CC2Extensions.h"
 
 #import "FirstViewController.h"
+#import "SecondViewController.h"
 
 #define kAnimationFrameRate		60		// Animation frame rate
 
@@ -47,12 +48,13 @@
 #endif
     window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    FirstViewController *vc = [[FirstViewController alloc] init];
-//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+//    FirstViewController *vc = [[FirstViewController alloc] init];
+    SecondViewController *vc = [[SecondViewController alloc] init];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
 //    [navController_ presentViewController:vc animated:NO completion:NULL];
 //
 //    // set the Navigation Controller as the root view controller
-    [window_ setRootViewController:vc];
+    [window_ setRootViewController:navi];
 //
 //    // make main window visible
     [window_ makeKeyAndVisible];
