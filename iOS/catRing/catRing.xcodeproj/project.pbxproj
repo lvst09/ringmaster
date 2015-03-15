@@ -1106,12 +1106,6 @@
 		33AAF7C11AA318640031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
 		33AAF7C41AA3186B0031DF4A /* Movie12347.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.m4v */; };
 		33AAF7C51AA3186B0031DF4A /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
-		33AAF7C61AA318770031DF4A /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
-		33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
-		33AAF7C91AA318860031DF4A /* CameraViewController-568h.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */; };
-		33AAF7CA1AA3188B0031DF4A /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
-		33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
 		33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FA1A93351B00D29FFD /* RenderHelper.m */; };
 		33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9FC1A93351B00D29FFD /* MathUtil.m */; };
 		33AAF7CE1AA3189F0031DF4A /* DWVideoDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC661A9715A600D29FFD /* DWVideoDecoding.m */; };
@@ -1149,12 +1143,6 @@
 		33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */; };
 		33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3351AA314F70031DF4A /* AppDelegate.m */; };
-		33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87A91AA2B4A600625E87 /* CameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */; };
-		33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */; };
-		33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */; };
-		33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DA87BD1AA2B4A600625E87 /* CameraViewController.m */; };
-		33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */; };
 		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
 		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
@@ -2346,17 +2334,6 @@
 		33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		33AAF7F31AA35EFE0031DF4A /* DWRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DWRotationManager.h; path = Manager/DWRotationManager.h; sourceTree = "<group>"; };
 		33AAF7F41AA35EFE0031DF4A /* DWRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DWRotationManager.m; path = Manager/DWRotationManager.m; sourceTree = "<group>"; };
-		33DA87A61AA2B4A600625E87 /* CameraTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTypes.h; sourceTree = "<group>"; };
-		33DA87A81AA2B4A600625E87 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
-		33DA87A91AA2B4A600625E87 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
-		33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPhotoDevice.h; sourceTree = "<group>"; };
-		33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPhotoDevice.m; sourceTree = "<group>"; };
-		33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVideoDevice.h; sourceTree = "<group>"; };
-		33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraVideoDevice.m; sourceTree = "<group>"; };
-		33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CameraViewController-568h.xib"; sourceTree = "<group>"; };
-		33DA87BC1AA2B4A600625E87 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		33DA87BD1AA2B4A600625E87 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
@@ -2861,7 +2838,6 @@
 				33774BEA1AAF359E00B2E754 /* UI */,
 				33AAE6321AA30A210031DF4A /* Model */,
 				3379CA021A93369700D29FFD /* Resources */,
-				33DA87A51AA2B4A600625E87 /* Camera */,
 				3379C9F61A93349100D29FFD /* Utility */,
 				3379C9EA1A93310300D29FFD /* CommonUI */,
 				3379C9E31A932D6800D29FFD /* 3rd */,
@@ -4415,48 +4391,6 @@
 			name = deprecated;
 			sourceTree = "<group>";
 		};
-		33DA87A51AA2B4A600625E87 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				33DA87A61AA2B4A600625E87 /* CameraTypes.h */,
-				33DA87A71AA2B4A600625E87 /* Control */,
-				33DA87AA1AA2B4A600625E87 /* Device */,
-				33DA87B61AA2B4A600625E87 /* UI */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		33DA87A71AA2B4A600625E87 /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				33DA87A81AA2B4A600625E87 /* CameraController.h */,
-				33DA87A91AA2B4A600625E87 /* CameraController.m */,
-			);
-			path = Control;
-			sourceTree = "<group>";
-		};
-		33DA87AA1AA2B4A600625E87 /* Device */ = {
-			isa = PBXGroup;
-			children = (
-				33DA87AB1AA2B4A600625E87 /* CameraPhotoDevice.h */,
-				33DA87AC1AA2B4A600625E87 /* CameraPhotoDevice.m */,
-				33DA87AD1AA2B4A600625E87 /* CameraVideoDevice.h */,
-				33DA87AE1AA2B4A600625E87 /* CameraVideoDevice.m */,
-			);
-			path = Device;
-			sourceTree = "<group>";
-		};
-		33DA87B61AA2B4A600625E87 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				33DA87BB1AA2B4A600625E87 /* CameraViewController-568h.xib */,
-				33DA87BC1AA2B4A600625E87 /* CameraViewController.h */,
-				33DA87BD1AA2B4A600625E87 /* CameraViewController.m */,
-				33DA87BE1AA2B4A600625E87 /* CameraViewController.xib */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4825,7 +4759,6 @@
 				337747F51AAC138200B2E754 /* MYIMG_ANG_x90_y-8_z3.png in Resources */,
 				337749C51AAE789200B2E754 /* MYIMG_ANG_x90_y-26_z6.png in Resources */,
 				3377473C1AAC10E300B2E754 /* MYIMG_ANG_x90_y-5_z0.png in Resources */,
-				33DA87CC1AA2B4A600625E87 /* CameraViewController-568h.xib in Resources */,
 				337749C91AAE789200B2E754 /* MYIMG_ANG_x90_y-27_z1.png in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
 				3377489B1AADF04500B2E754 /* MYIMG_ANG_x90_y-31_z2.png in Resources */,
@@ -4944,7 +4877,6 @@
 				33774A931AAE789200B2E754 /* MYIMG_ANG_x90_y40_z0.png in Resources */,
 				337747601AAC10E300B2E754 /* MYIMG_ANG_x90_y0_z1.png in Resources */,
 				3377489D1AADF04500B2E754 /* MYIMG_ANG_x90_y-33_z2.png in Resources */,
-				33DA87CE1AA2B4A600625E87 /* CameraViewController.xib in Resources */,
 				3377482B1AAC138200B2E754 /* MYIMG_ANG_x90_y26_z3.png in Resources */,
 				33774A9F1AAE789200B2E754 /* MYIMG_ANG_x90_y45_z3.png in Resources */,
 				337747121AAC10E300B2E754 /* MYIMG_ANG_x90_y-12_z1.png in Resources */,
@@ -5051,7 +4983,6 @@
 				337748061AAC138200B2E754 /* MYIMG_ANG_x90_y2_z1.png in Resources */,
 				337747111AAC10E300B2E754 /* MYIMG_ANG_x90_y-12_z0.png in Resources */,
 				337747451AAC10E300B2E754 /* MYIMG_ANG_x90_y-6_z2.png in Resources */,
-				33AAF7CA1AA3188B0031DF4A /* CameraViewController.xib in Resources */,
 				337748261AAC138200B2E754 /* MYIMG_ANG_x90_y23_z0.png in Resources */,
 				337747831AAC10E300B2E754 /* MYIMG_ANG_x90_y21_z0.png in Resources */,
 				33774A7C1AAE789200B2E754 /* MYIMG_ANG_x90_y20_z3.png in Resources */,
@@ -5144,7 +5075,6 @@
 				337747991AAC10E300B2E754 /* MYIMG_ANG_x90_y29_z2.png in Resources */,
 				33774A9C1AAE789200B2E754 /* MYIMG_ANG_x90_y42_z1.png in Resources */,
 				337748B21AADF04500B2E754 /* MYIMG_ANG_x90_y30_z1.png in Resources */,
-				33AAF7C91AA318860031DF4A /* CameraViewController-568h.xib in Resources */,
 				3377471B1AAC10E300B2E754 /* MYIMG_ANG_x90_y-14_z0.png in Resources */,
 				3377476B1AAC10E300B2E754 /* MYIMG_ANG_x90_y0_z6.png in Resources */,
 				33774A4E1AAE789200B2E754 /* MYIMG_ANG_x90_y3_z4.png in Resources */,
@@ -5450,8 +5380,6 @@
 				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
 				3379CC641A9709DB00D29FFD /* DWIplImageHelper.h in Sources */,
 				33774C131AB0917C00B2E754 /* OpenGLPixelBufferView.m in Sources */,
-				33DA87C41AA2B4A600625E87 /* CameraPhotoDevice.m in Sources */,
-				33DA87C31AA2B4A600625E87 /* CameraController.m in Sources */,
 				33774C0D1AB0917C00B2E754 /* matrix.c in Sources */,
 				3379C9FE1A93351B00D29FFD /* RenderHelper.m in Sources */,
 				3379C9B11A9329FD00D29FFD /* FirstViewController.mm in Sources */,
@@ -5463,12 +5391,10 @@
 				33774C0F1AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
 				33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
-				33DA87C51AA2B4A600625E87 /* CameraVideoDevice.m in Sources */,
 				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
 				33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */,
 				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
 				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
-				33DA87CD1AA2B4A600625E87 /* CameraViewController.m in Sources */,
 				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
 				680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */,
 			);
@@ -5493,7 +5419,6 @@
 				33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */,
 				33774C0E1AB0917C00B2E754 /* matrix.c in Sources */,
 				33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */,
-				33AAF7C71AA3187D0031DF4A /* CameraPhotoDevice.m in Sources */,
 				33AAF7DE1AA319010031DF4A /* handGesture.cpp in Sources */,
 				33AAF7D11AA318AE0031DF4A /* LabelSliderGroup.m in Sources */,
 				33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
@@ -5508,14 +5433,11 @@
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
 				33AAF3391AA314F70031DF4A /* main.m in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
-				33AAF7C61AA318770031DF4A /* CameraController.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
 				33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				33774C101AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
-				33AAF7CB1AA3188E0031DF4A /* CameraViewController.m in Sources */,
 				33774C0A1AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */,
-				33AAF7C81AA3187D0031DF4A /* CameraVideoDevice.m in Sources */,
 				33774C081AB0917C00B2E754 /* RosyWriterCapturePipeline.m in Sources */,
 				33AAF7D01AA318A70031DF4A /* DWIplImageHelper.mm in Sources */,
 				33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */,

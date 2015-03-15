@@ -67,24 +67,28 @@
     NSInteger frameNumber = [images count];
     
     [self.writerInput requestMediaDataWhenReadyOnQueue:mediaInputQueue usingBlock:^{
-        while (YES){
+        while (YES) {
             if (i >= frameNumber) {
                 break;
             }
             if ([self.writerInput isReadyForMoreMediaData]) {
-                
-                CVPixelBufferRef sampleBuffer = [self newPixelBufferFromCGImage:[[images objectAtIndex:i] CGImage]];
-                
-                if (sampleBuffer) {
-                    if (i == 0) {
-                        [self.bufferAdapter appendPixelBuffer:sampleBuffer withPresentationTime:kCMTimeZero];
-                    }else{
-                        CMTime lastTime = CMTimeMake(i, self.frameTime.timescale);
-                        CMTime presentTime = CMTimeAdd(lastTime, self.frameTime);
-                        [self.bufferAdapter appendPixelBuffer:sampleBuffer withPresentationTime:presentTime];
+                @autoreleasepool {
+                    NSString *pngPath = images[i];
+                    UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
+                    CVPixelBufferRef sampleBuffer = [self newPixelBufferFromCGImage:[image CGImage]];
+                    
+                    if (sampleBuffer) {
+                        if (i == 0) {
+                            [self.bufferAdapter appendPixelBuffer:sampleBuffer withPresentationTime:kCMTimeZero];
+                        }else{
+                            CMTime lastTime = CMTimeMake(i, self.frameTime.timescale);
+                            CMTime presentTime = CMTimeAdd(lastTime, self.frameTime);
+                            [self.bufferAdapter appendPixelBuffer:sampleBuffer withPresentationTime:presentTime];
+                        }
+                        CFRelease(sampleBuffer);
+                        i++;
                     }
-                    CFRelease(sampleBuffer);
-                    i++;
+                    
                 }
             }
         }

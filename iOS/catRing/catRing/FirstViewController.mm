@@ -186,7 +186,7 @@
     [self.view addSubview:nextButton];
     
     UIButton *pickColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80, 60, 40);
+    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80 - 20, 60, 40);
     [pickColorButton addTarget:self action:@selector(onPickColorButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [pickColorButton setTitle:@"选肤色" forState:UIControlStateNormal];
     [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -461,7 +461,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             NSInteger y = 0 - radiusToDegree(angles.y);
             NSInteger z = radiusToDegree(angles.z);
             //      NSString *keyString = [NSString stringWithFormat:@"%d_%d_%d", x, y, z];
-            NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%d_y%d_z%d.png", x, y, z];
+            NSString *keyString = [NSString stringWithFormat:@"MYIMG_ANG_x%ld_y%ld_z%ld.png", (long)x, (long)y, (long)z];
             
             [self.indexXYZDic setObject:keyString forKey:[NSNumber numberWithInteger:i]];
             
@@ -616,6 +616,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 -(void)onMiddleButtonClicked:(UIButton *)sender
 {
     ((UIButton *)sender).enabled = NO;
+    [self.indicator startAnimating];
     if(!_frames)
     {
         self.frames = [[NSMutableArray alloc] init];
@@ -629,9 +630,9 @@ NSInteger radiusToDegree(CGFloat angle) {
             //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
             //        NSData *data = UIImagePNGRepresentation(resultImage);
             //        BOOL succ = [data writeToFile:pngPath atomically:YES];
-            UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
+//            UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
             
-            [self.frames addObject:image];
+            [self.frames addObject:pngPath];
         }
     }
 //    if(!_movieMaker)
@@ -650,7 +651,9 @@ NSInteger radiusToDegree(CGFloat angle) {
         self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
 
     }
+    
     [self.movieMaker createMovieFromImages:[self.frames copy] withCompletion:^(NSURL *fileURL){
+        [self.indicator stopAnimating];
         [self viewMovieAtUrl:fileURL];
         ((UIButton *)sender).enabled = YES;
     }];
@@ -744,7 +747,10 @@ NSInteger radiusToDegree(CGFloat angle) {
  
     ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
 
-    ringImage = [self clipImage:ringImage ringPosition:info];
+    CGFloat ringAngle = currentHand->ringAngle;
+    CGFloat shrinkRatio = currentHand->ringWidth / 80.f;
+    
+    ringImage = [self clipImage:ringImage ringPosition:info withRadian:ringAngle shrinkRatio:shrinkRatio];
     
     UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
     self.imageView.image = resultImage;
@@ -759,6 +765,9 @@ NSInteger radiusToDegree(CGFloat angle) {
 //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         NSData *data = UIImagePNGRepresentation(resultImage);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
+        if (!succ) {
+            NSLog(@"save failed, %@", pngPath);
+        }
     }
 #endif
 }
@@ -787,7 +796,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
 }
 
--(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position
+-(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position withRadian:(CGFloat)radian shrinkRatio:(CGFloat)shrinkRatio
 {
 //    CGPoint center = position.centerPoint;
     CGPoint maxPoint = position.maxPoint;
@@ -810,16 +819,16 @@ NSInteger radiusToDegree(CGFloat angle) {
     UIGraphicsEndImageContext();
     
     UIImage * img = [UIImage imageWithCGImage:imageRef];
-    img = [self rotateImage:img withRadian:currentHand->ringAngle];
+    img = [self rotateImage:img withRadian:radian shrinkRatio:shrinkRatio];
     
     return img;
 }
 
 
 
-- (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian
+- (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian shrinkRatio:(CGFloat)shrinkRatio
 {
-    double shirinkRatio = currentHand->ringWidth / 80;
+//    CGFloat shirinkRatio = currentHand->ringWidth / 80;
     // Calculate the size of the rotated view's containing box for our drawing space
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
     //CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degree));
@@ -828,8 +837,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     CGSize rotatedSize = rotatedViewBox.frame.size;
 //    [rotatedViewBox release];
     
-    rotatedSize.width *= shirinkRatio;
-    rotatedSize.height *= shirinkRatio;
+    rotatedSize.width *= shrinkRatio;
+    rotatedSize.height *= shrinkRatio;
     
     // Create the bitmap context
     UIGraphicsBeginImageContext(rotatedSize);
@@ -843,8 +852,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     CGContextRotateCTM(bitmap, radian);
     
     CGSize drawSize = image.size;
-    drawSize.width *= shirinkRatio;
-    drawSize.height *= shirinkRatio;
+    drawSize.width *= shrinkRatio;
+    drawSize.height *= shrinkRatio;
 
     // Now, draw the rotated/scaled image into the context
     CGContextScaleCTM(bitmap, 1.0, -1.0);
@@ -883,7 +892,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    Point2i ringcenter = currentHand->ringCenter;
     Point2i ringcenter;
 //    int index = self.imageIndex / 2 * 2;
-    int index = self.imageIndex - 1;
+    NSInteger index = self.imageIndex - 1;
      [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
