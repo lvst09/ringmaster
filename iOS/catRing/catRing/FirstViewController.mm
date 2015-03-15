@@ -445,7 +445,7 @@ NSInteger radiusToDegree(CGFloat angle) {
         RotationAngle * rotationAngles = [[RotationAngle alloc] init];
         rotationAngles.x = currentHand->rotationAngle[0];
         rotationAngles.y = currentHand->rotationAngle[1];
-        rotationAngles.z = currentHand->rotationAngle[2];
+            rotationAngles.z = 0;//currentHand->rotationAngle[2];
         [self.angleArray addObject:rotationAngles];
            }
  

@@ -17,5 +17,5 @@
 @property (nonatomic, assign) CGFloat ringAngle;
 @property (nonatomic, assign) CGFloat ringCenterX;
 @property (nonatomic, assign) CGFloat ringCenterY;
-
+@property (nonatomic, assign) CGFloat ringWidth;
 @end

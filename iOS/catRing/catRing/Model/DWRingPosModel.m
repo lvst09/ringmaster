@@ -17,6 +17,7 @@
     [aCoder encodeFloat:self.ringAngle forKey:@"ringAngle"];
     [aCoder encodeFloat:self.ringCenterX forKey:@"ringCenterX"];
     [aCoder encodeFloat:self.ringCenterY forKey:@"ringCenterY"];
+    [aCoder encodeFloat:self.ringWidth forKey:@"ringWidth"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -27,6 +28,7 @@
         self.ringAngle = [aDecoder decodeFloatForKey:@"ringAngle"];
         self.ringCenterX = [aDecoder decodeFloatForKey:@"ringCenterX"];
         self.ringCenterY = [aDecoder decodeFloatForKey:@"ringCenterY"];
+        self.ringWidth = [aDecoder decodeFloatForKey:@"ringWidth"];
     }
     return self;
 }
