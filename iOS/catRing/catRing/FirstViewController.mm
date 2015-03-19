@@ -358,14 +358,20 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
     return result;
 }
+
+- (UIImage *)getVideoImageAtIndex:(NSInteger)i {
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i]];
+    return image;
+}
+
 -(void)processAllImages
 {
-    __block NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    //    betaCompressionDirectory = ];
-    
-    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-    NSLog(@"current filename=%@", betaCompressionDirectory);
+//    __block NSString *betaCompressionDirectory = nil;
+//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    //    betaCompressionDirectory = ];
+//    
+//    //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+//    NSLog(@"current filename=%@", betaCompressionDirectory);
     //    image = [UIImage imageNamed:fileName];
     
     
@@ -389,19 +395,19 @@ NSInteger radiusToDegree(CGFloat angle) {
         self.title = [NSString stringWithFormat:@"%zd", j];
         //    [self wmcSetNavigationBarTitleStyle];
         
-        UIImage *image = nil;
-        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-        __block NSString *betaCompressionDirectory = nil;
-        betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        //    betaCompressionDirectory = ];
-        
-        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
-        NSLog(@"current filename=%@", betaCompressionDirectory);
-        //    image = [UIImage imageNamed:fileName];
+//        UIImage *image = nil;
+//        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+//        __block NSString *betaCompressionDirectory = nil;
+//        betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//        //    betaCompressionDirectory = ];
+//        
+//        //    NSString *fileName = [NSString stringWithFormat:@"MYIMG_SMALL%zd.JPG", j];
+////        NSLog(@"current filename=%@", betaCompressionDirectory);
+//        //    image = [UIImage imageNamed:fileName];
         
         self.imageIndex = j;
         
-        image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+        UIImage *image = [self getVideoImageAtIndex:j];
         //    self.imageView.image = [self processImage:image];
         
         if(!image)
@@ -592,13 +598,15 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 - (void)onPickColorButtonClicked:(UIButton *)sender {
     SelectPointViewController *picker = [[SelectPointViewController alloc] init];
-    NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+   
+//    NSString *betaCompressionDirectory = nil;
+//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//    
+//    NSLog(@"current filename=%@", betaCompressionDirectory);
     
-    NSLog(@"current filename=%@", betaCompressionDirectory);
     
+    UIImage *image = [self getVideoImageAtIndex:0];
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)0]]];
     picker.inputImage = image;
     [self presentViewController:picker animated:YES completion:NULL];
 }
@@ -714,16 +722,16 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.title = [NSString stringWithFormat:@"%zd", j];
 //    [self wmcSetNavigationBarTitleStyle];
     
-    UIImage *image = nil;
-//    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-    NSString *betaCompressionDirectory = nil;
-    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-
-    NSLog(@"current filename=%@", betaCompressionDirectory);
-    
-    self.imageIndex = j;
-    
-    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
+    UIImage *image = [self getVideoImageAtIndex:j];
+////    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
+//    NSString *betaCompressionDirectory = nil;
+//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//
+//    NSLog(@"current filename=%@", betaCompressionDirectory);
+//    
+//    self.imageIndex = j;
+//    
+//    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
     
     if(!image)
         return;
@@ -902,19 +910,19 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 - (void)getAllImageFromVideo {
-    {
-        int i = 156;
-        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i-1]];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
-            self.totalVideoFrame = i;
-            if (!self.rotationManager) {
-            }
-            return;
-        }
-    }
+//    {
+//        int i = 156;
+//        NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//        betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"_MYIMG_ORI%ld.JPG", (long)i-1]];
+//        if ([[NSFileManager defaultManager] fileExistsAtPath:betaCompressionDirectory]) {
+//            self.totalVideoFrame = i;
+//            if (!self.rotationManager) {
+//            }
+//            return;
+//        }
+//    }
    
-    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
+    NSString *path = self.videoPath;//[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
     
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:path];
     if ([value integerValue] > 0) {
@@ -935,8 +943,8 @@ NSInteger radiusToDegree(CGFloat angle) {
             if (!image) {
                 break;
             }
-            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)i]];
+//            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i];
             NSLog(@"get image=%@", betaCompressionDirectory);
             NSData *imageData = UIImagePNGRepresentation(image);
             [imageData writeToFile:betaCompressionDirectory atomically:YES];

@@ -139,6 +139,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self reloadLocalData];
     [self.tableView reloadData];
 }
 
