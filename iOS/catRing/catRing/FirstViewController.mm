@@ -218,7 +218,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-            [self processAllImages];
+//            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -666,6 +666,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     }];
 }
 - (void)onNextButtonClicked:(UIButton *)sender {
+    self.view.userInteractionEnabled = NO;
+    sender.enabled = NO;
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
@@ -676,6 +678,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.labelSlider.slider.value = i;
     j = i;
     [self showImageAtIndex:j];
+    self.view.userInteractionEnabled = YES;
+    sender.enabled = YES;
 }
  static HandGesture *hg;
 
@@ -900,11 +904,11 @@ NSInteger radiusToDegree(CGFloat angle) {
 {
     UIGraphicsBeginImageContext(backimage.size);
     [backimage drawAtPoint:CGPointMake(0,0)];
-//    Point2i ringcenter = currentHand->ringCenter;
-    Point2i ringcenter;
-//    int index = self.imageIndex / 2 * 2;
-    NSInteger index = self.imageIndex - 1;
-     [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
+    Point2i ringcenter = currentHand->ringCenter;
+//    Point2i ringcenter;
+////    int index = self.imageIndex / 2 * 2;
+//    NSInteger index = self.imageIndex - 1;
+//     [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
