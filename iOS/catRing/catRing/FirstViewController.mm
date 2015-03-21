@@ -514,43 +514,43 @@ NSInteger radiusToDegree(CGFloat angle) {
         
 //        [self.rotationManager pushAngleX:0 angleY:0 angleZ:0];
         self.labelSlider.slider.enabled = NO;
-        [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
-//            self.filenamePositionInfoDic = outputDic;
-            // 将output的内容追加到filenamePositionInfoDic中去
-            if (outputDic) {
-                for (NSString *key in outputDic.allKeys) {
-                    id obj = outputDic[key];
-                    if (obj && key) {
-                        [self.filenamePositionInfoDic setObject:obj forKey:key];
-                    }
-                }
-            }
-            NSLog(@"filenamePositionInfoDic=%@", self.filenamePositionInfoDic);
-            
-            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
-            
-            
-            
-            
-            NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.filenamePositionInfoDic];
-            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
-            if (!saveRes)
-            {
-                NSLog(@"save file failed!");
-            }
-            else
-            {
-                NSLog(@"save file ok");
-            }
-            
-            for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
-            {
-                [self showImageAtIndex:i];
-            }
-            
-            self.labelSlider.slider.enabled = YES;
-        } controller:self];
+//        [self.rotationManager getOutput:^(NSMutableDictionary *outputDic) {
+////            self.filenamePositionInfoDic = outputDic;
+//            // 将output的内容追加到filenamePositionInfoDic中去
+//            if (outputDic) {
+//                for (NSString *key in outputDic.allKeys) {
+//                    id obj = outputDic[key];
+//                    if (obj && key) {
+//                        [self.filenamePositionInfoDic setObject:obj forKey:key];
+//                    }
+//                }
+//            }
+//            NSLog(@"filenamePositionInfoDic=%@", self.filenamePositionInfoDic);
+//            
+//            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//            betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
+//            
+//            
+//            
+//            
+//            NSDictionary *saveDic = [NSDictionary dictionaryWithDictionary:self.filenamePositionInfoDic];
+//            BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
+//            if (!saveRes)
+//            {
+//                NSLog(@"save file failed!");
+//            }
+//            else
+//            {
+//                NSLog(@"save file ok");
+//            }
+//            
+//            for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
+//            {
+//                [self showImageAtIndex:i];
+//            }
+//            
+//            self.labelSlider.slider.enabled = YES;
+//        } controller:self];
         
 
     }

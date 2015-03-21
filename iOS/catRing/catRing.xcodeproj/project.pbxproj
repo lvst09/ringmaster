@@ -746,6 +746,8 @@
 		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		33A8D7E91ABD5064003D935F /* DWHandColorPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */; };
+		33A8D7EA1ABD5064003D935F /* DWHandColorPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */; };
 		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
 		33AAE62E1AA3000D0031DF4A /* ring.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAE62D1AA3000D0031DF4A /* ring.png */; };
 		33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAE6341AA30A210031DF4A /* DWRingPositionInfo.m */; };
@@ -762,10 +764,6 @@
 		33AAF32C1AA314F70031DF4A /* catRingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32B1AA314F70031DF4A /* catRingLayer.m */; };
 		33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF32E1AA314F70031DF4A /* catRingScene.m */; };
 		33AAF3391AA314F70031DF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AAF3381AA314F70031DF4A /* main.m */; };
-		33AAF35A1AA314F70031DF4A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3591AA314F70031DF4A /* Default.png */; };
-		33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */; };
-		33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35D1AA314F70031DF4A /* Default-Portrait~ipad.png */; };
-		33AAF3601AA314F70031DF4A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF35F1AA314F70031DF4A /* Default-Landscape~ipad.png */; };
 		33AAF3621AA314F70031DF4A /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3611AA314F70031DF4A /* fps_images.png */; };
 		33AAF3641AA314F70031DF4A /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3631AA314F70031DF4A /* fps_images-hd.png */; };
 		33AAF3661AA314F70031DF4A /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 33AAF3651AA314F70031DF4A /* fps_images-ipadhd.png */; };
@@ -1622,6 +1620,8 @@
 		3379CC721A97202500D29FFD /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		33A8D7E71ABD5064003D935F /* DWHandColorPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHandColorPointView.h; sourceTree = "<group>"; };
+		33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHandColorPointView.m; sourceTree = "<group>"; };
 		33AAE62B1AA2FE540031DF4A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		33AAE62D1AA3000D0031DF4A /* ring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ring.png; sourceTree = "<group>"; };
 		33AAE6331AA30A210031DF4A /* DWRingPositionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWRingPositionInfo.h; sourceTree = "<group>"; };
@@ -1646,10 +1646,6 @@
 		33AAF3351AA314F70031DF4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		33AAF3381AA314F70031DF4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		33AAF33A1AA314F70031DF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		33AAF3591AA314F70031DF4A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/LaunchImages/Default.png; sourceTree = "<group>"; };
-		33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/LaunchImages/Default-568h@2x.png"; sourceTree = "<group>"; };
-		33AAF35D1AA314F70031DF4A /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "Resources/LaunchImages/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		33AAF35F1AA314F70031DF4A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/LaunchImages/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		33AAF3611AA314F70031DF4A /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
 		33AAF3631AA314F70031DF4A /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
 		33AAF3651AA314F70031DF4A /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-ipadhd.png"; path = "Resources/fps_images-ipadhd.png"; sourceTree = "<group>"; };
@@ -2776,6 +2772,8 @@
 				33774BFB1AB0917C00B2E754 /* RosyWriterViewController.h */,
 				33774BFC1AB0917C00B2E754 /* RosyWriterViewController.m */,
 				33774BFD1AB0917C00B2E754 /* Utilities */,
+				33A8D7E71ABD5064003D935F /* DWHandColorPointView.h */,
+				33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */,
 			);
 			path = rosyWriter;
 			sourceTree = "<group>";
@@ -3098,10 +3096,6 @@
 		33AAF3581AA314F70031DF4A /* Launch Images */ = {
 			isa = PBXGroup;
 			children = (
-				33AAF3591AA314F70031DF4A /* Default.png */,
-				33AAF35B1AA314F70031DF4A /* Default-568h@2x.png */,
-				33AAF35D1AA314F70031DF4A /* Default-Portrait~ipad.png */,
-				33AAF35F1AA314F70031DF4A /* Default-Landscape~ipad.png */,
 			);
 			name = "Launch Images";
 			sourceTree = "<group>";
@@ -5008,7 +5002,6 @@
 				33AAF3701AA314F80031DF4A /* CC3LibEnvironmentReflection.fsh in Resources */,
 				3377497A1AAE789200B2E754 /* MYIMG_ANG_x90_y-17_z2.png in Resources */,
 				337748501AADD58600B2E754 /* MYIMG_ANG_x90_y-6_z6.png in Resources */,
-				33AAF35A1AA314F70031DF4A /* Default.png in Resources */,
 				33774A0E1AAE789200B2E754 /* MYIMG_ANG_x90_y-39_z6.png in Resources */,
 				3377475B1AAC10E300B2E754 /* MYIMG_ANG_x90_y-9_z3.png in Resources */,
 				337749661AAE789200B2E754 /* MYIMG_ANG_x90_y-8_z4.png in Resources */,
@@ -5045,7 +5038,6 @@
 				3377485E1AADD58600B2E754 /* MYIMG_ANG_x90_y-30_z1.png in Resources */,
 				337747A11AAC10E300B2E754 /* MYIMG_ANG_x90_y3_z3.png in Resources */,
 				337749E21AAE789200B2E754 /* MYIMG_ANG_x90_y-28_z6.png in Resources */,
-				33AAF35E1AA314F70031DF4A /* Default-Portrait~ipad.png in Resources */,
 				3377498A1AAE789200B2E754 /* MYIMG_ANG_x90_y-19_z4.png in Resources */,
 				33774A701AAE789200B2E754 /* MYIMG_ANG_x90_y12_z5.png in Resources */,
 				337749BE1AAE789200B2E754 /* MYIMG_ANG_x90_y-26_z1.png in Resources */,
@@ -5098,10 +5090,8 @@
 				33774A821AAE789200B2E754 /* MYIMG_ANG_x90_y24_z5.png in Resources */,
 				3377484A1AADD58600B2E754 /* MYIMG_ANG_x90_y-3_z4.png in Resources */,
 				337748641AADD58600B2E754 /* MYIMG_ANG_x90_y13_z1.png in Resources */,
-				33AAF3601AA314F70031DF4A /* Default-Landscape~ipad.png in Resources */,
 				33774A3E1AAE789200B2E754 /* MYIMG_ANG_x90_y-59_z0.png in Resources */,
 				337747731AAC10E300B2E754 /* MYIMG_ANG_x90_y15_z2.png in Resources */,
-				33AAF35C1AA314F70031DF4A /* Default-568h@2x.png in Resources */,
 				33774AA61AAE789200B2E754 /* MYIMG_ANG_x90_y51_z1.png in Resources */,
 				337749B01AAE789200B2E754 /* MYIMG_ANG_x90_y-24_z4.png in Resources */,
 				3377497E1AAE789200B2E754 /* MYIMG_ANG_x90_y-17_z4.png in Resources */,
@@ -5395,6 +5385,7 @@
 				33AAE6351AA30A210031DF4A /* DWRingPositionInfo.m in Sources */,
 				3379C9E21A932D0900D29FFD /* roi.cpp in Sources */,
 				3379C9E11A932D0900D29FFD /* mymain.cpp in Sources */,
+				33A8D7E91ABD5064003D935F /* DWHandColorPointView.m in Sources */,
 				3379C9AB1A9329FD00D29FFD /* main.m in Sources */,
 				680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */,
 			);
@@ -5435,6 +5426,7 @@
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
+				33A8D7EA1ABD5064003D935F /* DWHandColorPointView.m in Sources */,
 				33774BF41AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				33774C101AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
 				33774C0A1AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */,
