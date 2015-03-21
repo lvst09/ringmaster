@@ -317,7 +317,6 @@ NSInteger radiusToDegree(CGFloat angle) {
         newCenter.x = (previousCenter.x + currentCenter.x + nextCenter.x) /3;
         newCenter.y = (previousCenter.y + currentCenter.y + nextCenter.y) /3;
         [result addObject:[NSValue valueWithBytes:&newCenter objCType:@encode(Point2i)]];
-        
     }
     [result addObject:[array objectAtIndex:array.count - 2]];
     [result addObject:[array objectAtIndex:array.count - 1]];
@@ -385,7 +384,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 //        return;
     
     int j;
-    for( j = 1 ; j < self.labelSlider.slider.maximumValue; j++)// && j < 15; j++)
+    for( j = 1 ; j < self.labelSlider.slider.maximumValue ; j++) //&& j < 15; j++)
     {
         @autoreleasepool {
             self.title = [NSString stringWithFormat:@"%zd", j];
@@ -696,6 +695,10 @@ NSInteger radiusToDegree(CGFloat angle) {
     image = [ImageProcess correctImage:image];
     IplImage *ipImage = convertIplImageFromUIImage(image);
     
+    if(self.imageIndex == 1 )
+    {
+        findROIColorInPalm(ipImage);
+    }
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     
     hg = new HandGesture();
@@ -729,8 +732,8 @@ NSInteger radiusToDegree(CGFloat angle) {
 //
 //    NSLog(@"current filename=%@", betaCompressionDirectory);
 //    
-//    self.imageIndex = j;
-//    
+    self.imageIndex = j;
+//
 //    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
     
     if(!image)

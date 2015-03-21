@@ -21,6 +21,14 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+//        [self addViewAtPoint:CGPointMake(50, 100)];
+//        [self addViewAtPoint:CGPointMake(50, 200)];
+//        [self addViewAtPoint:CGPointMake(100, 100)];
+//        [self addViewAtPoint:CGPointMake(300, 400)];
+//        [self addViewAtPoint:CGPointMake(54, 321)];
+//        [self addViewAtPoint:CGPointMake(133, 362)];
+//        [self addViewAtPoint:CGPointMake(197, 362)];
+        
         [self addViewAtPoint:CGPointMake(119, 196)];
         [self addViewAtPoint:CGPointMake(171, 201)];
         [self addViewAtPoint:CGPointMake(206, 218)];

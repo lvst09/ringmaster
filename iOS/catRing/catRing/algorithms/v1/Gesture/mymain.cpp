@@ -79,6 +79,12 @@ void findROIColorInPalm(IplImage *image) {
     waitForPalmCover(&m);
 }
 
+//(375,667)->(1280,720)
+Point2i changePoint(double x, double y)
+{
+    return Point2i( y * 1280 / 667  ,720 - x * 720 / 375 );
+}
+
 void waitForPalmCover(MyImage* m){
     vector<My_ROI> roi;
     if (kUseCamera)
@@ -110,13 +116,57 @@ void waitForPalmCover(MyImage* m){
     //    pushIntoROI(roi, 186, 346, square_len, m->src);
     //    pushIntoROI(roi, 46, 233, square_len, m->src);
     
-    pushIntoROI(roi, 364, 115, square_len, m->src);
-    pushIntoROI(roi, 369, 207, square_len, m->src);
-    pushIntoROI(roi, 422, 289, square_len, m->src);
-    pushIntoROI(roi, 347, 377, square_len, m->src);
-    pushIntoROI(roi, 122, 497, square_len, m->src);
-    pushIntoROI(roi, 154, 169, square_len, m->src);
-    pushIntoROI(roi, 78, 430, square_len, m->src);
+//    [self addViewAtPoint:CGPointMake(119, 196)];
+//    [self addViewAtPoint:CGPointMake(171, 201)];
+//    [self addViewAtPoint:CGPointMake(206, 218)];
+//    [self addViewAtPoint:CGPointMake(247, 245)];
+//    [self addViewAtPoint:CGPointMake(54, 321)];
+//    [self addViewAtPoint:CGPointMake(133, 362)];
+//    [self addViewAtPoint:CGPointMake(197, 362)];
+
+//    Point2i point = changePoint(1, 1);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+    
+//    [self addViewAtPoint:CGPointMake(50, 100)];
+//    [self addViewAtPoint:CGPointMake(50, 200)];
+//    [self addViewAtPoint:CGPointMake(100, 100)];
+    
+//    [self addViewAtPoint:CGPointMake(119, 196)];
+//    [self addViewAtPoint:CGPointMake(171, 201)];
+//    [self addViewAtPoint:CGPointMake(206, 218)];
+//    [self addViewAtPoint:CGPointMake(247, 245)];
+//    [self addViewAtPoint:CGPointMake(54, 321)];
+//    [self addViewAtPoint:CGPointMake(133, 362)];
+//    [self addViewAtPoint:CGPointMake(197, 362)];
+    
+    Point2i point = changePoint(119, 196);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+    
+    point = changePoint(171, 201);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(206, 218);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(247, 245);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//
+    point = changePoint(54, 321);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(133, 362);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(197, 362);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+//    pushIntoROI(roi, 364, 115, square_len, m->src);
+//    pushIntoROI(roi, 369, 207, square_len, m->src);
+//    pushIntoROI(roi, 422, 289, square_len, m->src);
+//    pushIntoROI(roi, 347, 377, square_len, m->src);
+//    pushIntoROI(roi, 122, 497, square_len, m->src);
+//    pushIntoROI(roi, 154, 169, square_len, m->src);
+//    pushIntoROI(roi, 78, 430, square_len, m->src);
 
 #endif
     
@@ -293,68 +343,68 @@ void produceBinaries(MyImage *m){
 //    avgColor[6][1] = 78;
 //    avgColor[6][2] = 155;
     // above is old
-    avgColor[0][1] = 213;
-    avgColor[0][2] = 225;
-    avgColor[1][0] = 17;
-    avgColor[1][1] = 173;
-    avgColor[1][2] = 148;
-    avgColor[2][0] = 16;
-    avgColor[2][1] = 219;
-    avgColor[2][2] = 234;
-    avgColor[3][0] = 13;
-    avgColor[3][1] = 195;
-    avgColor[3][2] = 178;
-    avgColor[4][0] = 14;
-    avgColor[4][1] = 211;
-    avgColor[4][2] = 215;
-    avgColor[5][0] = 13;
-    avgColor[5][1] = 211;
-    avgColor[5][2] = 249;
-    avgColor[6][0] = 17;
-    avgColor[6][1] = 167;
-    avgColor[6][2] = 136;
-    c_lower[0][0] = 12;
-    c_lower[0][1] = 30;
-    c_lower[0][2] = 80;
-    c_lower[1][0] = 12;
-    c_lower[1][1] = 30;
-    c_lower[1][2] = 80;
-    c_lower[2][0] = 12;
-    c_lower[2][1] = 30;
-    c_lower[2][2] = 80;
-    c_lower[3][0] = 12;
-    c_lower[3][1] = 30;
-    c_lower[3][2] = 80;
-    c_lower[4][0] = 12;
-    c_lower[4][1] = 30;
-    c_lower[4][2] = 80;
-    c_lower[5][0] = 12;
-    c_lower[5][1] = 30;
-    c_lower[5][2] = 80;
-    c_lower[6][0] = 12;
-    c_lower[6][1] = 30;
-    c_lower[6][2] = 80;
-    c_upper[0][0] = 7;
-    c_upper[0][1] = 40;
-    c_upper[0][2] = 30;
-    c_upper[1][0] = 7;
-    c_upper[1][1] = 40;
-    c_upper[1][2] = 30;
-    c_upper[2][0] = 7;
-    c_upper[2][1] = 36;
-    c_upper[2][2] = 21;
-    c_upper[3][0] = 7;
-    c_upper[3][1] = 40;
-    c_upper[3][2] = 30;
-    c_upper[4][0] = 7;
-    c_upper[4][1] = 40;
-    c_upper[4][2] = 30;
-    c_upper[5][0] = 7;
-    c_upper[5][1] = 40;
-    c_upper[5][2] = 6;
-    c_upper[6][0] = 7;
-    c_upper[6][1] = 40;
-    c_upper[6][2] = 30;
+//    avgColor[0][1] = 213;
+//    avgColor[0][2] = 225;
+//    avgColor[1][0] = 17;
+//    avgColor[1][1] = 173;
+//    avgColor[1][2] = 148;
+//    avgColor[2][0] = 16;
+//    avgColor[2][1] = 219;
+//    avgColor[2][2] = 234;
+//    avgColor[3][0] = 13;
+//    avgColor[3][1] = 195;
+//    avgColor[3][2] = 178;
+//    avgColor[4][0] = 14;
+//    avgColor[4][1] = 211;
+//    avgColor[4][2] = 215;
+//    avgColor[5][0] = 13;
+//    avgColor[5][1] = 211;
+//    avgColor[5][2] = 249;
+//    avgColor[6][0] = 17;
+//    avgColor[6][1] = 167;
+//    avgColor[6][2] = 136;
+//    c_lower[0][0] = 12;
+//    c_lower[0][1] = 30;
+//    c_lower[0][2] = 80;
+//    c_lower[1][0] = 12;
+//    c_lower[1][1] = 30;
+//    c_lower[1][2] = 80;
+//    c_lower[2][0] = 12;
+//    c_lower[2][1] = 30;
+//    c_lower[2][2] = 80;
+//    c_lower[3][0] = 12;
+//    c_lower[3][1] = 30;
+//    c_lower[3][2] = 80;
+//    c_lower[4][0] = 12;
+//    c_lower[4][1] = 30;
+//    c_lower[4][2] = 80;
+//    c_lower[5][0] = 12;
+//    c_lower[5][1] = 30;
+//    c_lower[5][2] = 80;
+//    c_lower[6][0] = 12;
+//    c_lower[6][1] = 30;
+//    c_lower[6][2] = 80;
+//    c_upper[0][0] = 7;
+//    c_upper[0][1] = 40;
+//    c_upper[0][2] = 30;
+//    c_upper[1][0] = 7;
+//    c_upper[1][1] = 40;
+//    c_upper[1][2] = 30;
+//    c_upper[2][0] = 7;
+//    c_upper[2][1] = 36;
+//    c_upper[2][2] = 21;
+//    c_upper[3][0] = 7;
+//    c_upper[3][1] = 40;
+//    c_upper[3][2] = 30;
+//    c_upper[4][0] = 7;
+//    c_upper[4][1] = 40;
+//    c_upper[4][2] = 30;
+//    c_upper[5][0] = 7;
+//    c_upper[5][1] = 40;
+//    c_upper[5][2] = 6;
+//    c_upper[6][0] = 7;
+//    c_upper[6][1] = 40;
+//    c_upper[6][2] = 30;
     
     
 //
@@ -497,16 +547,19 @@ void reduceDefect(HandGesture * hg)
              vector<Vec4i>::iterator e = d-1;
              Vec4i& t = (*e);
              int endidx=t[1];
-             
-             hg->contours[hg->cIdx][endidx] = ptMid;
-//
-//             e = d+1;
-//             t = (*e);
-//             int startidx=t[0];
-//             hg->contours[hg->cIdx][startidx] = ptMid;
-//
-             hg->defects[hg->cIdx].erase(d++);
-             continue;
+             if(endidx < hg->contours[hg->cIdx].size())
+             {
+                 hg->contours[hg->cIdx][endidx] = ptMid;
+                 //
+                 //             e = d+1;
+                 //             t = (*e);
+                 //             int startidx=t[0];
+                 //             hg->contours[hg->cIdx][startidx] = ptMid;
+                 //
+                 hg->defects[hg->cIdx].erase(d++);
+                 continue;
+             }
+
              
 //
          }
@@ -636,6 +689,15 @@ void caculateRotationAngle(HandGesture *hg)
     
     angle1 = hg->featureAngles[0] / 2;
     angle2 = hg->featureAngles[1] / 2;
+    if(!firstFeatureAngles)
+    {
+        hg->rotationAngle.clear();
+        hg->rotationAngle.push_back(0);
+        hg->rotationAngle.push_back(0);
+        hg->rotationAngle.push_back(0);
+        return;
+        
+    }
     
     double firstAngle1 = (*firstFeatureAngles)[0] / 2;
     double firstAngle2 = (*firstFeatureAngles)[1] / 2;
@@ -884,7 +946,6 @@ void makeContours(MyImage *m, HandGesture* hg){
     }
 }
 
-
 IplImage * shrink(IplImage *input, double scale) {
     IplImage *desc = NULL;
     IplImage *src = input;
@@ -963,6 +1024,7 @@ void on_mouse( int event, int x, int y, int flags, void* ustc)
 
 MyImage * detectHand(IplImage *inputImage,  HandGesture &hg) {
     MyImage *m1 = new MyImage(inputImage);
+//    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;
 }
