@@ -53,6 +53,7 @@
 #import "OpenGLPixelBufferView.h"
 
 #import "DWHandColorPointView.h"
+#import "DWUtility.h"
 
 @interface RosyWriterViewController () <RosyWriterCapturePipelineDelegate>
 {
@@ -306,7 +307,20 @@
 	}
 	
 	[self.previewView displayPixelBuffer:previewPixelBuffer];
+    
+#warning TODO jerry/sky
+    // 需要检测是否包含五指
+#if 0
+    CIImage * imageFromCoreImageLibrary = [CIImage imageWithCVPixelBuffer:previewPixelBuffer];
+    UIImage * imageForUI = [UIImage imageWithCIImage: imageFromCoreImageLibrary];
+    
+    NSLog(@"imageisze=%@", [NSValue valueWithCGSize:imageForUI.size]);
+    NSData *data = UIImagePNGRepresentation(imageForUI);
+    [data writeToFile:[NSString stringWithFormat:@"%@/1.png", documentPath()] atomically:YES];
+#endif
 }
+
+
 
 - (void)capturePipelineDidRunOutOfPreviewBuffers:(RosyWriterCapturePipeline *)capturePipeline
 {

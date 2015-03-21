@@ -922,11 +922,11 @@ NSInteger radiusToDegree(CGFloat angle) {
 {
     UIGraphicsBeginImageContext(backimage.size);
     [backimage drawAtPoint:CGPointMake(0,0)];
-//    Point2i ringcenter = currentHand->ringCenter;
-    Point2i ringcenter;
+    Point2i ringcenter = currentHand->ringCenter;
+//    Point2i ringcenter;
 //    int index = self.imageIndex / 2 * 2;
-    NSInteger index = self.imageIndex - 1;
-     [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
+//    NSInteger index = self.imageIndex - 1;
+//     [[self.ringCenterArray objectAtIndex:index] getValue:&ringcenter];
     
     [frontImage drawAtPoint:CGPointMake(ringcenter.x - frontImage.size.width/2,ringcenter.y -frontImage.size.height/2)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();

@@ -1168,6 +1168,8 @@
 		33DD582E1ABD654700B94308 /* MYIMG_ANG_x90_y13_z0.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD58271ABD654700B94308 /* MYIMG_ANG_x90_y13_z0.png */; };
 		33DD582F1ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD58281ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png */; };
 		33DD58301ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD58281ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png */; };
+		33DD58331ABD6FEA00B94308 /* DWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD58321ABD6FEA00B94308 /* DWUtility.m */; };
+		33DD58341ABD6FEA00B94308 /* DWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD58321ABD6FEA00B94308 /* DWUtility.m */; };
 		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
@@ -2367,6 +2369,8 @@
 		33DD58261ABD654700B94308 /* MYIMG_ANG_x90_y14_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y14_z0.png; sourceTree = "<group>"; };
 		33DD58271ABD654700B94308 /* MYIMG_ANG_x90_y13_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y13_z0.png; sourceTree = "<group>"; };
 		33DD58281ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y11_z0.png; sourceTree = "<group>"; };
+		33DD58311ABD6FEA00B94308 /* DWUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUtility.h; sourceTree = "<group>"; };
+		33DD58321ABD6FEA00B94308 /* DWUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWUtility.m; sourceTree = "<group>"; };
 		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3003,6 +3007,8 @@
 				3379C9F81A93349100D29FFD /* ImageProcess.m */,
 				3379CC611A9709B500D29FFD /* DWIplImageHelper.mm */,
 				3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */,
+				33DD58311ABD6FEA00B94308 /* DWUtility.h */,
+				33DD58321ABD6FEA00B94308 /* DWUtility.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -5438,6 +5444,7 @@
 				33774C091AB0917C00B2E754 /* RosyWriterCPURenderer.m in Sources */,
 				33774C0B1AB0917C00B2E754 /* RosyWriterViewController.m in Sources */,
 				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
+				33DD58331ABD6FEA00B94308 /* DWUtility.m in Sources */,
 				33774C0F1AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
 				33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
@@ -5472,6 +5479,7 @@
 				33AAF32F1AA314F70031DF4A /* catRingScene.m in Sources */,
 				33AAF7DE1AA319010031DF4A /* handGesture.cpp in Sources */,
 				33AAF7D11AA318AE0031DF4A /* LabelSliderGroup.m in Sources */,
+				33DD58341ABD6FEA00B94308 /* DWUtility.m in Sources */,
 				33AAF7F61AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
 				33AAF7DB1AA318DB0031DF4A /* SVProgressHUD.m in Sources */,
 				33AAF7E01AA319010031DF4A /* mymain.cpp in Sources */,
