@@ -21,6 +21,19 @@ NSString *documentPath()
 
 @implementation DWUtility
 
+- (BOOL)createFolder:(NSString *)folder {
+    if (!folder)
+        return NO;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:folder])
+        return YES;
+    
+    NSError *error = nil;
+    BOOL ret = [fileManager createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:&error];
+    return ret;
+}
 
 
 @end
