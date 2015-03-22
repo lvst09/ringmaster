@@ -95,6 +95,8 @@
 @property (nonatomic, strong) NSMutableDictionary *indexXYZDic;
 @property (nonatomic, strong) NSMutableDictionary *indexRingPosDic;
 @property (nonatomic, retain) NSMutableArray * frames;
+
+@property (nonatomic, assign) BOOL canClick;
 @end
 
 @implementation FirstViewController
@@ -145,6 +147,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     firstTime = YES;
+    self.canClick = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -691,8 +694,11 @@ NSInteger radiusToDegree(CGFloat angle) {
     }];
 }
 - (void)onNextButtonClicked:(UIButton *)sender {
-    self.view.userInteractionEnabled = NO;
-    sender.enabled = NO;
+    if (self.canClick) {
+        self.canClick = NO;
+    } else {
+        return;
+    }
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
@@ -703,10 +709,12 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.labelSlider.slider.value = i;
     j = i;
     [self showImageAtIndex:j];
-    self.view.userInteractionEnabled = YES;
-    sender.enabled = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.canClick = YES;
+    });
 }
- static HandGesture *hg;
+
+static HandGesture *hg;
 
 -(DWRotationManager *)rotationManager
 {
