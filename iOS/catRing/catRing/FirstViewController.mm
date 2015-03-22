@@ -221,7 +221,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-//            [self processAllImages];
+            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -573,7 +573,9 @@ NSInteger radiusToDegree(CGFloat angle) {
             
             for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
             {
-                [self showImageAtIndex:i];
+                @autoreleasepool {
+                    [self showImageAtIndex:i];
+                }
             }
             
             self.labelSlider.slider.enabled = YES;
@@ -658,9 +660,8 @@ NSInteger radiusToDegree(CGFloat angle) {
 
         for (NSInteger i = 1; i < self.labelSlider.slider.maximumValue; i++) {
             
-            NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)i];
-            NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
+            NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)i];
+//            NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
             
             //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
             //        NSData *data = UIImagePNGRepresentation(resultImage);
@@ -672,10 +673,11 @@ NSInteger radiusToDegree(CGFloat angle) {
     }
 //    if(!_movieMaker)
     {
-        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)1];
-        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
-        
+//        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)1];
+//        
+//        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
+        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)1];
         //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         //        NSData *data = UIImagePNGRepresentation(resultImage);
         //        BOOL succ = [data writeToFile:pngPath atomically:YES];
@@ -804,12 +806,12 @@ static HandGesture *hg;
     self.imageView.image = resultImage;
     
     // 将每一帧的图片保存到documents目录下
-#if 0
+#if 1
     {
-        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
-        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        NSString * pngPath = [betaCompressionDirectory stringByAppendingPathComponent:fileKeyName2];
-        
+//        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
+////        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+//        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
+        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)j];
 //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         NSData *data = UIImagePNGRepresentation(resultImage);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
@@ -868,7 +870,7 @@ static HandGesture *hg;
     
     UIImage * img = [UIImage imageWithCGImage:imageRef];
     img = [self rotateImage:img withRadian:radian shrinkRatio:shrinkRatio];
-    
+    CGImageRelease(imageRef);
     return img;
 }
 

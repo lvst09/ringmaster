@@ -118,6 +118,7 @@
     DWHandColorPointView *handColorView = [[DWHandColorPointView alloc] initWithFrame:self.view.bounds];
     //    handColorView.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5f];
     [self.view addSubview:handColorView];
+    [handColorView release];
     
     self.capturePipeline = [[[RosyWriterCapturePipeline alloc] init] autorelease];
     [self.capturePipeline setDelegate:self callbackQueue:dispatch_get_main_queue()];

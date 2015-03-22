@@ -88,6 +88,9 @@
 //        CMTime currentTime = CMSampleBufferGetPresentationTimeStamp(buffer);
         UIImage *image = [DWVideoDecoding processSampleBuffer:buffer imageOrientation:UIImageOrientationDown];
         NSLog(@"image size=%@", [NSValue valueWithCGSize:image.size]);
+        if (buffer) {
+            CFRelease(buffer);
+        }
         return image;
     }
     return nil;

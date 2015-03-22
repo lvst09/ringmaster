@@ -313,7 +313,9 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 // next delta time will be zero
 -(void) applicationSignificantTimeChange:(UIApplication *)application
 {
+#if 0
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+#endif
 }
 
 @end
