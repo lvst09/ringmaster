@@ -158,7 +158,7 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(0, 25, self.view.bounds.size.width, 20)];
+    LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 90, self.view.bounds.size.width-60, 20)];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
     labelSlider.label.text = nil;
@@ -221,7 +221,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-            [self processAllImages];
+//            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -966,8 +966,8 @@ static HandGesture *hg;
 //    }
    
     NSString *path = self.videoPath;//[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
-    
-    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:path];
+    NSString *fileName = [path lastPathComponent];
+    NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:fileName];
     if ([value integerValue] > 0) {
         self.totalVideoFrame = [value integerValue];
         return;
@@ -995,7 +995,7 @@ static HandGesture *hg;
         }
     }
     self.totalVideoFrame = i;
-    [[NSUserDefaults standardUserDefaults] setObject:@(i) forKey:path];
+    [[NSUserDefaults standardUserDefaults] setObject:@(i) forKey:fileName];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [SVProgressHUD dismiss];
     return;
