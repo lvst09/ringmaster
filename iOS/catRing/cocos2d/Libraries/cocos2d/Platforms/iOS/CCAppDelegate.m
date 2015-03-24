@@ -270,8 +270,10 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 // getting a call, pause the game
 -(void) applicationWillResignActive:(UIApplication *)application
 {
+#if 0
 	if( [navController_ visibleViewController] == [CCDirector sharedDirector] )
 		[[CCDirector sharedDirector] pause];
+#endif
 }
 
 // call got rejected
@@ -286,14 +288,18 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
+#if 0
 	if( [navController_ visibleViewController] == [CCDirector sharedDirector] )
 		[[CCDirector sharedDirector] stopAnimation];
+#endif
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
+#if 0
 	if( [navController_ visibleViewController] == [CCDirector sharedDirector] )
 		[[CCDirector sharedDirector] startAnimation];
+#endif
 }
 
 // application will be killed

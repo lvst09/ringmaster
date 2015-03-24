@@ -10,6 +10,7 @@
 //#import "CameraViewController.h"
 #import "RosyWriterViewController.h"
 #import "FirstViewController.h"
+#import "DWUtility.h"
 
 @interface SecondViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -66,13 +67,13 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    }
+//    if (section == 0) {
+//        return 1;
+//    }
     return self.movieForLocals.count;
 }
 
@@ -86,11 +87,12 @@
     }
     // Configure the cell...
     int row = indexPath.row;
-    int section = indexPath.section;
-   
-    if (0 == section) {
-        cell.textLabel.text = @"Movie12347.m4v";
-    } else if (row < self.movieForLocals.count) {
+//    int section = indexPath.section;
+//   
+//    if (0 == section) {
+//        cell.textLabel.text = @"Movie12347.m4v";
+//    } else
+    if (row < self.movieForLocals.count) {
         NSString *fileFullPath = [self.movieForLocals objectAtIndex:row];
         cell.textLabel.text = [fileFullPath lastPathComponent];
 //        cell.detailTextLabel.text = @"";
@@ -100,13 +102,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    int section = indexPath.section;
+//    int section = indexPath.section;
     int row = indexPath.row;
     NSString *fullPath = nil;
-    if (0 == section) {
-//        cell.textLabel.text = @"Movie12347.m4v";
-        fullPath = [[NSBundle mainBundle] pathForResource:@"Movie12347" ofType:@"m4v"];
-    } else if (row < self.movieForLocals.count) {
+//    if (0 == section) {
+////        cell.textLabel.text = @"Movie12347.m4v";
+//        fullPath = [[NSBundle mainBundle] pathForResource:@"Movie12347" ofType:@"m4v"];
+//    } else
+    if (row < self.movieForLocals.count) {
         fullPath = [self.movieForLocals objectAtIndex:row];
 //        cell.textLabel.text = [fileFullPath lastPathComponent];
         //        cell.detailTextLabel.text = @"";
@@ -129,6 +132,15 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+
+    
+    NSString *fullPath = nil;
+    fullPath = [[NSBundle mainBundle] pathForResource:@"Movie12347" ofType:@"m4v"];
+    
+    NSString *dest = [documentPath() stringByAppendingPathComponent:@"Movie12347.m4v"];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:fullPath toPath:dest error:&error];
+    NSLog(@"error=%@, from = %@, dest = %@", error, fullPath, dest);
     [self reloadLocalData];
 }
 
