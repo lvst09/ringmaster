@@ -221,7 +221,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-//            [self processAllImages];
+            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -813,7 +813,7 @@ static HandGesture *hg;
 //        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
         NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)j];
 //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
-        NSData *data = UIImagePNGRepresentation(resultImage);
+        NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
         if (!succ) {
             NSLog(@"save failed, %@", pngPath);
@@ -964,7 +964,7 @@ static HandGesture *hg;
 //            return;
 //        }
 //    }
-   
+
     NSString *path = self.videoPath;//[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Movie12347.m4v"];
     NSString *fileName = [path lastPathComponent];
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:fileName];
@@ -989,7 +989,7 @@ static HandGesture *hg;
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i];
             NSLog(@"get image=%@", betaCompressionDirectory);
-            NSData *imageData = UIImagePNGRepresentation(image);
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
             [imageData writeToFile:betaCompressionDirectory atomically:YES];
             ++i;
         }
