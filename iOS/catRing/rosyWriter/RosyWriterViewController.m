@@ -115,10 +115,18 @@
 
 - (void)viewDidLoad
 {
+    CGSize size = self.view.bounds.size;
     DWHandColorPointView *handColorView = [[DWHandColorPointView alloc] initWithFrame:self.view.bounds];
     //    handColorView.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5f];
     [self.view addSubview:handColorView];
     [handColorView release];
+    
+    NSInteger imageWidth = 500/2;
+    NSInteger imageHeight = 888/2;
+    UIImageView *tryOn = [[UIImageView alloc] initWithFrame:CGRectMake((size.width - imageWidth) / 2, (size.height - imageHeight) / 2, imageWidth, imageHeight)];
+    tryOn.image = [UIImage imageNamed:@"tryon_hand.png"];
+    [self.view addSubview:tryOn];
+    [tryOn release];
     
     self.capturePipeline = [[[RosyWriterCapturePipeline alloc] init] autorelease];
     [self.capturePipeline setDelegate:self callbackQueue:dispatch_get_main_queue()];

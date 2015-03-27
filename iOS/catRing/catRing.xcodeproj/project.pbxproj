@@ -1170,6 +1170,8 @@
 		33DD58301ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DD58281ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png */; };
 		33DD58331ABD6FEA00B94308 /* DWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD58321ABD6FEA00B94308 /* DWUtility.m */; };
 		33DD58341ABD6FEA00B94308 /* DWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DD58321ABD6FEA00B94308 /* DWUtility.m */; };
+		33E54B061AC5A925000F5E9D /* tryon_hand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */; };
+		33E54B071AC5A925000F5E9D /* tryon_hand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */; };
 		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
@@ -2371,6 +2373,7 @@
 		33DD58281ABD654700B94308 /* MYIMG_ANG_x90_y11_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYIMG_ANG_x90_y11_z0.png; sourceTree = "<group>"; };
 		33DD58311ABD6FEA00B94308 /* DWUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUtility.h; sourceTree = "<group>"; };
 		33DD58321ABD6FEA00B94308 /* DWUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWUtility.m; sourceTree = "<group>"; };
+		33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryon_hand@2x.png"; sourceTree = "<group>"; };
 		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3016,6 +3019,7 @@
 		3379CA021A93369700D29FFD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */,
 				337746A01AAC10E300B2E754 /* ringRotation */,
 				33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */,
 				3379CA031A93369700D29FFD /* VideoImage */,
@@ -4649,6 +4653,7 @@
 				337748091AAC138200B2E754 /* MYIMG_ANG_x90_y5_z2.png in Resources */,
 				33774A131AAE789200B2E754 /* MYIMG_ANG_x90_y-44_z1.png in Resources */,
 				337747AA1AAC10E400B2E754 /* MYIMG_ANG_x90_y7_z0.png in Resources */,
+				33E54B061AC5A925000F5E9D /* tryon_hand@2x.png in Resources */,
 				337747F31AAC138200B2E754 /* MYIMG_ANG_x90_y-8_z2.png in Resources */,
 				337747741AAC10E300B2E754 /* MYIMG_ANG_x90_y16_z0.png in Resources */,
 				33774A371AAE789200B2E754 /* MYIMG_ANG_x90_y-54_z1.png in Resources */,
@@ -5220,6 +5225,7 @@
 				33AAF3741AA314F80031DF4A /* CC3LibSetGLFragColor.fsh in Resources */,
 				33AAF38D1AA314F80031DF4A /* CC3ClipSpaceSingleTexture.fsh in Resources */,
 				33AAF37A1AA314F80031DF4A /* CC3LibSingleTexture2D.fsh in Resources */,
+				33E54B071AC5A925000F5E9D /* tryon_hand@2x.png in Resources */,
 				337749FA1AAE789200B2E754 /* MYIMG_ANG_x90_y-30_z6.png in Resources */,
 				337749B21AAE789200B2E754 /* MYIMG_ANG_x90_y-24_z6.png in Resources */,
 				337749881AAE789200B2E754 /* MYIMG_ANG_x90_y-19_z3.png in Resources */,
