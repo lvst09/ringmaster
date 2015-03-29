@@ -86,7 +86,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    int row = indexPath.row;
+    NSInteger row = indexPath.row;
 //    int section = indexPath.section;
 //   
 //    if (0 == section) {
@@ -103,7 +103,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    int section = indexPath.section;
-    int row = indexPath.row;
+    NSInteger row = indexPath.row;
     NSString *fullPath = nil;
 //    if (0 == section) {
 ////        cell.textLabel.text = @"Movie12347.m4v";

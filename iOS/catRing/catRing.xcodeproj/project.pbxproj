@@ -1644,6 +1644,7 @@
 		3379CC721A97202500D29FFD /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		3379CC731A97202500D29FFD /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		3379CC741A97202500D29FFD /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		33A5C9D11AC7ACA500C8A0DA /* CommonConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonConfig.h; sourceTree = "<group>"; };
 		33A8D7E71ABD5064003D935F /* DWHandColorPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWHandColorPointView.h; sourceTree = "<group>"; };
 		33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWHandColorPointView.m; sourceTree = "<group>"; };
 		33AAE62B1AA2FE540031DF4A /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
@@ -2957,6 +2958,7 @@
 				3379C9DB1A932D0900D29FFD /* mymain.hpp */,
 				3379C9DC1A932D0900D29FFD /* roi.cpp */,
 				3379C9DD1A932D0900D29FFD /* roi.hpp */,
+				33A5C9D11AC7ACA500C8A0DA /* CommonConfig.h */,
 			);
 			path = Gesture;
 			sourceTree = "<group>";
