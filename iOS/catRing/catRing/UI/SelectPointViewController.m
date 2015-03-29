@@ -64,7 +64,7 @@
 
 - (void)handlePanMoveLocation:(UIPanGestureRecognizer *)pan
 {
-    UIImageView * panView = nil, * otherView = nil;
+    UIImageView * panView = nil;//, * otherView = nil;
     panView = self.tempView;
 //    if (pan == locationLeftPan)
 //    {
@@ -87,7 +87,7 @@
         panView.center = point;
         [pan setTranslation:CGPointZero inView:pan.view];
         
-        CGPoint point1 = [self.imageView convertPoint:point fromView:self.view];
+//        CGPoint point1 = [self.imageView convertPoint:point fromView:self.view];
 //        CGPoint point2 = [self.imageView convertPoint:otherView.center fromView:self.view];
         
 //        CGPoint distancePt = CGPointMake(point1.x - point2.x, point1.y - point2.y);

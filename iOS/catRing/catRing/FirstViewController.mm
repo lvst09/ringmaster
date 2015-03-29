@@ -811,7 +811,7 @@ static HandGesture *hg;
 //        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
 ////        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
 //        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
-        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)j];
+        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)j];
 //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
@@ -829,7 +829,7 @@ static HandGesture *hg;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:index]];
     if (!fileKeyName) {
-        return [self getImage:index - 1];;
+        return [self getImage:index - 1];
     }
 
     NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
