@@ -83,7 +83,7 @@ void findROIColorInPalm(IplImage *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
-    return Point2i(y * 1280, 720 - x * 720);
+    return Point2i(1280 - y * 1280, x * 720);//720 - x * 720);
 }
 
 void waitForPalmCover(MyImage* m){

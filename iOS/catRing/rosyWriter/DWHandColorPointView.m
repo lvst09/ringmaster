@@ -23,26 +23,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        int len = sizeof(pointArrX) / sizeof(long);
+        int len = sizeof(pointArrX) / sizeof(double);
         for (int i = 0; i < len; ++i) {
             [self addViewAtPoint:CGPointMake(pointArrX[i], pointArrY[i])];
         }
-        
-//        [self addViewAtPoint:CGPointMake(119 / 320.f, 196 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(171 / 320.f, 201 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(206 / 320.f, 218 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(247 / 320.f, 245 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(104 / 320.f, 301 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(133 / 320.f, 362 / 568.f)];
-//        [self addViewAtPoint:CGPointMake(197 / 320.f, 362 / 568.f)];
- 
-//        pushIntoROI(roi, 510, 141, square_len, m->src);
-//        pushIntoROI(roi, 741, 205, square_len, m->src);
-//        pushIntoROI(roi, 422, 210, square_len, m->src);
-//        pushIntoROI(roi, 324, 284, square_len, m->src);
-//        pushIntoROI(roi, 421, 370, square_len, m->src);
-//        pushIntoROI(roi, 625, 522, square_len, m->src);
-//        pushIntoROI(roi, 823, 386, square_len, m->src);
     }
     return self;
 }
