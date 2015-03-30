@@ -221,7 +221,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-            [self processAllImages];
+//            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -989,7 +989,7 @@ static HandGesture *hg;
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i];
             NSLog(@"get image=%@", betaCompressionDirectory);
-            NSData *imageData = UIImagePNGRepresentation(image);
+            NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
             [imageData writeToFile:betaCompressionDirectory atomically:YES];
             ++i;
         }
