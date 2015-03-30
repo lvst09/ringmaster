@@ -12,7 +12,6 @@
 #include <vector>
 #include <cmath>
 #include "mymain.hpp"
-#include "CommonConfig.h"
 
 using namespace cv;
 using namespace std;
@@ -83,7 +82,7 @@ void findROIColorInPalm(IplImage *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
-    return Point2i(640 - y * 640, 480 - x * 480);//720 - x * 720);
+    return Point2i( y * 1280 / 568  ,720 - x * 720 / 320 );
 }
 
 void waitForPalmCover(MyImage* m){
@@ -140,61 +139,26 @@ void waitForPalmCover(MyImage* m){
 //    [self addViewAtPoint:CGPointMake(133, 362)];
 //    [self addViewAtPoint:CGPointMake(197, 362)];
     
-//    int pointArrX[] = {119, 171, 206, 247, 54, 133, 197};
-//    int pointArrY[] = {196, 201, 218, 245, 321, 362, 362};
+    Point2i point = changePoint(119, 196);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
     
-    long len = sizeof(pointArrX) / sizeof(double);
-    for (int i = 0; i < len; ++i) {
-        Point2i point = changePoint(pointArrX[i], pointArrY[i]);
-        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-    }
-//    {
-//        
-//        Point2i point = changePoint(119, 196);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(171, 201);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(206, 218);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(247, 245);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        //
-//        point = changePoint(54, 321);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(133, 362);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(197, 362);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
+    point = changePoint(171, 201);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(206, 218);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(247, 245);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
 //
-//    }
-    
-    
-//    Point2i point = changePoint(119, 196);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//    
-//    point = changePoint(171, 201);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(206, 218);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(247, 245);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-////
-//    point = changePoint(54, 321);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(133, 362);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(197, 362);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+    point = changePoint(54, 321);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(133, 362);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+    point = changePoint(197, 362);
+    pushIntoROI(roi, point.x, point.y, square_len, m->src);
 
 //    pushIntoROI(roi, 364, 115, square_len, m->src);
 //    pushIntoROI(roi, 369, 207, square_len, m->src);
@@ -557,6 +521,7 @@ Point vectorBetweenPoints(Point p1, Point p2)
 
 void reduceDefect(HandGesture * hg)
 {
+    return;
       vector<Vec4i>::iterator d=hg->defects[hg->cIdx].begin();
      int count = (int)hg->defects[hg->cIdx].size();
     int i = 0;
@@ -974,7 +939,7 @@ void makeContours(MyImage *m, HandGesture* hg){
         approxPolyDP( Mat(hg->hullP[hg->cIdx]), hg->hullP[hg->cIdx], 18, true );
         if(hg->contours[hg->cIdx].size()>3 ){
             convexityDefects(hg->contours[hg->cIdx],hg->hullI[hg->cIdx],hg->defects[hg->cIdx]);
-            hg->eleminateDefects();
+//            hg->eleminateDefects();
         }
         bool isHand=hg->detectIfHand();
         hg->printGestureInfo();

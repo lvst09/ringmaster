@@ -331,8 +331,8 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	{
 #if ! USE_OPENGL_RENDERER
 		// When using the CPU renderers or the CoreImage renderer we lower the resolution to 720p so that all devices can maintain real-time performance (this is primarily for A5 based devices like iPhone 4s and iPod Touch 5th Generation).
-		if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset640x480] ) {
-			sessionPreset = AVCaptureSessionPreset640x480;
+		if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720] ) {
+			sessionPreset = AVCaptureSessionPreset1280x720;
 		}
 #endif // ! USE_OPENGL_RENDERER
 

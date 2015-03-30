@@ -989,7 +989,7 @@ static HandGesture *hg;
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i];
             NSLog(@"get image=%@", betaCompressionDirectory);
-            NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+            NSData *imageData = UIImagePNGRepresentation(image);
             [imageData writeToFile:betaCompressionDirectory atomically:YES];
             ++i;
         }
