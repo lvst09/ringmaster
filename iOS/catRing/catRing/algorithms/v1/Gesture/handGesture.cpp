@@ -319,11 +319,7 @@ void HandGesture::reduceDefect()
                 Point vecEF = vectorBetweenPoints1(ptEnd, ptFar);
                 
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
-                if(crossAngle >  M_PI / 2)
-                {
-                    ;
-                }
-                
+ 
                 if(disSF < 100 || disEF < 100 || crossAngle > M_PI / 2)
                 {
                     
@@ -343,7 +339,7 @@ void HandGesture::reduceDefect()
                         //             contours[cIdx][startidx] = ptMid;
                         //
                         erased ++;
-                        defects[cIdx].erase(d++);
+                        d = defects[cIdx].erase(d++);
                         continue;
                     }
                 }
