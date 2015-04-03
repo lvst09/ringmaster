@@ -985,6 +985,8 @@ void makeContours(MyImage *m, HandGesture* hg){
             convexityDefects(hg->contours[hg->cIdx],hg->hullI[hg->cIdx],hg->defects[hg->cIdx]);
 //            hg->eleminateDefects();
             hg->reduceDefect();
+//            hg->reduceDefect();
+
         }
         bool isHand=hg->detectIfHand();
         hg->printGestureInfo();
