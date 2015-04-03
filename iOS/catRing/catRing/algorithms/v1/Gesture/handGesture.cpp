@@ -264,7 +264,7 @@ void HandGesture::reduceDefect()
                     //             int startidx=t[0];
                     //             contours[cIdx][startidx] = ptMid;
                     //
-                    defects[cIdx].erase(d++);
+                    d = defects[cIdx].erase(d);
                     continue;
                 }
                 
