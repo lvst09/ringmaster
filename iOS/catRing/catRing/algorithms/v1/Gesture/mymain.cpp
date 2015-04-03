@@ -13,7 +13,7 @@
 #include <cmath>
 #include "mymain.hpp"
 #include "CommonConfig.h"
-
+#include "CommonMath.h"
 using namespace cv;
 using namespace std;
 
@@ -898,32 +898,41 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 #else
         scale = 1.0f;
 #endif
-        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
-        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
-        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
-        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
-        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
+            double val =(double) i / (double)count * 255.f;
+            Scalar scalar = Scalar(val,val,val);
+//        line( m->src, ptStart, ptFar, Scalar(0,255,0), 1 *scale);
+//        line( m->src, ptEnd, ptFar, Scalar(0,255,0), 1 * scale);
+//        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
+//        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
+//        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
         
+            line( m->src, ptStart, ptFar, scalar, 1 *scale);
+            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
+            circle( m->src, ptFar,   4, scalar, 2 * scale);
+            circle( m->src, ptEnd,   4, scalar, 2 * scale);
+            circle( m->src, ptStart,   4, scalar, 2 * scale);
+        
+            
         if (i==count - 2) {
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptEnd);
-            circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
-            circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
-            line( m->src, ptEnd, ptFar, Scalar(255,255,0), 1 * scale);
+//            circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
+//            circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
+//            line( m->src, ptEnd, ptFar, Scalar(255,255,0), 1 * scale);
             
             hg->fingerTipFeatures.push_back(ptStart);
             hg->fingerTipFeatures.push_back(ptEnd);
             
-            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
+//            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
             
         }
         if (i==count - 1) {
             hg->mediusFinger.push_back(ptFar);
-            circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);
-            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,255), 1 * scale);
+//            circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);
+//            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,255), 1 * scale);
             
             hg->fingerTipFeatures.push_back(ptEnd);
-            circle( m->src, ptEnd,   4, Scalar(0,255,255), 2 * scale);
+//            circle( m->src, ptEnd,   4, Scalar(0,255,255), 2 * scale);
             if(hg->index==1)
             {
                 firstFinger = new vector<Point>(hg->mediusFinger);
@@ -935,9 +944,9 @@ void myDrawContours(MyImage *m,HandGesture *hg){
             caculateRingPosition(hg);
             caculateRotationAngle(hg);
             
-            circle( m->src, hg->ringPosition[0],   4, Scalar(0,255,0), 2 * scale);
-            circle( m->src, hg->ringPosition[1],   4, Scalar(0,255,0), 2 * scale);
-            line( m->src, hg->ringPosition[0], hg->ringPosition[1], Scalar(0,255,0), 1 * scale);
+//            circle( m->src, hg->ringPosition[0],   4, Scalar(0,255,0), 2 * scale);
+//            circle( m->src, hg->ringPosition[1],   4, Scalar(0,255,0), 2 * scale);
+//            line( m->src, hg->ringPosition[0], hg->ringPosition[1], Scalar(0,255,0), 1 * scale);
         }
  
         /*
@@ -974,7 +983,8 @@ void makeContours(MyImage *m, HandGesture* hg){
         approxPolyDP( Mat(hg->hullP[hg->cIdx]), hg->hullP[hg->cIdx], 18, true );
         if(hg->contours[hg->cIdx].size()>3 ){
             convexityDefects(hg->contours[hg->cIdx],hg->hullI[hg->cIdx],hg->defects[hg->cIdx]);
-            hg->eleminateDefects();
+//            hg->eleminateDefects();
+            hg->reduceDefect();
         }
         bool isHand=hg->detectIfHand();
         hg->printGestureInfo();

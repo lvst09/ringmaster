@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-
+#include "CommonMath.h"
 using namespace cv;
 using namespace std;
 
@@ -217,6 +217,67 @@ void HandGesture::eleminateDefects(){
 	removeRedundantEndPoints(defects[cIdx]);
 }
 
+Point2i middlePoint1(Point2i p1, Point2i p2)
+{
+    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+}
+double distanceOfPoint1(Point2i p1, Point2i p2)
+{
+    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+}
+
+
+void HandGesture::reduceDefect()
+{
+    vector<Vec4i>::iterator d=defects[cIdx].begin();
+    int count = (int)defects[cIdx].size();
+    int i = 0;
+    while( d!=defects[cIdx].end() ) {
+        {
+            
+            Vec4i& v=(*d);
+            int startidx=v[0];
+            Point ptStart(contours[cIdx][startidx] );
+            
+            int endidx=v[1];
+            Point ptEnd(contours[cIdx][endidx] );
+            int faridx=v[2];
+            Point ptFar(contours[cIdx][faridx] );
+            
+            double disSF = distanceOfPoint1(ptStart, ptFar);
+            double disEF = distanceOfPoint1(ptEnd, ptFar);
+            if(disSF < 100 || disEF < 100)
+            {
+                
+                //
+                Point ptMid = middlePoint1(ptStart, ptEnd);
+                
+                vector<Vec4i>::iterator e = d-1;
+                Vec4i& t = (*e);
+                int endidx=t[1];
+                if(endidx < contours[cIdx].size())
+                {
+                    contours[cIdx][endidx] = ptMid;
+                    //
+                    //             e = d+1;
+                    //             t = (*e);
+                    //             int startidx=t[0];
+                    //             contours[cIdx][startidx] = ptMid;
+                    //
+                    defects[cIdx].erase(d++);
+                    continue;
+                }
+                
+                
+                //
+            }
+        }
+        d++;
+        i++;
+    }
+}
+
+
 // remove endpoint of convexity defects if they are at the same fingertip
 void HandGesture::removeRedundantEndPoints(vector<Vec4i> newDefects){
 	Vec4i temp;
@@ -275,7 +336,7 @@ void HandGesture::drawFingerTips(Mat &src){
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
 		putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
-   		circle(src,p,   5, Scalar(100,255,100), 4 );
+   		circle(src,p,   15, Scalar(0,0,0), 4 );
    	 }
 }
 

@@ -49,6 +49,7 @@ class HandGesture{
 		void initVectors();
 		void getFingerNumber(Mat &src);
 		void eleminateDefects();
+        void reduceDefect();
 		void getFingerTips(int rowLen);
     
         void addNumberToImg(Mat &src); // please call after getFinggerTips.

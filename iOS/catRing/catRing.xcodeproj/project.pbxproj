@@ -1175,6 +1175,7 @@
 		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
+		68827B411ACECA6C0010B541 /* CommonMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 68827B3F1ACECA6C0010B541 /* CommonMath.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2377,6 +2378,8 @@
 		33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryon_hand@2x.png"; sourceTree = "<group>"; };
 		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
+		68827B3F1ACECA6C0010B541 /* CommonMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CommonMath.c; sourceTree = "<group>"; };
+		68827B401ACECA6C0010B541 /* CommonMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMath.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2959,6 +2962,8 @@
 				3379C9DC1A932D0900D29FFD /* roi.cpp */,
 				3379C9DD1A932D0900D29FFD /* roi.hpp */,
 				33A5C9D11AC7ACA500C8A0DA /* CommonConfig.h */,
+				68827B3F1ACECA6C0010B541 /* CommonMath.c */,
+				68827B401ACECA6C0010B541 /* CommonMath.h */,
 			);
 			path = Gesture;
 			sourceTree = "<group>";
@@ -4563,6 +4568,7 @@
 					};
 					33AAF3111AA314F70031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = RSLW4S7XVW;
 					};
 					33AAF3CE1AA314F80031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -5454,6 +5460,7 @@
 				3379C9F41A93310300D29FFD /* SliderBar.m in Sources */,
 				33DD58331ABD6FEA00B94308 /* DWUtility.m in Sources */,
 				33774C0F1AB0917C00B2E754 /* ShaderUtilities.c in Sources */,
+				68827B411ACECA6C0010B541 /* CommonMath.c in Sources */,
 				33774BF31AAF359E00B2E754 /* SelectPointViewController.m in Sources */,
 				3379CC671A9715A600D29FFD /* DWVideoDecoding.m in Sources */,
 				3379C9F91A93349100D29FFD /* ImageProcess.m in Sources */,
@@ -5892,7 +5899,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: st lv (PT4A2GHKS8)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -5934,6 +5942,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -6051,6 +6060,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
@@ -6085,6 +6095,7 @@
 					"-lcocos2d-chipmunk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -6106,6 +6117,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
@@ -6132,6 +6144,7 @@
 					"-lcocos2d-chipmunk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
