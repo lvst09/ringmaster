@@ -482,7 +482,7 @@ void produceBinaries(MyImage *m){
 //        c_upper[1][1] = 40 + diff;
 //        c_upper[1][2] = 80 + diff;
 //    }
-    const int diff1 = 15;
+    const int diff1 = 30;
     for(int i=0;i<NSAMPLES;i++){
         normalizeColors();
         lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
