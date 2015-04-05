@@ -891,7 +891,7 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //    drawContours(result,hg->hullP,hg->cIdx,cv::Scalar(0,0,250),10, 8, vector<Vec4i>(), 0, Point());
     
     
-    reduceDefect(hg);
+//    reduceDefect(hg);
     
     int i = 0;
     int count = (int)hg->defects[hg->cIdx].size();
@@ -922,11 +922,11 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
 //        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
         
-//            line( m->src, ptStart, ptFar, scalar, 1 *scale);
-//            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
-//            circle( m->src, ptFar,   4, scalar, 2 * scale);
-//            circle( m->src, ptEnd,   4, scalar, 2 * scale);
-//            circle( m->src, ptStart,   4, scalar, 2 * scale);
+            line( m->src, ptStart, ptFar, scalar, 1 *scale);
+            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
+            circle( m->src, ptFar,   4, scalar, 2 * scale);
+            circle( m->src, ptEnd,   4, scalar, 2 * scale);
+            circle( m->src, ptStart,   4, scalar, 2 * scale);
         
             
         if (i==0) {//中指左侧的线条
@@ -1004,12 +1004,17 @@ void makeContours(MyImage *m, HandGesture* hg){
             hg->reduceDefect();
 
         }
+        hg->getFingerTips(m->src.rows);
         bool isHand=hg->detectIfHand();
-        hg->printGestureInfo();
+//        hg->printGestureInfo();
         if(isHand){
-            hg->getFingerTips(m->src.rows);
+            hg->isHand = true;
             hg->drawFingerTips(m->src);
             myDrawContours(m,hg);
+        }else
+        {
+            hg->isHand = false;
+            return;
         }
     }
 }

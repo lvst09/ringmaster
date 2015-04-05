@@ -80,15 +80,41 @@ bool HandGesture::detectIfHand(){
 	double h = bRect_height; 
 	double w = bRect_width;
 	isHand=true;
-	if(fingerTips.size() > 5 ){
+	if(fingerTips.size() > 5 || fingerTips.size() < 4){
 		isHand=false;
-	}else if(h==0 || w == 0){
+	}else if( h==0 || w == 0){
 		isHand=false;
 	}else if(h/w > 4 || w/h >4){
 		isHand=false;	
 	}else if(bRect.x<20){
-		isHand=false;	
-	}	
+//		isHand=false;	
+    }else if(fingerBases.size()<3) {
+        isHand = false;
+    }
+    {
+//        vector<double>::iterator d = fingerLengths.begin();
+        double midFingerLength = fingerLengths[0];
+        double fourthFingerLength = fingerLengths[1];
+        double fifthFingerLength = fingerLengths[2];
+        double secondFingerLength = fingerLengths[fingerLengths.size() - 1];
+        
+        double max = MAX(midFingerLength, fourthFingerLength);
+        max = MAX(max, fifthFingerLength);
+        max = MAX(max, secondFingerLength);
+        
+        if(abs (max - midFingerLength) > 0.01 && abs (max - fourthFingerLength) > 0.01)
+        {
+            isHand = false;
+        }
+        
+        double min = MIN(midFingerLength, fourthFingerLength);
+        min = MIN(min, fifthFingerLength);
+        min = MIN(min, secondFingerLength);
+        if(abs(min - fifthFingerLength) > 0.01)
+        {
+            isHand = false;
+        }
+    }
 	return isHand;
 }
 
@@ -285,13 +311,13 @@ void HandGesture::reduceDefect()
     int count = (int)defects[cIdx].size();
     int times = 0;
     int erased = 1;
-    while (count > 5 && erased>0)
+    while (count > 4 && erased>0)
     {
         times ++ ;
         
         erased = 0;
         vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
-//        int count = (int)defects[cIdx].size();
+//      int count = (int)defects[cIdx].size();
         //第一次滤掉杂波，之后认为中指和无名指是正确的
         if (times>1)
         {
@@ -303,10 +329,7 @@ void HandGesture::reduceDefect()
         int i = 0;
         while( d!=defects[cIdx].end() )
         {
-            
-
             {
-                
                 Vec4i& v=(*d);
                 int startidx=v[0];
                 Point ptStart(contours[cIdx][startidx] );
@@ -325,14 +348,17 @@ void HandGesture::reduceDefect()
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
  
                 //如果手指长度太短 或开角太大 就滤掉
-                if(disSF < 150 || disEF < 150 || crossAngle > M_PI / 2)
+                if(disSF < 120 || disEF < 120 || crossAngle > M_PI / 2)
                 {
                     
-                    //
-    //                Point ptMid = middlePoint1(ptStart, ptEnd);
+                    if(disEF> 220 && crossAngle < M_PI / 2 )
+                    {
+                        d++;
+                        i++;
+                        continue;//有可能是大拇指
+                    }
                     
-                    
-                
+                    //Point ptMid = middlePoint1(ptStart, ptEnd);
                     if (d!=defects[cIdx].end())
                     {
                         vector<Vec4i>::iterator e = d+1;
@@ -425,12 +451,27 @@ void HandGesture::drawFingerTips(Mat &src){
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
 		putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
-//   		circle(src,p,   15, Scalar(0,0,0), 4 );
+        
+        double val =(double) i / (double)k * 255.f;
+        Scalar scalar = Scalar(val,val,val);
+   		circle(src,p,   15,scalar, 4 );
    	 }
+    
+    k = (int)fingerBases.size();
+    for(int i=0;i<k;i++){
+        p=fingerBases[i];
+        putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
+        
+        double val =(double) i / (double)k * 255.f;
+        Scalar scalar = Scalar(val,val,val);
+        circle(src,p,   15,scalar, 4 );
+    }
+    
 }
 
 void HandGesture::getFingerTips(int rowLen){
 	fingerTips.clear();
+    fingerBases.clear();
 	int i=0;
 	vector<Vec4i>::iterator d=defects[cIdx].begin();
 	while( d!=defects[cIdx].end() ) {
@@ -438,11 +479,19 @@ void HandGesture::getFingerTips(int rowLen){
 	    int startidx=v[0]; Point ptStart(contours[cIdx][startidx] );
    		int endidx=v[1]; Point ptEnd(contours[cIdx][endidx] );
   	    int faridx=v[2]; Point ptFar(contours[cIdx][faridx] );
-		if(i==0){
+//		if(i==0){
 			fingerTips.push_back(ptStart);
-			i++;
-		}
-		fingerTips.push_back(ptEnd);
+            fingerBases.push_back(ptFar);
+//			i++;
+//		}
+//		fingerTips.push_back(ptEnd);
+        double dist = distanceOfPoint(ptStart, ptFar);
+        fingerLengths.push_back(dist);
+        if(i==1){
+            fingerTips.push_back(ptEnd);
+            dist = distanceOfPoint(ptEnd, ptFar);
+            fingerLengths.push_back(dist);
+        }
 		d++;
 		i++;
    	}
