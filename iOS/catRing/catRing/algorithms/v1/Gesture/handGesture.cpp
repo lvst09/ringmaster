@@ -280,7 +280,7 @@ double vectorCrossAngle1(Point p1, Point p2)
 
 void HandGesture::reduceDefect()
 {
-    
+
     int count = (int)defects[cIdx].size();
     int times = 0;
     int erased = 1;
@@ -289,12 +289,14 @@ void HandGesture::reduceDefect()
         times ++ ;
         
         erased = 0;
-        vector<Vec4i>::iterator d=defects[cIdx].begin();
+        vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
 //        int count = (int)defects[cIdx].size();
-        if (times>2) {
+        //第一次滤掉杂波，之后认为中指和无名指是正确的
+        if (times>1)
+        {
             d++ ;
             d++;
-            d++;
+//            d++;
         }
         printf("defects cout before reduce : %d \n", count);
         int i = 0;
@@ -320,28 +322,36 @@ void HandGesture::reduceDefect()
                 
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
  
-                if(disSF < 100 || disEF < 100 || crossAngle > M_PI / 2)
+                //如果手指长度太短 或开角太大 就滤掉
+                if(disSF < 150 || disEF < 150 || crossAngle > M_PI / 2)
                 {
                     
                     //
     //                Point ptMid = middlePoint1(ptStart, ptEnd);
                     
-                    vector<Vec4i>::iterator e = d-1;
-                    Vec4i& t = (*e);
-                    int endidx=t[1];
-                    if(endidx < contours[cIdx].size())
+                    
+                
+                    if (d!=defects[cIdx].end())
                     {
-                        contours[cIdx][endidx] = ptStart;
-                        //
-                        //             e = d+1;
-                        //             t = (*e);
-                        //             int startidx=t[0];
-                        //             contours[cIdx][startidx] = ptMid;
-                        //
-                        erased ++;
-                        d = defects[cIdx].erase(d++);
-                        continue;
+                        vector<Vec4i>::iterator e = d+1;
+                        Vec4i& t = (*e);
+                        //                    int endidx=t[1];
+                        int startidx = t[0];
+                        if(startidx < contours[cIdx].size())
+                        {
+                            contours[cIdx][startidx] = ptEnd;
+                            //
+                            //             e = d+1;
+                            //             t = (*e);
+                            //             int startidx=t[0];
+                            //             contours[cIdx][startidx] = ptMid;
+                            //
+                            erased ++;
+                            d = defects[cIdx].erase(d++);
+                            continue;
+                        }
                     }
+
                 }
             }
             d++;
@@ -413,7 +423,7 @@ void HandGesture::drawFingerTips(Mat &src){
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
 		putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
-   		circle(src,p,   15, Scalar(0,0,0), 4 );
+//   		circle(src,p,   15, Scalar(0,0,0), 4 );
    	 }
 }
 
