@@ -757,7 +757,7 @@ static HandGesture *hg;
 - (UIImage *)processImage:(UIImage *)image {
     if (!image)
         return nil;
-
+    TimeStamp(111);
     image = [ImageProcess correctImage:image];
     IplImage *ipImage = convertIplImageFromUIImage(image);
     
@@ -767,12 +767,57 @@ static HandGesture *hg;
     }
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     
-    hg = new HandGesture();
+    hg = nil;//new HandGesture();
     
-    hg->index = (int)self.imageIndex;
-    TimeStamp(101);
-    MyImage * myImage = detectHand(ipImage, *hg, (int)self.diff);
-    TimeStamp(102);
+//    hg->index = (int)self.imageIndex;
+    
+    MyImage * myImage = nil;
+    NSInteger i = self.diff;
+    for (i = self.diff; i <= self.diffSlider.slider.maximumValue; ++i) {
+        NSLog(@"i=%zd", i);
+        HandGesture *tmphg = new HandGesture();
+        tmphg->index = (int)self.imageIndex;
+        if (myImage) {
+            delete myImage;
+        }
+        myImage = detectHand(ipImage, *tmphg, (int)i);
+        if (tmphg->isHand) {
+            hg = tmphg;
+            break;
+        } else {
+            delete tmphg;
+        }
+    }
+    if (!hg) {
+        for (i = (NSInteger)self.diffSlider.slider.minimumValue; i < self.diff; ++i) {
+            NSLog(@"i=%zd", i);
+            HandGesture *tmphg = new HandGesture();
+            tmphg->index = (int)self.imageIndex;
+            if (myImage) {
+                delete myImage;
+            }
+            myImage = detectHand(ipImage, *tmphg, (int)i);
+            if (tmphg->isHand) {
+                hg = tmphg;
+                break;
+            } else {
+                delete tmphg;
+            }
+        }
+    }
+    self.diff = i;
+    if (!hg) {
+        i = self.diff;
+        NSLog(@"i=%zd", i);
+        HandGesture *tmphg = new HandGesture();
+        tmphg->index = (int)self.imageIndex;
+        if (myImage) {
+            delete myImage;
+        }
+        myImage = detectHand(ipImage, *tmphg, (int)i);
+        hg = tmphg;
+    }
+    self.diffSlider.slider.value = self.diff;
     currentHand = hg;
     
 //    if(currentHand->isHand)
@@ -792,6 +837,7 @@ static HandGesture *hg;
 //    else {
 //      return image;
 //    }
+    TimeStamp(112);
     
 }
 
