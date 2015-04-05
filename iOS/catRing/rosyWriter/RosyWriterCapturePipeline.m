@@ -304,7 +304,17 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	AVCaptureVideoDataOutput *videoOut = [[AVCaptureVideoDataOutput alloc] init];
 	videoOut.videoSettings = @{ (id)kCVPixelBufferPixelFormatTypeKey : @(_renderer.inputPixelFormat) };
 	[videoOut setSampleBufferDelegate:self queue:_videoDataOutputQueue];
-	
+    
+    // Start session configuration
+    [_captureSession beginConfiguration];
+    [videoDevice lockForConfiguration:nil];
+    
+    // Set torch to on
+    [videoDevice setTorchMode:AVCaptureTorchModeOn];
+    
+    [videoDevice unlockForConfiguration];
+    [_captureSession commitConfiguration];
+
 	// RosyWriter records videos and we prefer not to have any dropped frames in the video recording.
 	// By setting alwaysDiscardsLateVideoFrames to NO we ensure that minor fluctuations in system load or in our processing time for a given frame won't cause framedrops.
 	// We do however need to ensure that on average we can process frames in realtime.
