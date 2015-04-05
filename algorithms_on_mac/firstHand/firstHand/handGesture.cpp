@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include "CommonCPPMath.h"
 
 using namespace cv;
 using namespace std;
@@ -14,6 +15,12 @@ HandGesture::HandGesture(){
 	frameNumber=0;
 	nrNoFinger=0;
 	fontFace = FONT_HERSHEY_PLAIN;
+    
+    ringAngle = 0;
+    ringCenter = Point2i(0,0);
+    rotationAngle.push_back(0);
+    rotationAngle.push_back(0);
+    rotationAngle.push_back(0);
 }
 
 void HandGesture::initVectors(){
@@ -41,24 +48,31 @@ string HandGesture::intToString(int number){
 		return str;
 }
 
-void HandGesture::printGestureInfo(Mat src){
-	int fontFace = FONT_HERSHEY_PLAIN;
-	Scalar fColor(245,200,200);
-	int xpos=src.cols/1.5;
-	int ypos=src.rows/1.6;
-	float fontSize=0.7f;
-	int lineChange=14;
+void HandGesture::printGestureInfo(){
+//	int fontFace1 = FONT_HERSHEY_PLAIN;
+//	Scalar fColor(245,200,200);
+//	int xpos=src.cols/1.5;
+//	int ypos=src.rows/1.6;
+//	float fontSize=0.7f;
+//	int lineChange=14;
 	string info= "Figure info:";
-	putText(src,info,Point(ypos,xpos),fontFace,fontSize,fColor);
-	xpos+=lineChange;
+//	putText(src,info,Point(ypos,xpos),fontFace1,fontSize,fColor);
+    cout << info << endl;
+    
+//	xpos+=lineChange;
 	info=string("Number of defects: ") + string(intToString(nrOfDefects)) ;
-	putText(src,info,Point(ypos,xpos),fontFace,fontSize  ,fColor);
-	xpos+=lineChange;
+//	putText(src,info,Point(ypos,xpos),fontFace1,fontSize  ,fColor);
+    cout << info << endl;
+    
+//	xpos+=lineChange;
 	info=string("bounding box height, width ") + string(intToString(bRect_height)) + string(" , ") +  string(intToString(bRect_width)) ;
-	putText(src,info,Point(ypos,xpos),fontFace,fontSize ,fColor);
-	xpos+=lineChange;
+//	putText(src,info,Point(ypos,xpos),fontFace1,fontSize ,fColor);
+    cout << info << endl;
+    
+//	xpos+=lineChange;
 	info=string("Is hand: ") + string(bool2string(isHand));
-	putText(src,info,Point(ypos,xpos),fontFace,fontSize  ,fColor);
+//	putText(src,info,Point(ypos,xpos),fontFace1,fontSize  ,fColor);
+    cout << info << endl;
 }
 
 bool HandGesture::detectIfHand(){
@@ -122,22 +136,22 @@ void HandGesture::computeFingerNumber(){
 }
 
 void HandGesture::addFingerNumberToVector(){
-	int i=fingerTips.size();	
+	int i= (int) fingerTips.size();
 	fingerNumbers.push_back(i);
 }
 
 // add the calculated number of fingers to image m->src
-void HandGesture::addNumberToImg(MyImage *m){
+void HandGesture::addNumberToImg(Mat &src) {
 	int xPos=10;
 	int yPos=10;
 	int offset=30;
 	float fontSize=1.5f;
-	int fontFace = FONT_HERSHEY_PLAIN;
+	int fontFace1 = FONT_HERSHEY_PLAIN;
 	for(int i=0;i<numbers2Display.size();i++){
-		rectangle(m->src,Point(xPos,yPos),Point(xPos+offset,yPos+offset),numberColor, 2);	
-		putText(m->src, intToString(numbers2Display[i]),Point(xPos+7,yPos+offset-3),fontFace,fontSize,numberColor);
+		rectangle(src,Point(xPos,yPos),Point(xPos+offset,yPos+offset),numberColor, 2);
+		putText(src, intToString(numbers2Display[i]),Point(xPos+7,yPos+offset-3),fontFace1,fontSize,numberColor);
 		xPos+=40;
-		if(xPos>(m->src.cols-m->src.cols/3.2)){
+		if(xPos>(src.cols-src.cols/3.2)){
 			yPos+=40;
 			xPos=10;
 		}
@@ -146,9 +160,11 @@ void HandGesture::addNumberToImg(MyImage *m){
 
 // calculate most frequent numbers of fingers 
 // over 20 frames
-void HandGesture::getFingerNumber(MyImage *m){
+// 并且将结果画到video上去
+void HandGesture::getFingerNumber(Mat &src) {
+    
 	removeRedundantFingerTips();
-	if(bRect.height > m->src.rows/2 && nrNoFinger>12 && isHand ){
+	if(bRect.height > src.rows/2 && nrNoFinger>12 && isHand ){
 		numberColor=Scalar(0,200,0);
 		addFingerNumberToVector();
 		if(frameNumber>12){
@@ -164,7 +180,8 @@ void HandGesture::getFingerNumber(MyImage *m){
 		nrNoFinger++;
 		numberColor=Scalar(200,200,200);
 	}
-	addNumberToImg(m);
+
+//	addNumberToImg(src);
 }
 
 float HandGesture::getAngle(Point s, Point f, Point e){
@@ -176,7 +193,7 @@ float HandGesture::getAngle(Point s, Point f, Point e){
 	return angle;
 }
 
-void HandGesture::eleminateDefects(MyImage *m){
+void HandGesture::eleminateDefects(){
 	int tolerance =  bRect_height/5;
 	float angleTol=95;
 	vector<Vec4i> newDefects;
@@ -196,17 +213,166 @@ void HandGesture::eleminateDefects(MyImage *m){
 		}	
 		d++;
 	}
-	nrOfDefects=newDefects.size();
+	nrOfDefects = (int) newDefects.size();
 	defects[cIdx].swap(newDefects);
-	removeRedundantEndPoints(defects[cIdx], m);
+	removeRedundantEndPoints(defects[cIdx]);
 }
 
+//Point2i middlePoint1(Point2i p1, Point2i p2)
+//{
+//    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+//}
+//double distanceOfPoint1(Point2i p1, Point2i p2)
+//{
+//    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+//}
+
+//Point middlePoint(Point p1, Point p2)
+//{
+//    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+//}
+//double distanceOfPoint(Point p1, Point p2)
+//{
+//    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+//}
+//
+Point vectorBetweenPoints1(Point p1, Point p2)
+{
+    return Point((p1.x - p2.x) ,(p1.y - p2.y));
+}
+
+//double vectorAngle(Point vec)
+//{
+//    if (vec.x==0) {
+//        vec.x+=1;
+//    }
+//    
+//    double b =  atan(vec.y/vec.x);
+//    if(vec.x <= 0 && vec.y>0)
+//        b += M_PI;
+//    else if(vec.x <0 && vec.y<=0)
+//        b += M_PI ;
+//    if (vec.y<0 && vec.x>=0) {
+//        b += M_PI * 2;
+//    }
+//    return b;
+//}
+
+double vectorCrossAngle1(Point p1, Point p2)
+{
+    double dotProduct =  ( p1.x * p2.x + p1.y * p2.y );
+    
+    double m = sqrt(p1.x*p1.x + p1.y*p1.y) * sqrt(p2.x*p2.x + p2.y*p2.y);
+    
+    return acos(dotProduct/m);
+}
+
+//Point vectorMultiply(Point vector ,float multi)
+//{
+//    return Point(vector.x * multi , vector.y * multi);
+//}
+//
+//Point pointMove(Point point ,Point vector)
+//{
+//    return Point(vector.x + point.x , vector.y + point.y);
+//}
+
+
+
+void HandGesture::reduceDefect()
+{
+
+    int count = (int)defects[cIdx].size();
+    int times = 0;
+    int erased = 1;
+    while (count > 5 && erased>0)
+    {
+        times ++ ;
+        
+        erased = 0;
+        vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
+//        int count = (int)defects[cIdx].size();
+        //第一次滤掉杂波，之后认为中指和无名指是正确的
+        if (times>1)
+        {
+            d++ ;
+            d++;
+//            d++;
+        }
+        printf("defects cout before reduce : %d \n", count);
+        int i = 0;
+        while( d!=defects[cIdx].end() )
+        {
+            
+
+            {
+                
+                Vec4i& v=(*d);
+                int startidx=v[0];
+                Point ptStart(contours[cIdx][startidx] );
+                
+                int endidx=v[1];
+                Point ptEnd(contours[cIdx][endidx] );
+                int faridx=v[2];
+                Point ptFar(contours[cIdx][faridx] );
+                
+                double disSF = distanceOfPoint(ptStart, ptFar);
+                double disEF = distanceOfPoint(ptEnd, ptFar);
+                
+                Point vecSF = vectorBetweenPoints1(ptStart, ptFar);
+                Point vecEF = vectorBetweenPoints1(ptEnd, ptFar);
+                
+                double crossAngle = vectorCrossAngle1(vecSF,vecEF);
+ 
+                //如果手指长度太短 或开角太大 就滤掉
+                if(disSF < 150 || disEF < 150 || crossAngle > M_PI / 2)
+                {
+                    
+                    //
+    //                Point ptMid = middlePoint1(ptStart, ptEnd);
+                    
+                    
+                
+                    if (d!=defects[cIdx].end())
+                    {
+                        vector<Vec4i>::iterator e = d+1;
+                        Vec4i& t = (*e);
+                        //                    int endidx=t[1];
+                        int startidx = t[0];
+                        if(startidx < contours[cIdx].size())
+                        {
+                            contours[cIdx][startidx] = ptEnd;
+                            //
+                            //             e = d+1;
+                            //             t = (*e);
+                            //             int startidx=t[0];
+                            //             contours[cIdx][startidx] = ptMid;
+                            //
+                            erased ++;
+                            d = defects[cIdx].erase(d++);
+                            continue;
+                        }
+                    }
+
+                }
+            }
+            d++;
+            i++;
+            
+        }
+        count = (int)defects[cIdx].size();
+ 
+    }
+    printf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
+}
+
+
 // remove endpoint of convexity defects if they are at the same fingertip
-void HandGesture::removeRedundantEndPoints(vector<Vec4i> newDefects,MyImage *m){
+void HandGesture::removeRedundantEndPoints(vector<Vec4i> newDefects){
 	Vec4i temp;
-	float avgX, avgY;
+//	float avgX, avgY;
 	float tolerance=bRect_width/6;
-	int startidx, endidx, faridx;
+    int startidx, endidx;//, faridx;
 	int startidx2, endidx2;
 	for(int i=0;i<newDefects.size();i++){
 		for(int j=i;j<newDefects.size();j++){
@@ -227,10 +393,10 @@ void HandGesture::removeRedundantEndPoints(vector<Vec4i> newDefects,MyImage *m){
 // convexity defects does not check for one finger
 // so another method has to check when there are no
 // convexity defects
-void HandGesture::checkForOneFinger(MyImage *m){
+void HandGesture::checkForOneFinger(int rowLen){
 	int yTol=bRect.height/6;
 	Point highestP;
-	highestP.y=m->src.rows;
+	highestP.y=rowLen;
 	vector<Point>::iterator d=contours[cIdx].begin();
 	while( d!=contours[cIdx].end() ) {
    	    Point v=(*d);
@@ -253,17 +419,17 @@ void HandGesture::checkForOneFinger(MyImage *m){
 	}
 }
 
-void HandGesture::drawFingerTips(MyImage *m){
+void HandGesture::drawFingerTips(Mat &src){
 	Point p;
-	int k=0;
-	for(int i=0;i<fingerTips.size();i++){
+	int k = (int)fingerTips.size();
+	for(int i=0;i<k;i++){
 		p=fingerTips[i];
-		putText(m->src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
-   		circle( m->src,p,   5, Scalar(100,255,100), 4 );
+		putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
+//   		circle(src,p,   15, Scalar(0,0,0), 4 );
    	 }
 }
 
-void HandGesture::getFingerTips(MyImage *m){
+void HandGesture::getFingerTips(int rowLen){
 	fingerTips.clear();
 	int i=0;
 	vector<Vec4i>::iterator d=defects[cIdx].begin();
@@ -281,6 +447,6 @@ void HandGesture::getFingerTips(MyImage *m){
 		i++;
    	}
 	if(fingerTips.size()==0){
-		checkForOneFinger(m);
+		checkForOneFinger(rowLen);
 	}
 }

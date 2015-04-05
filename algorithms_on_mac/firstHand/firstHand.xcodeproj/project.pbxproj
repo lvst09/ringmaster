@@ -17,6 +17,13 @@
 		333316ED1A499EC70016C74B /* handGesture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 333316E71A499EC70016C74B /* handGesture.cpp */; };
 		333316EE1A499EC70016C74B /* myImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 333316E91A499EC70016C74B /* myImage.cpp */; };
 		333316EF1A499EC70016C74B /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 333316EB1A499EC70016C74B /* roi.cpp */; };
+		33D47F9A1AD11D7C00694AE1 /* test4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47F981AD11D7C00694AE1 /* test4.cpp */; };
+		33D47F9D1AD11F9900694AE1 /* test3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47F9B1AD11F9900694AE1 /* test3.cpp */; };
+		33D47FA01AD1203A00694AE1 /* test2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47F9E1AD1203A00694AE1 /* test2.cpp */; };
+		33D47FA91AD1454D00694AE1 /* mymain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47FA11AD1454D00694AE1 /* mymain.cpp */; };
+		33D47FAA1AD1454D00694AE1 /* CommonCPPMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47FA41AD1454D00694AE1 /* CommonCPPMath.cpp */; };
+		33D47FAB1AD1454D00694AE1 /* CommonMath.c in Sources */ = {isa = PBXBuildFile; fileRef = 33D47FA51AD1454D00694AE1 /* CommonMath.c */; };
+		33D47FAE1AD1466800694AE1 /* testFromiOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33D47FAC1AD1466800694AE1 /* testFromiOS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,7 +54,27 @@
 		333316EA1A499EC70016C74B /* myImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = myImage.hpp; sourceTree = "<group>"; };
 		333316EB1A499EC70016C74B /* roi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roi.cpp; sourceTree = "<group>"; };
 		333316EC1A499EC70016C74B /* roi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roi.hpp; sourceTree = "<group>"; };
-		333316F01A499EEE0016C74B /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
+		33D47F931AD11CAB00694AE1 /* MYIMG_ORI0.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI0.JPG; sourceTree = "<group>"; };
+		33D47F941AD11CAB00694AE1 /* MYIMG_ORI1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI1.JPG; sourceTree = "<group>"; };
+		33D47F951AD11CAB00694AE1 /* MYIMG_ORI2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI2.JPG; sourceTree = "<group>"; };
+		33D47F961AD11CAB00694AE1 /* MYIMG_ORI3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI3.JPG; sourceTree = "<group>"; };
+		33D47F971AD11CAB00694AE1 /* MYIMG_ORI4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI4.JPG; sourceTree = "<group>"; };
+		33D47F981AD11D7C00694AE1 /* test4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test4.cpp; sourceTree = "<group>"; };
+		33D47F991AD11D7C00694AE1 /* test4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test4.h; sourceTree = "<group>"; };
+		33D47F9B1AD11F9900694AE1 /* test3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test3.cpp; sourceTree = "<group>"; };
+		33D47F9C1AD11F9900694AE1 /* test3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test3.h; sourceTree = "<group>"; };
+		33D47F9E1AD1203A00694AE1 /* test2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test2.cpp; sourceTree = "<group>"; };
+		33D47F9F1AD1203A00694AE1 /* test2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test2.h; sourceTree = "<group>"; };
+		33D47FA11AD1454D00694AE1 /* mymain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mymain.cpp; sourceTree = "<group>"; };
+		33D47FA21AD1454D00694AE1 /* CommonConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonConfig.h; sourceTree = "<group>"; };
+		33D47FA31AD1454D00694AE1 /* CommonCPPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCPPMath.h; sourceTree = "<group>"; };
+		33D47FA41AD1454D00694AE1 /* CommonCPPMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonCPPMath.cpp; sourceTree = "<group>"; };
+		33D47FA51AD1454D00694AE1 /* CommonMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CommonMath.c; sourceTree = "<group>"; };
+		33D47FA61AD1454D00694AE1 /* CommonMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMath.h; sourceTree = "<group>"; };
+		33D47FA71AD1454D00694AE1 /* mymain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mymain.hpp; sourceTree = "<group>"; };
+		33D47FA81AD1454D00694AE1 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		33D47FAC1AD1466800694AE1 /* testFromiOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testFromiOS.cpp; sourceTree = "<group>"; };
+		33D47FAD1AD1466800694AE1 /* testFromiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testFromiOS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +119,15 @@
 		333316D21A46F7780016C74B /* firstHand */ = {
 			isa = PBXGroup;
 			children = (
-				333316F01A499EEE0016C74B /* main.hpp */,
+				33D47FA11AD1454D00694AE1 /* mymain.cpp */,
+				33D47FA21AD1454D00694AE1 /* CommonConfig.h */,
+				33D47FA31AD1454D00694AE1 /* CommonCPPMath.h */,
+				33D47FA41AD1454D00694AE1 /* CommonCPPMath.cpp */,
+				33D47FA51AD1454D00694AE1 /* CommonMath.c */,
+				33D47FA61AD1454D00694AE1 /* CommonMath.h */,
+				33D47FA71AD1454D00694AE1 /* mymain.hpp */,
+				33D47FA81AD1454D00694AE1 /* main.h */,
+				33D47F921AD11CAB00694AE1 /* Resources */,
 				333316E71A499EC70016C74B /* handGesture.cpp */,
 				333316E81A499EC70016C74B /* handGesture.hpp */,
 				333316E91A499EC70016C74B /* myImage.cpp */,
@@ -101,8 +136,28 @@
 				333316EC1A499EC70016C74B /* roi.hpp */,
 				333316E41A471D410016C74B /* palm.xml */,
 				333316D31A46F7780016C74B /* main.cpp */,
+				33D47F981AD11D7C00694AE1 /* test4.cpp */,
+				33D47F991AD11D7C00694AE1 /* test4.h */,
+				33D47F9B1AD11F9900694AE1 /* test3.cpp */,
+				33D47F9C1AD11F9900694AE1 /* test3.h */,
+				33D47F9E1AD1203A00694AE1 /* test2.cpp */,
+				33D47F9F1AD1203A00694AE1 /* test2.h */,
+				33D47FAC1AD1466800694AE1 /* testFromiOS.cpp */,
+				33D47FAD1AD1466800694AE1 /* testFromiOS.h */,
 			);
 			path = firstHand;
+			sourceTree = "<group>";
+		};
+		33D47F921AD11CAB00694AE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33D47F931AD11CAB00694AE1 /* MYIMG_ORI0.JPG */,
+				33D47F941AD11CAB00694AE1 /* MYIMG_ORI1.JPG */,
+				33D47F951AD11CAB00694AE1 /* MYIMG_ORI2.JPG */,
+				33D47F961AD11CAB00694AE1 /* MYIMG_ORI3.JPG */,
+				33D47F971AD11CAB00694AE1 /* MYIMG_ORI4.JPG */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,10 +216,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D47F9A1AD11D7C00694AE1 /* test4.cpp in Sources */,
 				333316EE1A499EC70016C74B /* myImage.cpp in Sources */,
 				333316ED1A499EC70016C74B /* handGesture.cpp in Sources */,
 				333316EF1A499EC70016C74B /* roi.cpp in Sources */,
+				33D47FAB1AD1454D00694AE1 /* CommonMath.c in Sources */,
+				33D47FAA1AD1454D00694AE1 /* CommonCPPMath.cpp in Sources */,
 				333316D41A46F7780016C74B /* main.cpp in Sources */,
+				33D47FAE1AD1466800694AE1 /* testFromiOS.cpp in Sources */,
+				33D47F9D1AD11F9900694AE1 /* test3.cpp in Sources */,
+				33D47FA91AD1454D00694AE1 /* mymain.cpp in Sources */,
+				33D47FA01AD1203A00694AE1 /* test2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
