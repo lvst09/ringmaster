@@ -506,9 +506,19 @@ void initWindows(MyImage m){
 
 void showWindows(MyImage m){
 #if 1
-//    pyrDown(m.bw,m.bw);
-//    pyrDown(m.bw,m.bw);
-    Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/1,0 ), m.bw.size());
+    
+    
+#if 1
+        pyrDown(m.bw,m.bw);
+        pyrDown(m.bw,m.bw);
+        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/4,0 ), m.bw.size());
+#else
+        //    pyrDown(m.bw,m.bw);
+        //    pyrDown(m.bw,m.bw);
+        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/1,0 ), m.bw.size());
+#endif
+    
+
     vector<Mat> channels;
     Mat result;
     for(int i=0;i<3;i++)
