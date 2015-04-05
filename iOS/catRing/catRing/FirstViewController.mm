@@ -747,17 +747,24 @@ static HandGesture *hg;
     
     currentHand = hg;
     
-    NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
-    IplImage qImg;
-    qImg = IplImage(myImage->src);
+    if(currentHand->isHand)
+    {
+       NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
+       IplImage qImg;
+       qImg = IplImage(myImage->src);
+       
+       IplImage *ret1 = cvCreateImage(cvGetSize(&qImg), IPL_DEPTH_8U, 3);
+       cvCvtColor(&qImg, ret1, CV_BGR2RGB);
+       UIImage *outputImage = convertUIImageFromIplImage(ret1);
+       delete myImage;
+       cvReleaseImage(&ipImage);
+       cvReleaseImage(&ret1);
+       return outputImage;
+    }
+    else {
+      return image;
+    }
     
-    IplImage *ret1 = cvCreateImage(cvGetSize(&qImg), IPL_DEPTH_8U, 3);
-    cvCvtColor(&qImg, ret1, CV_BGR2RGB);
-    UIImage *outputImage = convertUIImageFromIplImage(ret1);
-    delete myImage;
-    cvReleaseImage(&ipImage);
-    cvReleaseImage(&ret1);
-    return outputImage;
 }
 
 - (void)showImageAtIndex:(NSInteger)j {
@@ -789,6 +796,7 @@ static HandGesture *hg;
 //    int index = j;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
+    fileKeyName = nil;
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
     UIImage * ringImage = [self getImage:j];
