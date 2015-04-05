@@ -221,7 +221,7 @@
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-            [self processAllImages];
+//            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1];
         });
@@ -747,8 +747,8 @@ static HandGesture *hg;
     
     currentHand = hg;
     
-    if(currentHand->isHand)
-    {
+//    if(currentHand->isHand)
+//    {
        NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
        IplImage qImg;
        qImg = IplImage(myImage->src);
@@ -760,10 +760,10 @@ static HandGesture *hg;
        cvReleaseImage(&ipImage);
        cvReleaseImage(&ret1);
        return outputImage;
-    }
-    else {
-      return image;
-    }
+//    }
+//    else {
+//      return image;
+//    }
     
 }
 

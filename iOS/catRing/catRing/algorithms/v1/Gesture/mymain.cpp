@@ -1141,12 +1141,12 @@ void makeContours(MyImage *m, HandGesture* hg){
         if(isHand){
             hg->isHand = true;
             hg->drawFingerTips(m->src);
-            myDrawContours(m,hg);
+            
         }else
         {
             hg->isHand = false;
-            return;
         }
+        myDrawContours(m,hg);
     }
 }
 
