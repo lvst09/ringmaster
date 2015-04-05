@@ -12,6 +12,7 @@ class MyImage{
 	public:
 		MyImage(int webCamera);
         MyImage(IplImage* pImg);
+        MyImage(Mat* input);
 		MyImage();
 		Mat srcLR;
 		Mat src;

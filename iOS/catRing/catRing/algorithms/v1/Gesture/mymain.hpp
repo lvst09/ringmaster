@@ -21,10 +21,12 @@ int mymain();
 
 // #step 1
 void findROIColorInPalm(IplImage *image);
+// or this
+void findROIColorInPalm(cv::Mat *image);
 
 // #step 2
 MyImage * detectHand(IplImage *inputImage,  HandGesture &hg);
-
+MyImage * detectHand(cv::Mat *inputImage,  HandGesture &hg);
 
 // private functions
 void processOnImageWithShowImage(MyImage &m1, HandGesture &hg);

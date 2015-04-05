@@ -22,3 +22,8 @@ MyImage::MyImage(IplImage* pImg) {
     Mat img(pImg,0); // 0是不複製影像，也就是pImg與img的data共用同個記憶體位置，header各自有
     src = img;
 }
+
+MyImage::MyImage(Mat* input) {
+    cameraSrc=0;
+    src = Mat(*input);
+}

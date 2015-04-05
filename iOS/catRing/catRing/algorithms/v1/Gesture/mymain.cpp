@@ -80,6 +80,11 @@ void findROIColorInPalm(IplImage *image) {
     waitForPalmCover(&m);
 }
 
+void findROIColorInPalm(Mat *image) {
+    MyImage m(image);
+    waitForPalmCover(&m);
+}
+
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
@@ -352,6 +357,75 @@ void normalizeColors(/*MyImage * myImage*/){
     }
 }
 
+/** @函数 main */
+int myhist3(Mat input)
+{
+    //    Mat src, dst;
+    //
+    //    /// 装载图像
+    //    src = imread( argv[1], 1 );
+    
+    if( !input.data )
+    { return -1; }
+    
+    /// 分割成3个单通道图像 ( R, G 和 B )
+    vector<Mat> rgb_planes;
+    split( input, rgb_planes );
+    
+    /// 设定bin数目
+    int histSize = 255;
+    
+    /// 设定取值范围 ( R,G,B) )
+    float range[] = { 0, 255 } ;
+    const float* histRange = { range };
+    
+    bool uniform = true; bool accumulate = false;
+    
+    Mat r_hist, g_hist, b_hist;
+    
+    /// 计算直方图:
+    calcHist( &rgb_planes[0], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate );
+    calcHist( &rgb_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate );
+    calcHist( &rgb_planes[2], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate );
+    
+    // 创建直方图画布
+    int hist_w = 400; int hist_h = 400;
+    int bin_w = cvRound( (double) hist_w/histSize );
+    
+    Mat histImage( hist_w, hist_h, CV_8UC3, Scalar( 0,0,0) );
+    
+    /// 将直方图归一化到范围 [ 0, histImage.rows ]
+    normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
+    
+    /// 在直方图画布上画出直方图
+    for( int i = 1; i < histSize; i++ )
+    {
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1)) ) ,
+             Point( bin_w*(i), hist_h - cvRound(r_hist.at<float>(i)) ),
+             Scalar( 0, 0, 255), 2, 8, 0  );
+//        cout << "i=" << i << ":" << g_hist.at<float>(i) << endl;
+        cout << b_hist.at<float>(i) << endl;
+        
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(g_hist.at<float>(i-1)) ) ,
+             Point( bin_w*(i), hist_h - cvRound(g_hist.at<float>(i)) ),
+             Scalar( 0, 255, 0), 2, 8, 0  );
+        line( histImage, Point( bin_w*(i-1), hist_h - cvRound(b_hist.at<float>(i-1)) ) ,
+             Point( bin_w*(i), hist_h - cvRound(b_hist.at<float>(i)) ),
+             Scalar( 255, 0, 0), 2, 8, 0  );
+    }
+    
+    /// 显示直方图
+    namedWindow("calcHist Demo", CV_WINDOW_AUTOSIZE );
+    imshow("calcHist Demo", histImage );
+    
+//    waitKey(0);
+    
+    return 0;
+    
+}
+
 void produceBinaries(MyImage *m){
     Scalar lowerBound;
     Scalar upperBound;
@@ -483,19 +557,76 @@ void produceBinaries(MyImage *m){
 //        c_upper[1][2] = 80 + diff;
 //    }
     const int diff1 = 30;
-    for(int i=0;i<NSAMPLES;i++){
+#if 0
+    // 增加调试信息
+    imshow("srclr", m->srcLR);
+    myhist3(m->srcLR);
+#endif
+    for(int i=0;i<NSAMPLES;i++) {
         normalizeColors();
+//        lowerBound=Scalar( 0, 129, 147);
+//        upperBound=Scalar( 30, 200, 255);
+//        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
+//        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
+//        lowerBound=Scalar( 0, avgColor[i][1] - c_lower[i][1] - diff1, 0);
+//        upperBound=Scalar( 30, avgColor[i][1] + c_upper[i][1] + diff1, 255);
         lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
         upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
         m->bwList.push_back(Mat(m->srcLR.rows,m->srcLR.cols,CV_8U));
+//        cout << "lowerBound for i" << i << ", " << lowerBound << endl;
+//        cout << "upperBound for i" << i << ", " << upperBound << endl;
         inRange(m->srcLR,lowerBound,upperBound,m->bwList[i]);
     }
     m->bwList[0].copyTo(m->bw);
+
+#if 0
     for(int i=1;i<NSAMPLES;i++){
         m->bw+=m->bwList[i];
+        int aa = i;
+        stringstream ss;
+        ss<<aa;
+        string s1 = ss.str();
+        cout<<s1<<endl; // 30
+        imshow("bw"+s1, m->bwList[i]);
     }
+#endif
+    
+    
 #if 1
-    medianBlur(m->bw, m->bw, 7);
+//    medianBlur(m->bw, m->bw, 5);
+    
+    int dilation_type;
+//    if( dilation_elem == 0 ){ dilation_type = MORPH_RECT; }
+//    else if( dilation_elem == 1 ){ dilation_type = MORPH_CROSS; }
+//    else if( dilation_elem == 2) { dilation_type = MORPH_ELLIPSE; }
+    dilation_type = MORPH_ELLIPSE;
+    int dilation_size = 3;
+    int erosion_size = 3;
+    Mat element = getStructuringElement( dilation_type,
+                                        Size( 2*dilation_size + 1, 2*dilation_size+1 ),
+                                        Point( dilation_size, dilation_size ) );
+    
+    int erosion_type;
+//    if( erosion_elem == 0 ){ erosion_type = MORPH_RECT; }
+//    else if( erosion_elem == 1 ){ erosion_type = MORPH_CROSS; }
+//    else if( erosion_elem == 2) { erosion_type = MORPH_ELLIPSE; }
+    erosion_type = MORPH_ELLIPSE;
+    Mat erosion_element = getStructuringElement( erosion_type,
+                                        Size( 2*erosion_size + 1, 2*erosion_size+1 ),
+                                        Point( erosion_size, erosion_size ) );
+    
+    /// 腐蚀操作
+    
+//    imshow("before dilate", m->bw);
+    
+//    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    medianBlur(m->bw, m->bw, 5);
+//    imshow("after dilate", m->bw);
 #endif
 }
 
@@ -1093,6 +1224,13 @@ void on_mouse( int event, int x, int y, int flags, void* ustc)
 MyImage * detectHand(IplImage *inputImage,  HandGesture &hg) {
     MyImage *m1 = new MyImage(inputImage);
 //    findROIColorInPalm(inputImage);
+    processOnImageWithShowImage(*m1, hg);
+    return m1;
+}
+
+MyImage * detectHand(Mat *inputImage,  HandGesture &hg) {
+    MyImage *m1 = new MyImage(inputImage);
+    //    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;
 }
