@@ -88,7 +88,7 @@ void findROIColorInPalm(Mat *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
-    return Point2i( y * 1280,720 - x * 720 );
+    return Point2i(y * 1280,720 - x * 720 );
 }
 
 void waitForPalmCover(MyImage* m){
@@ -270,8 +270,8 @@ void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3]){
     vector<int>sm;
     vector<int>lm;
     // generate vectors
-    for(int i=2; i<r.rows-2; i++){
-        for(int j=2; j<r.cols-2; j++){
+    for(int i=0; i<r.rows; i++){
+        for(int j=0; j<r.cols; j++){
             hm.push_back(r.data[r.channels()*(r.cols*i + j) + 0]) ;
             sm.push_back(r.data[r.channels()*(r.cols*i + j) + 1]) ;
             lm.push_back(r.data[r.channels()*(r.cols*i + j) + 2]) ;
@@ -405,6 +405,9 @@ int myhist3(Mat input)
         line( histImage, Point( bin_w*(i-1), hist_h - cvRound(r_hist.at<float>(i-1)) ) ,
              Point( bin_w*(i), hist_h - cvRound(r_hist.at<float>(i)) ),
              Scalar( 0, 0, 255), 2, 8, 0  );
+//        cout << "i=" << i << ":" << g_hist.at<float>(i) << endl;
+        cout << b_hist.at<float>(i) << endl;
+        
         line( histImage, Point( bin_w*(i-1), hist_h - cvRound(g_hist.at<float>(i-1)) ) ,
              Point( bin_w*(i), hist_h - cvRound(g_hist.at<float>(i)) ),
              Scalar( 0, 255, 0), 2, 8, 0  );
@@ -561,6 +564,12 @@ void produceBinaries(MyImage *m){
 #endif
     for(int i=0;i<NSAMPLES;i++) {
         normalizeColors();
+//        lowerBound=Scalar( 0, 129, 147);
+//        upperBound=Scalar( 30, 200, 255);
+//        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
+//        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
+//        lowerBound=Scalar( 0, avgColor[i][1] - c_lower[i][1] - diff1, 0);
+//        upperBound=Scalar( 30, avgColor[i][1] + c_upper[i][1] + diff1, 255);
         lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
         upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
         m->bwList.push_back(Mat(m->srcLR.rows,m->srcLR.cols,CV_8U));
@@ -579,7 +588,40 @@ void produceBinaries(MyImage *m){
         imshow("bw"+s1, m->bwList[i]);
     }
 #if 1
-    medianBlur(m->bw, m->bw, 7);
+//    medianBlur(m->bw, m->bw, 5);
+    
+    int dilation_type;
+//    if( dilation_elem == 0 ){ dilation_type = MORPH_RECT; }
+//    else if( dilation_elem == 1 ){ dilation_type = MORPH_CROSS; }
+//    else if( dilation_elem == 2) { dilation_type = MORPH_ELLIPSE; }
+    dilation_type = MORPH_ELLIPSE;
+    int dilation_size = 3;
+    int erosion_size = 3;
+    Mat element = getStructuringElement( dilation_type,
+                                        Size( 2*dilation_size + 1, 2*dilation_size+1 ),
+                                        Point( dilation_size, dilation_size ) );
+    
+    int erosion_type;
+//    if( erosion_elem == 0 ){ erosion_type = MORPH_RECT; }
+//    else if( erosion_elem == 1 ){ erosion_type = MORPH_CROSS; }
+//    else if( erosion_elem == 2) { erosion_type = MORPH_ELLIPSE; }
+    erosion_type = MORPH_ELLIPSE;
+    Mat erosion_element = getStructuringElement( erosion_type,
+                                        Size( 2*erosion_size + 1, 2*erosion_size+1 ),
+                                        Point( erosion_size, erosion_size ) );
+    
+    /// 腐蚀操作
+    
+    imshow("before dilate", m->bw);
+    
+//    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    medianBlur(m->bw, m->bw, 5);
+    imshow("after dilate", m->bw);
 #endif
 }
 

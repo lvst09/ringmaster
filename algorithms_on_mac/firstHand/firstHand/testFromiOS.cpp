@@ -206,6 +206,7 @@ int testFromiOS()
     /// 装载图像
 //    src = imread("/Users/sky/Downloads/daily_delete/aaa/Movie12347.MOV_MYIMG_ORI0.JPG");
     src = imread("/Users/sky/Downloads/daily_delete/MyVideo1428119600.MOV_MYIMG_ORI0.JPG");
+//    src = imread("/Users/sky/Downloads/daily_delete/MyVideo1428119600.MOV_MYIMG_ORI0_1.png");
 
 //    image = [ImageProcess correctImage:image];
 //    IplImage *ipImage = convertIplImageFromUIImage(image);
