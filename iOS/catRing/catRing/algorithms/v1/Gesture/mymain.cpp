@@ -13,7 +13,7 @@
 #include <cmath>
 #include "mymain.hpp"
 #include "CommonConfig.h"
-#include "CommonMath.h"
+#include "CommonCPPMath.h"
 using namespace cv;
 using namespace std;
 
@@ -506,9 +506,9 @@ void initWindows(MyImage m){
 
 void showWindows(MyImage m){
 #if 1
-    pyrDown(m.bw,m.bw);
-    pyrDown(m.bw,m.bw);
-    Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/4,0 ), m.bw.size());
+//    pyrDown(m.bw,m.bw);
+//    pyrDown(m.bw,m.bw);
+    Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/1,0 ), m.bw.size());
     vector<Mat> channels;
     Mat result;
     for(int i=0;i<3;i++)
@@ -541,14 +541,14 @@ int findBiggestContour(vector<vector<Point> > contours){
     return indexOfBiggestContour;
 }
 
-Point middlePoint(Point p1, Point p2)
-{
-    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
-}
-double distanceOfPoint(Point p1, Point p2)
-{
-    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
-}
+//Point middlePoint(Point p1, Point p2)
+//{
+//    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+//}
+//double distanceOfPoint(Point p1, Point p2)
+//{
+//    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+//}
 
 Point vectorBetweenPoints(Point p1, Point p2)
 {
@@ -668,6 +668,12 @@ void caculateRingPosition(HandGesture *hg)
         
         ptStart = pointMove(ptFar, vectorStartFar);
     }
+    
+    
+    
+    
+    
+    
     
     Point midPoint = middlePoint(ptStart, ptEnd);
     Point vectorMidFar = vectorBetweenPoints(ptFar, midPoint);

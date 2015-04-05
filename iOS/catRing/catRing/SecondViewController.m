@@ -119,6 +119,17 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)copyFileToDocument:(NSString *)fileName {
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"MOV"];
+    if (!fullPath) {
+        return;
+    }
+    NSString *dest = [documentPath() stringByAppendingPathComponent:[fullPath lastPathComponent]];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] copyItemAtPath:fullPath toPath:dest error:&error];
+    NSLog(@"error=%@, from = %@, dest = %@", error, fullPath, dest);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -133,14 +144,9 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
 
-    
-    NSString *fullPath = nil;
-    fullPath = [[NSBundle mainBundle] pathForResource:@"Movie12347" ofType:@"m4v"];
-    
-    NSString *dest = [documentPath() stringByAppendingPathComponent:@"Movie12347.m4v"];
-    NSError *error = nil;
-    [[NSFileManager defaultManager] copyItemAtPath:fullPath toPath:dest error:&error];
-    NSLog(@"error=%@, from = %@, dest = %@", error, fullPath, dest);
+    [self copyFileToDocument:@"Movie12347"];
+    [self copyFileToDocument:@"MyVideo1428119600"];
+    [self copyFileToDocument:@"MyVideo1428119604"];
     [self reloadLocalData];
 }
 

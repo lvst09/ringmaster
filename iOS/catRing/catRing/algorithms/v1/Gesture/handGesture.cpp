@@ -6,7 +6,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include "CommonMath.h"
+#include "CommonCPPMath.h"
+
 using namespace cv;
 using namespace std;
 
@@ -217,14 +218,14 @@ void HandGesture::eleminateDefects(){
 	removeRedundantEndPoints(defects[cIdx]);
 }
 
-Point2i middlePoint1(Point2i p1, Point2i p2)
-{
-    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
-}
-double distanceOfPoint1(Point2i p1, Point2i p2)
-{
-    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
-}
+//Point2i middlePoint1(Point2i p1, Point2i p2)
+//{
+//    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+//}
+//double distanceOfPoint1(Point2i p1, Point2i p2)
+//{
+//    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+//}
 
 
 void HandGesture::reduceDefect()
@@ -244,13 +245,13 @@ void HandGesture::reduceDefect()
             int faridx=v[2];
             Point ptFar(contours[cIdx][faridx] );
             
-            double disSF = distanceOfPoint1(ptStart, ptFar);
-            double disEF = distanceOfPoint1(ptEnd, ptFar);
+            double disSF = distanceOfPoint(ptStart, ptFar);
+            double disEF = distanceOfPoint(ptEnd, ptFar);
             if(disSF < 100 || disEF < 100)
             {
                 
                 //
-                Point ptMid = middlePoint1(ptStart, ptEnd);
+                Point ptMid = middlePoint(ptStart, ptEnd);
                 
                 vector<Vec4i>::iterator e = d-1;
                 Vec4i& t = (*e);

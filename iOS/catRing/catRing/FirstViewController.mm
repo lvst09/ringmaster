@@ -953,6 +953,7 @@ static HandGesture *hg;
 }
 
 - (void)getAllImageFromVideo {
+    NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, 0];
 //    {
 //        int i = 156;
 //        NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
