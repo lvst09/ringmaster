@@ -40,6 +40,10 @@
 #import "CEMovieMaker.h"
 #import <MediaPlayer/MPMoviePlayerViewController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+
+#define TimeStamp(index) printf("\ntimestamp[%d] = <%f>",index,CACurrentMediaTime());
+
+
 @interface RotationAngle : NSObject {
 }
 @property (nonatomic, assign) double x;
@@ -74,6 +78,7 @@
 @property (nonatomic, retain) UIImageView *imageView;
 
 @property (nonatomic, retain) LabelSlider *labelSlider;
+@property (nonatomic, retain) LabelSlider *diffSlider;
 
 @property (nonatomic, strong) DWVideoDecoding *videoEncoder;
 
@@ -97,6 +102,8 @@
 @property (nonatomic, retain) NSMutableArray * frames;
 
 @property (nonatomic, assign) BOOL canClick;
+
+@property (nonatomic, assign) NSInteger diff;
 @end
 
 @implementation FirstViewController
@@ -166,6 +173,19 @@
     labelSlider.slider.maximumValue = 1.0f;
     [self.view addSubview:labelSlider];
     self.labelSlider = labelSlider;
+    
+    {
+        self.diff = 30;
+        LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 120, self.view.bounds.size.width-60, 20)];
+        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpInside];
+        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
+        labelSlider.label.text = nil;
+        labelSlider.slider.minimumValue = 13.0f;
+        labelSlider.slider.maximumValue = 40.0f;
+        labelSlider.slider.value = self.diff;
+        [self.view addSubview:labelSlider];
+        self.diffSlider = labelSlider;
+    }
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
     previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 60, 40);
@@ -612,6 +632,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     [self showImageAtIndex:j];
 }
 
+- (void)onDiffValueChanged:(UISlider *)slider {
+    if (self.diff != slider.value) {
+        self.diff = slider.value;
+        NSLog(@"onDiffValueChanged diff=%zd", self.diff);
+        [self showImageAtIndex:self.labelSlider.slider.value];
+    }
+}
 - (void)onPreviousButtonClicked:(UIButton *)sender {
     static NSInteger i = 0;
     
@@ -743,8 +770,9 @@ static HandGesture *hg;
     hg = new HandGesture();
     
     hg->index = (int)self.imageIndex;
-    MyImage * myImage = detectHand(ipImage, *hg);
-    
+    TimeStamp(101);
+    MyImage * myImage = detectHand(ipImage, *hg, (int)self.diff);
+    TimeStamp(102);
     currentHand = hg;
     
 //    if(currentHand->isHand)

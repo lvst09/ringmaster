@@ -27,6 +27,10 @@ int c_upper[NSAMPLES][3];
 static vector <Point2i>  * firstFinger;
 static vector <double>  * firstFeatureAngles;
 static vector <Point2i> * firstFingerTipFeatures;
+
+
+static int diff1 = 30;
+
 //int avgBGR[3];
 //int nrOfDefects;
 //int iSinceKFInit;
@@ -556,7 +560,7 @@ void produceBinaries(MyImage *m){
 //        c_upper[1][1] = 40 + diff;
 //        c_upper[1][2] = 80 + diff;
 //    }
-    const int diff1 = 30;
+//    const int diff1 = 30;
 #if 0
     // 增加调试信息
     imshow("srclr", m->srcLR);
@@ -1226,8 +1230,9 @@ void on_mouse( int event, int x, int y, int flags, void* ustc)
     }
 }
 
-MyImage * detectHand(IplImage *inputImage,  HandGesture &hg) {
+MyImage * detectHand(IplImage *inputImage,  HandGesture &hg, int diff) {
     MyImage *m1 = new MyImage(inputImage);
+    diff1 = diff;
 //    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;
