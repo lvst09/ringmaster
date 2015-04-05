@@ -912,33 +912,33 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
 //        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
         
-            line( m->src, ptStart, ptFar, scalar, 1 *scale);
-            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
-            circle( m->src, ptFar,   4, scalar, 2 * scale);
-            circle( m->src, ptEnd,   4, scalar, 2 * scale);
-            circle( m->src, ptStart,   4, scalar, 2 * scale);
+//            line( m->src, ptStart, ptFar, scalar, 1 *scale);
+//            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
+//            circle( m->src, ptFar,   4, scalar, 2 * scale);
+//            circle( m->src, ptEnd,   4, scalar, 2 * scale);
+//            circle( m->src, ptStart,   4, scalar, 2 * scale);
         
             
-        if (i==count - 2) {
+        if (i==0) {//中指左侧的线条
             hg->mediusFinger.push_back(ptFar);
-            hg->mediusFinger.push_back(ptEnd);
-//            circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
-//            circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
-//            line( m->src, ptEnd, ptFar, Scalar(255,255,0), 1 * scale);
+            hg->mediusFinger.push_back(ptStart);
+            circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
+            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
+            line( m->src, ptStart, ptFar, Scalar(255,255,0), 1 * scale);
+            
+            hg->fingerTipFeatures.push_back(ptStart);//旋转角度参考点
+            hg->fingerTipFeatures.push_back(ptEnd);
+            
+            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
+            circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
+        }
+        if (i==count - 1) {//中指右侧的线条
+            hg->mediusFinger.push_back(ptFar);
+            circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);
+            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,255), 1 * scale);
             
             hg->fingerTipFeatures.push_back(ptStart);
-            hg->fingerTipFeatures.push_back(ptEnd);
-            
-//            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
-            
-        }
-        if (i==count - 1) {
-            hg->mediusFinger.push_back(ptFar);
-//            circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);
-//            line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,255), 1 * scale);
-            
-            hg->fingerTipFeatures.push_back(ptEnd);
-//            circle( m->src, ptEnd,   4, Scalar(0,255,255), 2 * scale);
+            circle( m->src, ptStart,   4, Scalar(0,255,255), 2 * scale);
             if(hg->index==1)
             {
                 firstFinger = new vector<Point>(hg->mediusFinger);
@@ -990,7 +990,9 @@ void makeContours(MyImage *m, HandGesture* hg){
         if(hg->contours[hg->cIdx].size()>3 ){
             convexityDefects(hg->contours[hg->cIdx],hg->hullI[hg->cIdx],hg->defects[hg->cIdx]);
 //            hg->eleminateDefects();
+            //去除不是手指的凸包
             hg->reduceDefect();
+
         }
         bool isHand=hg->detectIfHand();
         hg->printGestureInfo();

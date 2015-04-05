@@ -227,55 +227,143 @@ void HandGesture::eleminateDefects(){
 //    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
 //}
 
+//Point middlePoint(Point p1, Point p2)
+//{
+//    return Point((p1.x+p2.x)/2, (p1.y+p2.y)/2 );
+//}
+//double distanceOfPoint(Point p1, Point p2)
+//{
+//    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
+//}
+//
+Point vectorBetweenPoints1(Point p1, Point p2)
+{
+    return Point((p1.x - p2.x) ,(p1.y - p2.y));
+}
+
+//double vectorAngle(Point vec)
+//{
+//    if (vec.x==0) {
+//        vec.x+=1;
+//    }
+//    
+//    double b =  atan(vec.y/vec.x);
+//    if(vec.x <= 0 && vec.y>0)
+//        b += M_PI;
+//    else if(vec.x <0 && vec.y<=0)
+//        b += M_PI ;
+//    if (vec.y<0 && vec.x>=0) {
+//        b += M_PI * 2;
+//    }
+//    return b;
+//}
+
+double vectorCrossAngle1(Point p1, Point p2)
+{
+    double dotProduct =  ( p1.x * p2.x + p1.y * p2.y );
+    
+    double m = sqrt(p1.x*p1.x + p1.y*p1.y) * sqrt(p2.x*p2.x + p2.y*p2.y);
+    
+    return acos(dotProduct/m);
+}
+
+//Point vectorMultiply(Point vector ,float multi)
+//{
+//    return Point(vector.x * multi , vector.y * multi);
+//}
+//
+//Point pointMove(Point point ,Point vector)
+//{
+//    return Point(vector.x + point.x , vector.y + point.y);
+//}
+
+
 
 void HandGesture::reduceDefect()
 {
-    vector<Vec4i>::iterator d=defects[cIdx].begin();
+
     int count = (int)defects[cIdx].size();
-    int i = 0;
-    while( d!=defects[cIdx].end() ) {
+    int times = 0;
+    int erased = 1;
+    while (count > 5 && erased>0)
+    {
+        times ++ ;
+        
+        erased = 0;
+        vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
+//        int count = (int)defects[cIdx].size();
+        //第一次滤掉杂波，之后认为中指和无名指是正确的
+        if (times>1)
+        {
+            d++ ;
+            d++;
+//            d++;
+        }
+        printf("defects cout before reduce : %d \n", count);
+        int i = 0;
+        while( d!=defects[cIdx].end() )
         {
             
-            Vec4i& v=(*d);
-            int startidx=v[0];
-            Point ptStart(contours[cIdx][startidx] );
-            
-            int endidx=v[1];
-            Point ptEnd(contours[cIdx][endidx] );
-            int faridx=v[2];
-            Point ptFar(contours[cIdx][faridx] );
-            
-            double disSF = distanceOfPoint(ptStart, ptFar);
-            double disEF = distanceOfPoint(ptEnd, ptFar);
-            if(disSF < 100 || disEF < 100)
+
             {
                 
-                //
-                Point ptMid = middlePoint(ptStart, ptEnd);
+                Vec4i& v=(*d);
+                int startidx=v[0];
+                Point ptStart(contours[cIdx][startidx] );
                 
-                vector<Vec4i>::iterator e = d-1;
-                Vec4i& t = (*e);
-                int endidx=t[1];
-                if(endidx < contours[cIdx].size())
+                int endidx=v[1];
+                Point ptEnd(contours[cIdx][endidx] );
+                int faridx=v[2];
+                Point ptFar(contours[cIdx][faridx] );
+                
+                double disSF = distanceOfPoint(ptStart, ptFar);
+                double disEF = distanceOfPoint(ptEnd, ptFar);
+                
+                Point vecSF = vectorBetweenPoints1(ptStart, ptFar);
+                Point vecEF = vectorBetweenPoints1(ptEnd, ptFar);
+                
+                double crossAngle = vectorCrossAngle1(vecSF,vecEF);
+ 
+                //如果手指长度太短 或开角太大 就滤掉
+                if(disSF < 150 || disEF < 150 || crossAngle > M_PI / 2)
                 {
-                    contours[cIdx][endidx] = ptMid;
+                    
                     //
-                    //             e = d+1;
-                    //             t = (*e);
-                    //             int startidx=t[0];
-                    //             contours[cIdx][startidx] = ptMid;
-                    //
-                    d = defects[cIdx].erase(d);
-                    continue;
+    //                Point ptMid = middlePoint1(ptStart, ptEnd);
+                    
+                    
+                
+                    if (d!=defects[cIdx].end())
+                    {
+                        vector<Vec4i>::iterator e = d+1;
+                        Vec4i& t = (*e);
+                        //                    int endidx=t[1];
+                        int startidx = t[0];
+                        if(startidx < contours[cIdx].size())
+                        {
+                            contours[cIdx][startidx] = ptEnd;
+                            //
+                            //             e = d+1;
+                            //             t = (*e);
+                            //             int startidx=t[0];
+                            //             contours[cIdx][startidx] = ptMid;
+                            //
+                            erased ++;
+                            d = defects[cIdx].erase(d++);
+                            continue;
+                        }
+                    }
+
                 }
-                
-                
-                //
             }
+            d++;
+            i++;
+            
         }
-        d++;
-        i++;
+        count = (int)defects[cIdx].size();
+ 
     }
+    printf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
 }
 
 
@@ -337,7 +425,7 @@ void HandGesture::drawFingerTips(Mat &src){
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
 		putText(src,intToString(i),p-Point(0,30),fontFace, 1.2f,Scalar(200,200,200),2);
-   		circle(src,p,   15, Scalar(0,0,0), 4 );
+//   		circle(src,p,   15, Scalar(0,0,0), 4 );
    	 }
 }
 
