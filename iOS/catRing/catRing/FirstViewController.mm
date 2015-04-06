@@ -167,7 +167,7 @@
     
     LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 90, self.view.bounds.size.width-60, 20)];
     [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpInside];
-    [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
+//    [labelSlider.slider addTarget:self action:@selector(onValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
     labelSlider.label.text = nil;
     labelSlider.slider.minimumValue = 0.0f;
     labelSlider.slider.maximumValue = 1.0f;
@@ -178,8 +178,8 @@
         self.diff = 30;
         LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 120, self.view.bounds.size.width-60, 20)];
         [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpInside];
-        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
-        labelSlider.label.text = nil;
+//        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
+        labelSlider.label.text = [NSString stringWithFormat:@"%zd", self.diff];
         labelSlider.slider.minimumValue = 13.0f;
         labelSlider.slider.maximumValue = 40.0f;
         labelSlider.slider.value = self.diff;
@@ -243,7 +243,7 @@
             [self getAllImageFromVideo];
 //            [self processAllImages];
             [self.indicator stopAnimating];
-            [self showImageAtIndex:1];
+            [self showImageAtIndex:1 needAdjustDiff:YES];
         });
     }
 #endif
@@ -434,7 +434,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             if(!image)
                 return;
             
-            [self processImage:image];
+            [self processImage:image needAdjustDiff:NO];
             
             if(!_ringCenterArray)
                 self.ringCenterArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -594,7 +594,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
             {
                 @autoreleasepool {
-                    [self showImageAtIndex:i];
+                    [self showImageAtIndex:i needAdjustDiff:YES];
                 }
             }
             
@@ -629,16 +629,31 @@ NSInteger radiusToDegree(CGFloat angle) {
 - (void)onValueChanged:(UISlider *)slider {
     NSLog(@"slider");
     NSInteger j = (NSInteger) slider.value;
-    [self showImageAtIndex:j];
+    [self.indicator startAnimating];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showImageAtIndex:j needAdjustDiff:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.indicator stopAnimating];
+        });
+    });
 }
 
 - (void)onDiffValueChanged:(UISlider *)slider {
     if (self.diff != slider.value) {
         self.diff = slider.value;
         NSLog(@"onDiffValueChanged diff=%zd", self.diff);
-        [self showImageAtIndex:self.labelSlider.slider.value];
+//        [self showImageAtIndex:self.labelSlider.slider.value];
+        [self.indicator startAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showImageAtIndex:self.labelSlider.slider.value needAdjustDiff:NO];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.indicator stopAnimating];
+//                self.canClick = YES;
+            });
+        });
     }
 }
+
 - (void)onPreviousButtonClicked:(UIButton *)sender {
     static NSInteger i = 0;
     
@@ -649,7 +664,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     //    }
     self.labelSlider.slider.value = i;
     j = i;
-    [self showImageAtIndex:j];
+    [self showImageAtIndex:j needAdjustDiff:YES];
 }
 
 - (void)onPickColorButtonClicked:(UIButton *)sender {
@@ -728,6 +743,8 @@ NSInteger radiusToDegree(CGFloat angle) {
     } else {
         return;
     }
+    [self.indicator startAnimating];
+    
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
@@ -737,9 +754,12 @@ NSInteger radiusToDegree(CGFloat angle) {
 //    }
     self.labelSlider.slider.value = i;
     j = i;
-    [self showImageAtIndex:j];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.canClick = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self showImageAtIndex:j needAdjustDiff:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.indicator stopAnimating];
+            self.canClick = YES;
+        });
     });
 }
 
@@ -754,7 +774,7 @@ static HandGesture *hg;
     return _rotationManager;
 }
 
-- (UIImage *)processImage:(UIImage *)image {
+- (UIImage *)processImage:(UIImage *)image needAdjustDiff:(BOOL)needAdjustDiff {
     if (!image)
         return nil;
     TimeStamp(111);
@@ -767,41 +787,49 @@ static HandGesture *hg;
     }
     NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     
+    if (hg) {
+        delete hg;
+    }
     hg = nil;//new HandGesture();
     
 //    hg->index = (int)self.imageIndex;
     
+    
     MyImage * myImage = nil;
     NSInteger i = self.diff;
-    for (i = self.diff; i <= self.diffSlider.slider.maximumValue; ++i) {
-        NSLog(@"i=%zd", i);
-        HandGesture *tmphg = new HandGesture();
-        tmphg->index = (int)self.imageIndex;
-        if (myImage) {
-            delete myImage;
-        }
-        myImage = detectHand(ipImage, *tmphg, (int)i);
-        if (tmphg->isHand) {
-            hg = tmphg;
-            break;
-        } else {
-            delete tmphg;
-        }
-    }
-    if (!hg) {
-        for (i = (NSInteger)self.diffSlider.slider.minimumValue; i < self.diff; ++i) {
+    if (needAdjustDiff) {
+        for (i = self.diff; i <= self.diffSlider.slider.maximumValue; ++i) {
             NSLog(@"i=%zd", i);
             HandGesture *tmphg = new HandGesture();
             tmphg->index = (int)self.imageIndex;
-            if (myImage) {
-                delete myImage;
-            }
+            
             myImage = detectHand(ipImage, *tmphg, (int)i);
             if (tmphg->isHand) {
                 hg = tmphg;
                 break;
             } else {
                 delete tmphg;
+                if (myImage) {
+                    delete myImage;
+                }
+            }
+        }
+        if (!hg) {
+            for (i = (NSInteger)self.diffSlider.slider.minimumValue; i < self.diff; ++i) {
+                NSLog(@"i=%zd", i);
+                HandGesture *tmphg = new HandGesture();
+                tmphg->index = (int)self.imageIndex;
+                
+                myImage = detectHand(ipImage, *tmphg, (int)i);
+                if (tmphg->isHand) {
+                    hg = tmphg;
+                    break;
+                } else {
+                    delete tmphg;
+                    if (myImage) {
+                        delete myImage;
+                    }
+                }
             }
         }
     }
@@ -811,9 +839,6 @@ static HandGesture *hg;
         NSLog(@"i=%zd", i);
         HandGesture *tmphg = new HandGesture();
         tmphg->index = (int)self.imageIndex;
-        if (myImage) {
-            delete myImage;
-        }
         myImage = detectHand(ipImage, *tmphg, (int)i);
         hg = tmphg;
     }
@@ -821,7 +846,7 @@ static HandGesture *hg;
     currentHand = hg;
     
 //    if(currentHand->isHand)
-//    {
+    {
        NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
        IplImage qImg;
        qImg = IplImage(myImage->src);
@@ -833,7 +858,7 @@ static HandGesture *hg;
        cvReleaseImage(&ipImage);
        cvReleaseImage(&ret1);
        return outputImage;
-//    }
+    }
 //    else {
 //      return image;
 //    }
@@ -841,8 +866,58 @@ static HandGesture *hg;
     
 }
 
-- (void)showImageAtIndex:(NSInteger)j {
-    [self.indicator startAnimating];
+//- (void)showImageAtIndex:(NSInteger)j {
+//    self.title = [NSString stringWithFormat:@"%zd", j];
+//    
+//    UIImage *image = [self getVideoImageAtIndex:j];
+//    self.imageIndex = j;
+//    
+//    if(!image)
+//        return;
+//    
+//    image = [self processImage:image needAdjustDiff:YES];
+//    
+//    if(!image)
+//        return;
+//    
+//    NSDictionary * outputDic = self.filenamePositionInfoDic;
+//    
+//    if(!outputDic) {
+//        return;
+//    }
+//    
+//    NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
+//    fileKeyName = nil;
+//    DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
+//    
+//    UIImage * ringImage = [self getImage:j];
+//    
+//    double ratio = ringImage.size.height / ringImage.size.width;
+//    
+//    ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
+//    
+//    CGFloat ringAngle = currentHand->ringAngle;
+//    CGFloat shrinkRatio = currentHand->ringWidth / 80.f;
+//    
+//    ringImage = [self clipImage:ringImage ringPosition:info withRadian:ringAngle shrinkRatio:shrinkRatio];
+//    
+//    UIImage * resultImage = [self mergeFrontImage:ringImage backImage:image];
+//    self.imageView.image = resultImage;
+//    
+//    // 将每一帧的图片保存到documents目录下
+//#if 0
+//    {
+//        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)j];
+//        NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
+//        BOOL succ = [data writeToFile:pngPath atomically:YES];
+//        if (!succ) {
+//            NSLog(@"save failed, %@", pngPath);
+//        }
+//    }
+//#endif
+//}
+
+- (void)showImageAtIndex:(NSInteger)j needAdjustDiff:(BOOL)needAdjustDiff {
     self.title = [NSString stringWithFormat:@"%zd", j];
 
     UIImage *image = [self getVideoImageAtIndex:j];
@@ -851,12 +926,14 @@ static HandGesture *hg;
     if(!image)
         return;
  
-    image = [self processImage:image];
-
+    image = [self processImage:image needAdjustDiff:needAdjustDiff];
+    
+    if(!image)
+        return;
+    
     NSDictionary * outputDic = self.filenamePositionInfoDic;
     
     if(!outputDic) {
-        [self.indicator stopAnimating];
         return;
     }
     
@@ -889,7 +966,6 @@ static HandGesture *hg;
         }
     }
 #endif
-    [self.indicator stopAnimating];
 }
 
 -(UIImage *)getImage:(NSInteger)index

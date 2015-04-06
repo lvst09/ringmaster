@@ -91,6 +91,10 @@ bool HandGesture::detectIfHand(){
     }else if(fingerBases.size()<3) {
         isHand = false;
     }
+    if (fingerLengths.size() < 3) {
+        isHand = false;
+        return isHand;
+    }
     {
 //        vector<double>::iterator d = fingerLengths.begin();
         double midFingerLength = fingerLengths[0];

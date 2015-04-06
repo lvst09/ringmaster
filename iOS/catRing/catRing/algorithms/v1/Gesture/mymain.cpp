@@ -624,11 +624,11 @@ void produceBinaries(MyImage *m){
 //    imshow("before dilate", m->bw);
     
 //    erode( m->bw, m->bw, erosion_element );
-    dilate(m->bw, m->bw, element);
-    erode( m->bw, m->bw, erosion_element );
-    dilate(m->bw, m->bw, element);
-    erode( m->bw, m->bw, erosion_element );
-    dilate(m->bw, m->bw, element);
+//    dilate(m->bw, m->bw, element);
+//    erode( m->bw, m->bw, erosion_element );
+//    dilate(m->bw, m->bw, element);
+//    erode( m->bw, m->bw, erosion_element );
+//    dilate(m->bw, m->bw, element);
     medianBlur(m->bw, m->bw, 5);
 //    imshow("after dilate", m->bw);
 #endif
@@ -645,8 +645,8 @@ void showWindows(MyImage m){
     
 #if 1
         pyrDown(m.bw,m.bw);
-        pyrDown(m.bw,m.bw);
-        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/4,0 ), m.bw.size());
+//        pyrDown(m.bw,m.bw);
+        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/2,0 ), m.bw.size());
 #else
         //    pyrDown(m.bw,m.bw);
         //    pyrDown(m.bw,m.bw);
@@ -871,6 +871,12 @@ void caculateRotationAngle(HandGesture *hg)
     
     if(hg->index==1)
     {
+        if (firstFingerTipFeatures) {
+            delete firstFingerTipFeatures;
+        }
+        if (firstFeatureAngles) {
+            delete firstFeatureAngles;
+        }
         //        firstFeatureAngles = new vector<Point>(hg->featureAngles);
         firstFingerTipFeatures = new vector<Point2i>(hg->fingerTipFeatures);
         firstFeatureAngles = new vector<double>(hg->featureAngles);
@@ -1086,6 +1092,9 @@ void myDrawContours(MyImage *m,HandGesture *hg){
             circle( m->src, ptStart,   4, Scalar(0,255,255), 2 * scale);
             if(hg->index==1)
             {
+                if (firstFinger) {
+                    delete firstFinger;
+                }
                 firstFinger = new vector<Point>(hg->mediusFinger);
                 //            firstFinger ->push_back(hg->mediusFinger[0]);
                 //            firstFinger ->push_back(hg->mediusFinger[1]);
@@ -1145,12 +1154,12 @@ void makeContours(MyImage *m, HandGesture* hg){
         if(isHand){
             hg->isHand = true;
             hg->drawFingerTips(m->src);
-            myDrawContours(m,hg);
+//            myDrawContours(m,hg);
         }else
         {
             hg->isHand = false;
         }
-        
+        myDrawContours(m,hg);
     }
 }
 
