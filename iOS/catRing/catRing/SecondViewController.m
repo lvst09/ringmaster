@@ -147,6 +147,10 @@
     [self copyFileToDocument:@"Movie12347"];
     [self copyFileToDocument:@"MyVideo1428119600"];
     [self copyFileToDocument:@"MyVideo1428119604"];
+    [self copyFileToDocument:@"MyVideo1428222805"];
+    [self copyFileToDocument:@"MyVideo1428222853"];
+    [self copyFileToDocument:@"MyVideo1428228993"];
+    [self copyFileToDocument:@"MyVideo1428289652"];
     [self reloadLocalData];
 }
 
