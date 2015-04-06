@@ -134,8 +134,9 @@
 
     center.x = sliderOrigin + sliderRange * percent;
     self.tooltip.center = center;
-    percent = percent * (self.percentMax - self.percentMin) + self.percentMin;
-    self.tooltip.label.text = [NSString stringWithFormat:@"%d%%",(int)percent];
+    percent = percent * (maxValue - minValue) + minValue;
+//    percent = percent * (self.percentMax - self.percentMin) + self.percentMin;
+    self.tooltip.label.text = [NSString stringWithFormat:@"%d",(int)percent];
 }
 
 #pragma mark - Event

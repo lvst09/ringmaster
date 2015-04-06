@@ -738,7 +738,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     self.labelSlider.slider.value = i;
     j = i;
     [self showImageAtIndex:j];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.canClick = YES;
     });
 }
@@ -842,19 +842,11 @@ static HandGesture *hg;
 }
 
 - (void)showImageAtIndex:(NSInteger)j {
+    [self.indicator startAnimating];
     self.title = [NSString stringWithFormat:@"%zd", j];
-//    [self wmcSetNavigationBarTitleStyle];
-    
+
     UIImage *image = [self getVideoImageAtIndex:j];
-////    NSString *fileName = [NSString stringWithFormat:@"MYIMG_ORI%zd.JPG", j];
-//    NSString *betaCompressionDirectory = nil;
-//    betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//
-//    NSLog(@"current filename=%@", betaCompressionDirectory);
-//    
     self.imageIndex = j;
-//
-//    image = [UIImage imageWithContentsOfFile:[betaCompressionDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"MYIMG_ORI%ld.JPG", (long)j]]];
     
     if(!image)
         return;
@@ -863,11 +855,10 @@ static HandGesture *hg;
 
     NSDictionary * outputDic = self.filenamePositionInfoDic;
     
-    if(!outputDic)
+    if(!outputDic) {
+        [self.indicator stopAnimating];
         return;
-    
-//    int index = j/2 * 2 ;
-//    int index = j;
+    }
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
     fileKeyName = nil;
@@ -888,13 +879,9 @@ static HandGesture *hg;
     self.imageView.image = resultImage;
     
     // 将每一帧的图片保存到documents目录下
-#if 1
+#if 0
     {
-//        NSString *fileKeyName2 = [NSString stringWithFormat:@"output_%ld.png", (long)j];
-////        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-//        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
         NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)j];
-//         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
         if (!succ) {
@@ -902,6 +889,7 @@ static HandGesture *hg;
         }
     }
 #endif
+    [self.indicator stopAnimating];
 }
 
 -(UIImage *)getImage:(NSInteger)index

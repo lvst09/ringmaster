@@ -96,7 +96,7 @@ void waitForPalmCover(MyImage* m){
     if (kUseCamera)
         m->cap >> m->src;
 //    flip(m->src,m->src,1);
-    int square_len = 20;
+    int square_len = 30;
     
     printf("rows=%d, cols=%d", m->src.rows, m->src.cols);
     // rows=489, cols=652
@@ -105,120 +105,14 @@ void waitForPalmCover(MyImage* m){
     
 #if 0
     // 原来默认的roi点的位置
-    pushIntoROI(roi, m->src.cols/3, m->src.rows/6, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/4, m->src.rows/2, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/3, m->src.rows/1.5, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/2.5, m->src.rows/2.5, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/2, m->src.rows/1.5, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/2.5, m->src.rows/1.8, square_len, m->src);
-    pushIntoROI(roi, m->src.cols/2, m->src.rows/2, square_len, m->src);
 #else
     // 新的roi点的位置
-    //    pushIntoROI(roi, 108, 121, square_len, m->src);
-    //    pushIntoROI(roi, 326, 71, square_len, m->src);
-    //    pushIntoROI(roi, 397, 157, square_len, m->src);
-    //    pushIntoROI(roi, 245, 227, square_len, m->src);
-    //    pushIntoROI(roi, 450, 330, square_len, m->src);
-    //    pushIntoROI(roi, 186, 346, square_len, m->src);
-    //    pushIntoROI(roi, 46, 233, square_len, m->src);
-    
-//    [self addViewAtPoint:CGPointMake(119, 196)];
-//    [self addViewAtPoint:CGPointMake(171, 201)];
-//    [self addViewAtPoint:CGPointMake(206, 218)];
-//    [self addViewAtPoint:CGPointMake(247, 245)];
-//    [self addViewAtPoint:CGPointMake(54, 321)];
-//    [self addViewAtPoint:CGPointMake(133, 362)];
-//    [self addViewAtPoint:CGPointMake(197, 362)];
-
-//    Point2i point = changePoint(1, 1);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-    
-//    [self addViewAtPoint:CGPointMake(50, 100)];
-//    [self addViewAtPoint:CGPointMake(50, 200)];
-//    [self addViewAtPoint:CGPointMake(100, 100)];
-    
-//    [self addViewAtPoint:CGPointMake(119, 196)];
-//    [self addViewAtPoint:CGPointMake(171, 201)];
-//    [self addViewAtPoint:CGPointMake(206, 218)];
-//    [self addViewAtPoint:CGPointMake(247, 245)];
-//    [self addViewAtPoint:CGPointMake(54, 321)];
-//    [self addViewAtPoint:CGPointMake(133, 362)];
-//    [self addViewAtPoint:CGPointMake(197, 362)];
-    
-//    int pointArrX[] = {119, 171, 206, 247, 54, 133, 197};
-//    int pointArrY[] = {196, 201, 218, 245, 321, 362, 362};
-    
     long len = sizeof(pointArrX) / sizeof(double);
     for (int i = 0; i < len; ++i) {
         Point2i point = changePoint(pointArrX[i], pointArrY[i]);
         pushIntoROI(roi, point.x, point.y, square_len, m->src);
     }
-//    {
-//        
-//        Point2i point = changePoint(119, 196);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(171, 201);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(206, 218);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(247, 245);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        //
-//        point = changePoint(54, 321);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(133, 362);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//        point = changePoint(197, 362);
-//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//        
-//
-//    }
-    
-    
-//    Point2i point = changePoint(119, 196);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//    
-//    point = changePoint(171, 201);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(206, 218);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(247, 245);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-////
-//    point = changePoint(54, 321);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(133, 362);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-//
-//    point = changePoint(197, 362);
-//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
-
-//    pushIntoROI(roi, 364, 115, square_len, m->src);
-//    pushIntoROI(roi, 369, 207, square_len, m->src);
-//    pushIntoROI(roi, 422, 289, square_len, m->src);
-//    pushIntoROI(roi, 347, 377, square_len, m->src);
-//    pushIntoROI(roi, 122, 497, square_len, m->src);
-//    pushIntoROI(roi, 154, 169, square_len, m->src);
-//    pushIntoROI(roi, 78, 430, square_len, m->src);
-
 #endif
-    
-//    roi.push_back(My_ROI(Point(m->src.cols/3, m->src.rows/6),Point(m->src.cols/3+square_len,m->src.rows/6+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/4, m->src.rows/2),Point(m->src.cols/4+square_len,m->src.rows/2+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/3, m->src.rows/1.5),Point(m->src.cols/3+square_len,m->src.rows/1.5+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/2.5, m->src.rows/2.5),Point(m->src.cols/2.5+square_len,m->src.rows/2.5+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/2, m->src.rows/1.5),Point(m->src.cols/2+square_len,m->src.rows/1.5+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/2.5, m->src.rows/1.8),Point(m->src.cols/2.5+square_len,m->src.rows/1.8+square_len),m->src));
-//    roi.push_back(My_ROI(Point(m->src.cols/2, m->src.rows/2),Point(m->src.cols/2+square_len,m->src.rows/2+square_len),m->src));
-    
     
     int times = 1;
     if (kUseCamera) {
@@ -249,7 +143,7 @@ void waitForPalmCover(MyImage* m){
 }
 
 // todo
-int getMedian(vector<int> val){
+int getMedian(vector<int> val, int* upval, int *lowval){
     int median;
     size_t size = val.size();
 //#warning 可以优化，取中位数
@@ -259,11 +153,13 @@ int getMedian(vector<int> val){
     } else{
         median = val[size / 2];
     }
+    *upval = val[size - 1];
+    *lowval = val[0];
     return median;
 }
 
 // done
-void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3]){
+void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3], int upper[3], int lower[3]){
     Mat r;
     inputroi.roi_ptr.copyTo(r);
     vector<int>hm;
@@ -277,9 +173,10 @@ void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3]){
             lm.push_back(r.data[r.channels()*(r.cols*i + j) + 2]) ;
         }
     }
-    avg[0]=getMedian(hm);
-    avg[1]=getMedian(sm);
-    avg[2]=getMedian(lm);
+    avg[0]=getMedian(hm, &upper[0], &lower[0]);
+    avg[1]=getMedian(sm, &upper[1], &lower[1]);
+    avg[2]=getMedian(lm, &upper[2], &lower[2]);
+    
 }
 
 void average(MyImage *m, vector<My_ROI> &roi) {
@@ -296,7 +193,11 @@ void average(MyImage *m, vector<My_ROI> &roi) {
         }
         cvtColor(m->src,m->src,ORIGCOL2COL);
         for(int j=0;j<NSAMPLES;j++){
-            getAvgColor(/*m,*/roi[j],avgColor[j]);
+            getAvgColor(/*m,*/roi[j],avgColor[j], c_upper[j], c_lower[j]);
+            cout << "getavgcolor j=" << j << ", val r=" << avgColor[j][0] << ", valg=" << avgColor[j][1] << ", valb=" << avgColor[j][2] << endl;
+            cout << "getuppercolor j=" << j << ", val r=" << c_upper[j][0] << ", valg=" << c_upper[j][1] << ", valb=" << c_upper[j][2] << endl;
+            cout << "getlowercolor j=" << j << ", val r=" << c_lower[j][0] << ", valg=" << c_lower[j][1] << ", valb=" << c_lower[j][2] << endl;
+            
             roi[j].draw_rectangle(m->src);
         }
         cvtColor(m->src,m->src,COL2ORIGCOL);
@@ -431,147 +332,25 @@ void produceBinaries(MyImage *m){
     Scalar upperBound;
     Mat foo;
     m->bwList.clear();
-//    avgColor[0][0] = 17;
-//    avgColor[0][1] = 95;
-//    avgColor[0][2] = 125;
-//    avgColor[1][0] = 17;
-//    avgColor[1][1] = 96;
-//    avgColor[1][2] = 123;
-//    avgColor[2][0] = 17;
-//    avgColor[2][1] = 94;
-//    avgColor[2][2] = 116;
-//    avgColor[3][0] = 18;
-//    avgColor[3][1] = 101;
-//    avgColor[3][2] = 117;
-//    avgColor[4][0] = 17;
-//    avgColor[4][1] = 105;
-//    avgColor[4][2] = 122;
-//    avgColor[5][0] = 18;
-//    avgColor[5][1] = 106;
-//    avgColor[5][2] = 121;
-//    avgColor[6][0] = 14;
-//    avgColor[6][1] = 78;
-//    avgColor[6][2] = 155;
-    // above is old
-//    avgColor[0][1] = 213;
-//    avgColor[0][2] = 225;
-//    avgColor[1][0] = 17;
-//    avgColor[1][1] = 173;
-//    avgColor[1][2] = 148;
-//    avgColor[2][0] = 16;
-//    avgColor[2][1] = 219;
-//    avgColor[2][2] = 234;
-//    avgColor[3][0] = 13;
-//    avgColor[3][1] = 195;
-//    avgColor[3][2] = 178;
-//    avgColor[4][0] = 14;
-//    avgColor[4][1] = 211;
-//    avgColor[4][2] = 215;
-//    avgColor[5][0] = 13;
-//    avgColor[5][1] = 211;
-//    avgColor[5][2] = 249;
-//    avgColor[6][0] = 17;
-//    avgColor[6][1] = 167;
-//    avgColor[6][2] = 136;
-//    c_lower[0][0] = 12;
-//    c_lower[0][1] = 30;
-//    c_lower[0][2] = 80;
-//    c_lower[1][0] = 12;
-//    c_lower[1][1] = 30;
-//    c_lower[1][2] = 80;
-//    c_lower[2][0] = 12;
-//    c_lower[2][1] = 30;
-//    c_lower[2][2] = 80;
-//    c_lower[3][0] = 12;
-//    c_lower[3][1] = 30;
-//    c_lower[3][2] = 80;
-//    c_lower[4][0] = 12;
-//    c_lower[4][1] = 30;
-//    c_lower[4][2] = 80;
-//    c_lower[5][0] = 12;
-//    c_lower[5][1] = 30;
-//    c_lower[5][2] = 80;
-//    c_lower[6][0] = 12;
-//    c_lower[6][1] = 30;
-//    c_lower[6][2] = 80;
-//    c_upper[0][0] = 7;
-//    c_upper[0][1] = 40;
-//    c_upper[0][2] = 30;
-//    c_upper[1][0] = 7;
-//    c_upper[1][1] = 40;
-//    c_upper[1][2] = 30;
-//    c_upper[2][0] = 7;
-//    c_upper[2][1] = 36;
-//    c_upper[2][2] = 21;
-//    c_upper[3][0] = 7;
-//    c_upper[3][1] = 40;
-//    c_upper[3][2] = 30;
-//    c_upper[4][0] = 7;
-//    c_upper[4][1] = 40;
-//    c_upper[4][2] = 30;
-//    c_upper[5][0] = 7;
-//    c_upper[5][1] = 40;
-//    c_upper[5][2] = 6;
-//    c_upper[6][0] = 7;
-//    c_upper[6][1] = 40;
-//    c_upper[6][2] = 30;
-    
-    
-//
-//    avgColor[0][0] = 15;
-//    avgColor[0][1] = 132;
-//    avgColor[0][2] = 87;
-//    
-//    avgColor[1][0] = 14;
-//    avgColor[1][1] = 130;
-//    avgColor[1][2] = 94;
-//    
-//    avgColor[2][0] = 13;
-//    avgColor[2][1] = 155;
-//    avgColor[2][2] = 91;
-//    
-//    avgColor[3][0] = 13;
-//    avgColor[3][1] = 144;
-//    avgColor[3][2] = 98;
-//    
-//    avgColor[4][0] = 13;
-//    avgColor[4][1] = 134;
-//    avgColor[4][2] = 86;
-//    
-//    avgColor[5][0] = 13;
-//    avgColor[5][1] = 136;
-//    avgColor[5][2] = 90;
-//    
-//    avgColor[6][0] = 14;
-//    avgColor[6][1] = 140;
-//    avgColor[6][2] = 99;
-    
-//    const int diff = 0;
-//    for (int i = 0; i < NSAMPLES; i++) {
-//        c_lower[i][0] = 12 - diff;
-//        c_lower[i][1] = 30 - diff;
-//        c_lower[i][2] = 80 - diff;
-//        
-//        c_upper[1][0] = 7 + diff;
-//        c_upper[1][1] = 40 + diff;
-//        c_upper[1][2] = 80 + diff;
-//    }
-    const int diff1 = 14;
+    const int diff1 = 10;
 #if 1
     // 增加调试信息
     imshow("srclr", m->srcLR);
     myhist3(m->srcLR);
 #endif
     for(int i=0;i<NSAMPLES;i++) {
-        normalizeColors();
+//        normalizeColors();
 //        lowerBound=Scalar( 0, 129, 147);
 //        upperBound=Scalar( 30, 200, 255);
-//        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
-//        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
+        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
+        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
 //        lowerBound=Scalar( 0, avgColor[i][1] - c_lower[i][1] - diff1, 0);
 //        upperBound=Scalar( 30, avgColor[i][1] + c_upper[i][1] + diff1, 255);
-        lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
-        upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
+//        lowerBound=Scalar( c_lower[i][0] - diff1, c_lower[i][1] - diff1, c_lower[i][2] - diff1);
+//        upperBound=Scalar( c_upper[i][0] + diff1, c_upper[i][1] + diff1, c_upper[i][2] + diff1);
+//        lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
+//        upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
+        
         m->bwList.push_back(Mat(m->srcLR.rows,m->srcLR.cols,CV_8U));
         cout << "lowerBound for i" << i << ", " << lowerBound << endl;
         cout << "upperBound for i" << i << ", " << upperBound << endl;
