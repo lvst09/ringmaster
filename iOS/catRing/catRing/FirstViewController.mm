@@ -812,6 +812,8 @@ static HandGesture *hg;
                 if (myImage) {
                     delete myImage;
                 }
+                cvReleaseImage(&ipImage);
+                ipImage = convertIplImageFromUIImage(image);
             }
         }
         if (!hg) {
@@ -829,6 +831,8 @@ static HandGesture *hg;
                     if (myImage) {
                         delete myImage;
                     }
+                    cvReleaseImage(&ipImage);
+                    ipImage = convertIplImageFromUIImage(image);
                 }
             }
         }
