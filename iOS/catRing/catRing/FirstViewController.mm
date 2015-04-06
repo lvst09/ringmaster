@@ -629,11 +629,16 @@ NSInteger radiusToDegree(CGFloat angle) {
 - (void)onValueChanged:(UISlider *)slider {
     NSLog(@"slider");
     NSInteger j = (NSInteger) slider.value;
+    if (self.canClick)
+        self.canClick = NO;
+    else
+        return;
     [self.indicator startAnimating];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self showImageAtIndex:j needAdjustDiff:YES];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.indicator stopAnimating];
+            self.canClick = YES;
         });
     });
 }
@@ -641,6 +646,10 @@ NSInteger radiusToDegree(CGFloat angle) {
 - (void)onDiffValueChanged:(UISlider *)slider {
     if (self.diff != slider.value) {
         self.diff = slider.value;
+        if (self.canClick)
+            self.canClick = NO;
+        else
+            return;
         NSLog(@"onDiffValueChanged diff=%zd", self.diff);
 //        [self showImageAtIndex:self.labelSlider.slider.value];
         [self.indicator startAnimating];
@@ -648,7 +657,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             [self showImageAtIndex:self.labelSlider.slider.value needAdjustDiff:NO];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.indicator stopAnimating];
-//                self.canClick = YES;
+                self.canClick = YES;
             });
         });
     }

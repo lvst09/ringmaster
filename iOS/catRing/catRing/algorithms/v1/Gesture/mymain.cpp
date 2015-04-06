@@ -624,11 +624,11 @@ void produceBinaries(MyImage *m){
 //    imshow("before dilate", m->bw);
     
 //    erode( m->bw, m->bw, erosion_element );
-//    dilate(m->bw, m->bw, element);
-//    erode( m->bw, m->bw, erosion_element );
-//    dilate(m->bw, m->bw, element);
-//    erode( m->bw, m->bw, erosion_element );
-//    dilate(m->bw, m->bw, element);
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
+    erode( m->bw, m->bw, erosion_element );
+    dilate(m->bw, m->bw, element);
     medianBlur(m->bw, m->bw, 5);
 //    imshow("after dilate", m->bw);
 #endif
@@ -645,8 +645,8 @@ void showWindows(MyImage m){
     
 #if 1
         pyrDown(m.bw,m.bw);
-//        pyrDown(m.bw,m.bw);
-        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/2,0 ), m.bw.size());
+        pyrDown(m.bw,m.bw);
+        Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/4,0 ), m.bw.size());
 #else
         //    pyrDown(m.bw,m.bw);
         //    pyrDown(m.bw,m.bw);
