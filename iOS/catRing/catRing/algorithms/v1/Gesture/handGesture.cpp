@@ -119,15 +119,59 @@ bool HandGesture::detectIfHand(){
             isHand = false;
         }
     }
+    
+    //指根间距过大
+    {
+        Point baseMidFinger = fingerBases[0];
+        Point baseFourthFinger = fingerBases[1];
+        Point baseSecondFinger = fingerBases[fingerBases.size()-1];
+        double distance01 = distanceOfPoint(baseMidFinger, baseFourthFinger);
+        double distance02 = distanceOfPoint(baseMidFinger, baseSecondFinger);
+        if(distance01 > 250 || distance02 > 250)
+        {
+            isHand = false;
+        }
+        else {
+        }
+        
+    }
+    
+    vector<Vec4i>::iterator d=defects[cIdx].begin();
+//    while( d!=defects[cIdx].end() )
+    {
+        {
+            Vec4i& v=(*d);
+            int startidx=v[0];
+            Point ptStart(contours[cIdx][startidx] );
+            
+            int endidx=v[1];
+            Point ptEnd(contours[cIdx][endidx] );
+            int faridx=v[2];
+            Point ptFar(contours[cIdx][faridx] );
+
+            Point vecSF = vectorBetweenPoints(ptStart, ptFar);
+            Point vecEF = vectorBetweenPoints(ptEnd, ptFar);
+            
+            double crossAngle = vectorCrossAngle(vecSF,vecEF);
+            
+            //如果中指开角太大则去掉
+            if(crossAngle > M_PI / 4)
+            {
+ 
+                isHand = false;
+            }
+        }
+    }
+
 	return isHand;
 }
 
 float HandGesture::distanceP2P(Point a, Point b){
-	float d= sqrt(fabs( pow(a.x-b.x,2) + pow(a.y-b.y,2) )) ;  
+	float d= sqrt(fabs( pow(a.x-b.x,2) + pow(a.y-b.y,2) )) ;
 	return d;
 }
 
-// remove fingertips that are too close to 
+// remove fingertips that are too close to
 // eachother
 void HandGesture::removeRedundantFingerTips(){
 	vector<Point> newFingers;
@@ -351,11 +395,11 @@ void HandGesture::reduceDefect()
                 
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
  
-                //如果手指长度太短 或开角太大 就滤掉
-                if(disSF < 120 || disEF < 120 || crossAngle > M_PI / 2)
+                //如果手指长度太短太长 或开角太大 就滤掉
+                if(disSF < 120 || disSF >500 ||  disEF < 120 || disEF > 500||crossAngle > M_PI / 2)
                 {
                     
-                    if(disEF> 220 && crossAngle < M_PI / 2 )
+                    if(disEF> 220 && disEF < 500 && crossAngle < M_PI / 2 )
                     {
                         d++;
                         i++;

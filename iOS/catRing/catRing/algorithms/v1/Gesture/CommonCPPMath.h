@@ -32,4 +32,7 @@ Point2i middlePoint(Point2i p1, Point2i p2);
 
 double distanceOfPoint(Point2i p1, Point2i p2);
 
+double vectorCrossAngle(Point2i p1, Point2i p2);
+
+Point2i vectorBetweenPoints(Point p1, Point p2);
 #endif /* defined(__catRing__CommonCPPMath__) */
