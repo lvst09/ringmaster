@@ -695,10 +695,10 @@ int findBiggestContour(vector<vector<Point> > contours){
 //    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
 //}
 
-Point vectorBetweenPoints(Point p1, Point p2)
-{
-    return Point((p1.x - p2.x) ,(p1.y - p2.y));
-}
+//Point vectorBetweenPoints(Point p1, Point p2)
+//{
+//    return Point((p1.x - p2.x) ,(p1.y - p2.y));
+//}
 
 void reduceDefect(HandGesture * hg)
 {
@@ -767,14 +767,14 @@ double vectorAngle(Point vec)
     return b;
 }
 
-double vectorCrossAngle(Point p1, Point p2)
-{
-    double dotProduct =  ( p1.x * p2.x + p1.y * p2.y );
- 
-    double m = sqrt(p1.x*p1.x + p1.y*p1.y) * sqrt(p2.x*p2.x + p2.y*p2.y);
- 
-    return acos(dotProduct/m);
-}
+//double vectorCrossAngle(Point p1, Point p2)
+//{
+//    double dotProduct =  ( p1.x * p2.x + p1.y * p2.y );
+// 
+//    double m = sqrt(p1.x*p1.x + p1.y*p1.y) * sqrt(p2.x*p2.x + p2.y*p2.y);
+// 
+//    return acos(dotProduct/m);
+//}
 
 Point vectorMultiply(Point vector ,float multi)
 {
