@@ -108,6 +108,8 @@
 
 @implementation FirstViewController
 
+const int kStep = 2;
+
 - (NSMutableDictionary *)indexXYZDic {
     if (!_indexXYZDic) {
         _indexXYZDic = [NSMutableDictionary dictionary];
@@ -175,13 +177,13 @@
     self.labelSlider = labelSlider;
     
     {
-        self.diff = 30;
+        self.diff = 30 / kStep;
         LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 120, self.view.bounds.size.width-60, 20)];
         [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpInside];
 //        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
         labelSlider.label.text = [NSString stringWithFormat:@"%zd", self.diff];
-        labelSlider.slider.minimumValue = 13.0f;
-        labelSlider.slider.maximumValue = 40.0f;
+        labelSlider.slider.minimumValue = 6.0f;
+        labelSlider.slider.maximumValue = 20.0f;
         labelSlider.slider.value = self.diff;
         [self.view addSubview:labelSlider];
         self.diffSlider = labelSlider;
@@ -812,7 +814,7 @@ static HandGesture *hg;
             HandGesture *tmphg = new HandGesture();
             tmphg->index = (int)self.imageIndex;
             
-            myImage = detectHand(ipImage, *tmphg, (int)i);
+            myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
             if (tmphg->isHand) {
                 hg = tmphg;
                 break;
@@ -831,7 +833,7 @@ static HandGesture *hg;
                 HandGesture *tmphg = new HandGesture();
                 tmphg->index = (int)self.imageIndex;
                 
-                myImage = detectHand(ipImage, *tmphg, (int)i);
+                myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
                 if (tmphg->isHand) {
                     hg = tmphg;
                     break;
@@ -852,7 +854,7 @@ static HandGesture *hg;
         NSLog(@"i=%zd", i);
         HandGesture *tmphg = new HandGesture();
         tmphg->index = (int)self.imageIndex;
-        myImage = detectHand(ipImage, *tmphg, (int)i);
+        myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
         hg = tmphg;
     }
     self.diffSlider.slider.value = self.diff;
