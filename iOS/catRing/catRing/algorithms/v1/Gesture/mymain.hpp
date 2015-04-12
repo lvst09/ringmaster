@@ -26,7 +26,7 @@ void findROIColorInPalm(cv::Mat *image);
 
 // #step 2
 MyImage * detectHand(IplImage *inputImage,  HandGesture &hg, int diff);
-MyImage * detectHand(cv::Mat *inputImage,  HandGesture &hg);
+MyImage * detectHand(cv::Mat *inputImage,  HandGesture &hg, int diff);
 
 // private functions
 void processOnImageWithShowImage(MyImage &m1, HandGesture &hg);

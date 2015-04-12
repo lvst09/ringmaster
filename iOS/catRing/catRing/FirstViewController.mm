@@ -32,6 +32,7 @@
 #import "DWRotationManager.h"
 
 #import "ImageProcess.h"
+#import "UIImage+OpenCV.h"
 
 #import "DWRingPositionInfo.h"
 #import "DWRingPosModel.h"
@@ -791,12 +792,13 @@ static HandGesture *hg;
     TimeStamp(111);
     image = [ImageProcess correctImage:image];
     IplImage *ipImage = convertIplImageFromUIImage(image);
-    
+//    Mat mat = [image CVMat];
+    Mat mat(ipImage, 1);
     if(self.imageIndex == 1 )
     {
-        findROIColorInPalm(ipImage);
+        findROIColorInPalm(&mat);
     }
-    NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
+//    NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
     
     if (hg) {
         delete hg;
@@ -814,7 +816,7 @@ static HandGesture *hg;
             HandGesture *tmphg = new HandGesture();
             tmphg->index = (int)self.imageIndex;
             
-            myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
+            myImage = detectHand(&mat, *tmphg, (int)i * kStep);
             if (tmphg->isHand) {
                 hg = tmphg;
                 break;
@@ -823,8 +825,9 @@ static HandGesture *hg;
                 if (myImage) {
                     delete myImage;
                 }
-                cvReleaseImage(&ipImage);
-                ipImage = convertIplImageFromUIImage(image);
+                mat = [image CVMat];
+//                cvReleaseImage(&ipImage);
+//                ipImage = convertIplImageFromUIImage(image);
             }
         }
         if (!hg) {
@@ -833,7 +836,7 @@ static HandGesture *hg;
                 HandGesture *tmphg = new HandGesture();
                 tmphg->index = (int)self.imageIndex;
                 
-                myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
+                myImage = detectHand(&mat, *tmphg, (int)i * kStep);
                 if (tmphg->isHand) {
                     hg = tmphg;
                     break;
@@ -842,8 +845,9 @@ static HandGesture *hg;
                     if (myImage) {
                         delete myImage;
                     }
-                    cvReleaseImage(&ipImage);
-                    ipImage = convertIplImageFromUIImage(image);
+                    mat = [image CVMat];
+//                    cvReleaseImage(&ipImage);
+//                    ipImage = convertIplImageFromUIImage(image);
                 }
             }
         }
@@ -854,7 +858,7 @@ static HandGesture *hg;
         NSLog(@"i=%zd", i);
         HandGesture *tmphg = new HandGesture();
         tmphg->index = (int)self.imageIndex;
-        myImage = detectHand(ipImage, *tmphg, (int)i * kStep);
+        myImage = detectHand(&mat, *tmphg, (int)i * kStep);
         hg = tmphg;
     }
     self.diffSlider.slider.value = self.diff;
@@ -870,7 +874,7 @@ static HandGesture *hg;
        cvCvtColor(&qImg, ret1, CV_BGR2RGB);
        UIImage *outputImage = convertUIImageFromIplImage(ret1);
        delete myImage;
-       cvReleaseImage(&ipImage);
+//       cvReleaseImage(&ipImage);
        cvReleaseImage(&ret1);
        return outputImage;
     }

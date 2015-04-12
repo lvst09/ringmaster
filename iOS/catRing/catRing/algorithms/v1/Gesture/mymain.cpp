@@ -92,7 +92,7 @@ void findROIColorInPalm(Mat *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
-    return Point2i( 1280 - y * 1280,720 - x * 720 );
+    return Point2i(1280 - y * 1280,720 - x * 720 );
 }
 
 void waitForPalmCover(MyImage* m){
@@ -1247,8 +1247,9 @@ MyImage * detectHand(IplImage *inputImage,  HandGesture &hg, int diff) {
     return m1;
 }
 
-MyImage * detectHand(Mat *inputImage,  HandGesture &hg) {
+MyImage * detectHand(Mat *inputImage,  HandGesture &hg, int diff) {
     MyImage *m1 = new MyImage(inputImage);
+    diff1 = diff;
     //    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;

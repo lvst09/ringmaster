@@ -1153,6 +1153,8 @@
 		33D47FB81AD2DAF800694AE1 /* MyVideo1428222853.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 33D47FB11AD2DAF800694AE1 /* MyVideo1428222853.MOV */; };
 		33D47FB91AD2DAF800694AE1 /* MyVideo1428222805.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 33D47FB21AD2DAF800694AE1 /* MyVideo1428222805.MOV */; };
 		33D47FBA1AD2DAF800694AE1 /* MyVideo1428222805.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 33D47FB21AD2DAF800694AE1 /* MyVideo1428222805.MOV */; };
+		33D633491ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */; };
+		33D6334A1ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */; };
 		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
 		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
@@ -2375,6 +2377,8 @@
 		33D47FB01AD2DAF800694AE1 /* MyVideo1428228993.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1428228993.MOV; sourceTree = "<group>"; };
 		33D47FB11AD2DAF800694AE1 /* MyVideo1428222853.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1428222853.MOV; sourceTree = "<group>"; };
 		33D47FB21AD2DAF800694AE1 /* MyVideo1428222805.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1428222805.MOV; sourceTree = "<group>"; };
+		33D633471ADA84510065EAFB /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
@@ -3038,6 +3042,8 @@
 				3379CC631A9709DB00D29FFD /* DWIplImageHelper.h */,
 				33DD58311ABD6FEA00B94308 /* DWUtility.h */,
 				33DD58321ABD6FEA00B94308 /* DWUtility.m */,
+				33D633471ADA84510065EAFB /* UIImage+OpenCV.h */,
+				33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -5482,6 +5488,7 @@
 				3379C9DE1A932D0900D29FFD /* handGesture.cpp in Sources */,
 				33AAF7F51AA35EFE0031DF4A /* DWRotationManager.m in Sources */,
 				3379C9E01A932D0900D29FFD /* myImage.cpp in Sources */,
+				33D633491ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */,
 				3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */,
 				3379C9AE1A9329FD00D29FFD /* AppDelegate.m in Sources */,
 				3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */,
@@ -5544,6 +5551,7 @@
 				33F111451ACEDA6800C64214 /* CommonCPPMath.cpp in Sources */,
 				33AAF7CC1AA318990031DF4A /* RenderHelper.m in Sources */,
 				33AAF3391AA314F70031DF4A /* main.m in Sources */,
+				33D6334A1ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */,
 				33AAF7BF1AA317F50031DF4A /* DWRingPositionInfo.m in Sources */,
 				33AAF7CD1AA3189C0031DF4A /* MathUtil.m in Sources */,
 				33AAF81A1AA4C4340031DF4A /* AppDelegate.m in Sources */,
