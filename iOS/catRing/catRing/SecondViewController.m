@@ -138,7 +138,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:addVideoButton];
     self.navigationItem.rightBarButtonItem = item;
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 20) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

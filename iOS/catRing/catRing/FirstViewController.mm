@@ -80,6 +80,7 @@
 
 @property (nonatomic, retain) LabelSlider *labelSlider;
 @property (nonatomic, retain) LabelSlider *diffSlider;
+@property (nonatomic, retain) LabelSlider *picturesSlider;
 
 @property (nonatomic, strong) DWVideoDecoding *videoEncoder;
 
@@ -190,6 +191,15 @@ const int kStep = 2;
         self.diffSlider = labelSlider;
     }
     
+    {
+        LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, self.view.bounds.size.height - 30, self.view.bounds.size.width-60, 20)];
+        [labelSlider.slider addTarget:self action:@selector(onPicturesValueChanged:) forControlEvents:UIControlEventValueChanged];
+        labelSlider.slider.minimumValue = .0f;
+        labelSlider.slider.maximumValue = 1.0f;
+        labelSlider.slider.value = 0;
+        [self.view addSubview:labelSlider];
+        self.picturesSlider = labelSlider;
+    }
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
     previousButton.frame = CGRectMake(20, self.view.frame.size.height - 80, 60, 40);
     [previousButton addTarget:self action:@selector(onPreviousButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -197,12 +207,14 @@ const int kStep = 2;
     [previousButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:previousButton];
     
+#if kDevelop
     UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    middleButton.frame = CGRectMake(130, self.view.frame.size.height - 60, 60, 40);
+    middleButton.frame = CGRectMake(130, self.view.frame.size.height - 80, 60, 40);
     [middleButton addTarget:self action:@selector(onMiddleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [middleButton setTitle:@"视频" forState:UIControlStateNormal];
     [middleButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:middleButton];
+#endif
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
     nextButton.frame = CGRectMake(self.view.frame.size.width - 80, self.view.frame.size.height - 80, 60, 40);
@@ -211,12 +223,12 @@ const int kStep = 2;
     [nextButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.view addSubview:nextButton];
     
-    UIButton *pickColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80 - 20, 60, 40);
-    [pickColorButton addTarget:self action:@selector(onPickColorButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [pickColorButton setTitle:@"选肤色" forState:UIControlStateNormal];
-    [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.view addSubview:pickColorButton];
+//    UIButton *pickColorButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    pickColorButton.frame = CGRectMake(self.view.frame.size.width / 2 - 30, self.view.frame.size.height - 80 - 20, 60, 40);
+//    [pickColorButton addTarget:self action:@selector(onPickColorButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [pickColorButton setTitle:@"选肤色" forState:UIControlStateNormal];
+//    [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//    [self.view addSubview:pickColorButton];
     
     [self.view addSubview:self.indicator];
     self.indicator.center = self.view.center;
@@ -244,7 +256,7 @@ const int kStep = 2;
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self getAllImageFromVideo];
-//            [self processAllImages];
+            [self processAllImages];
             [self.indicator stopAnimating];
             [self showImageAtIndex:1 needAdjustDiff:YES];
         });
@@ -409,14 +421,15 @@ NSInteger radiusToDegree(CGFloat angle) {
 //        return;
     
     int j;
-    for( j = 1 ; j < self.labelSlider.slider.maximumValue ; j++) //&& j < 15; j++)
+    for( j = 0 ; j < self.labelSlider.slider.maximumValue ; j++) //&& j < 15; j++)
     {
         @autoreleasepool {
-            self.title = [NSString stringWithFormat:@"%zd", j];
+            
+            self.title = [NSString stringWithFormat:@"%@ %zd/%zd", [self.videoPath lastPathComponent], j, self.totalVideoFrame];
             //    [self wmcSetNavigationBarTitleStyle];
             
             
-            self.title = [NSString stringWithFormat:@"%zd", j];
+//            self.title = [NSString stringWithFormat:@"%zd", j];
             //    [self wmcSetNavigationBarTitleStyle];
             
             //        UIImage *image = nil;
@@ -524,7 +537,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     
     NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
 
-#if 1
+#if 0
     
     {
         for (NSInteger angleY = -30; angleY <= 30; ++angleY) {
@@ -594,7 +607,7 @@ NSInteger radiusToDegree(CGFloat angle) {
                 NSLog(@"save file ok");
             }
             
-            for(int i = 1 ; i< self.labelSlider.slider.maximumValue; i++)
+            for(int i = 1 ; i < self.labelSlider.slider.maximumValue; i++)
             {
                 @autoreleasepool {
                     [self showImageAtIndex:i needAdjustDiff:YES];
@@ -644,6 +657,13 @@ NSInteger radiusToDegree(CGFloat angle) {
             self.canClick = YES;
         });
     });
+}
+
+- (void)onPicturesValueChanged:(UISlider *)slider {
+    long value = (long)slider.value;
+    NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)value];
+    self.title = [NSString stringWithFormat:@"%@ %zd/%zd", [self.videoPath lastPathComponent], value, self.totalVideoFrame];
+    self.imageView.image = [UIImage imageWithContentsOfFile:pngPath];
 }
 
 - (void)onDiffValueChanged:(UISlider *)slider {
@@ -954,8 +974,8 @@ static HandGesture *hg;
 //}
 
 - (void)showImageAtIndex:(NSInteger)j needAdjustDiff:(BOOL)needAdjustDiff {
-    self.title = [NSString stringWithFormat:@"%zd", j];
-
+//    self.title = [NSString stringWithFormat:@"%zd", j];
+    self.title = [NSString stringWithFormat:@"%@ %zd/%zd", [self.videoPath lastPathComponent], j, self.totalVideoFrame];
     UIImage *image = [self getVideoImageAtIndex:j];
     self.imageIndex = j;
 
@@ -971,7 +991,7 @@ static HandGesture *hg;
     }
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
-    fileKeyName = nil;
+//    fileKeyName = nil;
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
     UIImage * ringImage = [self getImage:j];
@@ -989,7 +1009,7 @@ static HandGesture *hg;
     self.imageView.image = resultImage;
     
     // 将每一帧的图片保存到documents目录下
-#if 0
+#if 1
     {
         NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)j];
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
@@ -1150,6 +1170,7 @@ static HandGesture *hg;
     NSNumber *value = [[NSUserDefaults standardUserDefaults] objectForKey:fileName];
     if ([value integerValue] > 0) {
         self.totalVideoFrame = [value integerValue];
+        self.picturesSlider.slider.maximumValue = self.totalVideoFrame;
         return;
     }
     
@@ -1175,6 +1196,8 @@ static HandGesture *hg;
         }
     }
     self.totalVideoFrame = i;
+    self.picturesSlider.slider.maximumValue = self.totalVideoFrame;
+    
     [[NSUserDefaults standardUserDefaults] setObject:@(i) forKey:fileName];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [SVProgressHUD dismiss];

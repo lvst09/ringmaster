@@ -14,6 +14,8 @@
 #include "mymain.hpp"
 #include "CommonConfig.h"
 #include "CommonCPPMath.h"
+#include "PreHeader.h"
+
 using namespace cv;
 using namespace std;
 
@@ -1062,26 +1064,28 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
 //        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
 //        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
-        
+#if kDevelop
             line( m->src, ptStart, ptFar, scalar, 1 *scale);
             line( m->src, ptEnd, ptFar, scalar, 1 * scale);
             circle( m->src, ptFar,   4, scalar, 2 * scale);
             circle( m->src, ptEnd,   4, scalar, 2 * scale);
             circle( m->src, ptStart,   4, scalar, 2 * scale);
-        
+#endif
             
         if (i==0) {//中指左侧的线条
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptStart);
+#if kDevelop
             circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
             circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
             line( m->src, ptStart, ptFar, Scalar(255,255,0), 1 * scale);
-            
+#endif
             hg->fingerTipFeatures.push_back(ptStart);//旋转角度参考点
             hg->fingerTipFeatures.push_back(ptEnd);
-            
+#if kDevelop
             circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
             circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
+#endif
         }
         if (i==count - 1) {//中指右侧的线条
             hg->mediusFinger.push_back(ptFar);
