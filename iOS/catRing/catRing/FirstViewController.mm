@@ -790,15 +790,26 @@ static HandGesture *hg;
     if (!image)
         return nil;
     TimeStamp(111);
+    CFTimeInterval startTime = CACurrentMediaTime();
+#if 0
     image = [ImageProcess correctImage:image];
     IplImage *ipImage = convertIplImageFromUIImage(image);
-//    Mat mat = [image CVMat];
-    Mat mat(ipImage, 1);
-    if(self.imageIndex == 1 )
+    Mat orignal_mat(ipImage, 1);
+    Mat mat = orignal_mat.clone();
+#else
+    Mat orignal_mat = [image CVMat];
+    rotate_image_90n(orignal_mat, orignal_mat, 180);
+    Mat mat = orignal_mat.clone();
+#endif
+    CFTimeInterval endTime = CACurrentMediaTime();
+    NSLog(@"difftime = %g", (endTime - startTime) * 1000.f);
+    TimeStamp(112);
+    
+    if(self.imageIndex == 1)
     {
         findROIColorInPalm(&mat);
     }
-//    NSLog(@"width=%d, height=%d", ipImage->width, ipImage->height);
+    NSLog(@"width=%zd, height=%zd", image.size.width, image.size.height);
     
     if (hg) {
         delete hg;
@@ -825,9 +836,11 @@ static HandGesture *hg;
                 if (myImage) {
                     delete myImage;
                 }
-                mat = [image CVMat];
-//                cvReleaseImage(&ipImage);
-//                ipImage = convertIplImageFromUIImage(image);
+                mat = orignal_mat.clone();
+                if(self.imageIndex == 1 )
+                {
+                    findROIColorInPalm(&mat);
+                }
             }
         }
         if (!hg) {
@@ -845,7 +858,11 @@ static HandGesture *hg;
                     if (myImage) {
                         delete myImage;
                     }
-                    mat = [image CVMat];
+                    mat = orignal_mat.clone();
+                    if(self.imageIndex == 1 )
+                    {
+                        findROIColorInPalm(&mat);
+                    }
 //                    cvReleaseImage(&ipImage);
 //                    ipImage = convertIplImageFromUIImage(image);
                 }
@@ -881,7 +898,7 @@ static HandGesture *hg;
 //    else {
 //      return image;
 //    }
-    TimeStamp(112);
+    TimeStamp(113);
     
 }
 
@@ -941,10 +958,7 @@ static HandGesture *hg;
 
     UIImage *image = [self getVideoImageAtIndex:j];
     self.imageIndex = j;
-    
-    if(!image)
-        return;
- 
+
     image = [self processImage:image needAdjustDiff:needAdjustDiff];
     
     if(!image)

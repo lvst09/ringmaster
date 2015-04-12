@@ -199,7 +199,38 @@ int myhist(Mat input)
     return 0;
     
 }
-
+/*
+ *@brief rotate image by factor of 90 degrees
+ *
+ *@param source : input image
+ *@param dst : output image
+ *@param angle : factor of 90, even it is not factor of 90, the angle
+ * will be mapped to the range of [-360, 360].
+ * {angle = 90n; n = {-4, -3, -2, -1, 0, 1, 2, 3, 4} }
+ * if angle bigger than 360 or smaller than -360, the angle will
+ * be map to -360 ~ 360.
+ * mapping rule is : angle = ((angle / 90) % 4) * 90;
+ *
+ * ex : 89 will map to 0, 98 to 90, 179 to 90, 270 to 3, 360 to 0.
+ *
+ */
+void rotate_image_90n(cv::Mat &src, cv::Mat &dst, int angle)
+{
+    if(src.data != dst.data){
+        src.copyTo(dst);
+    }
+    
+    angle = ((angle / 90) % 4) * 90;
+    
+    //0 : flip vertical; 1 flip horizontal
+    bool const flip_horizontal_or_vertical = angle > 0 ? 1 : 0;
+    int const number = std::abs(angle / 90);
+    
+    for(int i = 0; i != number; ++i){
+        cv::transpose(dst, dst);
+        cv::flip(dst, dst, flip_horizontal_or_vertical);
+    }
+}
 /** @函数 main */
 int testFromiOS()
 {
@@ -210,13 +241,18 @@ int testFromiOS()
 
 //    image = [ImageProcess correctImage:image];
 //    IplImage *ipImage = convertIplImageFromUIImage(image);
-
+    rotate_image_90n(src, src, 180);
+    imshow("abd1", src);
+    /// 等待用户反应
+    waitKey(0);
     findROIColorInPalm(&src);
-    
+    imshow("abd2", src);
+    /// 等待用户反应
+    waitKey(0);
     HandGesture *hg = new HandGesture();
     
     MyImage * myImage = detectHand(&src, *hg);
-    imshow("abd1", myImage->src);
+    imshow("abd3", myImage->src);
     /// 等待用户反应
     waitKey(0);
 //    myhist(src);
