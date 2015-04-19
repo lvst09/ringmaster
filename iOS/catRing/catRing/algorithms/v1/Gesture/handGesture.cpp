@@ -351,7 +351,71 @@ double vectorCrossAngle1(Point p1, Point p2)
 //    return Point(vector.x + point.x , vector.y + point.y);
 //}
 
-
+void HandGesture::removeRedundantFinger()
+{
+        int count = (int)defects[cIdx].size();
+ 
+            vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
+            int i = 0;
+            while( d!=defects[cIdx].end() )
+            {
+                if(i == 2)
+                {
+                    Vec4i& v=(*d);
+                    int startidx=v[0];
+                    Point ptStart(contours[cIdx][startidx] );
+                    
+                    int endidx=v[1];
+                    Point ptEnd(contours[cIdx][endidx] );
+                    int faridx=v[2];
+                    Point ptFar(contours[cIdx][faridx] );
+                    
+                    Vec4i& v_prevprev=(*(d-2));
+                    int startidx_prevprev=v_prevprev[0];
+                    Point ptStart_prevprev(contours[cIdx][startidx_prevprev] );
+                    
+                    int endidx_prevprev=v_prevprev[1];
+                    Point ptEnd_prevprev(contours[cIdx][endidx_prevprev] );
+                    int faridx_prevprev=v_prevprev[2];
+                    Point ptFar_prevprev(contours[cIdx][faridx_prevprev] );
+   
+                    Vec4i& v_prev=(*(d-1));
+                    int startidx_prev=v_prev[0];
+                    Point ptStart_prev(contours[cIdx][startidx_prev] );
+                    
+                    int endidx_prev=v_prev[1];
+                    Point ptEnd_prev(contours[cIdx][endidx_prev] );
+                    int faridx_prev=v_prev[2];
+                    Point ptFar_prev(contours[cIdx][faridx_prev] );
+ 
+                    if((ptFar.y - ptFar_prev.y) * (ptFar_prev.y - ptFar_prevprev.y)>0)
+                    {
+ 
+                        
+                        //Point ptMid = middlePoint1(ptStart, ptEnd);
+                        if (d!=defects[cIdx].end())
+                        {
+                            vector<Vec4i>::iterator e = d+1;
+                            Vec4i& t = (*e);
+                            //                    int endidx=t[1];
+                            int startidx = t[0];
+                            if(startidx < contours[cIdx].size())
+                            {
+//                                contours[cIdx][startidx] = ptEnd;
+ 
+                                d = defects[cIdx].erase(d++);
+                                continue;
+                            }
+                        }
+                        
+                    }
+                }
+                d++;
+                i++;
+                
+            count = (int)defects[cIdx].size();
+     }
+}
 
 void HandGesture::reduceDefect()
 {
@@ -441,6 +505,8 @@ void HandGesture::reduceDefect()
         count = (int)defects[cIdx].size();
  
     }
+    
+    removeRedundantFinger();
     printf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
 }
 

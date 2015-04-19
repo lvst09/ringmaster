@@ -77,6 +77,7 @@ class HandGesture{
 		float distanceP2P(Point2i a,Point2i b);
 		void removeRedundantEndPoints(vector<Vec4i> newDefects);
 		void removeRedundantFingerTips();
+        void removeRedundantFinger();
 };
 
 
