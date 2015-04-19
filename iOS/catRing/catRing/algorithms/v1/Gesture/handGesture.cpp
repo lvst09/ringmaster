@@ -394,12 +394,16 @@ void HandGesture::reduceDefect()
                 Point vecEF = vectorBetweenPoints1(ptEnd, ptFar);
                 
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
- 
+                double scale = 1.f;
+#if kUseLowResolution
+                scale = 568.f / 1280.f;
+#endif
+                
                 //如果手指长度太短太长 或开角太大 就滤掉
-                if(disSF < 120 || disSF >500 ||  disEF < 120 || disEF > 500||crossAngle > M_PI / 2)
+                if(disSF < 120 * scale || disSF > 500 * scale ||  disEF < 120 * scale || disEF > 500 * scale ||crossAngle > M_PI / 2)
                 {
                     
-                    if(disEF> 220 && disEF < 500 && crossAngle < M_PI / 2 )
+                    if(disEF> 220 * scale && disEF * scale < 500 && crossAngle < M_PI / 2 )
                     {
                         d++;
                         i++;

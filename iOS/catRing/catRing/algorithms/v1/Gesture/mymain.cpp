@@ -94,7 +94,11 @@ void findROIColorInPalm(Mat *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
+#if kUseLowResolution
+    return Point2i(y * 568, 320 - x * 320);
+#else
     return Point2i(1280 - y * 1280,720 - x * 720 );
+#endif
 }
 
 void waitForPalmCover(MyImage* m){

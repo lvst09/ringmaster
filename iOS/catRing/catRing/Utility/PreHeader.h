@@ -11,4 +11,6 @@
 
 #define kDevelop 1
 
+#define kUseLowResolution 0
+
 #endif

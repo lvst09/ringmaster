@@ -21,7 +21,7 @@ NSString *documentPath()
 
 @implementation DWUtility
 
-- (BOOL)createFolder:(NSString *)folder {
++ (BOOL)createFolder:(NSString *)folder {
     if (!folder)
         return NO;
     

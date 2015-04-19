@@ -7,6 +7,9 @@
 //
 
 #import "DWVideoDecoding.h"
+#import "ImageProcess.h"
+#import "PreHeader.h"
+
 @import AVFoundation;
 
 @interface DWVideoDecoding()
@@ -87,6 +90,10 @@
 //        CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(buffer);
 //        CMTime currentTime = CMSampleBufferGetPresentationTimeStamp(buffer);
         UIImage *image = [DWVideoDecoding processSampleBuffer:buffer imageOrientation:UIImageOrientationDown];
+        
+#if kUseLowResolution
+        image = [ImageProcess correctImage:image toFitIn:CGSizeMake(568, 320)];
+#endif
         NSLog(@"image size=%@", [NSValue valueWithCGSize:image.size]);
         if (buffer) {
             CFRelease(buffer);
