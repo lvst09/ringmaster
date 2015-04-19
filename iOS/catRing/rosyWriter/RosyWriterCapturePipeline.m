@@ -330,12 +330,13 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 	NSString *sessionPreset = AVCaptureSessionPresetHigh;
 	CMTime frameDuration = kCMTimeInvalid;
 	// For single core systems like iPhone 4 and iPod Touch 4th Generation we use a lower resolution and framerate to maintain real-time performance.
-	if ( [NSProcessInfo processInfo].processorCount == 1 )
+	/*
+    if ( [NSProcessInfo processInfo].processorCount == 1 )
 	{
 		if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset640x480] ) {
 			sessionPreset = AVCaptureSessionPreset640x480;
 		}
-		frameRate = 15;
+		frameRate = 10;
 	}
 	else
 	{
@@ -346,9 +347,13 @@ typedef NS_ENUM( NSInteger, RosyWriterRecordingStatus )
 		}
 #endif // ! USE_OPENGL_RENDERER
 
-		frameRate = 15;
+		frameRate = 10;
 	}
-	
+    */
+    if ( [_captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720] ) {
+        sessionPreset = AVCaptureSessionPreset1280x720;
+    }
+    frameRate = 5;
 	_captureSession.sessionPreset = sessionPreset;
 	
 	frameDuration = CMTimeMake( 1, frameRate );

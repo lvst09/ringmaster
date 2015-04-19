@@ -12,6 +12,6 @@ NSString *documentPath();
 
 @interface DWUtility : NSObject
 
-- (BOOL)createFolder:(NSString *)folder;
++ (BOOL)createFolder:(NSString *)folder;
 
 @end

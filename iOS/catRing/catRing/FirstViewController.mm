@@ -8,6 +8,8 @@
 
 #import "FirstViewController.h"
 
+#import "PreHeader.h"
+
 // UI
 #import "LabelSliderGroup.h"
 #import "SVProgressHUD.h"
@@ -23,6 +25,7 @@
 
 // utility
 #import "DWIplImageHelper.h"
+#import "DWUtility.h"
 // utility
 
 // video decoding
@@ -180,6 +183,7 @@ const int kStep = 2;
     
     {
         self.diff = 30 / kStep;
+//        self.diff = 20;
         LabelSlider *labelSlider = [[LabelSlider alloc] initWithFrame:CGRectMake(30, 120, self.view.bounds.size.width-60, 20)];
         [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpInside];
 //        [labelSlider.slider addTarget:self action:@selector(onDiffValueChanged:) forControlEvents:UIControlEventTouchUpOutside];
@@ -230,6 +234,8 @@ const int kStep = 2;
 //    [pickColorButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 //    [self.view addSubview:pickColorButton];
     
+    [DWUtility createFolder:[self outputDir]];
+    
     [self.view addSubview:self.indicator];
     self.indicator.center = self.view.center;
     [self.indicator stopAnimating];
@@ -255,8 +261,15 @@ const int kStep = 2;
         firstTime = NO;
         [self.indicator startAnimating];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            CFTimeInterval startTime = CACurrentMediaTime();
+
+
             [self getAllImageFromVideo];
+            CFTimeInterval endTime = CACurrentMediaTime();
+            NSLog(@"[abc]difftime1 = %g", (endTime - startTime));
             [self processAllImages];
+            endTime = CACurrentMediaTime();
+            NSLog(@"[abc]difftime2 = %g", (endTime - startTime));
             [self.indicator stopAnimating];
             [self showImageAtIndex:1 needAdjustDiff:YES];
         });
@@ -396,7 +409,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 - (UIImage *)getVideoImageAtIndex:(NSInteger)i {
-    UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i]];
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i]];
     return image;
 }
 
@@ -640,6 +653,14 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 #pragma mark -
+#pragma mark misc function
+
+- (NSString *)outputDir {
+    return [NSString stringWithFormat:@"%@dir", self.videoPath];
+}
+
+
+#pragma mark -
 #pragma mark LabelSlider's delegate
 
 - (void)onValueChanged:(UISlider *)slider {
@@ -661,7 +682,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 - (void)onPicturesValueChanged:(UISlider *)slider {
     long value = (long)slider.value;
-    NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)value];
+    NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.jpg", [self outputDir], (long)value];
     self.title = [NSString stringWithFormat:@"%@ %zd/%zd", [self.videoPath lastPathComponent], value, self.totalVideoFrame];
     self.imageView.image = [UIImage imageWithContentsOfFile:pngPath];
 }
@@ -734,7 +755,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 
         for (NSInteger i = 1; i < self.labelSlider.slider.maximumValue; i++) {
             
-            NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)i];
+            NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.png", [self outputDir], (long)i];
 //            NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
             
             //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
@@ -751,7 +772,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 //        
 //        NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
 //        NSString * pngPath = [self.videoPath stringByAppendingPathComponent:fileKeyName2];
-        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.png", self.videoPath, (long)1];
+        NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.png", [self outputDir], (long)1];
         //         NSString * pngPath = [@"~/Desktop/ringvideo" stringByAppendingPathComponent:fileKeyName2];
         //        NSData *data = UIImagePNGRepresentation(resultImage);
         //        BOOL succ = [data writeToFile:pngPath atomically:YES];
@@ -1011,7 +1032,7 @@ static HandGesture *hg;
     // 将每一帧的图片保存到documents目录下
 #if 1
     {
-        NSString *pngPath = [NSString stringWithFormat:@"%@_output_%ld.jpg", self.videoPath, (long)j];
+        NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.jpg", [self outputDir], (long)j];
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
         if (!succ) {
@@ -1152,7 +1173,7 @@ static HandGesture *hg;
 }
 
 - (void)getAllImageFromVideo {
-    NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, 0];
+//    NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", self.videoPath, 0];
 //    {
 //        int i = 156;
 //        NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -1188,10 +1209,12 @@ static HandGesture *hg;
                 break;
             }
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-            NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@_MYIMG_ORI%zd.JPG", self.videoPath, i];
+            NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i];
             NSLog(@"get image=%@", betaCompressionDirectory);
             NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-            [imageData writeToFile:betaCompressionDirectory atomically:YES];
+            BOOL ret = [imageData writeToFile:betaCompressionDirectory atomically:YES];
+            if (!ret)
+                NSLog(@"writedata failed:%@", betaCompressionDirectory);
             ++i;
         }
     }
