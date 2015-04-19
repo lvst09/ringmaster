@@ -769,6 +769,7 @@ NSInteger radiusToDegree(CGFloat angle) {
         ((UIButton *)sender).enabled = YES;
     }];
 }
+
 - (void)onNextButtonClicked:(UIButton *)sender {
     if (self.canClick) {
         self.canClick = NO;
@@ -998,8 +999,12 @@ static HandGesture *hg;
  
     double ratio = ringImage.size.height / ringImage.size.width;
  
-    ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
-
+    
+    if(currentHand->isHand){
+        ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
+    }else{
+        ringImage = nil;
+    }
     CGFloat ringAngle = currentHand->ringAngle;
     CGFloat shrinkRatio = currentHand->ringWidth / 80.f;
     
