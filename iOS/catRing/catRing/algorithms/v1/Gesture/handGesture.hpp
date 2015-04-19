@@ -24,6 +24,7 @@ class HandGesture{
     
         //特征点 by lvst
         int index;
+        vector <double> fingerCrossAngles;
         vector <Point2i> fingerTipFeatures;
         vector <double> featureAngles;
         vector <Point2i> mediusFinger;
