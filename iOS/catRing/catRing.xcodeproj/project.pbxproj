@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335D69B71AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
+		335D69B81AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
 		337746FC1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FD1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FE1AAC10E300B2E754 /* indexRingPosDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A21AAC10E300B2E754 /* indexRingPosDic */; };
@@ -1246,6 +1248,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429430976.MOV; sourceTree = "<group>"; };
 		337746A11AAC10E300B2E754 /* filenamePositionInfoDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = filenamePositionInfoDic; sourceTree = "<group>"; };
 		337746A21AAC10E300B2E754 /* indexRingPosDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = indexRingPosDic; sourceTree = "<group>"; };
 		337746A31AAC10E300B2E754 /* MYIMG_ANG_x90_y-10_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MYIMG_ANG_x90_y-10_z0.png"; sourceTree = "<group>"; };
@@ -3073,6 +3076,7 @@
 		3379CB961A9356EF00D29FFD /* ORI */ = {
 			isa = PBXGroup;
 			children = (
+				335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */,
 				33D47FAF1AD2DAF800694AE1 /* MyVideo1428289652.MOV */,
 				33D47FB01AD2DAF800694AE1 /* MyVideo1428228993.MOV */,
 				33D47FB11AD2DAF800694AE1 /* MyVideo1428222853.MOV */,
@@ -4845,6 +4849,7 @@
 				3379C9BC1A9329FD00D29FFD /* LaunchScreen.xib in Resources */,
 				337749FB1AAE789200B2E754 /* MYIMG_ANG_x90_y-31_z1.png in Resources */,
 				337748931AADF04500B2E754 /* MYIMG_ANG_x90_y-21_z0.png in Resources */,
+				335D69B71AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */,
 				33774A351AAE789200B2E754 /* MYIMG_ANG_x90_y-53_z5.png in Resources */,
 				337747ED1AAC138200B2E754 /* MYIMG_ANG_x90_y-6_z3.png in Resources */,
 				337747101AAC10E300B2E754 /* MYIMG_ANG_x90_y-12_z0.png in Resources */,
@@ -5208,6 +5213,7 @@
 				337747731AAC10E300B2E754 /* MYIMG_ANG_x90_y15_z2.png in Resources */,
 				33774AA61AAE789200B2E754 /* MYIMG_ANG_x90_y51_z1.png in Resources */,
 				337749B01AAE789200B2E754 /* MYIMG_ANG_x90_y-24_z4.png in Resources */,
+				335D69B81AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */,
 				3377497E1AAE789200B2E754 /* MYIMG_ANG_x90_y-17_z4.png in Resources */,
 				337747791AAC10E300B2E754 /* MYIMG_ANG_x90_y18_z1.png in Resources */,
 				33774A921AAE789200B2E754 /* MYIMG_ANG_x90_y37_z2.png in Resources */,
