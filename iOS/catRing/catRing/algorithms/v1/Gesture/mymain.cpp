@@ -108,7 +108,7 @@ void waitForPalmCover(MyImage* m){
 //    flip(m->src,m->src,1);
     int square_len = 20;
     
-    printf("rows=%d, cols=%d", m->src.rows, m->src.cols);
+    dprintf("rows=%d, cols=%d", m->src.rows, m->src.cols);
     // rows=489, cols=652
     
 
@@ -956,9 +956,9 @@ void caculateRotationAngle(HandGesture *hg)
         return;
         
     }
-    printf("firstFingerCrossAngles 1 :%f 2 :%f\n", (*firstFingerCrossAngles)[0] * 180/ M_PI, (*firstFingerCrossAngles)[1] * 180/ M_PI);
+    dprintf("firstFingerCrossAngles 1 :%f 2 :%f\n", (*firstFingerCrossAngles)[0] * 180/ M_PI, (*firstFingerCrossAngles)[1] * 180/ M_PI);
     
-    printf("fingerCrossAngles 1 :%f 2 :%f\n", angle1 * 180/ M_PI, angle2 * 180/ M_PI);
+    dprintf("fingerCrossAngles 1 :%f 2 :%f\n", angle1 * 180/ M_PI, angle2 * 180/ M_PI);
 //    double firstAngle1 = (*firstFeatureAngles)[0] / 2;
 //    double firstAngle2 = (*firstFeatureAngles)[1] / 2;
     double firstAngle1 = (*firstFingerCrossAngles)[0];
@@ -1057,7 +1057,7 @@ void caculateRotationAngle(HandGesture *hg)
     hg->rotationAngle.push_back(rotationAngleY);
     hg->rotationAngle.push_back(rotationAngleZ);
     
-    printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
+//    printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
 }
 
 void ajustFinger(HandGesture *hg)
@@ -1321,7 +1321,7 @@ void on_mouse( int event, int x, int y, int flags, void* ustc)
 //        cvCircle( src, pt, 2,cvScalar(255,0,0,0) ,CV_FILLED, CV_AA, 0 );
 //        cvCopy(src,dst);
 //        cvShowImage( "src", src );
-        printf("on_mouse x=%d, y=%d\n", x, y);
+        dprintf("on_mouse x=%d, y=%d\n", x, y);
     }
 }
 
@@ -1363,7 +1363,7 @@ int mymain(){
 //    Mat img(pImg,0); // 0是不複製影像，也就是pImg與img的data共用同個記憶體位置，header各自有
 //    imshow("img11", img);
 //    waitKey();
-    printf("channels=%d, depth=%d", pImg->nChannels, pImg->depth);
+    dprintf("channels=%d, depth=%d", pImg->nChannels, pImg->depth);
     pImg = shrink(pImg, 0.2);
     MyImage m(pImg);
 //    imshow("img12", m.src);

@@ -1,12 +1,13 @@
 #include "handGesture.hpp"
 #include <opencv2/imgproc/imgproc.hpp>
-#include<opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 #include <string>
 #include "CommonCPPMath.h"
+#include "PreHeader.h"
 
 using namespace cv;
 using namespace std;
@@ -437,7 +438,7 @@ void HandGesture::reduceDefect()
             d++;
 //            d++;
         }
-        printf("defects cout before reduce : %d \n", count);
+        dprintf("defects cout before reduce : %d \n", count);
         int i = 0;
         while( d!=defects[cIdx].end() )
         {
@@ -507,7 +508,7 @@ void HandGesture::reduceDefect()
     }
     
     removeRedundantFinger();
-    printf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
+    dprintf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
 }
 
 

@@ -76,6 +76,9 @@ static void ProviderReleaseDataNOP(void *info, const void *data, size_t size)
                                                     kCGImageAlphaNoneSkipLast |
                                                     kCGBitmapByteOrderDefault); // Bitmap info flags
     
+    if (!contextRef) {
+        NSLog(@"cols=%g, rows=%g", cols, rows);
+    }
     CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), self.CGImage);
     CGContextRelease(contextRef);
 //    cvCvtColor(&cvMat, &cvMat, CV_RGBA2BGR);

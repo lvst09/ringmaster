@@ -45,7 +45,7 @@
 #import <MediaPlayer/MPMoviePlayerViewController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
-#define TimeStamp(index) printf("\ntimestamp[%d] = <%f>",index,CACurrentMediaTime());
+#define TimeStamp(index) dprintf("\ntimestamp[%d] = <%f>",index,CACurrentMediaTime());
 
 
 @interface RotationAngle : NSObject {
@@ -266,7 +266,7 @@ const int kStep = 2;
 
             [self getAllImageFromVideo];
             CFTimeInterval endTime = CACurrentMediaTime();
-            NSLog(@"[abc]difftime1 = %g", (endTime - startTime));
+            DLog(@"[abc]difftime1 = %g", (endTime - startTime));
             [self processAllImages];
             endTime = CACurrentMediaTime();
             NSLog(@"[abc]difftime2 = %g", (endTime - startTime));
@@ -397,13 +397,13 @@ NSInteger radiusToDegree(CGFloat angle) {
     for(int i = 0 ; i<array.count  ; i++)
     {
         RotationAngle * currentAngles = [array objectAtIndex:i];
-        NSLog(@"oringinal angles: %f, %f ,%f", currentAngles.x,currentAngles.y,currentAngles.z);
+        DLog(@"oringinal angles: %f, %f ,%f", currentAngles.x,currentAngles.y,currentAngles.z);
     }
     
     for(int i = 0 ; i<result.count  ; i++)
     {
         RotationAngle * resultAngles = [result objectAtIndex:i];
-        NSLog(@"smoothed angles: %f, %f ,%f", resultAngles.x,resultAngles.y,resultAngles.z);
+        DLog(@"smoothed angles: %f, %f ,%f", resultAngles.x,resultAngles.y,resultAngles.z);
     }
     return result;
 }
@@ -529,17 +529,17 @@ NSInteger radiusToDegree(CGFloat angle) {
             
             id obj = [self.filenamePositionInfoDic objectForKey:keyString];
             if (!obj) {
-                NSLog(@"push %@", keyString);
+                DLog(@"push %@", keyString);
                 [self.rotationManager pushAngleX:x angleY:y angleZ:z];
                 
             } else {
-                NSLog(@"skip key=%@", keyString);
+                DLog(@"skip key=%@", keyString);
             }
         }
     }
 
     
-//  NSLog(@"originalRingCenter : %@" ,self.ringCenterArray);
+//  DLog(@"originalRingCenter : %@" ,self.ringCenterArray);
     [self printRingCenter];
     for(int i = 0 ; i<20 ; i++)
         [self smoothRingCenter];
@@ -548,7 +548,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 //  NSLog(@"smoothedRingCenter : %@" ,self.ringCenterArray);
     
     
-    NSLog(@"self.indexXYZDic=%@", self.indexXYZDic);
+    DLog(@"self.indexXYZDic=%@", self.indexXYZDic);
 
 #if 0
     
@@ -561,10 +561,10 @@ NSInteger radiusToDegree(CGFloat angle) {
             
             id obj = [self.filenamePositionInfoDic objectForKey:keyString];
             if (!obj) {
-                NSLog(@"loudiaodepush %@", keyString);
+                DLog(@"loudiaodepush %@", keyString);
                 [self.rotationManager pushAngleX:x angleY:y angleZ:z];
             } else {
-                NSLog(@"skip key=%@", keyString);
+                DLog(@"skip key=%@", keyString);
             }
         }
     }
@@ -580,11 +580,11 @@ NSInteger radiusToDegree(CGFloat angle) {
             BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
             if (!saveRes)
             {
-                NSLog(@"save file failed!");
+                DLog(@"save file failed!");
             }
             else
             {
-                NSLog(@"save file ok");
+                DLog(@"save file ok");
             }
         }
         
@@ -601,7 +601,7 @@ NSInteger radiusToDegree(CGFloat angle) {
                     }
                 }
             }
-            NSLog(@"filenamePositionInfoDic=%@", self.filenamePositionInfoDic);
+            DLog(@"filenamePositionInfoDic=%@", self.filenamePositionInfoDic);
             
             NSString *betaCompressionDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             betaCompressionDirectory = [betaCompressionDirectory stringByAppendingPathComponent: @"filenamePositionInfoDic"];
@@ -613,11 +613,11 @@ NSInteger radiusToDegree(CGFloat angle) {
             BOOL saveRes = [NSKeyedArchiver archiveRootObject:saveDic toFile:betaCompressionDirectory];
             if (!saveRes)
             {
-                NSLog(@"save file failed!");
+                DLog(@"save file failed!");
             }
             else
             {
-                NSLog(@"save file ok");
+                DLog(@"save file ok");
             }
             
             for(int i = 1 ; i < self.labelSlider.slider.maximumValue; i++)
@@ -639,7 +639,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     {
         Point2i ringcenter;
         [[self.ringCenterArray objectAtIndex:i] getValue:&ringcenter];
-        NSLog(@"ringCenter %d : x: %d, y :%d",i,ringcenter.x,ringcenter.y);
+        DLog(@"ringCenter %d : x: %d, y :%d",i,ringcenter.x,ringcenter.y);
     }
 }
 #pragma mark -
@@ -664,7 +664,7 @@ NSInteger radiusToDegree(CGFloat angle) {
 #pragma mark LabelSlider's delegate
 
 - (void)onValueChanged:(UISlider *)slider {
-    NSLog(@"slider");
+    DLog(@"slider");
     NSInteger j = (NSInteger) slider.value;
     if (self.canClick)
         self.canClick = NO;
@@ -694,7 +694,7 @@ NSInteger radiusToDegree(CGFloat angle) {
             self.canClick = NO;
         else
             return;
-        NSLog(@"onDiffValueChanged diff=%zd", self.diff);
+        DLog(@"onDiffValueChanged diff=%zd", self.diff);
 //        [self showImageAtIndex:self.labelSlider.slider.value];
         [self.indicator startAnimating];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -844,14 +844,14 @@ static HandGesture *hg;
     Mat mat = orignal_mat.clone();
 #endif
     CFTimeInterval endTime = CACurrentMediaTime();
-    NSLog(@"difftime = %g", (endTime - startTime) * 1000.f);
+    DLog(@"difftime = %g", (endTime - startTime) * 1000.f);
     TimeStamp(112);
     
     if(self.imageIndex == 1)
     {
         findROIColorInPalm(&mat);
     }
-    NSLog(@"width=%zd, height=%zd", image.size.width, image.size.height);
+    DLog(@"width=%zd, height=%zd", image.size.width, image.size.height);
     
     if (hg) {
         delete hg;
@@ -865,7 +865,7 @@ static HandGesture *hg;
     NSInteger i = self.diff;
     if (needAdjustDiff) {
         for (i = self.diff; i <= self.diffSlider.slider.maximumValue; ++i) {
-            NSLog(@"i=%zd", i);
+            DLog(@"i=%zd", i);
             HandGesture *tmphg = new HandGesture();
             tmphg->index = (int)self.imageIndex;
             
@@ -887,7 +887,7 @@ static HandGesture *hg;
         }
         if (!hg) {
             for (i = (NSInteger)self.diffSlider.slider.minimumValue; i < self.diff; ++i) {
-                NSLog(@"i=%zd", i);
+                DLog(@"i=%zd", i);
                 HandGesture *tmphg = new HandGesture();
                 tmphg->index = (int)self.imageIndex;
                 
@@ -914,7 +914,7 @@ static HandGesture *hg;
     self.diff = i;
     if (!hg) {
         i = self.diff;
-        NSLog(@"i=%zd", i);
+        DLog(@"i=%zd", i);
         HandGesture *tmphg = new HandGesture();
         tmphg->index = (int)self.imageIndex;
         myImage = detectHand(&mat, *tmphg, (int)i * kStep);
@@ -925,7 +925,7 @@ static HandGesture *hg;
     
 //    if(currentHand->isHand)
     {
-       NSLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
+       DLog(@"width=%d, height=%d", myImage->src.cols, myImage->src.rows);
        IplImage qImg;
        qImg = IplImage(myImage->src);
        
@@ -1041,7 +1041,7 @@ static HandGesture *hg;
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
         if (!succ) {
-            NSLog(@"save failed, %@", pngPath);
+            DLog(@"save failed, %@", pngPath);
         }
     }
 #endif
@@ -1073,6 +1073,9 @@ static HandGesture *hg;
 
 -(UIImage *)clipImage:(UIImage *)image ringPosition:(DWRingPositionInfo *) position withRadian:(CGFloat)radian shrinkRatio:(CGFloat)shrinkRatio
 {
+    if (!image) {
+        return nil;
+    }
 //    CGPoint center = position.centerPoint;
     CGPoint maxPoint = position.maxPoint;
     CGPoint minPoint = position.minPoint;
@@ -1103,6 +1106,9 @@ static HandGesture *hg;
 
 - (UIImage *)rotateImage:(UIImage *)image withRadian:(CGFloat)radian shrinkRatio:(CGFloat)shrinkRatio
 {
+    if (!image) {
+        return nil;
+    }
 //    CGFloat shirinkRatio = currentHand->ringWidth / 80;
     // Calculate the size of the rotated view's containing box for our drawing space
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
@@ -1215,11 +1221,11 @@ static HandGesture *hg;
             }
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i];
-            NSLog(@"get image=%@", betaCompressionDirectory);
+            DLog(@"get image=%@", betaCompressionDirectory);
             NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
             BOOL ret = [imageData writeToFile:betaCompressionDirectory atomically:YES];
             if (!ret)
-                NSLog(@"writedata failed:%@", betaCompressionDirectory);
+                DLog(@"writedata failed:%@", betaCompressionDirectory);
             ++i;
         }
     }
