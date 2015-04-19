@@ -630,11 +630,15 @@ void produceBinaries(MyImage *m){
 //    imshow("before dilate", m->bw);
     
 //    erode( m->bw, m->bw, erosion_element );
+
     dilate(m->bw, m->bw, element);
     erode( m->bw, m->bw, erosion_element );
+#if 0
     dilate(m->bw, m->bw, element);
     erode( m->bw, m->bw, erosion_element );
+#endif
     dilate(m->bw, m->bw, element);
+
     medianBlur(m->bw, m->bw, 5);
 //    imshow("after dilate", m->bw);
 #endif
