@@ -414,7 +414,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i]];
 #if kUseLowResolution
 //    return Point2i(320 - y * 320, 180 - x * 180);
-    image = [ImageProcess correctImage:image toFitIn:CGSizeMake(320, 180)];
+    image = [ImageProcess correctImage:image toFitIn:CGSizeMake(kLowResolutionLongSize, kLowResolutionShortSize)];
 //    image = [ImageProcess correctImage:image toFitIn:CGSizeMake(568, 320)];
     image = [self rotateImage:image withRadian:(M_PI_4 * 2 + M_PI_4 * 2) shrinkRatio:1.f];
 #endif
