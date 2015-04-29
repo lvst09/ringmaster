@@ -843,7 +843,7 @@ void caculateRingPosition(HandGesture *hg)
     
     Point ringVec = vectorBetweenPoints(ringStart, ringEnd);
     if (ringVec.x == 0) {
-        hg->ringAngle = 0;
+        hg->ringAngle = M_PI_2;
     } else {
         hg->ringAngle = atan( (ringVec.y) / (ringVec.x));
     }
@@ -1062,7 +1062,7 @@ void caculateRotationAngle(HandGesture *hg)
     hg->rotationAngle.push_back(rotationAngleY);
     hg->rotationAngle.push_back(rotationAngleZ);
     
-//    printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
+    printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
 }
 
 void ajustFinger(HandGesture *hg)
