@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332761CD1AF115AB00D65557 /* MyVideo1429439341.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761C91AF115AB00D65557 /* MyVideo1429439341.MOV */; };
+		332761CE1AF115AB00D65557 /* MyVideo1429439341.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761C91AF115AB00D65557 /* MyVideo1429439341.MOV */; };
+		332761CF1AF115AB00D65557 /* MyVideo1429441563.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CA1AF115AB00D65557 /* MyVideo1429441563.MOV */; };
+		332761D01AF115AB00D65557 /* MyVideo1429441563.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CA1AF115AB00D65557 /* MyVideo1429441563.MOV */; };
+		332761D11AF115AB00D65557 /* MyVideo1429439451.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */; };
+		332761D21AF115AB00D65557 /* MyVideo1429439451.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */; };
+		332761D31AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */; };
+		332761D41AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */; };
 		335D69B71AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
 		335D69B81AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
 		337746FC1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
@@ -1248,6 +1256,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		332761C91AF115AB00D65557 /* MyVideo1429439341.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439341.MOV; sourceTree = "<group>"; };
+		332761CA1AF115AB00D65557 /* MyVideo1429441563.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429441563.MOV; sourceTree = "<group>"; };
+		332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439451.MOV; sourceTree = "<group>"; };
+		332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439549.MOV; sourceTree = "<group>"; };
 		335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429430976.MOV; sourceTree = "<group>"; };
 		337746A11AAC10E300B2E754 /* filenamePositionInfoDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = filenamePositionInfoDic; sourceTree = "<group>"; };
 		337746A21AAC10E300B2E754 /* indexRingPosDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = indexRingPosDic; sourceTree = "<group>"; };
@@ -3076,6 +3088,10 @@
 		3379CB961A9356EF00D29FFD /* ORI */ = {
 			isa = PBXGroup;
 			children = (
+				332761C91AF115AB00D65557 /* MyVideo1429439341.MOV */,
+				332761CA1AF115AB00D65557 /* MyVideo1429441563.MOV */,
+				332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */,
+				332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */,
 				335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */,
 				33D47FAF1AD2DAF800694AE1 /* MyVideo1428289652.MOV */,
 				33D47FB01AD2DAF800694AE1 /* MyVideo1428228993.MOV */,
@@ -4605,7 +4621,6 @@
 					};
 					33AAF3111AA314F70031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RSLW4S7XVW;
 					};
 					33AAF3CE1AA314F80031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -4840,6 +4855,7 @@
 				337748191AAC138200B2E754 /* MYIMG_ANG_x90_y15_z4.png in Resources */,
 				337749E71AAE789200B2E754 /* MYIMG_ANG_x90_y-29_z2.png in Resources */,
 				337747E51AAC138200B2E754 /* MYIMG_ANG_x90_y-4_z3.png in Resources */,
+				332761CD1AF115AB00D65557 /* MyVideo1429439341.MOV in Resources */,
 				3377474C1AAC10E300B2E754 /* MYIMG_ANG_x90_y-7_z2.png in Resources */,
 				337749F31AAE789200B2E754 /* MYIMG_ANG_x90_y-30_z3.png in Resources */,
 				3377470C1AAC10E300B2E754 /* MYIMG_ANG_x90_y-11_z6.png in Resources */,
@@ -4862,6 +4878,7 @@
 				337749C51AAE789200B2E754 /* MYIMG_ANG_x90_y-26_z6.png in Resources */,
 				3377473C1AAC10E300B2E754 /* MYIMG_ANG_x90_y-5_z0.png in Resources */,
 				337749C91AAE789200B2E754 /* MYIMG_ANG_x90_y-27_z1.png in Resources */,
+				332761CF1AF115AB00D65557 /* MyVideo1429441563.MOV in Resources */,
 				3379C9B91A9329FD00D29FFD /* Images.xcassets in Resources */,
 				3377489B1AADF04500B2E754 /* MYIMG_ANG_x90_y-31_z2.png in Resources */,
 				337748A11AADF04500B2E754 /* MYIMG_ANG_x90_y1_z1.png in Resources */,
@@ -4992,6 +5009,7 @@
 				3377484D1AADD58600B2E754 /* MYIMG_ANG_x90_y-4_z5.png in Resources */,
 				3377481B1AAC138200B2E754 /* MYIMG_ANG_x90_y17_z0.png in Resources */,
 				33774A6B1AAE789200B2E754 /* MYIMG_ANG_x90_y12_z0.png in Resources */,
+				332761D31AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */,
 				33774A571AAE789200B2E754 /* MYIMG_ANG_x90_y6_z2.png in Resources */,
 				337749AF1AAE789200B2E754 /* MYIMG_ANG_x90_y-24_z4.png in Resources */,
 				3377479A1AAC10E300B2E754 /* MYIMG_ANG_x90_y30_z2.png in Resources */,
@@ -5000,6 +5018,7 @@
 				337747EF1AAC138200B2E754 /* MYIMG_ANG_x90_y-6_z5.png in Resources */,
 				337747541AAC10E300B2E754 /* MYIMG_ANG_x90_y-8_z5.png in Resources */,
 				337749EB1AAE789200B2E754 /* MYIMG_ANG_x90_y-29_z4.png in Resources */,
+				332761D11AF115AB00D65557 /* MyVideo1429439451.MOV in Resources */,
 				337749891AAE789200B2E754 /* MYIMG_ANG_x90_y-19_z4.png in Resources */,
 				33774A691AAE789200B2E754 /* MYIMG_ANG_x90_y11_z2.png in Resources */,
 				337749611AAE789200B2E754 /* MYIMG_ANG_x90_y-2_z5.png in Resources */,
@@ -5217,6 +5236,7 @@
 				3377497E1AAE789200B2E754 /* MYIMG_ANG_x90_y-17_z4.png in Resources */,
 				337747791AAC10E300B2E754 /* MYIMG_ANG_x90_y18_z1.png in Resources */,
 				33774A921AAE789200B2E754 /* MYIMG_ANG_x90_y37_z2.png in Resources */,
+				332761CE1AF115AB00D65557 /* MyVideo1429439341.MOV in Resources */,
 				3377482A1AAC138200B2E754 /* MYIMG_ANG_x90_y25_z3.png in Resources */,
 				33774A301AAE789200B2E754 /* MYIMG_ANG_x90_y-51_z4.png in Resources */,
 				33DD581E1ABD62EA00B94308 /* MYIMG_ANG_x90_y20_z0.png in Resources */,
@@ -5247,6 +5267,7 @@
 				337748921AADF04500B2E754 /* MYIMG_ANG_x90_y-18_z4.png in Resources */,
 				3377489C1AADF04500B2E754 /* MYIMG_ANG_x90_y-31_z2.png in Resources */,
 				33AAF3A81AA314F80031DF4A /* CC3LibBumpMapTangentSpaceLighting.vsh in Resources */,
+				332761D01AF115AB00D65557 /* MyVideo1429441563.MOV in Resources */,
 				33774A761AAE789200B2E754 /* MYIMG_ANG_x90_y16_z4.png in Resources */,
 				337749961AAE789200B2E754 /* MYIMG_ANG_x90_y-21_z4.png in Resources */,
 				3377496A1AAE789200B2E754 /* MYIMG_ANG_x90_y-12_z5.png in Resources */,
@@ -5424,6 +5445,7 @@
 				337749641AAE789200B2E754 /* MYIMG_ANG_x90_y-3_z1.png in Resources */,
 				337747F21AAC138200B2E754 /* MYIMG_ANG_x90_y-7_z5.png in Resources */,
 				33AAF3801AA314F80031DF4A /* CC3LibTexturedPointSprite.fsh in Resources */,
+				332761D41AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */,
 				33774A6A1AAE789200B2E754 /* MYIMG_ANG_x90_y11_z2.png in Resources */,
 				337749AE1AAE789200B2E754 /* MYIMG_ANG_x90_y-24_z2.png in Resources */,
 				33AAF3AA1AA314F80031DF4A /* CC3LibCameraPosition.vsh in Resources */,
@@ -5449,6 +5471,7 @@
 				337749A01AAE789200B2E754 /* MYIMG_ANG_x90_y-22_z6.png in Resources */,
 				337749861AAE789200B2E754 /* MYIMG_ANG_x90_y-19_z2.png in Resources */,
 				337747311AAC10E300B2E754 /* MYIMG_ANG_x90_y-2_z3.png in Resources */,
+				332761D21AF115AB00D65557 /* MyVideo1429439451.MOV in Resources */,
 				3377479F1AAC10E300B2E754 /* MYIMG_ANG_x90_y3_z1.png in Resources */,
 				337748881AADF04500B2E754 /* MYIMG_ANG_x90_y-5_z1.png in Resources */,
 				337747031AAC10E300B2E754 /* MYIMG_ANG_x90_y-10_z3.png in Resources */,
@@ -6113,8 +6136,8 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: st lv (PT4A2GHKS8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: st lv (PT4A2GHKS8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WANG Wei (C69ECZCES6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
@@ -6149,7 +6172,7 @@
 					"-lcocos2d-chipmunk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df6abfa8-b1cc-455c-a3ea-b59bd8fe7216";
+				PROVISIONING_PROFILE = "b5f6d3cc-fcb2-4233-8224-e3405c4f13ed";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
@@ -6170,7 +6193,7 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6198,7 +6221,7 @@
 					"-lcocos2d-chipmunk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df6abfa8-b1cc-455c-a3ea-b59bd8fe7216";
+				PROVISIONING_PROFILE = "b5f6d3cc-fcb2-4233-8224-e3405c4f13ed";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};

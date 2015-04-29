@@ -45,6 +45,8 @@
 #import <MediaPlayer/MPMoviePlayerViewController.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
+#import "PreHeader.h"
+
 #define TimeStamp(index) dprintf("\ntimestamp[%d] = <%f>",index,CACurrentMediaTime());
 
 
@@ -269,7 +271,7 @@ const int kStep = 2;
             DLog(@"[abc]difftime1 = %g", (endTime - startTime));
             [self processAllImages];
             endTime = CACurrentMediaTime();
-            NSLog(@"[abc]difftime2 = %g", (endTime - startTime));
+            DLog(@"[abc]difftime2 = %g", (endTime - startTime));
             [self.indicator stopAnimating];
             [self showImageAtIndex:1 needAdjustDiff:YES];
         });
@@ -410,6 +412,13 @@ NSInteger radiusToDegree(CGFloat angle) {
 
 - (UIImage *)getVideoImageAtIndex:(NSInteger)i {
     UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i]];
+#if kUseLowResolution
+//    return Point2i(320 - y * 320, 180 - x * 180);
+    image = [ImageProcess correctImage:image toFitIn:CGSizeMake(320, 180)];
+//    image = [ImageProcess correctImage:image toFitIn:CGSizeMake(568, 320)];
+    image = [self rotateImage:image withRadian:(M_PI_4 * 2 + M_PI_4 * 2) shrinkRatio:1.f];
+#endif
+
     return image;
 }
 
@@ -1219,6 +1228,7 @@ static HandGesture *hg;
             if (!image) {
                 break;
             }
+//            image = [self rotateImage:image withRadian:(M_PI_4 * 2 + M_PI_4 * 2 + M_PI_4 * 2 + M_PI_4 * 2)   shrinkRatio:1.f];
 //            NSString *betaCompressionDirectory = self.videoPath;//[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *betaCompressionDirectory = [NSString stringWithFormat:@"%@/MYIMG_ORI%zd.JPG", [self outputDir], i];
             DLog(@"get image=%@", betaCompressionDirectory);

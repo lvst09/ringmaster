@@ -461,7 +461,7 @@ void HandGesture::reduceDefect()
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
                 double scale = 1.f;
 #if kUseLowResolution
-                scale = 568.f / 1280.f;
+                scale = kLowResolutionLongSize / 1280.f;
 #endif
                 
                 //如果手指长度太短太长 或开角太大 就滤掉
@@ -566,6 +566,11 @@ void HandGesture::checkForOneFinger(int rowLen){
 
 void HandGesture::drawFingerTips(Mat &src){
 	Point p;
+    
+    double scale = 1.f;
+#if kUseLowResolution
+    scale = kLowResolutionLongSize / 1280.f;
+#endif
 	int k = (int)fingerTips.size();
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
@@ -573,7 +578,7 @@ void HandGesture::drawFingerTips(Mat &src){
         
         double val =(double) i / (double)k * 255.f;
         Scalar scalar = Scalar(val,val,val);
-   		circle(src,p,   15,scalar, 4 );
+   		circle(src,p, scale * 15,scalar, scale * 4);
    	 }
     
     k = (int)fingerBases.size();
@@ -583,7 +588,7 @@ void HandGesture::drawFingerTips(Mat &src){
         
         double val =(double) i / (double)k * 255.f;
         Scalar scalar = Scalar(val,val,val);
-        circle(src,p,   15,scalar, 4 );
+        circle(src,p, scale * 15,scalar, scale * 4);
     }
     
 }

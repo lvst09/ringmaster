@@ -91,9 +91,9 @@
 //        CMTime currentTime = CMSampleBufferGetPresentationTimeStamp(buffer);
         UIImage *image = [DWVideoDecoding processSampleBuffer:buffer imageOrientation:UIImageOrientationDown];
         
-#if kUseLowResolution
-        image = [ImageProcess correctImage:image toFitIn:CGSizeMake(568, 320)];
-#endif
+//#if kUseLowResolution
+//        image = [ImageProcess correctImage:image toFitIn:CGSizeMake(568, 320)];
+//#endif
         NSLog(@"image size=%@", [NSValue valueWithCGSize:image.size]);
         if (buffer) {
             CFRelease(buffer);

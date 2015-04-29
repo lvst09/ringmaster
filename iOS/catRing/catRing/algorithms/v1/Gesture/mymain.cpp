@@ -95,7 +95,8 @@ void findROIColorInPalm(Mat *image) {
 Point2i changePoint(double x, double y)
 {
 #if kUseLowResolution
-    return Point2i(y * 568, 320 - x * 320);
+    return Point2i(kLowResolutionLongSize - y * kLowResolutionLongSize, kLowResolutionShortSize - x * kLowResolutionShortSize);
+//    return Point2i(568 - y * 568, 320 - x * 320);
 #else
     return Point2i(1280 - y * 1280,720 - x * 720 );
 #endif
@@ -728,8 +729,12 @@ void reduceDefect(HandGesture * hg)
          Point ptFar(hg->contours[hg->cIdx][faridx] );
              
          double disSF = distanceOfPoint(ptStart, ptFar);
-             
-         if(disSF < 100)
+         double scale = 1.f;
+#if kUseLowResolution
+         scale = kLowResolutionLongSize / 1280.f;
+//         scale = 320.f / 1280.f;
+#endif
+         if(disSF < 100 * scale)
          {
 
 //
@@ -1237,6 +1242,7 @@ void makeContours(MyImage *m, HandGesture* hg){
         hg->getFingerTips(m->src.rows);
         bool isHand=hg->detectIfHand();
 //        hg->printGestureInfo();
+//        isHand = true;
         if(isHand){
             hg->isHand = true;
             hg->drawFingerTips(m->src);

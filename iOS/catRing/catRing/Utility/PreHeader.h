@@ -11,7 +11,11 @@
 
 #define kDevelop 1
 
-#define kUseLowResolution 0
+#define kUseLowResolution 1
+
+const double kLowResolutionLongSize = 568.f;
+const double kLowResolutionShortSize = 320.f;
+
 
 #ifdef DEBUG
 #define dprintf(format,args...) \
