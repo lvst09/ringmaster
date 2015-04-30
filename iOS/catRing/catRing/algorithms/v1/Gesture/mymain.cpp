@@ -611,8 +611,16 @@ void produceBinaries(MyImage *m){
 //    else if( dilation_elem == 1 ){ dilation_type = MORPH_CROSS; }
 //    else if( dilation_elem == 2) { dilation_type = MORPH_ELLIPSE; }
     dilation_type = MORPH_ELLIPSE;
-    int dilation_size = 3;
-    int erosion_size = 3;
+    double dilation_size = 3;
+    double erosion_size = 3;
+    double scale = 1.f;
+#if kUseLowResolution
+    scale = kLowResolutionLongSize / 1280.f;
+    //         scale = 320.f / 1280.f;
+    dilation_size *= scale;
+    erosion_size *= scale;
+#endif
+    
     Mat element = getStructuringElement( dilation_type,
                                         Size( 2*dilation_size + 1, 2*dilation_size+1 ),
                                         Point( dilation_size, dilation_size ) );
