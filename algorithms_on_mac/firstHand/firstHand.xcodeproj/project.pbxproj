@@ -54,6 +54,7 @@
 		333316EA1A499EC70016C74B /* myImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = myImage.hpp; sourceTree = "<group>"; };
 		333316EB1A499EC70016C74B /* roi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roi.cpp; sourceTree = "<group>"; };
 		333316EC1A499EC70016C74B /* roi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roi.hpp; sourceTree = "<group>"; };
+		335E23E61B0F57B900FE67FC /* PreHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreHeader.h; sourceTree = "<group>"; };
 		33D47F931AD11CAB00694AE1 /* MYIMG_ORI0.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI0.JPG; sourceTree = "<group>"; };
 		33D47F941AD11CAB00694AE1 /* MYIMG_ORI1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI1.JPG; sourceTree = "<group>"; };
 		33D47F951AD11CAB00694AE1 /* MYIMG_ORI2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MYIMG_ORI2.JPG; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		33D47F921AD11CAB00694AE1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				335E23E61B0F57B900FE67FC /* PreHeader.h */,
 				33D47F931AD11CAB00694AE1 /* MYIMG_ORI0.JPG */,
 				33D47F941AD11CAB00694AE1 /* MYIMG_ORI1.JPG */,
 				33D47F951AD11CAB00694AE1 /* MYIMG_ORI2.JPG */,
