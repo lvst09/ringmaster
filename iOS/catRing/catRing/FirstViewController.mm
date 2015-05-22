@@ -47,6 +47,11 @@
 
 #import "PreHeader.h"
 
+#import <FilterEngine/ImageSelectorHandle.h>
+#import <FilterEngine/UIImageUtils.h>
+#import <FilterEngine/UIImage+Image.h>
+#import <FilterEngine/type_common.h>
+
 #define TimeStamp(index) dprintf("\ntimestamp[%d] = <%f>",index,CACurrentMediaTime());
 
 
@@ -79,6 +84,7 @@
 //    HandGesture * previousHand;
     HandGesture * currentHand;
     BOOL firstTime;
+    ImageSelectorHandle *lazyHandle;
 }
 
 @property (nonatomic, retain) UIImageView *imageView;
@@ -116,6 +122,43 @@
 @implementation FirstViewController
 
 const int kStep = 2;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        lazyHandle = [ImageSelectorHandle handleWithType:PaintType_LazySanpping image:nil];
+        lazyHandle.mode = PaintMode_SmartBrush;
+    }
+    return self;
+}
+
+- (void)handleSetImage:(UIImage *)image {
+    [lazyHandle setImage:image];
+}
+
+- (void)setHandlePath:(NSArray *)paths {
+    NSInteger i, count = paths.count;
+    
+    if (count > 1) {
+        NSValue *p1 = (NSValue *)paths.firstObject;
+        
+        CGPoint pstart = [p1 CGPointValue];
+        
+        [lazyHandle touchBeganAt:pstart];
+        
+        for (i = 1; i < count; ++i) {
+            NSValue *pi = (NSValue *)paths[i];
+            CGPoint pmiddle = [pi CGPointValue];
+            
+            CGFloat paintSize = 37.5/ 1 / 2;
+            paintSize *= [UIScreen mainScreen].scale;
+            paintSize = paintSize * 2 / 3;
+            [lazyHandle touchMovedTo:pmiddle radius:0 extend:paintSize];
+        }
+        
+        [lazyHandle touchEnded];
+    }
+}
 
 - (NSMutableDictionary *)indexXYZDic {
     if (!_indexXYZDic) {

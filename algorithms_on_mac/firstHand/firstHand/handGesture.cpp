@@ -1,12 +1,13 @@
 #include "handGesture.hpp"
 #include <opencv2/imgproc/imgproc.hpp>
-#include<opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 #include <string>
 #include "CommonCPPMath.h"
+#include "PreHeader.h"
 
 using namespace cv;
 using namespace std;
@@ -351,7 +352,71 @@ double vectorCrossAngle1(Point p1, Point p2)
 //    return Point(vector.x + point.x , vector.y + point.y);
 //}
 
-
+void HandGesture::removeRedundantFinger()
+{
+        int count = (int)defects[cIdx].size();
+ 
+            vector<Vec4i>::iterator d=defects[cIdx].begin();//从中指开始
+            int i = 0;
+            while( d!=defects[cIdx].end() )
+            {
+                if(i == 2)
+                {
+                    Vec4i& v=(*d);
+                    int startidx=v[0];
+                    Point ptStart(contours[cIdx][startidx] );
+                    
+                    int endidx=v[1];
+                    Point ptEnd(contours[cIdx][endidx] );
+                    int faridx=v[2];
+                    Point ptFar(contours[cIdx][faridx] );
+                    
+                    Vec4i& v_prevprev=(*(d-2));
+                    int startidx_prevprev=v_prevprev[0];
+                    Point ptStart_prevprev(contours[cIdx][startidx_prevprev] );
+                    
+                    int endidx_prevprev=v_prevprev[1];
+                    Point ptEnd_prevprev(contours[cIdx][endidx_prevprev] );
+                    int faridx_prevprev=v_prevprev[2];
+                    Point ptFar_prevprev(contours[cIdx][faridx_prevprev] );
+   
+                    Vec4i& v_prev=(*(d-1));
+                    int startidx_prev=v_prev[0];
+                    Point ptStart_prev(contours[cIdx][startidx_prev] );
+                    
+                    int endidx_prev=v_prev[1];
+                    Point ptEnd_prev(contours[cIdx][endidx_prev] );
+                    int faridx_prev=v_prev[2];
+                    Point ptFar_prev(contours[cIdx][faridx_prev] );
+ 
+                    if((ptFar.y - ptFar_prev.y) * (ptFar_prev.y - ptFar_prevprev.y)>0)
+                    {
+ 
+                        
+                        //Point ptMid = middlePoint1(ptStart, ptEnd);
+                        if (d!=defects[cIdx].end())
+                        {
+                            vector<Vec4i>::iterator e = d+1;
+                            Vec4i& t = (*e);
+                            //                    int endidx=t[1];
+                            int startidx = t[0];
+                            if(startidx < contours[cIdx].size())
+                            {
+//                                contours[cIdx][startidx] = ptEnd;
+ 
+                                d = defects[cIdx].erase(d++);
+                                continue;
+                            }
+                        }
+                        
+                    }
+                }
+                d++;
+                i++;
+                
+            count = (int)defects[cIdx].size();
+     }
+}
 
 void HandGesture::reduceDefect()
 {
@@ -373,7 +438,7 @@ void HandGesture::reduceDefect()
             d++;
 //            d++;
         }
-        printf("defects cout before reduce : %d \n", count);
+        dprintf("defects cout before reduce : %d \n", count);
         int i = 0;
         while( d!=defects[cIdx].end() )
         {
@@ -394,12 +459,16 @@ void HandGesture::reduceDefect()
                 Point vecEF = vectorBetweenPoints1(ptEnd, ptFar);
                 
                 double crossAngle = vectorCrossAngle1(vecSF,vecEF);
- 
+                double scale = 1.f;
+#if kUseLowResolution
+                scale = kLowResolutionLongSize / 1280.f;
+#endif
+                
                 //如果手指长度太短太长 或开角太大 就滤掉
-                if(disSF < 120 || disSF >500 ||  disEF < 120 || disEF > 500||crossAngle > M_PI / 2)
+                if(disSF < 120 * scale || disSF > 500 * scale ||  disEF < 120 * scale || disEF > 500 * scale ||crossAngle > M_PI / 2)
                 {
                     
-                    if(disEF> 220 && disEF < 500 && crossAngle < M_PI / 2 )
+                    if(disEF> 220 * scale && disEF * scale < 500 && crossAngle < M_PI / 2 )
                     {
                         d++;
                         i++;
@@ -437,7 +506,9 @@ void HandGesture::reduceDefect()
         count = (int)defects[cIdx].size();
  
     }
-    printf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
+    
+    removeRedundantFinger();
+    dprintf("defects cout after reduce : %d \n", (int)defects[cIdx].size());
 }
 
 
@@ -493,8 +564,29 @@ void HandGesture::checkForOneFinger(int rowLen){
 	}
 }
 
+void HandGesture::preDrawFingerTips(Mat &src) {
+    Point p;
+    double scale = 1.f;
+#if kUseLowResolution
+    scale = kLowResolutionLongSize / 1280.f;
+#endif
+    int k = (int)fingerTips.size();
+    for(int i=0;i<k;i++){
+        p=fingerTips[i];
+        double val =(double) i / (double)k * 255.f;
+        Scalar scalar = Scalar(val,val,val);
+        //   		circle(src,p, scale * 15,scalar, scale * 4);
+        circle(src,p, scale * 15, scalar, scale * 15);
+    }
+}
+
 void HandGesture::drawFingerTips(Mat &src){
 	Point p;
+    
+    double scale = 1.f;
+#if kUseLowResolution
+    scale = kLowResolutionLongSize / 1280.f;
+#endif
 	int k = (int)fingerTips.size();
 	for(int i=0;i<k;i++){
 		p=fingerTips[i];
@@ -502,7 +594,8 @@ void HandGesture::drawFingerTips(Mat &src){
         
         double val =(double) i / (double)k * 255.f;
         Scalar scalar = Scalar(val,val,val);
-   		circle(src,p,   15,scalar, 4 );
+//   		circle(src,p, scale * 15,scalar, scale * 4);
+        circle(src,p, scale * 15, scalar, scale * 15);
    	 }
     
     k = (int)fingerBases.size();
@@ -512,7 +605,7 @@ void HandGesture::drawFingerTips(Mat &src){
         
         double val =(double) i / (double)k * 255.f;
         Scalar scalar = Scalar(val,val,val);
-        circle(src,p,   15,scalar, 4 );
+        circle(src,p, scale * 15,scalar, scale * 4);
     }
     
 }

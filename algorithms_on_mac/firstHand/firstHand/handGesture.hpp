@@ -24,6 +24,7 @@ class HandGesture{
     
         //特征点 by lvst
         int index;
+        vector <double> fingerCrossAngles;
         vector <Point2i> fingerTipFeatures;
         vector <double> featureAngles;
         vector <Point2i> mediusFinger;
@@ -57,6 +58,7 @@ class HandGesture{
     
         void addNumberToImg(Mat &src); // please call after getFinggerTips.
 		void drawFingerTips(Mat &src);
+        void preDrawFingerTips(Mat &src);
 	private:
 		string bool2string(bool tf);
 		int fontFace;
@@ -76,6 +78,7 @@ class HandGesture{
 		float distanceP2P(Point2i a,Point2i b);
 		void removeRedundantEndPoints(vector<Vec4i> newDefects);
 		void removeRedundantFingerTips();
+        void removeRedundantFinger();
 };
 
 

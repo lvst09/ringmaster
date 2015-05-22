@@ -14,6 +14,8 @@
 #include "mymain.hpp"
 #include "CommonConfig.h"
 #include "CommonCPPMath.h"
+#include "PreHeader.h"
+
 using namespace cv;
 using namespace std;
 
@@ -27,6 +29,10 @@ int c_upper[NSAMPLES][3];
 static vector <Point2i>  * firstFinger;
 static vector <double>  * firstFeatureAngles;
 static vector <Point2i> * firstFingerTipFeatures;
+static vector <double> * firstFingerCrossAngles;
+
+static int diff1 = 30;
+
 //int avgBGR[3];
 //int nrOfDefects;
 //int iSinceKFInit;
@@ -88,7 +94,12 @@ void findROIColorInPalm(Mat *image) {
 //(375,667)->(1280,720)
 Point2i changePoint(double x, double y)
 {
+#if kUseLowResolution
+    return Point2i(kLowResolutionLongSize - y * kLowResolutionLongSize, kLowResolutionShortSize - x * kLowResolutionShortSize);
+//    return Point2i(568 - y * 568, 320 - x * 320);
+#else
     return Point2i(1280 - y * 1280,720 - x * 720 );
+#endif
 }
 
 void waitForPalmCover(MyImage* m){
@@ -96,23 +107,129 @@ void waitForPalmCover(MyImage* m){
     if (kUseCamera)
         m->cap >> m->src;
 //    flip(m->src,m->src,1);
-    int square_len = 30;
+    int square_len = 20;
     
-    printf("rows=%d, cols=%d", m->src.rows, m->src.cols);
+    dprintf("rows=%d, cols=%d", m->src.rows, m->src.cols);
     // rows=489, cols=652
     
 
     
 #if 0
     // 原来默认的roi点的位置
+    pushIntoROI(roi, m->src.cols/3, m->src.rows/6, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/4, m->src.rows/2, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/3, m->src.rows/1.5, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/2.5, m->src.rows/2.5, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/2, m->src.rows/1.5, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/2.5, m->src.rows/1.8, square_len, m->src);
+    pushIntoROI(roi, m->src.cols/2, m->src.rows/2, square_len, m->src);
 #else
     // 新的roi点的位置
+    //    pushIntoROI(roi, 108, 121, square_len, m->src);
+    //    pushIntoROI(roi, 326, 71, square_len, m->src);
+    //    pushIntoROI(roi, 397, 157, square_len, m->src);
+    //    pushIntoROI(roi, 245, 227, square_len, m->src);
+    //    pushIntoROI(roi, 450, 330, square_len, m->src);
+    //    pushIntoROI(roi, 186, 346, square_len, m->src);
+    //    pushIntoROI(roi, 46, 233, square_len, m->src);
+    
+//    [self addViewAtPoint:CGPointMake(119, 196)];
+//    [self addViewAtPoint:CGPointMake(171, 201)];
+//    [self addViewAtPoint:CGPointMake(206, 218)];
+//    [self addViewAtPoint:CGPointMake(247, 245)];
+//    [self addViewAtPoint:CGPointMake(54, 321)];
+//    [self addViewAtPoint:CGPointMake(133, 362)];
+//    [self addViewAtPoint:CGPointMake(197, 362)];
+
+//    Point2i point = changePoint(1, 1);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+    
+//    [self addViewAtPoint:CGPointMake(50, 100)];
+//    [self addViewAtPoint:CGPointMake(50, 200)];
+//    [self addViewAtPoint:CGPointMake(100, 100)];
+    
+//    [self addViewAtPoint:CGPointMake(119, 196)];
+//    [self addViewAtPoint:CGPointMake(171, 201)];
+//    [self addViewAtPoint:CGPointMake(206, 218)];
+//    [self addViewAtPoint:CGPointMake(247, 245)];
+//    [self addViewAtPoint:CGPointMake(54, 321)];
+//    [self addViewAtPoint:CGPointMake(133, 362)];
+//    [self addViewAtPoint:CGPointMake(197, 362)];
+    
+//    int pointArrX[] = {119, 171, 206, 247, 54, 133, 197};
+//    int pointArrY[] = {196, 201, 218, 245, 321, 362, 362};
+    
     long len = sizeof(pointArrX) / sizeof(double);
     for (int i = 0; i < len; ++i) {
         Point2i point = changePoint(pointArrX[i], pointArrY[i]);
         pushIntoROI(roi, point.x, point.y, square_len, m->src);
     }
+//    {
+//        
+//        Point2i point = changePoint(119, 196);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//        point = changePoint(171, 201);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//        point = changePoint(206, 218);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//        point = changePoint(247, 245);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        //
+//        point = changePoint(54, 321);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//        point = changePoint(133, 362);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//        point = changePoint(197, 362);
+//        pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//        
+//
+//    }
+    
+    
+//    Point2i point = changePoint(119, 196);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//    
+//    point = changePoint(171, 201);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//
+//    point = changePoint(206, 218);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//
+//    point = changePoint(247, 245);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+////
+//    point = changePoint(54, 321);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//
+//    point = changePoint(133, 362);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+//
+//    point = changePoint(197, 362);
+//    pushIntoROI(roi, point.x, point.y, square_len, m->src);
+
+//    pushIntoROI(roi, 364, 115, square_len, m->src);
+//    pushIntoROI(roi, 369, 207, square_len, m->src);
+//    pushIntoROI(roi, 422, 289, square_len, m->src);
+//    pushIntoROI(roi, 347, 377, square_len, m->src);
+//    pushIntoROI(roi, 122, 497, square_len, m->src);
+//    pushIntoROI(roi, 154, 169, square_len, m->src);
+//    pushIntoROI(roi, 78, 430, square_len, m->src);
+
 #endif
+    
+//    roi.push_back(My_ROI(Point(m->src.cols/3, m->src.rows/6),Point(m->src.cols/3+square_len,m->src.rows/6+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/4, m->src.rows/2),Point(m->src.cols/4+square_len,m->src.rows/2+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/3, m->src.rows/1.5),Point(m->src.cols/3+square_len,m->src.rows/1.5+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/2.5, m->src.rows/2.5),Point(m->src.cols/2.5+square_len,m->src.rows/2.5+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/2, m->src.rows/1.5),Point(m->src.cols/2+square_len,m->src.rows/1.5+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/2.5, m->src.rows/1.8),Point(m->src.cols/2.5+square_len,m->src.rows/1.8+square_len),m->src));
+//    roi.push_back(My_ROI(Point(m->src.cols/2, m->src.rows/2),Point(m->src.cols/2+square_len,m->src.rows/2+square_len),m->src));
+    
     
     int times = 1;
     if (kUseCamera) {
@@ -143,7 +260,7 @@ void waitForPalmCover(MyImage* m){
 }
 
 // todo
-int getMedian(vector<int> val, int* upval, int *lowval){
+int getMedian(vector<int> val){
     int median;
     size_t size = val.size();
 //#warning 可以优化，取中位数
@@ -153,30 +270,27 @@ int getMedian(vector<int> val, int* upval, int *lowval){
     } else{
         median = val[size / 2];
     }
-    *upval = val[size - 1];
-    *lowval = val[0];
     return median;
 }
 
 // done
-void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3], int upper[3], int lower[3]){
+void getAvgColor(/*MyImage *m,*/My_ROI inputroi,int avg[3]){
     Mat r;
     inputroi.roi_ptr.copyTo(r);
     vector<int>hm;
     vector<int>sm;
     vector<int>lm;
     // generate vectors
-    for(int i=0; i<r.rows; i++){
-        for(int j=0; j<r.cols; j++){
+    for(int i=2; i<r.rows-2; i++){
+        for(int j=2; j<r.cols-2; j++){
             hm.push_back(r.data[r.channels()*(r.cols*i + j) + 0]) ;
             sm.push_back(r.data[r.channels()*(r.cols*i + j) + 1]) ;
             lm.push_back(r.data[r.channels()*(r.cols*i + j) + 2]) ;
         }
     }
-    avg[0]=getMedian(hm, &upper[0], &lower[0]);
-    avg[1]=getMedian(sm, &upper[1], &lower[1]);
-    avg[2]=getMedian(lm, &upper[2], &lower[2]);
-    
+    avg[0]=getMedian(hm);
+    avg[1]=getMedian(sm);
+    avg[2]=getMedian(lm);
 }
 
 void average(MyImage *m, vector<My_ROI> &roi) {
@@ -193,11 +307,7 @@ void average(MyImage *m, vector<My_ROI> &roi) {
         }
         cvtColor(m->src,m->src,ORIGCOL2COL);
         for(int j=0;j<NSAMPLES;j++){
-            getAvgColor(/*m,*/roi[j],avgColor[j], c_upper[j], c_lower[j]);
-            cout << "getavgcolor j=" << j << ", val r=" << avgColor[j][0] << ", valg=" << avgColor[j][1] << ", valb=" << avgColor[j][2] << endl;
-            cout << "getuppercolor j=" << j << ", val r=" << c_upper[j][0] << ", valg=" << c_upper[j][1] << ", valb=" << c_upper[j][2] << endl;
-            cout << "getlowercolor j=" << j << ", val r=" << c_lower[j][0] << ", valg=" << c_lower[j][1] << ", valb=" << c_lower[j][2] << endl;
-            
+            getAvgColor(/*m,*/roi[j],avgColor[j]);
             roi[j].draw_rectangle(m->src);
         }
         cvtColor(m->src,m->src,COL2ORIGCOL);
@@ -332,31 +442,155 @@ void produceBinaries(MyImage *m){
     Scalar upperBound;
     Mat foo;
     m->bwList.clear();
-    const int diff1 = 10;
-#if 1
+//    avgColor[0][0] = 17;
+//    avgColor[0][1] = 95;
+//    avgColor[0][2] = 125;
+//    avgColor[1][0] = 17;
+//    avgColor[1][1] = 96;
+//    avgColor[1][2] = 123;
+//    avgColor[2][0] = 17;
+//    avgColor[2][1] = 94;
+//    avgColor[2][2] = 116;
+//    avgColor[3][0] = 18;
+//    avgColor[3][1] = 101;
+//    avgColor[3][2] = 117;
+//    avgColor[4][0] = 17;
+//    avgColor[4][1] = 105;
+//    avgColor[4][2] = 122;
+//    avgColor[5][0] = 18;
+//    avgColor[5][1] = 106;
+//    avgColor[5][2] = 121;
+//    avgColor[6][0] = 14;
+//    avgColor[6][1] = 78;
+//    avgColor[6][2] = 155;
+    // above is old
+//    avgColor[0][1] = 213;
+//    avgColor[0][2] = 225;
+//    avgColor[1][0] = 17;
+//    avgColor[1][1] = 173;
+//    avgColor[1][2] = 148;
+//    avgColor[2][0] = 16;
+//    avgColor[2][1] = 219;
+//    avgColor[2][2] = 234;
+//    avgColor[3][0] = 13;
+//    avgColor[3][1] = 195;
+//    avgColor[3][2] = 178;
+//    avgColor[4][0] = 14;
+//    avgColor[4][1] = 211;
+//    avgColor[4][2] = 215;
+//    avgColor[5][0] = 13;
+//    avgColor[5][1] = 211;
+//    avgColor[5][2] = 249;
+//    avgColor[6][0] = 17;
+//    avgColor[6][1] = 167;
+//    avgColor[6][2] = 136;
+//    c_lower[0][0] = 12;
+//    c_lower[0][1] = 30;
+//    c_lower[0][2] = 80;
+//    c_lower[1][0] = 12;
+//    c_lower[1][1] = 30;
+//    c_lower[1][2] = 80;
+//    c_lower[2][0] = 12;
+//    c_lower[2][1] = 30;
+//    c_lower[2][2] = 80;
+//    c_lower[3][0] = 12;
+//    c_lower[3][1] = 30;
+//    c_lower[3][2] = 80;
+//    c_lower[4][0] = 12;
+//    c_lower[4][1] = 30;
+//    c_lower[4][2] = 80;
+//    c_lower[5][0] = 12;
+//    c_lower[5][1] = 30;
+//    c_lower[5][2] = 80;
+//    c_lower[6][0] = 12;
+//    c_lower[6][1] = 30;
+//    c_lower[6][2] = 80;
+//    c_upper[0][0] = 7;
+//    c_upper[0][1] = 40;
+//    c_upper[0][2] = 30;
+//    c_upper[1][0] = 7;
+//    c_upper[1][1] = 40;
+//    c_upper[1][2] = 30;
+//    c_upper[2][0] = 7;
+//    c_upper[2][1] = 36;
+//    c_upper[2][2] = 21;
+//    c_upper[3][0] = 7;
+//    c_upper[3][1] = 40;
+//    c_upper[3][2] = 30;
+//    c_upper[4][0] = 7;
+//    c_upper[4][1] = 40;
+//    c_upper[4][2] = 30;
+//    c_upper[5][0] = 7;
+//    c_upper[5][1] = 40;
+//    c_upper[5][2] = 6;
+//    c_upper[6][0] = 7;
+//    c_upper[6][1] = 40;
+//    c_upper[6][2] = 30;
+    
+    
+//
+//    avgColor[0][0] = 15;
+//    avgColor[0][1] = 132;
+//    avgColor[0][2] = 87;
+//    
+//    avgColor[1][0] = 14;
+//    avgColor[1][1] = 130;
+//    avgColor[1][2] = 94;
+//    
+//    avgColor[2][0] = 13;
+//    avgColor[2][1] = 155;
+//    avgColor[2][2] = 91;
+//    
+//    avgColor[3][0] = 13;
+//    avgColor[3][1] = 144;
+//    avgColor[3][2] = 98;
+//    
+//    avgColor[4][0] = 13;
+//    avgColor[4][1] = 134;
+//    avgColor[4][2] = 86;
+//    
+//    avgColor[5][0] = 13;
+//    avgColor[5][1] = 136;
+//    avgColor[5][2] = 90;
+//    
+//    avgColor[6][0] = 14;
+//    avgColor[6][1] = 140;
+//    avgColor[6][2] = 99;
+    
+//    const int diff = 0;
+//    for (int i = 0; i < NSAMPLES; i++) {
+//        c_lower[i][0] = 12 - diff;
+//        c_lower[i][1] = 30 - diff;
+//        c_lower[i][2] = 80 - diff;
+//        
+//        c_upper[1][0] = 7 + diff;
+//        c_upper[1][1] = 40 + diff;
+//        c_upper[1][2] = 80 + diff;
+//    }
+//    const int diff1 = 30;
+#if 0
     // 增加调试信息
     imshow("srclr", m->srcLR);
     myhist3(m->srcLR);
 #endif
     for(int i=0;i<NSAMPLES;i++) {
-//        normalizeColors();
+        normalizeColors();
 //        lowerBound=Scalar( 0, 129, 147);
 //        upperBound=Scalar( 30, 200, 255);
-        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
-        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
+//        lowerBound=Scalar( 0, 129, avgColor[i][2] - c_lower[i][2] - diff1);
+//        upperBound=Scalar( 30, 200, avgColor[i][2] + c_upper[i][2] + diff1);
 //        lowerBound=Scalar( 0, avgColor[i][1] - c_lower[i][1] - diff1, 0);
 //        upperBound=Scalar( 30, avgColor[i][1] + c_upper[i][1] + diff1, 255);
-//        lowerBound=Scalar( c_lower[i][0] - diff1, c_lower[i][1] - diff1, c_lower[i][2] - diff1);
-//        upperBound=Scalar( c_upper[i][0] + diff1, c_upper[i][1] + diff1, c_upper[i][2] + diff1);
-//        lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
-//        upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
-        
+        lowerBound=Scalar( avgColor[i][0] - c_lower[i][0] - diff1, avgColor[i][1] - c_lower[i][1] - diff1, avgColor[i][2] - c_lower[i][2] - diff1);
+        upperBound=Scalar( avgColor[i][0] + c_upper[i][0] + diff1, avgColor[i][1] + c_upper[i][1] + diff1, avgColor[i][2] + c_upper[i][2] + diff1);
         m->bwList.push_back(Mat(m->srcLR.rows,m->srcLR.cols,CV_8U));
-        cout << "lowerBound for i" << i << ", " << lowerBound << endl;
-        cout << "upperBound for i" << i << ", " << upperBound << endl;
+//        cout << "lowerBound for i" << i << ", " << lowerBound << endl;
+//        cout << "upperBound for i" << i << ", " << upperBound << endl;
         inRange(m->srcLR,lowerBound,upperBound,m->bwList[i]);
     }
     m->bwList[0].copyTo(m->bw);
+
+#if 0
     for(int i=1;i<NSAMPLES;i++){
         m->bw+=m->bwList[i];
         int aa = i;
@@ -366,6 +600,9 @@ void produceBinaries(MyImage *m){
         cout<<s1<<endl; // 30
         imshow("bw"+s1, m->bwList[i]);
     }
+#endif
+    
+    
 #if 1
 //    medianBlur(m->bw, m->bw, 5);
     
@@ -374,8 +611,16 @@ void produceBinaries(MyImage *m){
 //    else if( dilation_elem == 1 ){ dilation_type = MORPH_CROSS; }
 //    else if( dilation_elem == 2) { dilation_type = MORPH_ELLIPSE; }
     dilation_type = MORPH_ELLIPSE;
-    int dilation_size = 3;
-    int erosion_size = 3;
+    double dilation_size = 3;
+    double erosion_size = 3;
+    double scale = 1.f;
+#if kUseLowResolution
+    scale = kLowResolutionLongSize / 1280.f;
+    //         scale = 320.f / 1280.f;
+    dilation_size *= scale;
+    erosion_size *= scale;
+#endif
+    
     Mat element = getStructuringElement( dilation_type,
                                         Size( 2*dilation_size + 1, 2*dilation_size+1 ),
                                         Point( dilation_size, dilation_size ) );
@@ -391,16 +636,20 @@ void produceBinaries(MyImage *m){
     
     /// 腐蚀操作
     
-    imshow("before dilate", m->bw);
+//    imshow("before dilate", m->bw);
     
 //    erode( m->bw, m->bw, erosion_element );
+
     dilate(m->bw, m->bw, element);
     erode( m->bw, m->bw, erosion_element );
+#if 0
     dilate(m->bw, m->bw, element);
     erode( m->bw, m->bw, erosion_element );
+#endif
     dilate(m->bw, m->bw, element);
+
     medianBlur(m->bw, m->bw, 5);
-    imshow("after dilate", m->bw);
+//    imshow("after dilate", m->bw);
 #endif
 }
 
@@ -414,8 +663,8 @@ void showWindows(MyImage m){
     
     
 #if 1
-        pyrDown(m.bw,m.bw);
-        pyrDown(m.bw,m.bw);
+//        pyrDown(m.bw,m.bw);
+//        pyrDown(m.bw,m.bw);
         Rect roirect( Point( 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *m.src.cols/4,0 ), m.bw.size());
 #else
         //    pyrDown(m.bw,m.bw);
@@ -436,6 +685,8 @@ void showWindows(MyImage m){
 //    int dtype = _dst.type();
 //    int j = CV_MAT_CN(dtype);
 //    printf("i=%d", i);
+    
+    
     result.copyTo(m.src(roirect));
 #endif
 #ifndef __OBJC__
@@ -464,7 +715,7 @@ int findBiggestContour(vector<vector<Point> > contours){
 //{
 //    return  sqrt((pow((p1.x - p2.x),2) +  pow((p1.y - p2.y),2)));
 //}
-//
+
 //Point vectorBetweenPoints(Point p1, Point p2)
 //{
 //    return Point((p1.x - p2.x) ,(p1.y - p2.y));
@@ -488,8 +739,12 @@ void reduceDefect(HandGesture * hg)
          Point ptFar(hg->contours[hg->cIdx][faridx] );
              
          double disSF = distanceOfPoint(ptStart, ptFar);
-             
-         if(disSF < 100)
+         double scale = 1.f;
+#if kUseLowResolution
+         scale = kLowResolutionLongSize / 1280.f;
+//         scale = 320.f / 1280.f;
+#endif
+         if(disSF < 100 * scale)
          {
 
 //
@@ -583,13 +838,7 @@ void caculateRingPosition(HandGesture *hg)
         
         ptStart = pointMove(ptFar, vectorStartFar);
     }
-    
-    
-    
-    
-    
-    
-    
+
     Point midPoint = middlePoint(ptStart, ptEnd);
     Point vectorMidFar = vectorBetweenPoints(ptFar, midPoint);
     vectorMidFar = vectorMultiply(vectorMidFar,0.12);
@@ -604,7 +853,7 @@ void caculateRingPosition(HandGesture *hg)
     
     Point ringVec = vectorBetweenPoints(ringStart, ringEnd);
     if (ringVec.x == 0) {
-        hg->ringAngle = 0;
+        hg->ringAngle = M_PI_2;
     } else {
         hg->ringAngle = atan( (ringVec.y) / (ringVec.x));
     }
@@ -613,9 +862,62 @@ void caculateRingPosition(HandGesture *hg)
     hg->ringPosition.push_back(ringEnd);
 }
 
-void caculateRotationAngle(HandGesture *hg)
+//detect if rotation clockwise
+int detectRotationDirection(HandGesture *hg)
 {
     
+    //根据食指和无名指顶点连线 和 中指中轴线的倾斜角度判断旋转方向
+    Point2i firstTip1 = (*firstFingerTipFeatures)[0];
+    //Point2i firstTip2 = (*firstFingerTipFeatures)[1];
+    Point2i firstTip3 = (*firstFingerTipFeatures)[2];
+    
+    Point2i tip1 = hg->fingerTipFeatures[0];
+    Point2i tip2 = hg->fingerTipFeatures[1];
+    Point2i tip3 = hg->fingerTipFeatures[2];
+    
+    Point2i tipsVec = vectorBetweenPoints(tip1, tip3);
+    Point2i firstTipsVec = vectorBetweenPoints(firstTip1, firstTip3);
+    
+    Point ptFirstStart((*firstFinger)[0] );
+    Point ptFirstFar((*firstFinger)[1]  );
+    Point ptFirstEnd((*firstFinger)[2]  );
+    
+    Point ptFirstMid = middlePoint(ptFirstStart, ptFirstFar);
+    
+    Point2i firstFingerEndVec = vectorBetweenPoints(ptFirstMid , ptFirstFar);
+    
+//    double firstfeatureAngle = vectorAngle(firstTipsVec)-vectorAngle(firstFingerEndVec);
+    
+    double firstfeatureAngle = vectorAngle(firstTipsVec);
+    
+    double firstdist1 = distanceOfPoint(ptFirstStart, ptFirstFar);
+    double firstdist2 = distanceOfPoint(ptFirstEnd, ptFirstFar);
+
+//  double firstdist3 = distanceOfPoint(ptFirstStart, ptFirstEnd);
+//  Point vectorFirstStart = vectorBetweenPoints(ptFirstStart, ptFirstFar);
+//  Point vectorFirstEnd = vectorBetweenPoints(ptFirstEnd, ptFirstFar);
+    
+    Point ptStart(hg->mediusFinger[0]);
+    Point ptFar(hg->mediusFinger[1]);
+    Point ptEnd(hg->mediusFinger[2]);
+    
+    Point ptMid = middlePoint(ptStart, ptEnd);
+    
+    Point2i fingerEndVec = vectorBetweenPoints(ptMid, ptFar);
+  double featureAngle = vectorAngle(tipsVec)-vectorAngle(fingerEndVec);
+
+//    double featureAngle = vectorAngle(tipsVec);
+    if(featureAngle > firstfeatureAngle)
+    {
+//        rotationAngleY = 0 - rotationAngleY;
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+void caculateRotationAngle(HandGesture *hg)
+{
     Point2i ringStart = hg->ringPosition[0];
     Point2i ringEnd = hg->ringPosition[1];
     
@@ -635,21 +937,31 @@ void caculateRotationAngle(HandGesture *hg)
     
     hg->featureAngles.push_back(angle1);
     hg->featureAngles.push_back(angle2);
-    
-    
 
-    
     if(hg->index==1)
     {
-        //        firstFeatureAngles = new vector<Point>(hg->featureAngles);
+        if (firstFingerTipFeatures) {
+            delete firstFingerTipFeatures;
+        }
+        if (firstFeatureAngles) {
+            delete firstFeatureAngles;
+        }
+        //firstFeatureAngles = new vector<Point>(hg->featureAngles);
         firstFingerTipFeatures = new vector<Point2i>(hg->fingerTipFeatures);
         firstFeatureAngles = new vector<double>(hg->featureAngles);
-        //        firstFeatureAngles = &hg->featureAngles;
+        firstFingerCrossAngles = new vector<double>(hg->fingerCrossAngles);
+        //firstFeatureAngles = &hg->featureAngles;
         return;
     }
     
-    angle1 = hg->featureAngles[0] / 2;
-    angle2 = hg->featureAngles[1] / 2;
+    //angle1 = hg->featureAngles[0] / 2;
+    //angle2 = hg->featureAngles[1] / 2;
+    
+    angle1 = hg->fingerCrossAngles[0];
+    angle2 = hg->fingerCrossAngles[1];
+    
+    double angle = (angle1 + angle2) / 2;
+    
     if(!firstFeatureAngles)
     {
         hg->rotationAngle.clear();
@@ -659,99 +971,101 @@ void caculateRotationAngle(HandGesture *hg)
         return;
         
     }
+    dprintf("firstFingerCrossAngles 1 :%f 2 :%f\n", (*firstFingerCrossAngles)[0] * 180/ M_PI, (*firstFingerCrossAngles)[1] * 180/ M_PI);
     
-    double firstAngle1 = (*firstFeatureAngles)[0] / 2;
-    double firstAngle2 = (*firstFeatureAngles)[1] / 2;
+    dprintf("fingerCrossAngles 1 :%f 2 :%f\n", angle1 * 180/ M_PI, angle2 * 180/ M_PI);
+//    double firstAngle1 = (*firstFeatureAngles)[0] / 2;
+//    double firstAngle2 = (*firstFeatureAngles)[1] / 2;
+    double firstAngle1 = (*firstFingerCrossAngles)[0];
+    double firstAngle2 = (*firstFingerCrossAngles)[1];
     
-    double rotationAngle1 = acos(tan(angle1)/tan(firstAngle1));
+    double firstAngle = (firstAngle1 + firstAngle2)/2;
     
-    if (isnan(rotationAngle1)) {
-        rotationAngle1 = 0;
+    double rotantionAngle = acos(angle/firstAngle);
+    if (isnan(rotantionAngle)) {
+        rotantionAngle = 0;
     }
-    double rotationAngle2 = acos(tan(angle2)/tan(firstAngle2));
     
-    if(isnan(rotationAngle2)){
-        rotationAngle2 = 0;
-    }
-
-//    double rotationAngleX = 0;
-    double rotationAngleY = (rotationAngle1 + rotationAngle2)/2;
+//    double rotationAngle1 = acos(tan(angle1)/tan(firstAngle1));
+//    
+//    if (isnan(rotationAngle1)) {
+//        rotationAngle1 = 0;
+//    }
+//    double rotationAngle2 = acos(tan(angle2)/tan(firstAngle2));
+//    
+//    if(isnan(rotationAngle2)){
+//        rotationAngle2 = 0;
+//    }
     
-//    double tipDist1 = distanceOfPoint(tip1, tip2);
-//    double tipDist2 = distanceOfPoint(tip2, tip3);
-//    double distRatio = tipDist1/tipDist2;
+      double rotationAngleY = rotantionAngle;
+//    double rotationAngleY = (rotationAngle1 + rotationAngle2)/2;
     
-    Point2i firstTip1 = (*firstFingerTipFeatures)[0];
-//    Point2i firstTip2 = (*firstFingerTipFeatures)[1];
-    Point2i firstTip3 = (*firstFingerTipFeatures)[2];
-    
-    Point2i firstTipsVec = vectorBetweenPoints(firstTip1, firstTip3);
-    Point2i tipsVec = vectorBetweenPoints(tip1, tip3);
-    
-    
-//    double firstTipDist1 = distanceOfPoint(firstTip1, firstTip2);
-//    double firstTipDist2 = distanceOfPoint(firstTip2, firstTip3);
-//    double firstDistRatio = firstTipDist1/firstTipDist2;
-    
-//    if (distRatio < firstDistRatio) {
+//    Point2i firstTip1 = (*firstFingerTipFeatures)[0];
+////  Point2i firstTip2 = (*firstFingerTipFeatures)[1];
+//    Point2i firstTip3 = (*firstFingerTipFeatures)[2];
+//    
+//    Point2i firstTipsVec = vectorBetweenPoints(firstTip1, firstTip3);
+//    Point2i tipsVec = vectorBetweenPoints(tip1, tip3);
+//    
+// 
+//    Point ptFirstStart((*firstFinger)[0] );
+//    Point ptFirstFar((*firstFinger)[1]  );
+//    Point ptFirstEnd((*firstFinger)[2]  );
+//    
+//    Point2i firstFingerEndVec = vectorBetweenPoints(ptFirstStart, ptFirstEnd);
+//    
+//    double firstfeatureAngle = vectorAngle(firstTipsVec)-vectorAngle(firstFingerEndVec);
+//    
+//    double firstdist1 = distanceOfPoint(ptFirstStart, ptFirstFar);
+//    double firstdist2 = distanceOfPoint(ptFirstEnd, ptFirstFar);
+////    double firstdist3 = distanceOfPoint(ptFirstStart, ptFirstEnd);
+//    
+//    Point vectorFirstStart = vectorBetweenPoints(ptFirstStart, ptFirstFar);
+//    Point vectorFirstEnd = vectorBetweenPoints(ptFirstEnd, ptFirstFar);
+//    
+//    Point ptStart(hg->mediusFinger[0]);
+//    Point ptFar(hg->mediusFinger[1]);
+//    Point ptEnd(hg->mediusFinger[2]);
+//    
+//    Point2i fingerEndVec = vectorBetweenPoints(ptStart, ptEnd);
+//    
+//    double featureAngle = vectorAngle(tipsVec)-vectorAngle(fingerEndVec);
+//    if(featureAngle > firstfeatureAngle)
+//    {
 //        rotationAngleY = 0 - rotationAngleY;
 //    }
     
-//    if(hg->index==1)
-//       return;
-    
-    Point ptFirstStart((*firstFinger)[0] );
-    Point ptFirstFar((*firstFinger)[1]  );
-    Point ptFirstEnd((*firstFinger)[2]  );
-    
-    Point2i firstFingerEndVec = vectorBetweenPoints(ptFirstStart, ptFirstEnd);
-    
-    double firstfeatureAngle = vectorAngle(firstTipsVec)-vectorAngle(firstFingerEndVec);
-    
-    double firstdist1 = distanceOfPoint(ptFirstStart, ptFirstFar);
-    double firstdist2 = distanceOfPoint(ptFirstEnd, ptFirstFar);
-//    double firstdist3 = distanceOfPoint(ptFirstStart, ptFirstEnd);
-    
-    Point vectorFirstStart = vectorBetweenPoints(ptFirstStart, ptFirstFar);
-    Point vectorFirstEnd = vectorBetweenPoints(ptFirstEnd, ptFirstFar);
-    
-    Point ptStart(hg->mediusFinger[0]);
-    Point ptFar(hg->mediusFinger[1]);
-    Point ptEnd(hg->mediusFinger[2]);
-    
-    Point2i fingerEndVec = vectorBetweenPoints(ptStart, ptEnd);
-    
-    double featureAngle = vectorAngle(tipsVec)-vectorAngle(fingerEndVec);
-    if(featureAngle > firstfeatureAngle)
+    if(detectRotationDirection(hg)==0)
     {
         rotationAngleY = 0 - rotationAngleY;
     }
-    double dist1 = distanceOfPoint(ptStart, ptFar);
-    double dist2 = distanceOfPoint(ptEnd, ptFar);
-//    double dist3 = distanceOfPoint(ptStart, ptEnd);
     
+//    double dist1 = distanceOfPoint(ptStart, ptFar);
+//    double dist2 = distanceOfPoint(ptEnd, ptFar);
+////    double dist3 = distanceOfPoint(ptStart, ptEnd);
+//    
+//    Point vectorStart = vectorBetweenPoints(ptStart, ptFar);
+//    Point vectorEnd = vectorBetweenPoints(ptEnd, ptFar);
+//    
+//    double scale1 = dist1 / firstdist1;
+//    double scale2 = dist2 / firstdist2;
+////    double scale3 = dist3 / firstdist3;
+//    
+//    double rotationAngleZ1 = vectorCrossAngle(vectorFirstStart, vectorStart);
+//    double rotationAngleZ2 = vectorCrossAngle(vectorFirstEnd, vectorEnd);
+//    double rotationAngleZ = MAX(rotationAngleZ1, rotationAngleZ2);
     
-    
-    Point vectorStart = vectorBetweenPoints(ptStart, ptFar);
-    Point vectorEnd = vectorBetweenPoints(ptEnd, ptFar);
-    
-    double scale1 = dist1 / firstdist1;
-    double scale2 = dist2 / firstdist2;
-//    double scale3 = dist3 / firstdist3;
-    
-    double rotationAngleZ1 = vectorCrossAngle(vectorFirstStart, vectorStart);
-    double rotationAngleZ2 = vectorCrossAngle(vectorFirstEnd, vectorEnd);
-    double rotationAngleZ = MAX(rotationAngleZ1, rotationAngleZ2);
-    
-    double scale = max(scale1, scale2);
-    
-    double rotationAngleX = acos(scale);
-    if (scale>1.0) {
-        rotationAngleX = 0;
-    }
-    rotationAngleX  = 0;
+//    double scale = max(scale1, scale2);
+//    
+//    double rotationAngleX = acos(scale);
+//    if (scale>1.0) {
+//        rotationAngleX = 0;
+//    }
+//    rotationAngleX  = 0;
 //    double rotationAngleY = acos(scale3);
     
+    double rotationAngleX = 0;
+    double rotationAngleZ = 0;
 
     hg->rotationAngle.clear();
     hg->rotationAngle.push_back(rotationAngleX);
@@ -759,7 +1073,6 @@ void caculateRotationAngle(HandGesture *hg)
     hg->rotationAngle.push_back(rotationAngleZ);
     
     printf("rotationAngle X :%f Y :%f Z :%f\n", rotationAngleX * 180/ M_PI, rotationAngleY * 180/ M_PI ,rotationAngleZ * 180/ M_PI);
-    
 }
 
 void ajustFinger(HandGesture *hg)
@@ -796,7 +1109,7 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //    drawContours(result,hg->hullP,hg->cIdx,cv::Scalar(0,0,250),10, 8, vector<Vec4i>(), 0, Point());
     
     
-    reduceDefect(hg);
+//    reduceDefect(hg);
     
     int i = 0;
     int count = (int)hg->defects[hg->cIdx].size();
@@ -826,41 +1139,68 @@ void myDrawContours(MyImage *m,HandGesture *hg){
 //        circle( m->src, ptFar,   4, Scalar(0,255,0), 2 * scale);
 //        circle( m->src, ptEnd,   4, Scalar(0,0,255), 2 * scale);
 //        circle( m->src, ptStart,   4, Scalar(255,0,0), 2 * scale);
-        
-//            line( m->src, ptStart, ptFar, scalar, 1 *scale);
-//            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
-//            circle( m->src, ptFar,   4, scalar, 2 * scale);
-//            circle( m->src, ptEnd,   4, scalar, 2 * scale);
-//            circle( m->src, ptStart,   4, scalar, 2 * scale);
-        
+#if kDevelop
+            line( m->src, ptStart, ptFar, scalar, 1 *scale);
+            line( m->src, ptEnd, ptFar, scalar, 1 * scale);
+            circle( m->src, ptFar,   4, scalar, 2 * scale);
+            circle( m->src, ptEnd,   4, scalar, 2 * scale);
+            circle( m->src, ptStart,   4, scalar, 2 * scale);
+#endif
             
-        if (i==0) {//中指左侧的线条
+        if (i==0){//中指左侧的线条
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptStart);
-            circle( m->src, ptFar,   4, Scalar(255,255,0), 2 * scale);
-            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
+#if kDevelop
+            circle( m->src, ptFar, 4, Scalar(255,255,0), 2 * scale);
+            circle( m->src, ptStart, 4, Scalar(255,255,0), 2 * scale);
             line( m->src, ptStart, ptFar, Scalar(255,255,0), 1 * scale);
-            
+#endif
             hg->fingerTipFeatures.push_back(ptStart);//旋转角度参考点
             hg->fingerTipFeatures.push_back(ptEnd);
+#if kDevelop
+            circle( m->src, ptStart, 4, Scalar(255,255,0), 2 * scale);
+            circle( m->src, ptEnd, 4, Scalar(255,255,0), 2 * scale);
+#endif
+            Point vecSF = vectorBetweenPoints(ptStart, ptFar);
+            Point vecEF = vectorBetweenPoints(ptEnd, ptFar);
+            double angle = vectorCrossAngle(vecSF,vecEF);
             
-            circle( m->src, ptStart,   4, Scalar(255,255,0), 2 * scale);
-            circle( m->src, ptEnd,   4, Scalar(255,255,0), 2 * scale);
+            hg->fingerCrossAngles.push_back(angle);
         }
         if (i==count - 1) {//中指右侧的线条
             hg->mediusFinger.push_back(ptFar);
             circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);
             line( m->src, hg->mediusFinger[1], ptFar, Scalar(0,255,255), 1 * scale);
             
+            Point vecSF = vectorBetweenPoints(ptStart, ptFar);
+            Point vecEF = vectorBetweenPoints(ptEnd, ptFar);
+            double angle = vectorCrossAngle(vecSF,vecEF);
+            hg->fingerCrossAngles.push_back(angle);
+            
             hg->fingerTipFeatures.push_back(ptStart);
+            
             circle( m->src, ptStart,   4, Scalar(0,255,255), 2 * scale);
             if(hg->index==1)
             {
+                if (firstFinger) {
+                    delete firstFinger;
+                }
                 firstFinger = new vector<Point>(hg->mediusFinger);
-                //            firstFinger ->push_back(hg->mediusFinger[0]);
-                //            firstFinger ->push_back(hg->mediusFinger[1]);
-                //            firstFinger ->push_back(hg->mediusFinger[2]);
-                //            &hg->mediusFinger;
+                
+                if (firstFeatureAngles) {
+                    delete firstFeatureAngles;
+                }
+                firstFeatureAngles = new vector<double>();
+                
+                if (firstFingerCrossAngles) {
+                    delete firstFingerCrossAngles;
+                }
+                firstFingerCrossAngles = new vector<double>();
+                
+                //firstFinger ->push_back(hg->mediusFinger[0]);
+                //firstFinger ->push_back(hg->mediusFinger[1]);
+                //firstFinger ->push_back(hg->mediusFinger[2]);
+                //&hg->mediusFinger;
             }
             caculateRingPosition(hg);
             caculateRotationAngle(hg);
@@ -889,9 +1229,50 @@ void myDrawContours(MyImage *m,HandGesture *hg){
     b = 1;
 }
 
-void makeContours(MyImage *m, HandGesture* hg){
+void preMakeContours(MyImage *m, HandGesture* hg){
     Mat aBw;
-    pyrUp(m->bw,m->bw);
+//    pyrUp(m->bw,m->bw);
+    m->bw.copyTo(aBw);
+    findContours(aBw,hg->contours,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
+    hg->initVectors();
+    hg->cIdx=findBiggestContour(hg->contours);
+    if(hg->cIdx!=-1){
+        //		approxPolyDP( Mat(hg->contours[hg->cIdx]), hg->contours[hg->cIdx], 11, true );
+        hg->bRect=boundingRect(Mat(hg->contours[hg->cIdx]));
+        convexHull(Mat(hg->contours[hg->cIdx]),hg->hullP[hg->cIdx],false,true);
+        convexHull(Mat(hg->contours[hg->cIdx]),hg->hullI[hg->cIdx],false,false);
+        approxPolyDP( Mat(hg->hullP[hg->cIdx]), hg->hullP[hg->cIdx], 18, true );
+        if(hg->contours[hg->cIdx].size()>3 ){
+            convexityDefects(hg->contours[hg->cIdx],hg->hullI[hg->cIdx],hg->defects[hg->cIdx]);
+            //            hg->eleminateDefects();
+            //去除不是手指的凸包
+            hg->reduceDefect();
+            
+        }
+        hg->getFingerTips(m->src.rows);
+        bool isHand=hg->detectIfHand();
+        //        hg->printGestureInfo();
+        //        isHand = true;
+        if(isHand){
+            hg->isHand = true;
+            hg->preDrawFingerTips(m->bw);
+            imshow("preDrawFingerTips1", m->bw);
+            //            myDrawContours(m,hg);
+        }else
+        {
+            hg->isHand = false;
+            hg->preDrawFingerTips(m->bw);
+            imshow("preDrawFingerTips2", m->bw);
+        }
+//        myDrawContours(m,hg);
+    }
+//    pyrDown(m->bw,m->bw);
+}
+void makeContours(MyImage *m, HandGesture* hg){
+    preMakeContours(m, hg);
+    
+    Mat aBw;
+//    pyrUp(m->bw,m->bw);
     m->bw.copyTo(aBw);
     findContours(aBw,hg->contours,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
     hg->initVectors();
@@ -909,13 +1290,19 @@ void makeContours(MyImage *m, HandGesture* hg){
             hg->reduceDefect();
 
         }
+        hg->getFingerTips(m->src.rows);
         bool isHand=hg->detectIfHand();
-        hg->printGestureInfo();
+//        hg->printGestureInfo();
+//        isHand = true;
         if(isHand){
-            hg->getFingerTips(m->src.rows);
+            hg->isHand = true;
             hg->drawFingerTips(m->src);
-            myDrawContours(m,hg);
+//            myDrawContours(m,hg);
+        }else
+        {
+            hg->isHand = false;
         }
+        myDrawContours(m,hg);
     }
 }
 
@@ -936,6 +1323,7 @@ IplImage * shrink(IplImage *input, double scale) {
 void processOnImage(MyImage &m1, HandGesture &hg) {
     //        flip(m.src,m.src,1);
     pyrDown(m1.src,m1.srcLR);
+    
     blur(m1.srcLR,m1.srcLR,Size(3,3));
     cvtColor(m1.srcLR,m1.srcLR,ORIGCOL2COL);
     produceBinaries(&m1);
@@ -948,7 +1336,9 @@ void processOnImage(MyImage &m1, HandGesture &hg) {
 
 void processOnImageWithShowImage(MyImage &m1, HandGesture &hg) {
     //        flip(m.src,m.src,1);
-    pyrDown(m1.src,m1.srcLR);
+//    pyrDown(m1.src,m1.srcLR);
+    m1.src.copyTo(m1.srcLR);
+
     blur(m1.srcLR,m1.srcLR,Size(3,3));
     cvtColor(m1.srcLR,m1.srcLR,ORIGCOL2COL);
     produceBinaries(&m1);
@@ -991,19 +1381,21 @@ void on_mouse( int event, int x, int y, int flags, void* ustc)
 //        cvCircle( src, pt, 2,cvScalar(255,0,0,0) ,CV_FILLED, CV_AA, 0 );
 //        cvCopy(src,dst);
 //        cvShowImage( "src", src );
-        printf("on_mouse x=%d, y=%d\n", x, y);
+        dprintf("on_mouse x=%d, y=%d\n", x, y);
     }
 }
 
-MyImage * detectHand(IplImage *inputImage,  HandGesture &hg) {
+MyImage * detectHand(IplImage *inputImage,  HandGesture &hg, int diff) {
     MyImage *m1 = new MyImage(inputImage);
+    diff1 = diff;
 //    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;
 }
 
-MyImage * detectHand(Mat *inputImage,  HandGesture &hg) {
+MyImage * detectHand(Mat *inputImage,  HandGesture &hg, int diff) {
     MyImage *m1 = new MyImage(inputImage);
+    diff1 = diff;
     //    findROIColorInPalm(inputImage);
     processOnImageWithShowImage(*m1, hg);
     return m1;
@@ -1031,7 +1423,7 @@ int mymain(){
 //    Mat img(pImg,0); // 0是不複製影像，也就是pImg與img的data共用同個記憶體位置，header各自有
 //    imshow("img11", img);
 //    waitKey();
-    printf("channels=%d, depth=%d", pImg->nChannels, pImg->depth);
+    dprintf("channels=%d, depth=%d", pImg->nChannels, pImg->depth);
     pImg = shrink(pImg, 0.2);
     MyImage m(pImg);
 //    imshow("img12", m.src);

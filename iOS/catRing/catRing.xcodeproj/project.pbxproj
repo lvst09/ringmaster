@@ -17,6 +17,7 @@
 		332761D41AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */; };
 		335D69B71AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
 		335D69B81AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
+		335E23E81B0F6AA200FE67FC /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 335E23E71B0F6AA200FE67FC /* FilterEngine.framework */; };
 		337746FC1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FD1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FE1AAC10E300B2E754 /* indexRingPosDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A21AAC10E300B2E754 /* indexRingPosDic */; };
@@ -1261,6 +1262,7 @@
 		332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439451.MOV; sourceTree = "<group>"; };
 		332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439549.MOV; sourceTree = "<group>"; };
 		335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429430976.MOV; sourceTree = "<group>"; };
+		335E23E71B0F6AA200FE67FC /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		337746A11AAC10E300B2E754 /* filenamePositionInfoDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = filenamePositionInfoDic; sourceTree = "<group>"; };
 		337746A21AAC10E300B2E754 /* indexRingPosDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = indexRingPosDic; sourceTree = "<group>"; };
 		337746A31AAC10E300B2E754 /* MYIMG_ANG_x90_y-10_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MYIMG_ANG_x90_y-10_z0.png"; sourceTree = "<group>"; };
@@ -2440,6 +2442,7 @@
 				33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */,
 				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
 				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
+				335E23E81B0F6AA200FE67FC /* FilterEngine.framework in Frameworks */,
 				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3010,6 +3013,7 @@
 		3379C9E31A932D6800D29FFD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				335E23E71B0F6AA200FE67FC /* FilterEngine.framework */,
 				33AAE62B1AA2FE540031DF4A /* opencv2.framework */,
 				33DA87E11AA2C53C00625E87 /* youtubeauty.framework */,
 				33DA87DB1AA2B80400625E87 /* Accelerate.framework */,

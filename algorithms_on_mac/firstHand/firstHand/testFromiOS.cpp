@@ -236,25 +236,27 @@ int testFromiOS()
 {
     /// 装载图像
 //    src = imread("/Users/sky/Downloads/daily_delete/aaa/Movie12347.MOV_MYIMG_ORI0.JPG");
-    src = imread("/Users/sky/Downloads/daily_delete/MyVideo1428119600.MOV_MYIMG_ORI0.JPG");
+//    src = imread("/Users/sky/Downloads/daily_delete/MyVideo1428119600.MOV_MYIMG_ORI0.JPG");
+    src = imread("/Users/sky/Downloads/daily_delete/MYIMG_ORI2.JPG");
 //    src = imread("/Users/sky/Downloads/daily_delete/MyVideo1428119600.MOV_MYIMG_ORI0_1.png");
 
 //    image = [ImageProcess correctImage:image];
 //    IplImage *ipImage = convertIplImageFromUIImage(image);
     rotate_image_90n(src, src, 180);
-    imshow("abd1", src);
-    /// 等待用户反应
-    waitKey(0);
+//    imshow("abd1", src);
+//    /// 等待用户反应
+//    waitKey(0);
     findROIColorInPalm(&src);
     imshow("abd2", src);
     /// 等待用户反应
-    waitKey(0);
+//    waitKey(0);
     HandGesture *hg = new HandGesture();
     
-    MyImage * myImage = detectHand(&src, *hg);
+    MyImage * myImage = detectHand(&src, *hg, 30);
     imshow("abd3", myImage->src);
     /// 等待用户反应
     waitKey(0);
+    return 0;
 //    myhist(src);
     //    myback();
     /// 等待用户反应
