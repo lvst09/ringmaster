@@ -235,6 +235,10 @@
 	[CCDirector.sharedDirector setNextDeltaTimeZero: YES];
 }
 
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end
 
 #endif	// CC3_CC2_RENDER_QUEUE
