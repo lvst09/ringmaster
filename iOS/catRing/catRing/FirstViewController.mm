@@ -392,7 +392,7 @@ NSInteger radiusToDegree(CGFloat angle) {
         newAngles.x = (previousAngle.x + currentAngles.x + nextAngles.x) /3;
         newAngles.y = (previousAngle.y + currentAngles.y + nextAngles.y) /3;
         newAngles.z = (previousAngle.z + currentAngles.z + nextAngles.z) /3;
- 
+        
         [result addObject:newAngles];
     }
     
@@ -1023,13 +1023,13 @@ static HandGesture *hg;
     
     NSString *fileKeyName = self.indexXYZDic[[NSNumber numberWithInteger:j]];
 //    fileKeyName = nil;
+     DLog(@"ringfileKeyName=%@", fileKeyName);
     DWRingPositionInfo * info = [outputDic objectForKey:fileKeyName];
 
     UIImage * ringImage = [self getImage:j];
  
     double ratio = ringImage.size.height / ringImage.size.width;
  
-    
     if(currentHand->isHand){
         ringImage = [ImageProcess correctImage:ringImage toFitIn:CGSizeMake(320, 320 * ratio)];
     }else{
