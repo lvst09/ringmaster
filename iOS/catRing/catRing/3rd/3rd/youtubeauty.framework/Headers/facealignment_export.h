@@ -1,0 +1,35 @@
+
+#ifndef FACEALIGNMENT_EXPORT_H
+#define FACEALIGNMENT_EXPORT_H
+
+#ifdef FACEALIGNMENT_STATIC_DEFINE
+#  define FACEALIGNMENT_EXPORT
+#  define FACEALIGNMENT_NO_EXPORT
+#else
+#  ifndef FACEALIGNMENT_EXPORT
+#    ifdef facealignment_EXPORTS
+        /* We are building this library */
+#      define FACEALIGNMENT_EXPORT 
+#    else
+        /* We are using this library */
+#      define FACEALIGNMENT_EXPORT 
+#    endif
+#  endif
+
+#  ifndef FACEALIGNMENT_NO_EXPORT
+#    define FACEALIGNMENT_NO_EXPORT 
+#  endif
+#endif
+
+#ifndef FACEALIGNMENT_DEPRECATED
+#  define FACEALIGNMENT_DEPRECATED 
+#  define FACEALIGNMENT_DEPRECATED_EXPORT FACEALIGNMENT_EXPORT 
+#  define FACEALIGNMENT_DEPRECATED_NO_EXPORT FACEALIGNMENT_NO_EXPORT 
+#endif
+
+#define DEFINE_NO_DEPRECATED 0
+#if DEFINE_NO_DEPRECATED
+# define FACEALIGNMENT_NO_DEPRECATED
+#endif
+
+#endif

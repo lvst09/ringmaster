@@ -419,7 +419,6 @@ NSInteger radiusToDegree(CGFloat angle) {
 }
 
 -(NSMutableArray *)smoothRotationAngle:(NSArray *)array
-
 {
     [self reduceDefectForRotationAngle:array];
     
@@ -763,10 +762,15 @@ NSInteger radiusToDegree(CGFloat angle) {
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
-    i = (j - 1) % self.totalVideoFrame;
-    //    if (i > 14) {
-    //        i = 1;
-    //    }
+//    i = (j- 1 ) % self.totalVideoFrame ;
+//    //    if (i > 14) {
+//    //        i = 1;
+//    //    }
+    i = j - 1;
+    if(i<0){
+        i = self.totalVideoFrame;
+    }
+    
     self.labelSlider.slider.value = i;
     j = i;
     [self showImageAtIndex:j needAdjustDiff:YES];
@@ -829,12 +833,13 @@ NSInteger radiusToDegree(CGFloat angle) {
         //        NSData *data = UIImagePNGRepresentation(resultImage);
         //        BOOL succ = [data writeToFile:pngPath atomically:YES];
         UIImage * image = [UIImage imageWithContentsOfFile:pngPath];
-        
+//        UIImage * image = [UIImage imageNamed:@"DW_PlusPressed1.png"];
         
         NSDictionary *settings = [CEMovieMaker videoSettingsWithCodec:AVVideoCodecH264 withWidth:image.size.width andHeight:image.size.height];
         self.movieMaker = [[CEMovieMaker alloc] initWithSettings:settings];
-
     }
+    
+    NSArray * frame = [self.frames objectsAtIndexes:[NSIndexSet indexSetWithIndex:0]];
     
     [self.movieMaker createMovieFromImages:[self.frames copy] withCompletion:^(NSURL *fileURL){
         [self.indicator stopAnimating];
@@ -854,7 +859,7 @@ NSInteger radiusToDegree(CGFloat angle) {
     static NSInteger i = 0;
     
     NSInteger j = (NSInteger)self.labelSlider.slider.value;
-    i = (j + 1) % self.totalVideoFrame;
+    i = (j ) % self.totalVideoFrame + 1;
 //    if (i > 14) {
 //        i = 1;
 //    }
@@ -1089,7 +1094,7 @@ static HandGesture *hg;
     // 将每一帧的图片保存到documents目录下
 #if 1
     {
-        NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.jpg", [self outputDir], (long)j];
+        NSString *pngPath = [NSString stringWithFormat:@"%@/output_%ld.png", [self outputDir], (long)j];
         NSData *data = UIImageJPEGRepresentation(resultImage, 0.8);
         BOOL succ = [data writeToFile:pngPath atomically:YES];
         if (!succ) {

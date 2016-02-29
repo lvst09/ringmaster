@@ -1,0 +1,35 @@
+
+#ifndef FACEATTRIBUTE_EXPORT_H
+#define FACEATTRIBUTE_EXPORT_H
+
+#ifdef FACEATTRIBUTE_STATIC_DEFINE
+#  define FACEATTRIBUTE_EXPORT
+#  define FACEATTRIBUTE_NO_EXPORT
+#else
+#  ifndef FACEATTRIBUTE_EXPORT
+#    ifdef faceattribute_EXPORTS
+        /* We are building this library */
+#      define FACEATTRIBUTE_EXPORT 
+#    else
+        /* We are using this library */
+#      define FACEATTRIBUTE_EXPORT 
+#    endif
+#  endif
+
+#  ifndef FACEATTRIBUTE_NO_EXPORT
+#    define FACEATTRIBUTE_NO_EXPORT 
+#  endif
+#endif
+
+#ifndef FACEATTRIBUTE_DEPRECATED
+#  define FACEATTRIBUTE_DEPRECATED 
+#  define FACEATTRIBUTE_DEPRECATED_EXPORT FACEATTRIBUTE_EXPORT 
+#  define FACEATTRIBUTE_DEPRECATED_NO_EXPORT FACEATTRIBUTE_NO_EXPORT 
+#endif
+
+#define DEFINE_NO_DEPRECATED 0
+#if DEFINE_NO_DEPRECATED
+# define FACEATTRIBUTE_NO_DEPRECATED
+#endif
+
+#endif

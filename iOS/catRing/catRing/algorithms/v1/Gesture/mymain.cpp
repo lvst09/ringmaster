@@ -925,22 +925,22 @@ void caculateRotationAngle(HandGesture *hg)
     Point2i ringStart = hg->ringPosition[0];
     Point2i ringEnd = hg->ringPosition[1];
     
-    Point2i tip1 = hg->fingerTipFeatures[0];
-    Point2i tip2 = hg->fingerTipFeatures[1];
-    Point2i tip3 = hg->fingerTipFeatures[2];
-    
-    Point2i vec1 = vectorBetweenPoints(tip1, ringStart);
-    Point2i vec2 = vectorBetweenPoints(tip2, ringStart);
-    
-    double angle1 = vectorCrossAngle(vec1,vec2);
-    
-    vec1 = vectorBetweenPoints(tip2, ringEnd);
-    vec2 = vectorBetweenPoints(tip3, ringEnd);
-    
-    double angle2 = vectorCrossAngle(vec1, vec2);
-    
-    hg->featureAngles.push_back(angle1);
-    hg->featureAngles.push_back(angle2);
+//    Point2i tip1 = hg->fingerTipFeatures[0];
+//    Point2i tip2 = hg->fingerTipFeatures[1];
+//    Point2i tip3 = hg->fingerTipFeatures[2];
+//    
+//    Point2i vec1 = vectorBetweenPoints(tip1, ringStart);
+//    Point2i vec2 = vectorBetweenPoints(tip2, ringStart);
+//    
+//    double angle1 = vectorCrossAngle(vec1,vec2);
+//    
+//    vec1 = vectorBetweenPoints(tip2, ringEnd);
+//    vec2 = vectorBetweenPoints(tip3, ringEnd);
+//    
+//    double angle2 = vectorCrossAngle(vec1, vec2);
+//
+//    hg->featureAngles.push_back(angle1);
+//    hg->featureAngles.push_back(angle2);
 
     if(hg->index==1)
     {
@@ -961,10 +961,12 @@ void caculateRotationAngle(HandGesture *hg)
     //angle1 = hg->featureAngles[0] / 2;
     //angle2 = hg->featureAngles[1] / 2;
     
+    double angle1, angle2, angle3;
+    
     angle1 = hg->fingerCrossAngles[0];
     angle2 = hg->fingerCrossAngles[1];
-    
-    double angle = (angle1 + angle2) / 2;
+    angle3 = hg->fingerCrossAngles[2];
+    double angle = (angle1 + angle2 + angle3) / 3;
     
     if(!firstFeatureAngles)
     {
@@ -973,8 +975,8 @@ void caculateRotationAngle(HandGesture *hg)
         hg->rotationAngle.push_back(0);
         hg->rotationAngle.push_back(0);
         return;
-        
     }
+    
     dprintf("firstFingerCrossAngles 1 :%f 2 :%f\n", (*firstFingerCrossAngles)[0] * 180/ M_PI, (*firstFingerCrossAngles)[1] * 180/ M_PI);
     
     dprintf("fingerCrossAngles 1 :%f 2 :%f\n", angle1 * 180/ M_PI, angle2 * 180/ M_PI);
@@ -982,8 +984,8 @@ void caculateRotationAngle(HandGesture *hg)
 //    double firstAngle2 = (*firstFeatureAngles)[1] / 2;
     double firstAngle1 = (*firstFingerCrossAngles)[0];
     double firstAngle2 = (*firstFingerCrossAngles)[1];
-    
-    double firstAngle = (firstAngle1 + firstAngle2)/2;
+    double firstAngle3 = (*firstFingerCrossAngles)[2];
+    double firstAngle = (firstAngle1 + firstAngle2 + firstAngle3)/3;
     
     double rotantionAngle = acos(angle/firstAngle);
     if (isnan(rotantionAngle)) {
@@ -1151,7 +1153,8 @@ void myDrawContours(MyImage *m,HandGesture *hg){
             circle( m->src, ptStart,   4, scalar, 2 * scale);
 #endif
             
-        if (i==0){//中指左侧的线条
+            
+        if ( i == 0  ){//中指左侧的线条
             hg->mediusFinger.push_back(ptFar);
             hg->mediusFinger.push_back(ptStart);
 #if kDevelop
@@ -1171,6 +1174,14 @@ void myDrawContours(MyImage *m,HandGesture *hg){
             
             hg->fingerCrossAngles.push_back(angle);
         }
+            if(i==1)
+            {
+                Point vecSF = vectorBetweenPoints(ptStart, ptFar);
+                Point vecEF = vectorBetweenPoints(ptEnd, ptFar);
+                double angle = vectorCrossAngle(vecSF,vecEF);
+                
+                hg->fingerCrossAngles.push_back(angle);
+            }
         if (i==count - 1) {//中指右侧的线条
             hg->mediusFinger.push_back(ptFar);
             circle( m->src, ptFar,   4, Scalar(0,255,255), 2 * scale);

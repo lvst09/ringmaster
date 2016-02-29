@@ -1202,6 +1202,8 @@
 		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
+		686D59C81C47AE3000DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */; };
+		686D59CA1C47AF0200DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2421,6 +2423,8 @@
 		33F111431ACEDA6800C64214 /* CommonCPPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCPPMath.h; sourceTree = "<group>"; };
 		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
+		686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
+		686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2846,6 +2850,7 @@
 		33774BEA1AAF359E00B2E754 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */,
 				33774BEB1AAF359E00B2E754 /* DW_Plus@2x.png */,
 				33774BEC1AAF359E00B2E754 /* DW_PlusPressed@2x.png */,
 				33774BED1AAF359E00B2E754 /* SelectPointViewController.h */,
@@ -3072,6 +3077,7 @@
 		3379CA021A93369700D29FFD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */,
 				33E54B051AC5A925000F5E9D /* tryon_hand@2x.png */,
 				337746A01AAC10E300B2E754 /* ringRotation */,
 				33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */,
@@ -4725,6 +4731,7 @@
 				337748531AADD58600B2E754 /* MYIMG_ANG_x90_y-9_z2.png in Resources */,
 				337749731AAE789200B2E754 /* MYIMG_ANG_x90_y-16_z2.png in Resources */,
 				337747381AAC10E300B2E754 /* MYIMG_ANG_x90_y-4_z2.png in Resources */,
+				686D59CA1C47AF0200DAFB30 /* DW_PlusPressed1.png in Resources */,
 				33774A191AAE789200B2E754 /* MYIMG_ANG_x90_y-45_z3.png in Resources */,
 				337749971AAE789200B2E754 /* MYIMG_ANG_x90_y-21_z5.png in Resources */,
 				3377473E1AAC10E300B2E754 /* MYIMG_ANG_x90_y-5_z3.png in Resources */,
@@ -5009,6 +5016,7 @@
 				33774A9F1AAE789200B2E754 /* MYIMG_ANG_x90_y45_z3.png in Resources */,
 				337747121AAC10E300B2E754 /* MYIMG_ANG_x90_y-12_z1.png in Resources */,
 				337748011AAC138200B2E754 /* MYIMG_ANG_x90_y-14_z4.png in Resources */,
+				686D59C81C47AE3000DAFB30 /* DW_PlusPressed1.png in Resources */,
 				33774A851AAE789200B2E754 /* MYIMG_ANG_x90_y28_z4.png in Resources */,
 				337747681AAC10E300B2E754 /* MYIMG_ANG_x90_y0_z5.png in Resources */,
 				3377484D1AADD58600B2E754 /* MYIMG_ANG_x90_y-4_z5.png in Resources */,
@@ -6143,6 +6151,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
@@ -6200,6 +6209,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
