@@ -1124,9 +1124,7 @@
 		33AAF7D31AA318B80031DF4A /* SliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379C9F01A93310300D29FFD /* SliderBar.m */; };
 		33AAF7D41AA318BD0031DF4A /* SliderBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3379C9F11A93310300D29FFD /* SliderBar.xib */; };
 		33AAF7D51AA318C30031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
-		33AAF7D61AA318C60031DF4A /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
 		33AAF7D71AA318C90031DF4A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
-		33AAF7D81AA318CC0031DF4A /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
 		33AAF7D91AA318D40031DF4A /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		33AAF7DA1AA318D80031DF4A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
 		33AAF7DB1AA318DB0031DF4A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
@@ -1167,7 +1165,6 @@
 		33D6334A1ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */; };
 		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
-		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
 		33DA87E61AA2F5CC00625E87 /* Movie12347.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87E51AA2F5CC00625E87 /* Movie12347.MOV */; };
 		33DB2BDD1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
 		33DB2BDE1AAB5AA2006575D4 /* DWRingPosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */; };
@@ -1204,6 +1201,11 @@
 		68364C861C9A5BBF00313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C841C9A5BBF00313BD8 /* youtubeauty.framework */; };
 		68364C871C9A88A700313BD8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
 		68364C891C9A893300313BD8 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C881C9A893300313BD8 /* opencv2.framework */; };
+		68365A841C9ABF8300313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68365A821C9ABF8300313BD8 /* youtubeauty.framework */; };
+		68365A861C9ABFE200313BD8 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68365A851C9ABFE200313BD8 /* FilterEngine.framework */; };
+		68365A881C9ABFE900313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68365A871C9ABFE900313BD8 /* youtubeauty.framework */; };
+		68365A891C9AC01D00313BD8 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68365A851C9ABFE200313BD8 /* FilterEngine.framework */; };
+		68365A8A1C9AC02000313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68365A871C9ABFE900313BD8 /* youtubeauty.framework */; };
 		686D59C81C47AE3000DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */; };
 		686D59CA1C47AF0200DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */; };
 /* End PBXBuildFile section */
@@ -1266,7 +1268,6 @@
 		332761CB1AF115AB00D65557 /* MyVideo1429439451.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439451.MOV; sourceTree = "<group>"; };
 		332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429439549.MOV; sourceTree = "<group>"; };
 		335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = MyVideo1429430976.MOV; sourceTree = "<group>"; };
-		335E23E71B0F6AA200FE67FC /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		337746A11AAC10E300B2E754 /* filenamePositionInfoDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = filenamePositionInfoDic; sourceTree = "<group>"; };
 		337746A21AAC10E300B2E754 /* indexRingPosDic */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = indexRingPosDic; sourceTree = "<group>"; };
 		337746A31AAC10E300B2E754 /* MYIMG_ANG_x90_y-10_z0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MYIMG_ANG_x90_y-10_z0.png"; sourceTree = "<group>"; };
@@ -2401,10 +2402,8 @@
 		33D633471ADA84510065EAFB /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		33D6334B1ADABA4D0065EAFB /* PreHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreHeader.h; sourceTree = "<group>"; };
-		33DA87D11AA2B50300625E87 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FilterEngine.framework; sourceTree = "<group>"; };
 		33DA87DB1AA2B80400625E87 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_normal@2x.png"; sourceTree = "<group>"; };
-		33DA87E11AA2C53C00625E87 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = youtubeauty.framework; sourceTree = "<group>"; };
 		33DA87E51AA2F5CC00625E87 /* Movie12347.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Movie12347.MOV; sourceTree = "<group>"; };
 		33DB2BDB1AAB5AA2006575D4 /* DWRingPosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWRingPosModel.h; sourceTree = "<group>"; };
 		33DB2BDC1AAB5AA2006575D4 /* DWRingPosModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWRingPosModel.m; sourceTree = "<group>"; };
@@ -2428,6 +2427,9 @@
 		68364C831C9A5BBF00313BD8 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FilterEngine.framework; path = catRing/3rd/3rd/FilterEngine.framework; sourceTree = "<group>"; };
 		68364C841C9A5BBF00313BD8 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = youtubeauty.framework; path = catRing/3rd/3rd/youtubeauty.framework; sourceTree = "<group>"; };
 		68364C881C9A893300313BD8 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = catRing/3rd/opencv2.framework; sourceTree = "<group>"; };
+		68365A821C9ABF8300313BD8 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = youtubeauty.framework; path = catRing/3rd/3rd/youtubeauty.framework; sourceTree = "<group>"; };
+		68365A851C9ABFE200313BD8 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FilterEngine.framework; path = 3rd/FilterEngine.framework; sourceTree = "<group>"; };
+		68365A871C9ABFE900313BD8 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = youtubeauty.framework; path = 3rd/youtubeauty.framework; sourceTree = "<group>"; };
 		686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 		686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2438,9 +2440,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				68364C871C9A88A700313BD8 /* MediaPlayer.framework in Frameworks */,
-				33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */,
+				68365A861C9ABFE200313BD8 /* FilterEngine.framework in Frameworks */,
 				33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */,
 				33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */,
+				68365A841C9ABF8300313BD8 /* youtubeauty.framework in Frameworks */,
+				68365A881C9ABFE900313BD8 /* youtubeauty.framework in Frameworks */,
 				33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */,
 				33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */,
 				33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */,
@@ -2469,15 +2473,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68365A8A1C9AC02000313BD8 /* youtubeauty.framework in Frameworks */,
 				33AAF7F11AA31BF50031DF4A /* MobileCoreServices.framework in Frameworks */,
 				33AAF7EF1AA31A600031DF4A /* MediaPlayer.framework in Frameworks */,
 				33AAF3211AA314F70031DF4A /* OpenAL.framework in Frameworks */,
 				33AAF7D71AA318C90031DF4A /* Accelerate.framework in Frameworks */,
-				33AAF7D61AA318C60031DF4A /* youtubeauty.framework in Frameworks */,
 				33AAF31D1AA314F70031DF4A /* Foundation.framework in Frameworks */,
 				33AAF31B1AA314F70031DF4A /* CoreText.framework in Frameworks */,
 				33AAF3231AA314F70031DF4A /* OpenGLES.framework in Frameworks */,
-				33AAF7D81AA318CC0031DF4A /* FilterEngine.framework in Frameworks */,
 				33AAF3191AA314F70031DF4A /* CoreGraphics.framework in Frameworks */,
 				33AAF3171AA314F70031DF4A /* AVFoundation.framework in Frameworks */,
 				33AAF7DC1AA318E60031DF4A /* CoreMedia.framework in Frameworks */,
@@ -2485,6 +2488,7 @@
 				33AAF3151AA314F70031DF4A /* AudioToolbox.framework in Frameworks */,
 				33AAF3251AA314F70031DF4A /* QuartzCore.framework in Frameworks */,
 				33AAF3271AA314F70031DF4A /* UIKit.framework in Frameworks */,
+				68365A891C9AC01D00313BD8 /* FilterEngine.framework in Frameworks */,
 				33AAF7D51AA318C30031DF4A /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3025,11 +3029,10 @@
 		3379C9E31A932D6800D29FFD /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
-				335E23E71B0F6AA200FE67FC /* FilterEngine.framework */,
+				68365A871C9ABFE900313BD8 /* youtubeauty.framework */,
+				68365A851C9ABFE200313BD8 /* FilterEngine.framework */,
 				33AAE62B1AA2FE540031DF4A /* opencv2.framework */,
-				33DA87E11AA2C53C00625E87 /* youtubeauty.framework */,
 				33DA87DB1AA2B80400625E87 /* Accelerate.framework */,
-				33DA87D11AA2B50300625E87 /* FilterEngine.framework */,
 				3379CC6E1A97202500D29FFD /* SVProgressHUD */,
 				3379CA001A93353600D29FFD /* CoreGraphics.framework */,
 				3379C9E81A932FE600D29FFD /* CoreMedia.framework */,
@@ -3149,6 +3152,7 @@
 		33AAF3131AA314F70031DF4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68365A821C9ABF8300313BD8 /* youtubeauty.framework */,
 				68364C881C9A893300313BD8 /* opencv2.framework */,
 				68364C831C9A5BBF00313BD8 /* FilterEngine.framework */,
 				68364C841C9A5BBF00313BD8 /* youtubeauty.framework */,
@@ -4641,7 +4645,6 @@
 					};
 					33AAF3111AA314F70031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = RSLW4S7XVW;
 					};
 					33AAF3CE1AA314F80031DF4A = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -6166,11 +6169,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: st lv (55G9L82LPD)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/3rd",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -6191,7 +6195,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -6201,6 +6205,7 @@
 					"-lcocos2d",
 					"-lcocos2d-chipmunk",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = DW.catRing3D1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -6224,11 +6229,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: st lv (55G9L82LPD)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
+					"$(PROJECT_DIR)/catRing/3rd/3rd",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -6241,7 +6247,7 @@
 					"cocos2d/**",
 				);
 				INFOPLIST_FILE = catRing3D/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-U__STRICT_ANSI__";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -6251,6 +6257,7 @@
 					"-lcocos2d",
 					"-lcocos2d-chipmunk",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = DW.catRing3D1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
