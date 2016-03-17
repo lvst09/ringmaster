@@ -17,7 +17,6 @@
 		332761D41AF115AB00D65557 /* MyVideo1429439549.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 332761CC1AF115AB00D65557 /* MyVideo1429439549.MOV */; };
 		335D69B71AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
 		335D69B81AE3A01E000FE7AB /* MyVideo1429430976.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 335D69B61AE3A01E000FE7AB /* MyVideo1429430976.MOV */; };
-		335E23E81B0F6AA200FE67FC /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 335E23E71B0F6AA200FE67FC /* FilterEngine.framework */; };
 		337746FC1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FD1AAC10E300B2E754 /* filenamePositionInfoDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A11AAC10E300B2E754 /* filenamePositionInfoDic */; };
 		337746FE1AAC10E300B2E754 /* indexRingPosDic in Resources */ = {isa = PBXBuildFile; fileRef = 337746A21AAC10E300B2E754 /* indexRingPosDic */; };
@@ -1166,7 +1165,6 @@
 		33D47FBA1AD2DAF800694AE1 /* MyVideo1428222805.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 33D47FB21AD2DAF800694AE1 /* MyVideo1428222805.MOV */; };
 		33D633491ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */; };
 		33D6334A1ADA84510065EAFB /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 33D633481ADA84510065EAFB /* UIImage+OpenCV.mm */; };
-		33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87D11AA2B50300625E87 /* FilterEngine.framework */; };
 		33DA87DC1AA2B80400625E87 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87DB1AA2B80400625E87 /* Accelerate.framework */; };
 		33DA87DE1AA2BB3700625E87 /* cancel_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DA87DD1AA2BB3700625E87 /* cancel_normal@2x.png */; };
 		33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DA87E11AA2C53C00625E87 /* youtubeauty.framework */; };
@@ -1204,6 +1202,8 @@
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		68364C851C9A5BBF00313BD8 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C831C9A5BBF00313BD8 /* FilterEngine.framework */; };
 		68364C861C9A5BBF00313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C841C9A5BBF00313BD8 /* youtubeauty.framework */; };
+		68364C871C9A88A700313BD8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */; };
+		68364C891C9A893300313BD8 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C881C9A893300313BD8 /* opencv2.framework */; };
 		686D59C81C47AE3000DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */; };
 		686D59CA1C47AF0200DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */; };
 /* End PBXBuildFile section */
@@ -2427,6 +2427,7 @@
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
 		68364C831C9A5BBF00313BD8 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FilterEngine.framework; path = catRing/3rd/3rd/FilterEngine.framework; sourceTree = "<group>"; };
 		68364C841C9A5BBF00313BD8 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = youtubeauty.framework; path = catRing/3rd/3rd/youtubeauty.framework; sourceTree = "<group>"; };
+		68364C881C9A893300313BD8 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = catRing/3rd/opencv2.framework; sourceTree = "<group>"; };
 		686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 		686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2436,6 +2437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68364C871C9A88A700313BD8 /* MediaPlayer.framework in Frameworks */,
 				33DA87E21AA2C53C00625E87 /* youtubeauty.framework in Frameworks */,
 				33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */,
 				33AAF7EC1AA31A0F0031DF4A /* QuartzCore.framework in Frameworks */,
@@ -2447,12 +2449,11 @@
 				33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */,
 				33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */,
 				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
+				68364C891C9A893300313BD8 /* opencv2.framework in Frameworks */,
 				33AAF7E81AA31A040031DF4A /* Foundation.framework in Frameworks */,
 				33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */,
 				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
-				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
 				68364C851C9A5BBF00313BD8 /* FilterEngine.framework in Frameworks */,
-				335E23E81B0F6AA200FE67FC /* FilterEngine.framework in Frameworks */,
 				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3148,6 +3149,7 @@
 		33AAF3131AA314F70031DF4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68364C881C9A893300313BD8 /* opencv2.framework */,
 				68364C831C9A5BBF00313BD8 /* FilterEngine.framework */,
 				68364C841C9A5BBF00313BD8 /* youtubeauty.framework */,
 				33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */,
