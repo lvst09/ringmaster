@@ -756,7 +756,7 @@
 		3379CC6A1A971ADE00D29FFD /* Moviergb1.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC691A971AD900D29FFD /* Moviergb1.m4v */; };
 		3379CC751A97202500D29FFD /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC701A97202500D29FFD /* SVIndefiniteAnimatedView.m */; };
 		3379CC761A97202500D29FFD /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3379CC721A97202500D29FFD /* SVProgressHUD.bundle */; };
-		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; };
+		3379CC771A97202500D29FFD /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3379CC741A97202500D29FFD /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		33A8D7E91ABD5064003D935F /* DWHandColorPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */; };
 		33A8D7EA1ABD5064003D935F /* DWHandColorPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33A8D7E81ABD5064003D935F /* DWHandColorPointView.m */; };
 		33AAE62C1AA2FE540031DF4A /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AAE62B1AA2FE540031DF4A /* opencv2.framework */; };
@@ -1202,6 +1202,8 @@
 		680616D81AB0289000D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
 		680616D91AB0308500D01002 /* CEMovieMaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 680616D61AB0288F00D01002 /* CEMovieMaker.h */; };
 		680616DA1AB0308500D01002 /* CEMovieMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680616D71AB0288F00D01002 /* CEMovieMaker.m */; };
+		68364C851C9A5BBF00313BD8 /* FilterEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C831C9A5BBF00313BD8 /* FilterEngine.framework */; };
+		68364C861C9A5BBF00313BD8 /* youtubeauty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68364C841C9A5BBF00313BD8 /* youtubeauty.framework */; };
 		686D59C81C47AE3000DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */; };
 		686D59CA1C47AF0200DAFB30 /* DW_PlusPressed1.png in Resources */ = {isa = PBXBuildFile; fileRef = 686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */; };
 /* End PBXBuildFile section */
@@ -2423,6 +2425,8 @@
 		33F111431ACEDA6800C64214 /* CommonCPPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCPPMath.h; sourceTree = "<group>"; };
 		680616D61AB0288F00D01002 /* CEMovieMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMovieMaker.h; sourceTree = "<group>"; };
 		680616D71AB0288F00D01002 /* CEMovieMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMovieMaker.m; sourceTree = "<group>"; };
+		68364C831C9A5BBF00313BD8 /* FilterEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FilterEngine.framework; path = catRing/3rd/3rd/FilterEngine.framework; sourceTree = "<group>"; };
+		68364C841C9A5BBF00313BD8 /* youtubeauty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = youtubeauty.framework; path = catRing/3rd/3rd/youtubeauty.framework; sourceTree = "<group>"; };
 		686D59C71C47AE3000DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 		686D59C91C47AF0200DAFB30 /* DW_PlusPressed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DW_PlusPressed1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2439,6 +2443,7 @@
 				33AAF7ED1AA31A120031DF4A /* UIKit.framework in Frameworks */,
 				33AAF7EB1AA31A0D0031DF4A /* OpenGLES.framework in Frameworks */,
 				33AAF7EA1AA31A0A0031DF4A /* OpenAL.framework in Frameworks */,
+				68364C861C9A5BBF00313BD8 /* youtubeauty.framework in Frameworks */,
 				33AAF7E91AA31A070031DF4A /* GLKit.framework in Frameworks */,
 				33AAF7E61AA319F70031DF4A /* AudioToolbox.framework in Frameworks */,
 				3379C9E91A932FE600D29FFD /* CoreMedia.framework in Frameworks */,
@@ -2446,6 +2451,7 @@
 				33AAF7E71AA31A000031DF4A /* CoreText.framework in Frameworks */,
 				3379CA011A93353600D29FFD /* CoreGraphics.framework in Frameworks */,
 				33DA87D31AA2B50300625E87 /* FilterEngine.framework in Frameworks */,
+				68364C851C9A5BBF00313BD8 /* FilterEngine.framework in Frameworks */,
 				335E23E81B0F6AA200FE67FC /* FilterEngine.framework in Frameworks */,
 				3379C9E71A932F1700D29FFD /* AVFoundation.framework in Frameworks */,
 			);
@@ -3142,6 +3148,8 @@
 		33AAF3131AA314F70031DF4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68364C831C9A5BBF00313BD8 /* FilterEngine.framework */,
+				68364C841C9A5BBF00313BD8 /* youtubeauty.framework */,
 				33AAF7F01AA31BF50031DF4A /* MobileCoreServices.framework */,
 				33AAF7EE1AA31A600031DF4A /* MediaPlayer.framework */,
 				33AAF3141AA314F70031DF4A /* AudioToolbox.framework */,
@@ -6057,10 +6065,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
 					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
+					"$(PROJECT_DIR)/catRing/3rd/3rd",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6081,10 +6092,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/catRing/3rd",
 					"$(PROJECT_DIR)/catRing/3rd/opencvpt",
+					"$(PROJECT_DIR)/catRing/3rd/3rd",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
