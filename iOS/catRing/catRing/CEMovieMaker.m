@@ -150,8 +150,15 @@
     NSParameterAssert(pxdata != NULL);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pxdata, CGImageGetWidth(image),
-                                                 CGImageGetHeight(image), 8, 4*CGImageGetWidth(image), rgbColorSpace,
+//    CGContextRef context = CGBitmapContextCreate(pxdata, CGImageGetWidth(image),
+//                                                 CGImageGetHeight(image), 8, 4*CGImageGetWidth(image), rgbColorSpace,
+//                                                 kCGImageAlphaNoneSkipFirst);
+    CGContextRef context = CGBitmapContextCreate(pxdata,
+                                                 CGImageGetWidth(image),
+                                                 CGImageGetHeight(image),
+                                                 8,
+                                                 CVPixelBufferGetBytesPerRow(pxbuffer),
+                                                 rgbColorSpace,
                                                  kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
